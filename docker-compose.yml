@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  mysql:
+      image: mysql:8.0.26
+      container_name: organizarty_mysql
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: mysql
+        MYSQL_DATABASE: organizarty_mysql
+        MYSQL_USER: mysql
+        MYSQL_PASSWORD: mysql
+      ports:
+        - "3306:3306"
+      volumes:
+           - mysql:/data/mysql
+volumes:
+  mysql:

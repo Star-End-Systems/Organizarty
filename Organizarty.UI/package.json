@@ -1,0 +1,18 @@
+{
+  "name": "organizarty.ui",
+  "version": "1.0.0",
+  "description": "Organizarty frontend application",
+  "main": "index.js",
+  "scripts": {
+    "buildcss:dev": "tailwindcss -i ./Styles/app.css -o ./wwwroot/tailwind/app.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3",
+    "watch": "^0.13.0"
+  },
+  "dependencies": {
+    "flowbite": "^1.8.1"
+  }
+}
