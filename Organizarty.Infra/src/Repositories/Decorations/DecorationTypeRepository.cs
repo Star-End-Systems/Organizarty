@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.DecorationTypes.Data;
 using Organizarty.Application.App.DecorationTypes.Entities;
 using Organizarty.Infra.Data.Contexts;
@@ -12,6 +13,9 @@ public class DecorationTypeRepository : IDecorationTypeRepository
     {
         _context = context;
     }
+
+    public async Task<List<DecorationType>> All()
+    => await _context.DecorationTypes.ToListAsync();
 
     public async Task<DecorationType> Create(DecorationType decoration)
     {

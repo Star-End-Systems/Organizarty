@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Users.Data;
 using Organizarty.Application.App.Users.Entities;
 using Organizarty.Infra.Data.Contexts;
@@ -20,10 +21,8 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    public Task<User?> FindByEmail(string email)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<User?> FindByEmail(string email)
+    => await _context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
 
     public async Task<User> Update(User user)
     {

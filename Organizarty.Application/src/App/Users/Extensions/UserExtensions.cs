@@ -12,6 +12,7 @@ internal static class UserExtensions
         services.AddValidatorsFromAssemblyContaining<UserValidator>();
 
         services.AddScoped<ConfirmCodeUseCase>();
+        services.AddScoped<LoginUserUseCase>();
         services.AddScoped<RegisterUserUseCase>();
         services.AddScoped<SendEmailConfirmUseCase>();
 

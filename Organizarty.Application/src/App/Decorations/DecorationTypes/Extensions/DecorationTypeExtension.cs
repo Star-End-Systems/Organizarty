@@ -12,6 +12,7 @@ internal static class DecorationTypeExtension
         services.AddValidatorsFromAssemblyContaining<DecorationTypeValidator>();
 
         services.AddScoped<CreateDecorationTypeUseCase>();
+        services.AddScoped<SelectDecorationTypeUseCase>();
 
         return services;
     }
