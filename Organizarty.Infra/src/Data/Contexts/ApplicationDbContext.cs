@@ -33,12 +33,15 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Location> Locations { get; set; } = default!;
 
-    public DbSet<DecorationOrder> DecorationOrders { get; set; } = default!;
-    public DbSet<ServiceOrder> serviceOrders { get; set; } = default!;
-    public DbSet<FoodOrder> FoodOrders { get; set; } = default!;
-    public DbSet<PartyTemplate> PartyTemplates { get; set; } = default!;
-
     public DbSet<Schedule> Schedules { get; set; } = default!;
+    public DbSet<DecorationOrder> DecorationOrders { get; set; } = default!;
+    public DbSet<ServiceOrder> ServiceOrders { get; set; } = default!;
+    public DbSet<FoodOrder> FoodOrders { get; set; } = default!;
+
+    public DbSet<PartyTemplate> PartyTemplates { get; set; } = default!;
+    public DbSet<FoodGroup> FoodGroups { get; set; } = default!;
+    public DbSet<DecorationGroup> DecorationGroups { get; set; } = default!;
+    public DbSet<ServiceGroup> ServiceGroups { get; set; } = default!;
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

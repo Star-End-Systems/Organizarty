@@ -5,5 +5,5 @@ namespace Organizarty.Application.App.Party.Data;
 public interface IFoodGroupRepository
 {
     Task<FoodGroup> Add(FoodGroup group);
-    Task<List<FoodGroup>> ListFoodFromParty(Guid partyId);
+    Task<List<FoodGroup>> ListFromParty(Guid partyId);
 }

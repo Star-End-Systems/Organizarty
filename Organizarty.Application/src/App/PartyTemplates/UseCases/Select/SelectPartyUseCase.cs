@@ -18,15 +18,15 @@ public class SelectPartyUseCase
         _serviceRepository = serviceRepository;
     }
 
-    public async Task<PartyTemplate> FromId(Guid partyId)
+    public async Task<PartyTemplate?> FromId(Guid partyId)
       => await _partyRepository.FromId(partyId);
 
     public async Task<List<DecorationGroup>> GetDecorations(Guid partyId)
-      => await _decorationRepository.ListFoodFromParty(partyId);
+      => await _decorationRepository.ListFromParty(partyId);
 
     public async Task<List<FoodGroup>> GetFoods(Guid partyId)
-      => await _foodRepository.ListFoodFromParty(partyId);
+      => await _foodRepository.ListFromParty(partyId);
 
     public async Task<List<ServiceGroup>> GetServices(Guid partyId)
-      => await _serviceRepository.ListFoodFromParty(partyId);
+      => await _serviceRepository.ListFromParty(partyId);
 }

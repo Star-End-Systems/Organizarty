@@ -1,6 +1,7 @@
 using Organizarty.Application.App.Party.Data;
 using Organizarty.Application.App.Schedules.Data;
 using Organizarty.Application.App.Schedules.Entities;
+using Organizarty.Application.Exceptions;
 
 namespace Organizarty.Application.App.Schedules.UseCases;
 
@@ -19,7 +20,7 @@ public class ScheduleUseCase
 
     public async Task<Schedule> Execute(ScheduleDto scheduleDto)
     {
-        var party = await _partyRepository.FromId(scheduleDto.partyId);
+        var party = await _partyRepository.FromId(scheduleDto.partyId) ?? throw new NotFoundException("user from schedule not found");
 
         var schedule = new Schedule
         {

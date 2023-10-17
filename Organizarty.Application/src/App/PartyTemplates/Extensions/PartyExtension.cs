@@ -17,6 +17,8 @@ internal static class PartyExtension
         services.AddScoped<AddDecorationToPartyUseCase>();
         services.AddScoped<AddServiceToPartyUsecase>();
 
+        services.AddScoped<SelectPartyUseCase>();
+
         return services;
     }
 }
