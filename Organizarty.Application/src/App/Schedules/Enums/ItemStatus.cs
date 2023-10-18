@@ -5,4 +5,5 @@ public enum ItemStatus
     PENDING = 0,
     ACCEPT,
     REFUSED,
+    WAITING,
 }

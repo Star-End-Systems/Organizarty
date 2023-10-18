@@ -12,6 +12,7 @@ internal static class ScheduleExtension
         services.AddScoped<OrderFoodUseCase>();
         services.AddScoped<OrderServiceUseCase>();
         services.AddScoped<SelectScheduleUseCase>();
+        services.AddScoped<ChangeItemStatusUseCase>();
 
         return services;
     }

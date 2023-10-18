@@ -10,8 +10,9 @@ public class ScheduleUseCase
     private readonly IScheduleRepository _scheduleRepository;
     private readonly IPartyTemplateRepository _partyRepository;
     private readonly OrderDecorationUseCase _orderDecoration;
+    private readonly ChangeItemStatusUseCase changeStatus;
 
-    public ScheduleUseCase(IScheduleRepository scheduleRepository, IPartyTemplateRepository partyRepository, OrderDecorationUseCase orderDecoration)
+    public ScheduleUseCase(IScheduleRepository scheduleRepository, IPartyTemplateRepository partyRepository, OrderDecorationUseCase orderDecoration, ChangeItemStatusUseCase changeStatus)
     {
         _scheduleRepository = scheduleRepository;
         _partyRepository = partyRepository;

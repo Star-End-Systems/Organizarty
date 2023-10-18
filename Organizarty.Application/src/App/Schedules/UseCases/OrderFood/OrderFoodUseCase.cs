@@ -49,7 +49,7 @@ public class OrderFoodUseCase
             FoodInfoId = food.FoodInfoId,
             EventDate = schedule.StartDate,
             ScheduleId = schedule.Id,
-            Status = ItemStatus.PENDING,
+            Status = ItemStatus.WAITING,
             Price = total
         };
     }

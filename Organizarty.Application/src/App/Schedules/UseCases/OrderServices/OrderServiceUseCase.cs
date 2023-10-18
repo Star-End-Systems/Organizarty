@@ -47,7 +47,7 @@ public class OrderServiceUseCase
             ServiceInfoId = service.ServiceInfoId,
             EventDate = schedule.StartDate,
             ScheduleId = schedule.Id,
-            Status = ItemStatus.PENDING,
+            Status = ItemStatus.WAITING,
             Price = service.ServiceInfo.Price
         };
     }
