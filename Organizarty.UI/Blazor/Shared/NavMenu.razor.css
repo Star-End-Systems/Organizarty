@@ -16,14 +16,6 @@ section{
     background-image: url(../img/Inicial/Gradiente\ pq\ n\ da\ pra\ pegar\ a\ imagem\ do\ debaixo.png); 
   }
 
-.logo{
-    display: flex;
-    width: 15vw;
-    display: flex;
-    margin-left: 4vh;
-    margin-right: 4vh;
-    margin-top: 4vh;
-}
 
 .navbar{
     display: flex;

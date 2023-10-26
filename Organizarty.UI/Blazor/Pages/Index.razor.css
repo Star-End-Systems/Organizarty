@@ -13,7 +13,7 @@ section{
 }
 
 #inicial{
-    background-image: url(../img/Inicial/Gradiente\ pq\ n\ da\ pra\ pegar\ a\ imagem\ do\ debaixo.png); 
+    background-image: url(img/OnePage/Inicial/landpage-gradient.png); 
 }
 
 .logo{
@@ -103,12 +103,6 @@ section{
     justify-content: space-between;
 }
 
-.mascote{
-    width: 50vw; 
-    margin-left: 8vw;
-    display: flex;
-    align-items: flex-end;
-}
 
 #mascote{
     width:100%;

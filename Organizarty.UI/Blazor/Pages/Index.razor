@@ -1,26 +1,12 @@
 ﻿@page "/"
-@using Organizarty.UI.Blazor.Components
+@layout OnePageLayout
+
 @using Organizarty.UI.Blazor.Components.OnePage
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Organizarty</PageTitle>
 
-<section id="inicial">
-    <div class="container">
-        <div class="mascote">
-            <img id="mascote" src="img/Inicial/MacaquinhoMascote.png"/>
-        </div>
-        <div class="start">
-            <h2 class="txtStart">START YOUR <br> PARTY</h2>
-            <p>A arte de criar suas festas</p>
-            <button class="btnStart" type="button" href="/accounts/login">START</button>
-        </div>
-    </div>
-</section> 
+<LandPage />
 
-<About />
 
 <Parallax />
 
-<Services />
-
-<Footer />
