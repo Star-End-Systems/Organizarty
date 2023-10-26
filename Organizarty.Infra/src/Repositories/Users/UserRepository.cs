@@ -24,6 +24,9 @@ public class UserRepository : IUserRepository
     public async Task<User?> FindByEmail(string email)
     => await _context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
 
+    public async Task<User?> FindById(Guid id)
+    => await _context.Users.FindAsync(id);
+
     public async Task<User> Update(User user)
     {
         var u = _context.Users.Update(user);

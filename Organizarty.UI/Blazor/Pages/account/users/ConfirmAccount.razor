@@ -1,0 +1,32 @@
+@page "/account/users/ConfirmAccount/{Code}"
+@using Organizarty.Application.App.Users.UseCases;
+@using Organizarty.Application.App.Users.Entities;
+@using Organizarty.Application.Exceptions;
+
+@inject ConfirmCodeUseCase ConfirmCode
+
+@if(Token != null){
+  <p>Logged</p>
+}
+
+@if(Error != null){
+  <p>@Error</p>
+}
+
+@code {
+    [Parameter]
+    public string Code { get; set; }
+
+    private Guid? Token { get; set; }
+    private string? Error { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+      try{
+        Token = Guid.Parse(Code);
+        await Task.Run(async () => await ConfirmCode.Execute((Guid)Token));
+      } catch(Exception e){
+        Error = "Invalid Token";
+      }
+    }
+}
