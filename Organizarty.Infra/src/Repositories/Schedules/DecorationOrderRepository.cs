@@ -28,4 +28,9 @@ public class DecorationOrderRepository : IDecorationOrderRepository
         await _context.SaveChangesAsync();
         return decoration;
     }
+
+    public Task<DecorationOrder> Update(DecorationOrder decoration)
+    {
+        throw new NotImplementedException();
+    }
 }

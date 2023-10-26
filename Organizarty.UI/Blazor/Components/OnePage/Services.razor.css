@@ -1,0 +1,126 @@
+.servicesSection{
+    display: flex;
+
+    height: 100vh;
+    margin-top: -108vh;
+
+    background-color: #FFFFFF;
+    background-image: url(img/OnePage/services/background.png);
+}
+
+.servicesContainer{
+    height: 100%;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.servicesTitle{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.servicesTitle h3{
+    font-family: KonnectBold;
+    margin-top: 12vh;
+
+    background: linear-gradient(180deg, #7D3098 0%, #EF5781 50%, #FBD54A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    font-size: 1.5vw;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.servicesTitle h1{
+    font-family: KonnectBold;
+    margin-bottom: 4vh;
+
+    font-size: 3vw;
+    font-weight: bolder;
+
+    color: #878585;
+}
+
+.servicesItems{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.servicesFirstRow{
+    display: flex;
+    width: 100%;
+
+    align-content: space-between;
+    justify-content: center;
+
+    margin-top: 2%;
+}
+
+.servicesCol{ 
+    margin-right: 1.5vw;
+    margin-left: 1.5vw;
+
+    display: flex;
+    flex-direction: column;
+    
+    height: 20vh;
+    width: 20vw;
+
+    background-color: #989292;
+    border-radius: 40px;
+
+    color: #FFFFFF;
+
+    align-content: center; 
+    padding: 1%;
+}
+
+.servicesCol p{
+    font-family: Konnect;
+    margin-top: 15%;
+
+    font-size: 1.0vw;
+}
+
+.servicesSecondRow{
+    display: flex;
+    width: 100%;
+
+    align-content: space-between;
+    justify-content: center;
+
+    margin-top: 3%;
+}
+
+.servicesRowTitle{
+    display: flex;
+
+    align-items: center;
+    margin-top: 2%;
+}
+
+.servicesRowTitle img{
+    margin-left: 10%;
+
+    height: 4vh;
+}
+
+.servicesRowTitle h3{
+    font-family: KonnectBold;
+    margin-left: 15%;
+    
+    font-weight: bolder;
+    font-size: 2.5vh;
+}

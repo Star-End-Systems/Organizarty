@@ -14,7 +14,7 @@ public class FoodOrder
     public ItemStatus Status { get; set; }
 
     public DateTime EventDate { get; set; }
-    
+
     public decimal Price { get; set; }
 
     public Guid PartyTemplateId { get; set; }

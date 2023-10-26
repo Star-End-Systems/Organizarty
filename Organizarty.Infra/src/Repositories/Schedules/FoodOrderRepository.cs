@@ -6,6 +6,7 @@ using Organizarty.Infra.Data.Contexts;
 namespace Organizarty.Infra.Repositories.Schedules;
 
 public class FoodOrderRepository : IFoodOrderRepository
+
 {
     private readonly ApplicationDbContext _context;
 
@@ -27,5 +28,10 @@ public class FoodOrderRepository : IFoodOrderRepository
         _context.FoodOrders.Update(food);
         await _context.SaveChangesAsync();
         return food;
+    }
+
+    public Task<FoodOrder> Update(FoodOrder food)
+    {
+        throw new NotImplementedException();
     }
 }

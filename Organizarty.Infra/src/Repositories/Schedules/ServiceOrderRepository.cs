@@ -28,4 +28,9 @@ public class ServiceOrderRepository : IServiceOrderRepository
         await _context.SaveChangesAsync();
         return food;
     }
+
+    public Task<ServiceOrder> Update(ServiceOrder service)
+    {
+        throw new NotImplementedException();
+    }
 }
