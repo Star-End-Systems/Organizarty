@@ -6,7 +6,6 @@ using Organizarty.Infra.Data.Contexts;
 namespace Organizarty.Infra.Repositories.Schedules;
 
 public class FoodOrderRepository : IFoodOrderRepository
-
 {
     private readonly ApplicationDbContext _context;
 

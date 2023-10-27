@@ -11,14 +11,12 @@ public class RegisterUserUseCase
     private readonly IUserRepository _userRepository;
     private readonly ICryptographys _cryptographys;
     private readonly IValidator<User> _userValidator;
-    private readonly SendEmailConfirmUseCase _sendEmail;
 
-    public RegisterUserUseCase(IUserRepository userRepository, ICryptographys cryptographys, IValidator<User> userValidator, SendEmailConfirmUseCase sendEmail)
+    public RegisterUserUseCase(IUserRepository userRepository, ICryptographys cryptographys, IValidator<User> userValidator)
     {
         _userRepository = userRepository;
         _cryptographys = cryptographys;
         _userValidator = userValidator;
-        _sendEmail = sendEmail;
     }
 
     public async Task<User> Execute(RegisterUserDto userDto)
@@ -32,11 +30,7 @@ public class RegisterUserUseCase
         user.Password = password;
         user.Salt = salt;
 
-        var u = await _userRepository.Create(user);
-
-        await _sendEmail.Execute(u);
-
-        return u;
+        return await _userRepository.Create(user);
     }
 
     private void Validate(User user)

@@ -48,7 +48,7 @@ public static class RepositoriesExtension
 
         services.AddScoped<IPartyTemplateRepository, PartyTemplateRepository>();
         services.AddScoped<IDecorationGroupRepository, DecorationGroupRepository>();
-        services.AddScoped<IFoodGroupRepository, FoodGroupRepository>();
+        services.AddScoped<IFoodGroupRepository, FoodGroupRepository >();
         services.AddScoped<IServiceGroupRepository, ServiceGroupRepository>();
 
         return services;

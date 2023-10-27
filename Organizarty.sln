@@ -3,21 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.Application", "Organizarty.Application\Organizarty.Application.csproj", "{3C1A8E91-C035-4403-97D8-737D8D0367A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Organizarty.Application", "Organizarty.Application\Organizarty.Application.csproj", "{3C1A8E91-C035-4403-97D8-737D8D0367A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.Adapters", "Organizarty.Adapters\Organizarty.Adapters.csproj", "{339FC22B-555F-4C2E-B7EE-71C84DF2CE39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Organizarty.Adapters", "Organizarty.Adapters\Organizarty.Adapters.csproj", "{339FC22B-555F-4C2E-B7EE-71C84DF2CE39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.Infra", "Organizarty.Infra\Organizarty.Infra.csproj", "{B270DA6F-4768-4FD0-B345-FDD072ACE386}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Organizarty.Infra", "Organizarty.Infra\Organizarty.Infra.csproj", "{B270DA6F-4768-4FD0-B345-FDD072ACE386}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.UI", "Organizarty.UI\Organizarty.UI.csproj", "{1FDC3E0E-9BA5-4D96-B704-E4C92C1BC127}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Organizarty.UI", "Organizarty.UI\Organizarty.UI.csproj", "{1FDC3E0E-9BA5-4D96-B704-E4C92C1BC127}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3C1A8E91-C035-4403-97D8-737D8D0367A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -36,5 +33,11 @@ Global
 		{1FDC3E0E-9BA5-4D96-B704-E4C92C1BC127}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FDC3E0E-9BA5-4D96-B704-E4C92C1BC127}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FDC3E0E-9BA5-4D96-B704-E4C92C1BC127}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F4B1A7B-09CA-4C45-AC9C-3972A1679E4D}
 	EndGlobalSection
 EndGlobal

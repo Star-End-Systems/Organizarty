@@ -18,11 +18,12 @@ public class ConfirmCodeUseCase
 
     public async Task<User> Execute(Guid code)
     {
-        var confirmation = await _confirmRepository.FindById(code) ?? throw new NotFoundException("Email code not found");
+        var confirmation = await _confirmRepository.FindById(code) ?? throw new NotFoundException("Email code not founded");
         ValidEmailCode(confirmation);
 
-        var user = await _userRepository.FindById(confirmation.UserId) ?? throw new NotFoundException("User not found");
+        var user = confirmation.User;
         user.EmailConfirmed = true;
+
         var updatedUser = await _userRepository.Update(user);
 
         await _confirmRepository.RemoveAllFromUser(user.Id);
