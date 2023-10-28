@@ -7,6 +7,7 @@ Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
@@ -35,5 +36,14 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
+app.MapControllerRoute(
+    name: "MyArea",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapAreaControllerRoute(
+    name: "InitialArea",
+    areaName: "Organizarty",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

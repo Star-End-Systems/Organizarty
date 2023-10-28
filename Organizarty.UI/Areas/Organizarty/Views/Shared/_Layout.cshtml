@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Organizarty</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/tailwind/app.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Organizarty.UI.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+      <partial name="_NavMenu" />
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <partial name="_Footer" />
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script src="_framework/blazor.server.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+</body>
+</html>
