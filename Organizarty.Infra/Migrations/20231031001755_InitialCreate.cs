@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -21,6 +22,14 @@ namespace Organizarty.Infra.Migrations
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    CEP = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Category = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Address = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Cords = table.Column<string>(type: "varchar(16)", maxLength: 16, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     AreaSize = table.Column<double>(type: "double", nullable: true),
@@ -37,6 +46,28 @@ namespace Organizarty.Infra.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Manager",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Password = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Manager", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "ThirdParties",
                 columns: table => new
                 {
@@ -44,6 +75,8 @@ namespace Organizarty.Infra.Migrations
                     Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Address = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LoginEmail = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -76,6 +109,8 @@ namespace Organizarty.Infra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Fullname = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     UserName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "varchar(255)", nullable: false)
@@ -83,6 +118,8 @@ namespace Organizarty.Infra.Migrations
                     Password = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Salt = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CPF = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     EmailConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -115,7 +152,9 @@ namespace Organizarty.Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ObjectURL = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ThirdPartyId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    ThirdPartyId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    TagsJSON = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -165,7 +204,9 @@ namespace Organizarty.Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ThirdPartyId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    ThirdPartyId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    TagsJSON = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -623,6 +664,12 @@ namespace Organizarty.Infra.Migrations
                 column: "ThirdPartyId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Manager_Email",
+                table: "Manager",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PartyTemplates_LocationId",
                 table: "PartyTemplates",
                 column: "LocationId");
@@ -699,6 +746,12 @@ namespace Organizarty.Infra.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Users_CPF",
+                table: "Users",
+                column: "CPF",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
                 table: "Users",
                 column: "Email",
@@ -719,6 +772,9 @@ namespace Organizarty.Infra.Migrations
 
             migrationBuilder.DropTable(
                 name: "FoodOrders");
+
+            migrationBuilder.DropTable(
+                name: "Manager");
 
             migrationBuilder.DropTable(
                 name: "ServiceGroups");

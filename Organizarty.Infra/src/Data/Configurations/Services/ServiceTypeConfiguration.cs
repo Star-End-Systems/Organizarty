@@ -13,5 +13,7 @@ public class ServiceTypeConfiguration : IEntityTypeConfiguration<ServiceType>
 
         builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
         builder.Property(x => x.Description).IsRequired().HasMaxLength(256);
+
+        builder.Ignore(x => x.Tags);
     }
 }

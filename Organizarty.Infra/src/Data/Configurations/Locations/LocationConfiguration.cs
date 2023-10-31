@@ -11,10 +11,15 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
-        builder.Ignore(x => x.Images);
-
         builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
         builder.Property(x => x.Description).IsRequired().HasMaxLength(256);
+
+        builder.Property(x => x.Category).IsRequired().HasMaxLength(32);
+
+        builder.Property(x => x.CEP).IsRequired().HasMaxLength(8);
+
+        builder.Property(x => x.Cords).IsRequired().HasMaxLength(16);
+        builder.Property(x => x.Address).IsRequired().HasMaxLength(32);
 
         builder.Ignore(x => x.Images);
     }

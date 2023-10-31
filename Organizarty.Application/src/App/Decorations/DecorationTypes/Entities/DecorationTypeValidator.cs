@@ -13,5 +13,7 @@ public class DecorationTypeValidator : AbstractValidator<DecorationType>
         RuleFor(x => x.ObjectURL).Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _)).WithMessage("Invalid URL");
 
         RuleFor(x => x.ThirdPartyId).NotNull();
+
+        RuleFor(x => x.Tags).Must(x => x.Count <= 5).WithMessage("Tag limit is five.");
     }
 }

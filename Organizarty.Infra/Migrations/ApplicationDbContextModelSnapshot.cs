@@ -86,6 +86,10 @@ namespace Organizarty.Infra.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("varchar(8)");
 
+                    b.Property<string>("TagsJSON")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("ThirdPartyId")
                         .HasColumnType("char(36)");
 
@@ -166,8 +170,28 @@ namespace Organizarty.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
                     b.Property<double?>("AreaSize")
                         .HasColumnType("double");
+
+                    b.Property<string>("CEP")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Cords")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("varchar(16)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
@@ -194,6 +218,41 @@ namespace Organizarty.Infra.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("Organizarty.Application.App.Manager.Entities.Manager", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Manager");
                 });
 
             modelBuilder.Entity("Organizarty.Application.App.Party.Entities.DecorationGroup", b =>
@@ -529,6 +588,10 @@ namespace Organizarty.Infra.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("TagsJSON")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("ThirdPartyId")
                         .HasColumnType("char(36)");
 
@@ -544,6 +607,11 @@ namespace Organizarty.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<bool>("Authorized")
                         .HasColumnType("tinyint(1)");
@@ -611,6 +679,11 @@ namespace Organizarty.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("CPF")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("varchar(11)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -620,6 +693,11 @@ namespace Organizarty.Infra.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("Fullname")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
 
                     b.Property<string>("Location")
                         .IsRequired()
@@ -648,6 +726,9 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CPF")
+                        .IsUnique();
 
                     b.HasIndex("Email")
                         .IsUnique();

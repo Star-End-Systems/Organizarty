@@ -14,6 +14,8 @@ public class ThirdPartyConfiguration : IEntityTypeConfiguration<ThirdParty>
         builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
         builder.Property(x => x.Description).HasMaxLength(256);
 
+        builder.Property(x => x.Address).IsRequired().HasMaxLength(256);
+
         builder.Property(x => x.ContactPhone).IsRequired().HasMaxLength(20);
         builder.Property(x => x.ProfissionalPhone).IsRequired().HasMaxLength(20);
 

@@ -12,6 +12,8 @@ public class ThirdPartyValidator : AbstractValidator<ThirdParty>
         RuleFor(x => x.Name).Length(5, 50);
         RuleFor(x => x.Description).Length(15, 256);
 
+        RuleFor(x => x.Address).NotNull().Length(10, 256);
+
         RuleFor(x => x.CNPJ).Length(14);
 
         RuleFor(x => x.ContactPhone).MinimumLength(11).MaximumLength(20);

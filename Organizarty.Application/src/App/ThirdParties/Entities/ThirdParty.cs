@@ -9,6 +9,8 @@ public class ThirdParty
     public string? Name { get; set; }
     public string? Description { get; set; }
 
+    public string Address { get; set; } = default!;
+
     public string? LoginEmail { get; set; }
     public string? Salt { get; set; }
     public string? Password { get; set; }

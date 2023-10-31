@@ -8,6 +8,14 @@ public class Location
 
     public string? Name { get; set; }
 
+    public string CEP { get; set; } = default!;
+
+    public string Category { get; set; } = default!;
+
+    public string? Address { get; set; }
+
+    public string Cords { get; set; } = default!;
+
     public string? Description { get; set; }
 
     public double? AreaSize { get; set; }

@@ -6,6 +6,8 @@ public class User
 {
     public Guid Id { get; set; }
 
+    public string Fullname { get; set; } = default!;
+
     public string UserName { get; set; } = default!;
 
     public string Email { get; set; } = default!;
@@ -13,6 +15,8 @@ public class User
     public string Password { get; set; } = default!;
 
     public string Salt { get; set; } = default!;
+
+    public string CPF { get; set; } = default!;
 
     public bool EmailConfirmed { get; set; }
 

@@ -20,5 +20,7 @@ public class DecorationTypeConfiguration : IEntityTypeConfiguration<DecorationTy
           .WithMany()
           .HasForeignKey(a => a.ThirdPartyId)
           .IsRequired();
+
+        builder.Ignore(x => x.Tags);
     }
 }
