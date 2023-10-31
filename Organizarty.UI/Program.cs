@@ -1,22 +1,7 @@
-using Organizarty.Infra.Extensions;
-
-using Organizarty.Application.Extensions;
-
-using DotNetEnv;
-Env.Load();
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
-
 // Add services to the container.
-builder.Services.AddDatabase(builder.Configuration);
-builder.Services.AddRepositories();
-builder.Services.AddProviders();
-
-builder.Services.AddUseCases();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -29,23 +14,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
 
 app.UseRouting();
 
-app.MapBlazorHub();
-// app.MapFallbackToPage("/_Host");
+app.UseAuthorization();
 
 app.MapRazorPages();
-
-app.MapControllerRoute(
-    name: "MyArea",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-app.MapAreaControllerRoute(
-    name: "InitialArea",
-    areaName: "Organizarty",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
