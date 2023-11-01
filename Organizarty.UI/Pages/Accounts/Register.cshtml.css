@@ -44,24 +44,3 @@ button{
 
     color: #848484;
 }
-
-.ThirdParty button{
-    box-sizing: border-box;
-
-    border: solid 5px transparent;
-    border-radius: 1em;
-
-    border-radius: inherit;
-    background-clip: padding-box;
-    -webkit-background-clip: padding-box;
-    -webkit-border-image: transparent;
-
-    background: linear-gradient(to right, red, orange);
-}
-
-.ThirdParty span{
-    background: linear-gradient(180deg, #EF5781 0%, #FBD54A 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}

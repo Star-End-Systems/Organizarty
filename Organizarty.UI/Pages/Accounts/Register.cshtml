@@ -1,12 +1,13 @@
 @page
 
 @{
-    ViewData["title"] = "Register";
+    ViewData["title"] = "Registrar";
+    Layout = "_NullLayout";
 }
 
 <section>
     <div class="User">
-        <img src="">
+        <img src="/images/register/Logo1.svg" />
         <h3>Comece a criar as suas festas</h3>
         
         <p>Para aqueles que querem dar play nas melhor festa!</p>
@@ -15,11 +16,15 @@
     </div>
 
     <div class="ThirdParty">
-        <img src="">
+        <img src="/images/register/Logo2.svg" />
         <h3>Faça parte da equipe Zarty</h3>
 
         <p>Para aqueles que fazem os melhores quitutes!</p>
 
-        <button><span>Comece a Vender</span></button>
+        <button class="bg-clip-border border-transparent bg-gradient-to-r from-[#FF008A] to-[#FFC700] ">
+            <span class="bg-clip-text text-transparent bg-gradient-to-b from-[#EF5781] to-[#FBD54A]">
+                Comece a Vender 
+            </span>
+        </button>
     </div>
 </section>
