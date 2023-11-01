@@ -5,6 +5,6 @@ div{
 .part2{
   /* Bota na div pra ficar no tailwind em html */
   background-color: #2E2C2C;
-  background-image: url("/images/login/Vitrine.svg");
-  background-size: cover;
+/*   background-image: url("/images/login/Vitrine.svg");
+  background-size: cover; */
 }
