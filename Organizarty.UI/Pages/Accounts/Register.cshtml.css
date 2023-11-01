@@ -1,0 +1,67 @@
+section {
+    display: flex;
+    
+    margin: 0;
+
+    width: 100%;
+    height: 100vh;
+}
+
+h3{
+    font-weight: bolder; 
+}
+
+button{
+    background-color: transparent;
+
+    height: 5%;
+
+    border-radius: 20px;
+}
+
+.User{
+    background: linear-gradient(180deg, #FF008A 45.31%, #FFC700 100%);
+
+    position: relative;
+
+    width: 50%;
+    height: 100%;
+
+    color: #FFF;
+}
+
+.User button{
+    border: 2px solid white;
+
+    color: #FFF;
+}
+
+.ThirdParty{
+    position: relative;
+
+    width: 50%;
+    height: 100%;
+
+    color: #848484;
+}
+
+.ThirdParty button{
+    box-sizing: border-box;
+
+    border: solid 5px transparent;
+    border-radius: 1em;
+
+    border-radius: inherit;
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    -webkit-border-image: transparent;
+
+    background: linear-gradient(to right, red, orange);
+}
+
+.ThirdParty span{
+    background: linear-gradient(180deg, #EF5781 0%, #FBD54A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
