@@ -14,12 +14,24 @@ h3{
 button{
     background-color: transparent;
 
-    height: 5%;
+    height: 6%;
+    width: 23%;
 
-    border-radius: 20px;
+    border-radius: 15px;
+}
+
+img{
+    width: 7em;
+
+    margin-bottom: 15%;
 }
 
 .User{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     background: linear-gradient(180deg, #FF008A 45.31%, #FFC700 100%);
 
     position: relative;
@@ -37,10 +49,19 @@ button{
 }
 
 .ThirdParty{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     position: relative;
 
     width: 50%;
     height: 100%;
 
     color: #848484;
+}
+
+.ThirdParty button{
+    border: 2px solid #FF008A;
 }
