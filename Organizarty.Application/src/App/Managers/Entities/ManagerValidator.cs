@@ -1,11 +1,10 @@
-using System.Text.RegularExpressions;
 using FluentValidation;
 
-namespace Organizarty.Application.App.Manager.Entities;
+namespace Organizarty.Application.App.Managers.Entities;
 
-public class LocationValidator : AbstractValidator<Manager>
+public class ManagerValidator : AbstractValidator<Manager>
 {
-    public LocationValidator()
+    public ManagerValidator()
     {
         RuleFor(x => x.Name).Length(5, 50);
         RuleFor(x => x.Email).EmailAddress().NotNull();

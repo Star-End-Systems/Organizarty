@@ -1,6 +1,4 @@
-using System.Text.Json;
-
-namespace Organizarty.Application.App.Manager.Entities;
+namespace Organizarty.Application.App.Managers.Entities;
 
 public class Manager
 {
@@ -10,6 +8,7 @@ public class Manager
     public string Email { get; set; } = default!;
 
     public string Password { get; set; } = default!;
+    public string Salt { get; set; } = default!;
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 
