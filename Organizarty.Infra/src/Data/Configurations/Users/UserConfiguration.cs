@@ -27,5 +27,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasIndex(x => x.CPF).IsUnique();
 
         builder.Ignore(x => x.Roles);
+
+        builder.Property(x => x.CreatedAt).ValueGeneratedOnAdd();
+        builder.Property(x => x.UpdatedAt).ValueGeneratedOnAddOrUpdate();
     }
 }

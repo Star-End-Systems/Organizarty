@@ -1,5 +1,4 @@
 using Organizarty.Application.App.Users.UseCases;
-using Organizarty.Application.Exceptions;
 using Organizarty.Tests.Factories.Database;
 using Organizarty.Tests.Factories.Repositories;
 using Organizarty.Tests.Factories.UseCases;
@@ -7,14 +6,15 @@ using Organizarty.Tests.Samples.Users;
 
 namespace Organizarty.Tests.Unit.Users;
 
-public class LoginUserTest
+public class LoginUserTest : IAsyncLifetime
 {
+    public ApplicationDbContext Context { get; private set; } = default!;
+
     [Fact]
     public async Task Login_ValidData_ReturnLoggedUser()
     {
-        var context = DatabaseFactory.InMemoryDatabase();
-        var userRepo = new RepositoriesFactory(context).UserRepository();
-        var confirmRepo = new RepositoriesFactory(context).UserConfirmationRepository();
+        var userRepo = new RepositoriesFactory(Context).UserRepository();
+        var confirmRepo = new RepositoriesFactory(Context).UserConfirmationRepository();
 
         var registerUser = new UseCasesFactory().RegisterUserUseCase(userRepo);
         var sendCode = new UseCasesFactory().SendEmailConfirmUseCase(confirmRepo);
@@ -23,17 +23,17 @@ public class LoginUserTest
 
         var user = await UserSample.SetupUserEmailConfirmed(registerUser, sendCode, confirmCode);
 
-        var u = await loginUser.Execute(new LoginUserDto("user@test.com", "long_and_secure_password"));
+        var u = await loginUser.Execute(new LoginUserDto(user.Email, "long_and_secure_password"));
 
         Assert.NotNull(u);
     }
 
+
     [Fact]
     public async Task Login_EmailNotFound_ReturnLoggedUser()
     {
-        var context = DatabaseFactory.InMemoryDatabase();
-        var userRepo = new RepositoriesFactory(context).UserRepository();
-        var confirmRepo = new RepositoriesFactory(context).UserConfirmationRepository();
+        var userRepo = new RepositoriesFactory(Context).UserRepository();
+        var confirmRepo = new RepositoriesFactory(Context).UserConfirmationRepository();
 
         var registerUser = new UseCasesFactory().RegisterUserUseCase(userRepo);
         var sendCode = new UseCasesFactory().SendEmailConfirmUseCase(confirmRepo);
@@ -50,9 +50,8 @@ public class LoginUserTest
     [Fact]
     public async Task Login_WrongPassword_ReturnLoggedUser()
     {
-        var context = DatabaseFactory.InMemoryDatabase();
-        var userRepo = new RepositoriesFactory(context).UserRepository();
-        var confirmRepo = new RepositoriesFactory(context).UserConfirmationRepository();
+        var userRepo = new RepositoriesFactory(Context).UserRepository();
+        var confirmRepo = new RepositoriesFactory(Context).UserConfirmationRepository();
 
         var registerUser = new UseCasesFactory().RegisterUserUseCase(userRepo);
         var sendCode = new UseCasesFactory().SendEmailConfirmUseCase(confirmRepo);
@@ -61,8 +60,19 @@ public class LoginUserTest
 
         var user = await UserSample.SetupUserEmailConfirmed(registerUser, sendCode, confirmCode);
 
-        var task = loginUser.Execute(new LoginUserDto("user@test.com", "wrong_password"));
+        var task = loginUser.Execute(new LoginUserDto(user.Email, "wrong_password"));
 
         await Assert.ThrowsAsync<NotFoundException>(async () => await task);
+    }
+
+    public Task InitializeAsync()
+    {
+        Context = DatabaseFactory.InMemoryDatabase();
+        return Task.CompletedTask;
+    }
+
+    public async Task DisposeAsync()
+    {
+        await Context.DisposeAsync();
     }
 }

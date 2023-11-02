@@ -7,7 +7,7 @@ public static class UserSample
 {
     public static async Task<User> SetupUser(RegisterUserUseCase registerUser)
     {
-        var data = new RegisterUserDto("testuser", "Test User Da Silva", "São Paulo, SP", "user@test.com", "long_and_secure_password", null);
+        var data = new RegisterUserDto("testuser", "Test User Da Silva", "São Paulo, SP", $"user-{Guid.NewGuid().ToString()}@test.com", "long_and_secure_password", null);
 
         return await registerUser.Execute(data);
     }

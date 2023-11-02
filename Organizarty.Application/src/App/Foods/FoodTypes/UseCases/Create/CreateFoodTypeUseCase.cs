@@ -16,12 +16,12 @@ public class CreateFoodTypeUseCase
         _foodRepository = foodRepository;
     }
 
-    public async Task Execute(CreateFoodTypeDto foodTypeDto)
+    public async Task<FoodType> Execute(CreateFoodTypeDto foodTypeDto)
     {
         var food = foodTypeDto.ToModel;
         Validate(food);
 
-        await _foodRepository.Create(food);
+        return await _foodRepository.Create(food);
     }
 
     private void Validate(FoodType food)

@@ -34,5 +34,8 @@ public class ThirdPartyConfiguration : IEntityTypeConfiguration<ThirdParty>
         builder.Property(x => x.ProfilePictureURL).IsRequired();
 
         builder.Ignore(x => x.Tag);
+
+        builder.Property(x => x.CreatedAt).ValueGeneratedOnAdd();
+        builder.Property(x => x.UpdatedAt).ValueGeneratedOnAddOrUpdate();
     }
 }
