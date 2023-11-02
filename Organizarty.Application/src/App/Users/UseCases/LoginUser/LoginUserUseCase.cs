@@ -9,22 +9,19 @@ public class LoginUserUseCase
 {
     private readonly ICryptographys _cryptographys;
     private readonly IUserRepository _userRepository;
-    private readonly ITokenProvider _tokenProvider;
 
-    public LoginUserUseCase(ICryptographys cryptographys, IUserRepository userRepository, ITokenProvider token)
+    public LoginUserUseCase(ICryptographys cryptographys, IUserRepository userRepository)
     {
         _cryptographys = cryptographys;
         _userRepository = userRepository;
-        _tokenProvider = token;
     }
 
-    public async Task<(User User, string Token)> Execute(LoginUserDto userDto)
+    public async Task<User> Execute(LoginUserDto userDto)
     {
         var user = await _userRepository.FindByEmail(userDto.Email) ?? throw new NotFoundException($"User with email '{userDto.Email}' not found.");
         ValidCredentials(userDto.Password, user);
-        var token = _tokenProvider.GenerateToken(user.Id.ToString(), userDto.Email);
 
-        return (user, token);
+        return user;
     }
 
     private void ValidCredentials(string password, User user)
