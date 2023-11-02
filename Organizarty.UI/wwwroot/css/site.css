@@ -5,8 +5,23 @@
 
 :root{
     --cinzaFundo: "#2E2C2C";
+	--laranja: #FF7F31;
 }
 
+@font-face{
+	font-family: Konnect;
+	src: url(../fonts/Konnect/KonnectLight.otf);
+}
+
+@Font-face{
+	font-family: KonnectBold;
+	src: url(../fonts/Konnect/KonnectBold.otf);
+}
+
+@font-face{
+	font-family: Inter;
+	src: url(../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
