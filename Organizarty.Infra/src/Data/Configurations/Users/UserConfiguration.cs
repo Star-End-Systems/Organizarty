@@ -23,9 +23,12 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(x => x.Location).IsRequired();
 
-        builder.Property(x => x.CPF).HasMaxLength(11);
+        builder.Property(x => x.CPF).HasMaxLength(11).IsRequired(false);
         builder.HasIndex(x => x.CPF).IsUnique();
 
         builder.Ignore(x => x.Roles);
+
+        builder.Property(x => x.CreatedAt).ValueGeneratedOnAdd();
+        builder.Property(x => x.UpdatedAt).ValueGeneratedOnAddOrUpdate();
     }
 }

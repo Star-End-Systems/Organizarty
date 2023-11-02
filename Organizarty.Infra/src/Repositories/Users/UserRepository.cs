@@ -22,7 +22,7 @@ public class UserRepository : IUserRepository
     }
 
     public async Task<User?> FindByEmail(string email)
-    => await _context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
+    => await _context.Users.Where(x => x.Email == email).OrderBy(x => x.UpdatedAt).FirstOrDefaultAsync();
 
     public async Task<User> Update(User user)
     {

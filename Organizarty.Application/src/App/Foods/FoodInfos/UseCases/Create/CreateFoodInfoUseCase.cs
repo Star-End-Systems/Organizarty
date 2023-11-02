@@ -16,11 +16,11 @@ public class CreateFoodInfoUseCase
         _foodRepository = foodRepository;
     }
 
-    public async Task Execute(CreateFoodInfoDto foodDto)
+    public async Task<FoodInfo> Execute(CreateFoodInfoDto foodDto)
     {
         var food = foodDto.ToModel;
         ValidationUtils.Validate(_validator, food, "Validation for food fail");
 
-        await _foodRepository.Create(food);
+        return await _foodRepository.Create(food);
     }
 }

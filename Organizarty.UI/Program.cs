@@ -1,7 +1,20 @@
+using Organizarty.Infra.Extensions;
+using Organizarty.Application.Extensions;
+
+using DotNetEnv;
+Env.Load();
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+// Add services to the container.
+builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddRepositories();
+builder.Services.AddProviders();
+
+builder.Services.AddUseCases();
 
 var app = builder.Build();
 

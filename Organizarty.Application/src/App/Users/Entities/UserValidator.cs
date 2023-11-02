@@ -1,6 +1,4 @@
 using FluentValidation;
-using Organizarty.Application.Extras.Validators;
-
 namespace Organizarty.Application.App.Users.Entities;
 
 public class UserValidator : AbstractValidator<User>
@@ -12,7 +10,8 @@ public class UserValidator : AbstractValidator<User>
         RuleFor(x => x.Fullname).Length(5, 80).NotNull();
         RuleFor(x => x.Password).MinimumLength(8).NotNull();
 
-        RuleFor(x => x.CPF).ValidCPF();
+        // RuleFor(x => x.CPF).Null().ValidCPF();
+        RuleFor(x => x.CPF).Length(11).When(x => !string.IsNullOrWhiteSpace(x.CPF));
 
         RuleFor(x => x.ProfilePictureURL)
           .Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _))

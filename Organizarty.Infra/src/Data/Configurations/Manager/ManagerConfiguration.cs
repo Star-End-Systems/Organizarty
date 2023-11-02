@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Organizarty.Application.App.Manager.Entities;
+using Organizarty.Application.App.Managers.Entities;
 
 namespace Organizarty.Infra.Data.Configurations;
 
