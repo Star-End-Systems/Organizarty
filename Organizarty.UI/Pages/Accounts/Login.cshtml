@@ -9,22 +9,23 @@
         <div class="flex justify-center">
             <img class="w-32" src="/images/login/OrganizartyLogo.svg"/> 
         </div>
-        <div class="LoginForm flex justify-center items-center text-center">
-            <form id="login" method="post" >
+        <div class="LoginForm flex justify-center py-8 text-center">
+            <form id="login" method="post" class="w-full">
                 <h2>LOGIN</h2>
-                <hr />
-                    <div asp-validation-summary="ModelOnly" class=""></div>
-                        <div class="form-floating mb-3">
-                            <input asp-for="Input.Email" class=" placeholder form-control" aria-required="true" placeholder="Digite seu email"/>
-                            <span asp-validation-for="Input.Email" class="text-danger"></span>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Digite sua senha" />
-                            <span asp-validation-for="Input.Password" class="text-danger"></span>
-                        </div>
-                        <div>
-                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Sign in</button>
-                        </div>
+                    <div class="line pb-8 flex justify-center rounded-full"></div>
+                        <div asp-validation-summary="ModelOnly" class=""></div>
+                            <div class="h-48 items-stretch">
+                                <!-- Email -->
+                                    <input asp-for="Input.Email" class="w-9/12 h-12 rounded-xl shadow-md placeholder form-control" aria-required="true" placeholder="Digite seu email"/>
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                <!-- Password -->
+                                    <input asp-for="Input.Password" class="w-9/12 h-12 rounded-xl shadow-md form-control" autocomplete="current-password" aria-required="true" placeholder="Digite sua senha" type="password"/>
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="flex w-full place-content-evenly">
+                                <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Sign in</button>
+                                <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Criar uma conta</button>
+                            </div>
             </form>
         </div>
     </div>

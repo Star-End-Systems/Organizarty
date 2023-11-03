@@ -1,8 +1,13 @@
-/* div{
+div{
   border: red solid 1px;
 }
- */
-.part2{
+
+#login{
+  border: black solid 1px;
+}
+
+ 
+ .part2{
   /* Bota na div pra ficar no tailwind em html */
   background-color: #2E2C2C;
 /*   background-image: url("/images/login/Vitrine.svg");
@@ -12,12 +17,14 @@
 h2{
   font-family: KonnectBold;
   color: #FF7F31;
+  font-size: 7vh;
 }
 
-hr{
+.line{
   width: 4vw;
-  color: var(--laranja);
-
+  height: 15px;
+  background-color: #FF7F31;
+  justify-content: center;
 }
 
 .placeholder{
