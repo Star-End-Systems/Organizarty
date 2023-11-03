@@ -12,19 +12,19 @@
         <div class="LoginForm flex justify-center py-8 text-center">
             <form id="login" method="post" class="w-full">
                 <h2>LOGIN</h2>
-                    <div class="line pb-8 flex justify-center rounded-full"></div>
+                   @*  <div class="line pb-8 flex justify-center rounded-full"></div> *@
                         <div asp-validation-summary="ModelOnly" class=""></div>
-                            <div class="h-48 items-stretch">
+                        <div class="h-48 flex flex-col items-center justify-evenly">
                                 <!-- Email -->
-                                    <input asp-for="Input.Email" class="w-9/12 h-12 rounded-xl shadow-md placeholder form-control" aria-required="true" placeholder="Digite seu email"/>
-                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                    <input asp-for="Input.Email" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control" aria-required="true" placeholder="Digite seu email"/>
+                                    <span asp-validation-for="Input.Email" class="placeholder"></span>
                                 <!-- Password -->
-                                    <input asp-for="Input.Password" class="w-9/12 h-12 rounded-xl shadow-md form-control" autocomplete="current-password" aria-required="true" placeholder="Digite sua senha" type="password"/>
-                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                    <input asp-for="Input.Password" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control" autocomplete="current-password" aria-required="true" placeholder="Digite sua senha" type="password"/>
+                                    <span asp-validation-for="Input.Password" class="placeholder"></span>
                             </div>
-                            <div class="flex w-full place-content-evenly">
-                                <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Sign in</button>
-                                <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Criar uma conta</button>
+                            <div class="flex w-full place-content-evenly py-14">
+                                <button id="login-submit" type="submit" class="logar w-48 h-14 rounded-xl">SIGN IN</button>
+                                <button id="login-submit" type="submit" class="registrar w-48 font-bold rounded-xl">CRIAR CONTA</button>
                             </div>
             </form>
         </div>
