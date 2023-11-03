@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Organizarty - @ViewData["Title"] </title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/tailwind/app.css" asp-append-version="true" />
+    <link rel="stylesheet" href="tailwind/app.css" asp-append-version="true" />
+    <link rel="stylesheet" href="css/site.css" asp-append-version="true"/>
+    <link rel="icon" href="~/images/login/OrganizartyLogo.svg" asp-append-version="true"/> 
+
+    <link rel="stylesheet" href="~/Organizarty.UI.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+    <div class="">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
