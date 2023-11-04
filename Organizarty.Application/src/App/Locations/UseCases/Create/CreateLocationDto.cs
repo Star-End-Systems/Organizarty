@@ -2,7 +2,7 @@ using Organizarty.Application.App.Locations.Entities;
 
 namespace Organizarty.Application.App.Locations.UseCases;
 
-public record CreateLocationDto(string name, string description, double areaSize, decimal rentPerDay, List<string> images)
+public record CreateLocationDto(string name, string description, double areaSize, decimal rentPerDay, string cep, string category, string address, string cords, List<string> images)
 {
     public Location ToModel
       => new Location
@@ -11,6 +11,10 @@ public record CreateLocationDto(string name, string description, double areaSize
           Description = description,
           AreaSize = areaSize,
           RentPerDay = rentPerDay,
+          CEP = cep,
+          Address = address,
+          Category = category,
+          Cords = cords,
           Images = images
       };
 }

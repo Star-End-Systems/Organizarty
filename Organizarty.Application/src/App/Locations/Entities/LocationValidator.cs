@@ -10,7 +10,7 @@ public class LocationValidator : AbstractValidator<Location>
         RuleFor(x => x.Name).Length(5, 50);
         RuleFor(x => x.Description).Length(15, 256);
 
-        RuleFor(x => x.CEP).ValidCEP();
+        // RuleFor(x => x.CEP).ValidCEP();
         RuleFor(x => x.CEP).NotNull().Length(8);
 
         RuleFor(x => x.Category).NotNull().Length(10, 32);
