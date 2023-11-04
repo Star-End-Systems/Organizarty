@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "buildcss:dev": "npx tailwindcss -i ./Styles/app.css -o ./wwwroot/tailwind/app.css",
-    "buildcss:prod": "npx tailwindcss -i ./Organizarty.UI/Styles/app.css -o ./wwwroot/tailwind/app.css"
+    "buildcss:prod": "npx tailwindcss -i ./Organizarty.UI/Styles/app.css -o ./Organizarty.UI/wwwroot/tailwind/app.css"
   },
   "author": "",
   "license": "ISC",

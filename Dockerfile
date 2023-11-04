@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y npm
 
 # Copy your package.json and package-lock.json to install NPM packages
 COPY ["Organizarty.UI/package*.json", "./"]
+COPY ["Organizarty.UI/tailwind.config.js", "./"]
 RUN npm install
 
 COPY . .
