@@ -4,7 +4,7 @@
   "description": "Organizarty frontend application",
   "main": "index.js",
   "scripts": {
-    "buildcss:dev": "tailwindcss -i ./Styles/app.css -o ./wwwroot/tailwind/app.css",
+    "buildcss:dev": "npx tailwindcss -i ./Styles/app.css -o ./wwwroot/tailwind/app.css",
     "buildcss:prod": "npx tailwindcss -i ./Organizarty.UI/Styles/app.css -o ./wwwroot/tailwind/app.css"
   },
   "author": "",
