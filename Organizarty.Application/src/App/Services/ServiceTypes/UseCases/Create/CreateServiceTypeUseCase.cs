@@ -16,11 +16,11 @@ public class CreateServiceTypeUseCase
         _serviceValidator = serviceValidator;
     }
 
-    public async Task Execute(CreateServiceTypeDto serviceDto)
+    public async Task<ServiceType> Execute(CreateServiceTypeDto serviceDto)
     {
         var service = serviceDto.ToModel;
         ValidationUtils.Validate(_serviceValidator, service, "Invalid Service");
 
-        await _serviceTypeRepository.Create(service);
+        return await _serviceTypeRepository.Create(service);
     }
 }
