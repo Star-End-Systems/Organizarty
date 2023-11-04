@@ -1437,10 +1437,6 @@ input:checked + .toggle-bg {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
-.border-transparent {
-  border-color: transparent;
-}
-
 .bg-blue-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(28 100 242 / var(--tw-bg-opacity));
@@ -1493,32 +1489,14 @@ input:checked + .toggle-bg {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
 
-.bg-gradient-to-r {
-  background-image: linear-gradient(to right, var(--tw-gradient-stops));
-}
-
 .from-\[\#EF5781\] {
   --tw-gradient-from: #EF5781 var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(239 87 129 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.from-\[\#FF008A\] {
-  --tw-gradient-from: #FF008A var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(255 0 138 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .to-\[\#FBD54A\] {
   --tw-gradient-to: #FBD54A var(--tw-gradient-to-position);
-}
-
-.to-\[\#FFC700\] {
-  --tw-gradient-to: #FFC700 var(--tw-gradient-to-position);
-}
-
-.bg-clip-border {
-  background-clip: border-box;
 }
 
 .bg-clip-text {
