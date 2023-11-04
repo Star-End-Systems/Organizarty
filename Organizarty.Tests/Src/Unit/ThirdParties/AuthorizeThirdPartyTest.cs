@@ -22,4 +22,40 @@ public class AuthorizeThirdPartyTest
             Assert.True(thirdParty.Authorized);
         }
     }
+
+    [Fact]
+    public async Task AuthorizeThirdParty_UsingEmail_ReturnAuthorizedThridParty()
+    {
+        using (var context = DatabaseFactory.InMemoryDatabase())
+        {
+            var thirdpartyRepo = new RepositoriesFactory(context).ThirdPartyRepository();
+            var registerThirdParty = new UseCasesFactory().RegisterThirdPartyUseCase(thirdpartyRepo);
+            var authorize = new UseCasesFactory().AuthorizeThirdPartyUseCase(thirdpartyRepo);
+
+            var thirdParty = await ThirdPartySample.SetupThirdParty(registerThirdParty);
+
+            await authorize.Execute(thirdParty.LoginEmail);
+
+            Assert.NotEqual(Guid.Empty, thirdParty.Id);
+            Assert.True(thirdParty.Authorized);
+        }
+    }
+
+    [Fact]
+    public async Task AuthorizeThirdParty_UsingId_ReturnAuthorizedThridParty()
+    {
+        using (var context = DatabaseFactory.InMemoryDatabase())
+        {
+            var thirdpartyRepo = new RepositoriesFactory(context).ThirdPartyRepository();
+            var registerThirdParty = new UseCasesFactory().RegisterThirdPartyUseCase(thirdpartyRepo);
+            var authorize = new UseCasesFactory().AuthorizeThirdPartyUseCase(thirdpartyRepo);
+
+            var thirdParty = await ThirdPartySample.SetupThirdParty(registerThirdParty);
+
+            await authorize.Execute(thirdParty.Id);
+
+            Assert.NotEqual(Guid.Empty, thirdParty.Id);
+            Assert.True(thirdParty.Authorized);
+        }
+    }
 }

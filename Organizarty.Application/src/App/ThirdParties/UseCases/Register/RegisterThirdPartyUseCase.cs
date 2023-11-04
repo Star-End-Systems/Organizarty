@@ -2,7 +2,7 @@ using FluentValidation;
 using Organizarty.Adapters;
 using Organizarty.Application.App.ThirdParties.Data;
 using Organizarty.Application.App.ThirdParties.Entities;
-using Organizarty.Application.Exceptions;
+using Organizarty.Application.Extras;
 
 namespace Organizarty.Application.App.ThirdParties.UseCases;
 
@@ -22,7 +22,8 @@ public class RegisterThirdPartyUseCase
     public async Task<ThirdParty> Execute(RegisterThirdPartyDto thirdPartyDto)
     {
         var thirdparty = thirdPartyDto.ToModel;
-        Validate(thirdparty);
+
+        ValidationUtils.Validate(_validator, thirdparty, "Fail while valiating Third Party.");
 
         var (hashedPassword, salt) = _cryptographys.HashPassword(thirdPartyDto.Password);
 
@@ -30,15 +31,5 @@ public class RegisterThirdPartyUseCase
         thirdparty.Salt = salt;
 
         return await _thirdPartyRepository.Create(thirdparty);
-    }
-
-    private void Validate(ThirdParty thirdParty)
-    {
-        var result = _validator.Validate(thirdParty);
-
-        if (!result.IsValid)
-        {
-            throw new ValidationFailException("Fail while valiating user.", result.Errors.Select(x => x.ErrorMessage).ToList());
-        }
     }
 }

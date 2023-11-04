@@ -1,7 +1,7 @@
 using FluentValidation;
 using Organizarty.Application.App.FoodTypes.Data;
 using Organizarty.Application.App.FoodTypes.Entities;
-using Organizarty.Application.Exceptions;
+using Organizarty.Application.Extras;
 
 namespace Organizarty.Application.App.FoodTypes.UseCases;
 
@@ -19,18 +19,8 @@ public class CreateFoodTypeUseCase
     public async Task<FoodType> Execute(CreateFoodTypeDto foodTypeDto)
     {
         var food = foodTypeDto.ToModel;
-        Validate(food);
+        ValidationUtils.Validate(_validator, food, "Fail while valiating user.");
 
         return await _foodRepository.Create(food);
-    }
-
-    private void Validate(FoodType food)
-    {
-        var result = _validator.Validate(food);
-
-        if (!result.IsValid)
-        {
-            throw new ValidationFailException("Fail while valiating user.", result.Errors.Select(x => x.ErrorMessage).ToList());
-        }
     }
 }

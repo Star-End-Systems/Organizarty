@@ -16,11 +16,11 @@ public class CreateDecorationInfoUseCase
         _validator = validator;
     }
 
-    public async Task Execute(CreateDecorationInfoDto decorationInfoDto)
+    public async Task<DecorationInfo> Execute(CreateDecorationInfoDto decorationInfoDto)
     {
         var decoration = decorationInfoDto.ToModel;
         ValidationUtils.Validate(_validator, decoration, "Fail to create decoration");
 
-        await _decorationRepository.Create(decoration);
+        return await _decorationRepository.Create(decoration);
     }
 }
