@@ -10,6 +10,8 @@ public static class UseCasesExtension
 
         services.AddThirdPartyUsecases();
 
+        services.AddManagerUsecases();
+
         services.AddFoodTypeUsecases();
         services.AddFoodInfoUsecases();
 

@@ -22,15 +22,16 @@ public class ThirdPartyRepository : IThirdPartyRepository
     }
 
     public async Task<ThirdParty?> FindByEmail(string email)
-      => await _context.ThirdParties.FirstOrDefaultAsync(user => user.LoginEmail == email);
+      => await _context.ThirdParties.OrderBy(x => x.UpdatedAt).FirstOrDefaultAsync(user => user.LoginEmail == email);
 
     public async Task<ThirdParty?> FindById(Guid id)
-     => await _context.ThirdParties.FindAsync(id);
+     => await _context.ThirdParties.OrderBy(x => x.UpdatedAt).FirstOrDefaultAsync(x => x.Id == id);
 
     public async Task<ThirdParty> Update(ThirdParty thirdParty)
     {
-        _context.ThirdParties.Update(thirdParty);
+        thirdParty.UpdatedAt = DateTime.Now;
+        var u = _context.ThirdParties.Update(thirdParty);
         await _context.SaveChangesAsync();
-        return thirdParty;
+        return u.Entity;
     }
 }

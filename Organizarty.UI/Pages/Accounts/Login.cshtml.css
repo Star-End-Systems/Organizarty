@@ -1,0 +1,41 @@
+ .part2{
+  /* Bota na div pra ficar no tailwind em html */
+  background-color: #2E2C2C;
+/*   background-image: url("/images/login/Vitrine.svg");
+  background-size: cover; */
+}
+
+h2{
+  font-family: KonnectBold;
+  color: #FF7F31;
+  font-size: 7vh;
+}
+
+.line{
+  width: 4vw;
+  height: 15px;
+  background-color: #FF7F31;
+  justify-content: center;
+}
+
+.placeholder{
+  font-family: Inter;
+}
+
+button{
+ /*  border: purple solid 2px; */
+  font-family: Inter;
+}
+
+.logar{
+  background: linear-gradient(90deg, #FF008A 18.75%, #FFC700 81.77%);
+  color: white;
+  font-weight: bold;
+}
+
+.registrar{
+  background: linear-gradient(180deg, #EF5781 0%, #FBD54A 100%);
+  border: linear-gradient(90deg, #FF008A 18.75%, #FFC700 81.77%);
+  color:white;
+}
+

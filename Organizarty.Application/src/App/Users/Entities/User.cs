@@ -16,7 +16,7 @@ public class User
 
     public string Salt { get; set; } = default!;
 
-    public string CPF { get; set; } = default!;
+    public string? CPF { get; set; }
 
     public bool EmailConfirmed { get; set; }
 

@@ -4,6 +4,7 @@ using Organizarty.Application.App.DecorationTypes.Data;
 using Organizarty.Application.App.FoodInfos.Data;
 using Organizarty.Application.App.FoodTypes.Data;
 using Organizarty.Application.App.Locations.Data;
+using Organizarty.Application.App.Managers.Data;
 using Organizarty.Application.App.Party.Data;
 using Organizarty.Application.App.Schedules.Data;
 using Organizarty.Application.App.ServiceInfos.Data;
@@ -13,6 +14,7 @@ using Organizarty.Application.App.Users.Data;
 using Organizarty.Infra.Repositories.Decorations;
 using Organizarty.Infra.Repositories.Foods;
 using Organizarty.Infra.Repositories.Locations;
+using Organizarty.Infra.Repositories.Managers;
 using Organizarty.Infra.Repositories.PartyTemplate;
 using Organizarty.Infra.Repositories.Schedules;
 using Organizarty.Infra.Repositories.Services;
@@ -29,6 +31,8 @@ public static class RepositoriesExtension
         services.AddScoped<IUserConfirmationRepository, UserConfirmationRepository>();
 
         services.AddScoped<IThirdPartyRepository, ThirdPartyRepository>();
+
+        services.AddScoped<IManagerRepository, EFManagerRepository>();
 
         services.AddScoped<IFoodTypeRepository, FoodTypeRepository>();
         services.AddScoped<IFoodInfoRepository, FoodInfoRepository>();

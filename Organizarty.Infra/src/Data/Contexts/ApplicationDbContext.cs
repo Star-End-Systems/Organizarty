@@ -4,6 +4,7 @@ using Organizarty.Application.App.DecorationTypes.Entities;
 using Organizarty.Application.App.FoodInfos.Entities;
 using Organizarty.Application.App.FoodTypes.Entities;
 using Organizarty.Application.App.Locations.Entities;
+using Organizarty.Application.App.Managers.Entities;
 using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.ServiceInfos.Entities;
@@ -21,6 +22,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<UserConfirmation> UserConfirmations { get; set; } = default!;
 
     public DbSet<ThirdParty> ThirdParties { get; set; } = default!;
+
+    public DbSet<Manager> Managers { get; set; } = default!;
 
     public DbSet<FoodType> FoodTypes { get; set; } = default!;
     public DbSet<FoodInfo> FoodInfos { get; set; } = default!;

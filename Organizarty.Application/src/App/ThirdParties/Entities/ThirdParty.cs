@@ -6,19 +6,19 @@ public class ThirdParty
 {
     public Guid Id { get; set; }
 
-    public string? Name { get; set; }
-    public string? Description { get; set; }
+    public string Name { get; set; } = default!;
+    public string Description { get; set; } = default!;
 
     public string Address { get; set; } = default!;
 
-    public string? LoginEmail { get; set; }
-    public string? Salt { get; set; }
-    public string? Password { get; set; }
-    public string? ProfissionalPhone { get; set; }
+    public string LoginEmail { get; set; } = default!;
+    public string Salt { get; set; } = default!;
+    public string Password { get; set; } = default!;
+    public string ProfissionalPhone { get; set; } = default!;
 
-    public string? ContactEmail { get; set; }
-    public string? ContactPhone { get; set; }
-    public string? CNPJ { get; set; }
+    public string ContactEmail { get; set; } = default!;
+    public string ContactPhone { get; set; } = default!;
+    public string CNPJ { get; set; } = default!;
 
     public bool Authorized { get; set; }
 
@@ -31,4 +31,7 @@ public class ThirdParty
         get => JsonSerializer.Deserialize<List<string>>(TagJSON ?? "[]") ?? new List<string>();
         set => TagJSON = JsonSerializer.Serialize(value);
     }
+
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
 }
