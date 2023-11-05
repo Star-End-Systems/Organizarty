@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Organizarty.Adapters\Organizarty.Adapters.csproj" />
     <ProjectReference Include="..\Organizarty.Infra\Organizarty.Infra.csproj" />
     <ProjectReference Include="..\Organizarty.Application\Organizarty.Application.csproj" />
+    <ProjectReference Include="..\Organizarty.DependencyInversion\Organizarty.DependencyInversion.csproj" />
   </ItemGroup>
 
 </Project>

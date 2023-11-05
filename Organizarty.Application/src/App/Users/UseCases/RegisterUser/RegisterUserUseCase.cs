@@ -2,7 +2,7 @@ using Organizarty.Application.App.Users.Entities;
 using Organizarty.Application.App.Users.Data;
 using Organizarty.Adapters;
 using FluentValidation;
-using Organizarty.Application.Exceptions;
+using Organizarty.Application.Extras;
 
 namespace Organizarty.Application.App.Users.UseCases;
 
@@ -23,7 +23,7 @@ public class RegisterUserUseCase
     {
         var user = userDto.ToModel;
 
-        Validate(user);
+        ValidationUtils.Validate(_userValidator, user, "Fail while valiating user.");
 
         var (password, salt) = _cryptographys.HashPassword(user.Password);
 
@@ -31,15 +31,5 @@ public class RegisterUserUseCase
         user.Salt = salt;
 
         return await _userRepository.Create(user);
-    }
-
-    private void Validate(User user)
-    {
-        var result = _userValidator.Validate(user);
-
-        if (!result.IsValid)
-        {
-            throw new ValidationFailException("Fail while valiating user.", result.Errors.Select(x => x.ErrorMessage).ToList());
-        }
     }
 }

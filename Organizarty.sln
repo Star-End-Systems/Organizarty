@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Organizarty.Infra", "Organi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Organizarty.UI", "Organizarty.UI\Organizarty.UI.csproj", "{1FDC3E0E-9BA5-4D96-B704-E4C92C1BC127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.Tests", "Organizarty.Tests\Organizarty.Tests.csproj", "{DD65CC89-F046-4EBA-B4EA-EA64B72E0B62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.DependencyInversion", "Organizarty.DependencyInversion\Organizarty.DependencyInversion.csproj", "{DA0D698F-4855-4DA3-9280-91532091A60B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.Tests.Mock", "Organizarty.Tests.Mock\Organizarty.Tests.Mock.csproj", "{F4890DCC-123F-4681-9DEC-11D66A6C6A2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.Tests.Unit", "Organizarty.Tests.Unit\Organizarty.Tests.Unit.csproj", "{B311200F-5F7C-431D-AEEC-71B1AA58D6FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,18 @@ Global
 		{DD65CC89-F046-4EBA-B4EA-EA64B72E0B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD65CC89-F046-4EBA-B4EA-EA64B72E0B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD65CC89-F046-4EBA-B4EA-EA64B72E0B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA0D698F-4855-4DA3-9280-91532091A60B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA0D698F-4855-4DA3-9280-91532091A60B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA0D698F-4855-4DA3-9280-91532091A60B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA0D698F-4855-4DA3-9280-91532091A60B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4890DCC-123F-4681-9DEC-11D66A6C6A2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4890DCC-123F-4681-9DEC-11D66A6C6A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4890DCC-123F-4681-9DEC-11D66A6C6A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4890DCC-123F-4681-9DEC-11D66A6C6A2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B311200F-5F7C-431D-AEEC-71B1AA58D6FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B311200F-5F7C-431D-AEEC-71B1AA58D6FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B311200F-5F7C-431D-AEEC-71B1AA58D6FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B311200F-5F7C-431D-AEEC-71B1AA58D6FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

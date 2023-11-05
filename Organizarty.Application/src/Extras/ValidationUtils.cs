@@ -5,13 +5,18 @@ namespace Organizarty.Application.Extras;
 
 public static class ValidationUtils
 {
-    public static void Validate<T>(IValidator<T> validator, T value, string msg)
+    public static void Validate<T>(IValidator<T> validator, T value, string message)
     {
         var result = validator.Validate(value);
 
         if (!result.IsValid)
         {
-            throw new ValidationFailException(msg, result.Errors.Select(x => x.ErrorMessage).ToList());
+            var errors = result
+              .Errors
+              .Select(e => new ValidationFailException.ValidationError(e.ErrorMessage, e.PropertyName))
+              .ToList();
+
+            throw new ValidationFailException(message, errors);
         }
     }
 }

@@ -2,7 +2,7 @@ using Organizarty.Application.App.DecorationTypes.Entities;
 
 namespace Organizarty.Application.App.DecorationTypes.UseCases;
 
-public record CreateDecorationTypeDto(string name, string description, string size, string model, string objectURL, Guid thirdPartyId)
+public record CreateDecorationTypeDto(string name, string description, string size, string model, string objectURL)
 {
     public DecorationType ToModel
       => new DecorationType
@@ -11,7 +11,6 @@ public record CreateDecorationTypeDto(string name, string description, string si
           Description = description,
           Size = size,
           Model = model,
-          ObjectURL = objectURL,
-          ThirdPartyId = thirdPartyId
+          ObjectURL = objectURL
       };
 }

@@ -5,6 +5,8 @@
             <Exclude>
                 <ModulePath>.*Mysql*</ModulePath>
                 <ModulePath>.*FluentValidation*</ModulePath>
+                <ModulePath>.*Organizarty.Infra*</ModulePath>
+                <ModulePath>.*Organizarty.Application.Extensions*</ModulePath>
             </Exclude>
         </ModulePaths>
         <EnableStaticManagedInstrumentation>True</EnableStaticManagedInstrumentation>

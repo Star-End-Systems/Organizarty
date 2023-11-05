@@ -19,6 +19,7 @@ public class CreateLocationUseCase
     public async Task<Location> Execute(CreateLocationDto locationDto)
     {
         var location = locationDto.ToModel;
+
         ValidationUtils.Validate(_validator, location, "fail to create location.");
 
         return await _locationRepository.Create(location);

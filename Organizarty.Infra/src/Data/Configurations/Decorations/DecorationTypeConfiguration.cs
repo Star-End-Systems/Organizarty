@@ -16,11 +16,6 @@ public class DecorationTypeConfiguration : IEntityTypeConfiguration<DecorationTy
         builder.Property(x => x.Description).IsRequired().HasMaxLength(256);
         builder.Property(x => x.ObjectURL).IsRequired();
 
-        builder.HasOne(a => a.ThirdParty)
-          .WithMany()
-          .HasForeignKey(a => a.ThirdPartyId)
-          .IsRequired();
-
         builder.Ignore(x => x.Tags);
     }
 }
