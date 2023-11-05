@@ -1,5 +1,4 @@
 using Organizarty.Tests.Mock.Database;
-using Organizarty.Tests.Mock.Repositories;
 using Organizarty.Tests.Mock.UseCases;
 using Organizarty.Tests.Unit.Samples.ThirdParties;
 
@@ -12,11 +11,9 @@ public class AuthorizeThirdPartyTest
     {
         using (var context = DatabaseFactory.InMemoryDatabase())
         {
-            var thirdpartyRepo = new RepositoriesFactory(context).ThirdPartyRepository();
-            var registerThirdParty = new UseCasesFactory().RegisterThirdPartyUseCase(thirdpartyRepo);
-            var authorize = new UseCasesFactory().AuthorizeThirdPartyUseCase(thirdpartyRepo);
+            var usecases = new UseCasesFactory(context);
 
-            var thirdParty = await ThirdPartySample.SetupThirdPartyAuthorized(registerThirdParty, authorize);
+            var thirdParty = await ThirdPartySample.SetupThirdPartyAuthorized(usecases);
 
             Assert.NotEqual(Guid.Empty, thirdParty.Id);
             Assert.True(thirdParty.Authorized);
@@ -28,11 +25,11 @@ public class AuthorizeThirdPartyTest
     {
         using (var context = DatabaseFactory.InMemoryDatabase())
         {
-            var thirdpartyRepo = new RepositoriesFactory(context).ThirdPartyRepository();
-            var registerThirdParty = new UseCasesFactory().RegisterThirdPartyUseCase(thirdpartyRepo);
-            var authorize = new UseCasesFactory().AuthorizeThirdPartyUseCase(thirdpartyRepo);
+            var usecases = new UseCasesFactory(context);
 
-            var thirdParty = await ThirdPartySample.SetupThirdParty(registerThirdParty);
+            var authorize = usecases.AuthorizeThirdPartyUseCase();
+
+            var thirdParty = await ThirdPartySample.SetupThirdParty(usecases);
 
             await authorize.Execute(thirdParty.LoginEmail);
 
@@ -46,11 +43,11 @@ public class AuthorizeThirdPartyTest
     {
         using (var context = DatabaseFactory.InMemoryDatabase())
         {
-            var thirdpartyRepo = new RepositoriesFactory(context).ThirdPartyRepository();
-            var registerThirdParty = new UseCasesFactory().RegisterThirdPartyUseCase(thirdpartyRepo);
-            var authorize = new UseCasesFactory().AuthorizeThirdPartyUseCase(thirdpartyRepo);
+            var usecases = new UseCasesFactory(context);
 
-            var thirdParty = await ThirdPartySample.SetupThirdParty(registerThirdParty);
+            var authorize = usecases.AuthorizeThirdPartyUseCase();
+
+            var thirdParty = await ThirdPartySample.SetupThirdParty(usecases);
 
             await authorize.Execute(thirdParty.Id);
 

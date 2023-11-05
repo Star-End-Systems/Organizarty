@@ -24,12 +24,10 @@ public class ConfirmUserCodeTest : IAsyncLifetime
     [Fact]
     public async Task ConfirmEmailCode_ValidData_ReturnCreatedUser()
     {
-        var userRepo = new RepositoriesFactory(Context).UserRepository();
-        var confirmRepo = new RepositoriesFactory(Context).UserConfirmationRepository();
-
-        var registerUser = new UseCasesFactory().RegisterUserUseCase(userRepo);
-        var sendCode = new UseCasesFactory().SendEmailConfirmUseCase(confirmRepo);
-        var confirmCode = new UseCasesFactory().ConfirmCodeUseCase(confirmRepo, userRepo);
+        var usecases = new UseCasesFactory(Context);
+        var registerUser = usecases.RegisterUserUseCase();
+        var sendCode = usecases.SendEmailConfirmUseCase();
+        var confirmCode = usecases.ConfirmCodeUseCase();
 
         var user = await UserSample.SetupUser(registerUser);
 
@@ -45,14 +43,9 @@ public class ConfirmUserCodeTest : IAsyncLifetime
     [Fact]
     public async Task ConfirmEmailCode_Sample_ReturnCreatedUser()
     {
-        var userRepo = new RepositoriesFactory(Context).UserRepository();
-        var confirmRepo = new RepositoriesFactory(Context).UserConfirmationRepository();
+        var usecases = new UseCasesFactory(Context);
 
-        var registerUser = new UseCasesFactory().RegisterUserUseCase(userRepo);
-        var sendCode = new UseCasesFactory().SendEmailConfirmUseCase(confirmRepo);
-        var confirmCode = new UseCasesFactory().ConfirmCodeUseCase(confirmRepo, userRepo);
-
-        var user = await UserSample.SetupUserEmailConfirmed(registerUser, sendCode, confirmCode);
+        var user = await UserSample.SetupUserEmailConfirmed(usecases);
 
         Assert.NotNull(user);
     }

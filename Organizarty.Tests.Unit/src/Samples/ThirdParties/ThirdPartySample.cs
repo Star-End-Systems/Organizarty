@@ -3,7 +3,7 @@ using Organizarty.Application.App.ThirdParties.UseCases;
 
 namespace Organizarty.Tests.Unit.Samples.ThirdParties;
 
-public static class ThirdPartySample
+public static partial class ThirdPartySample
 {
     public static async Task<ThirdParty> SetupThirdParty(RegisterThirdPartyUseCase register)
     {
@@ -18,4 +18,5 @@ public static class ThirdPartySample
 
         return await authorize.Execute(third);
     }
+
 }

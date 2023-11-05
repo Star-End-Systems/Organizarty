@@ -1,5 +1,4 @@
 using Organizarty.Tests.Mock.Database;
-using Organizarty.Tests.Mock.Repositories;
 using Organizarty.Tests.Mock.UseCases;
 using Organizarty.Tests.Unit.Samples.ThirdParties;
 
@@ -12,8 +11,9 @@ public class RegisterThirdPartyTest
     {
         using (var context = DatabaseFactory.InMemoryDatabase())
         {
-            var thirdpartyRepo = new RepositoriesFactory(context).ThirdPartyRepository();
-            var registerThirdParty = new UseCasesFactory().RegisterThirdPartyUseCase(thirdpartyRepo);
+            var usecases = new UseCasesFactory(context);
+
+            var registerThirdParty = usecases.RegisterThirdPartyUseCase();
 
             var thirdParty = await ThirdPartySample.SetupThirdParty(registerThirdParty);
 

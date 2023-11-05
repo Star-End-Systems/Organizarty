@@ -1,0 +1,28 @@
+using Organizarty.Application.App.ThirdParties.Entities;
+using Organizarty.Application.App.ThirdParties.UseCases;
+using Organizarty.Tests.Mock.UseCases;
+
+namespace Organizarty.Tests.Unit.Samples.ThirdParties;
+
+public static partial class ThirdPartySample
+{
+    public static async Task<ThirdParty> SetupThirdPartyAuthorized(UseCasesFactory usecases)
+    {
+
+        var register = usecases.RegisterThirdPartyUseCase();
+        var authorize = usecases.AuthorizeThirdPartyUseCase();
+
+        var third = await ThirdPartySample.SetupThirdParty(register);
+
+        return await authorize.Execute(third);
+    }
+
+    public static async Task<ThirdParty> SetupThirdParty(UseCasesFactory usecases)
+    {
+        var register = usecases.RegisterThirdPartyUseCase();
+
+        var data = new RegisterThirdPartyDto("ze coxinhas", "Eu vendo várias coxinhas", "Rua da coxinha", $"ze-{Guid.NewGuid().ToString()}@coxinhas.com", "long_password", "12345678901", "ze@coxinhas.com", "12345678901", "CNPJQUALQUERRR", "localhost:8000", new List<string>());
+
+        return await register.Execute(data);
+    }
+}

@@ -13,7 +13,7 @@ public class CreatLocationTest
         using (var context = DatabaseFactory.InMemoryDatabase())
         {
             var repos = new RepositoriesFactory(context);
-            var usecases = new UseCasesFactory();
+            var usecases = new UseCasesFactory(context);
 
             var repo = repos.LocationRepository();
 
