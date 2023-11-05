@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Organizarty.Infra", "Organi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Organizarty.UI", "Organizarty.UI\Organizarty.UI.csproj", "{1FDC3E0E-9BA5-4D96-B704-E4C92C1BC127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.Tests", "Organizarty.Tests\Organizarty.Tests.csproj", "{DD65CC89-F046-4EBA-B4EA-EA64B72E0B62}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.DependencyInversion", "Organizarty.DependencyInversion\Organizarty.DependencyInversion.csproj", "{DA0D698F-4855-4DA3-9280-91532091A60B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Organizarty.Tests.Mock", "Organizarty.Tests.Mock\Organizarty.Tests.Mock.csproj", "{F4890DCC-123F-4681-9DEC-11D66A6C6A2D}"
