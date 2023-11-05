@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Organizarty.Application.App.ServiceInfos.Entities;
 using Organizarty.Application.App.ServiceInfos.UseCases;
 
-namespace Organizarty.Application.Extensions;
+namespace Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
 internal static class ServiceInfoExtension
 {

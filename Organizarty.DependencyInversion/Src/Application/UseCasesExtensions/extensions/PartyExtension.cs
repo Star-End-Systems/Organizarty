@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Party.UseCases;
 
-namespace Organizarty.Application.Extensions;
+namespace Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
 internal static class PartyExtension
 {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Organizarty.Application.App.DecorationInfos.Entities;
 using Organizarty.Application.App.DecorationInfos.UseCases;
 
-namespace Organizarty.Application.Extensions;
+namespace Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
 internal static class DecorationInfoExtension
 {

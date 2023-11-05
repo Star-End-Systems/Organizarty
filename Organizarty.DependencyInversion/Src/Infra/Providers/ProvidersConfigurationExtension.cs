@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Organizarty.Infra.Providers.EmailSender.Mailgun;
 
-namespace Organizarty.Infra.Extensions;
+namespace Organizarty.DependencyInversion.Infra.Providers;
 
 internal static class ProvidersConfigrationExtensions
 {

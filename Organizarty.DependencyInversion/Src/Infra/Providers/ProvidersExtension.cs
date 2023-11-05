@@ -4,7 +4,7 @@ using Organizarty.Infra.Providers.Cryptography.Pbkdf2;
 using Organizarty.Infra.Providers.EmailSender.Mailgun;
 using Organizarty.Infra.Providers.Token;
 
-namespace Organizarty.Infra.Extensions;
+namespace Organizarty.DependencyInversion.Infra.Providers;
 
 public static class ProvidersExtension
 {

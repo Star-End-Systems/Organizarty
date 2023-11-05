@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Organizarty.Application.App.Locations.Entities;
 using Organizarty.Application.App.Locations.UseCases;
 
-namespace Organizarty.Application.Extensions;
+namespace Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
 internal static class LocationExtension
 {

@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+
 using Organizarty.Application.App.DecorationInfos.Data;
 using Organizarty.Application.App.DecorationTypes.Data;
 using Organizarty.Application.App.FoodInfos.Data;
@@ -21,7 +22,7 @@ using Organizarty.Infra.Repositories.Services;
 using Organizarty.Infra.Repositories.ThirdParties;
 using Organizarty.Infra.Repositories.Users;
 
-namespace Organizarty.Infra.Extensions;
+namespace Organizarty.DependencyInversion.Infra.Repositories;
 
 public static class RepositoriesExtension
 {

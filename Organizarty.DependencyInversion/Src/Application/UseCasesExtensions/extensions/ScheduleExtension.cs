@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Organizarty.Application.App.Schedules.UseCases;
 
-namespace Organizarty.Application.Extensions;
+namespace Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
 internal static class ScheduleExtension
 {

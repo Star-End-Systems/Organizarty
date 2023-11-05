@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Organizarty.Infra.Data.Contexts;
 
-namespace Organizarty.Infra.Extensions;
+namespace Organizarty.DependencyInversion.Infra.Database;
 
 public static class DatabaseExtension
 {

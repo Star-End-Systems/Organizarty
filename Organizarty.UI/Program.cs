@@ -1,5 +1,8 @@
-using Organizarty.Infra.Extensions;
-using Organizarty.Application.Extensions;
+using Organizarty.DependencyInversion.Infra.Database;
+using Organizarty.DependencyInversion.Infra.Providers;
+using Organizarty.DependencyInversion.Infra.Repositories;
+
+using Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
 using DotNetEnv;
 Env.Load();
