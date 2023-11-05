@@ -22,8 +22,8 @@ jobs:
         dotnet-version: 7.0.x
 
     - name: Restore dependencies
-      run: dotnet restore Organizarty.Tests
+      run: dotnet restore Organizarty.Tests.Unit
     - name: Build
-      run: dotnet build --no-restore Organizarty.Tests
+      run: dotnet build --no-restore Organizarty.Tests.Unit
     - name: Test
-      run: dotnet test --no-build --verbosity normal Organizarty.Tests
+      run: dotnet test --no-build --verbosity normal Organizarty.Tests.Unit
