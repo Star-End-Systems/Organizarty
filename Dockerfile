@@ -8,19 +8,22 @@ FROM node:20 AS node
 WORKDIR /src
 
 # Install NPM
-RUN apt-get update && apt-get install -y npm
+RUN apt-get update \
+    && apt-get install -y npm \
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 # Copy your package.json and package-lock.json to install NPM packages
-COPY ["Organizarty.UI/package*.json", "./"]
-COPY ["Organizarty.UI/tailwind.config.js", "./"]
+COPY Organizarty.UI/package*.json ./
+COPY Organizarty.UI/tailwind.config.js ./
 RUN npm install
 
 COPY . .
-RUN npm run buildcss:prod
+RUN npx tailwindcss -i ./Organizarty.UI/Styles/app.css -o /tailwind/app.css
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
 COPY . ./
+COPY --from=node /tailwind/ ./Organizarty.UI/wwwroot/tailwind/
 
 RUN dotnet publish -c Release -o out ./Organizarty.UI/Organizarty.UI.csproj
 
