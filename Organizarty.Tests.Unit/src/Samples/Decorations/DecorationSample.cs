@@ -5,7 +5,7 @@ using Organizarty.Application.App.DecorationTypes.UseCases;
 
 namespace Organizarty.Tests.Unit.Samples.Decorations;
 
-public static class DecorationSample
+public static partial class DecorationSample
 {
     public static async Task<DecorationType> SetupDecorationType(CreateDecorationTypeUseCase usecase)
     {

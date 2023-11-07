@@ -5,7 +5,7 @@ using Organizarty.Application.App.FoodTypes.UseCases;
 
 namespace Organizarty.Tests.Unit.Samples.Foods;
 
-public static class FoodSample
+public static partial class FoodSample
 {
     public static async Task<FoodType> SetupFoodType(CreateFoodTypeUseCase createFood, Guid thirdPartyId)
     {

@@ -16,11 +16,11 @@ public class AddFoodToPartyUseCase
         _validator = validator;
     }
 
-    public async Task Execute(AddFoodToPartyDto foodDto)
+    public async Task<FoodGroup> Execute(AddFoodToPartyDto foodDto)
     {
         var food = foodDto.ToModel;
         ValidationUtils.Validate(_validator, food, "Validation for food fail");
 
-        await _foodRepository.Add(food);
+        return await _foodRepository.Add(food);
     }
 }

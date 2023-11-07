@@ -16,11 +16,11 @@ public class CreatePartyUseCase
         _partyValidator = partyValidator;
     }
 
-    public async Task Execute(CreatePartyDto partyDto)
+    public async Task<PartyTemplate> Execute(CreatePartyDto partyDto)
     {
         var party = partyDto.ToModel;
         ValidationUtils.Validate(_partyValidator, party, "Validation for Party fail");
 
-        await _partyRepository.Create(party);
+        return await _partyRepository.Create(party);
     }
 }

@@ -6,6 +6,10 @@ namespace Organizarty.Tests.Mock.UseCases;
 
 public partial class UseCasesFactory
 {
-    public CreateLocationUseCase CreateLocationUseCase(ILocationRepository repo)
-      => new CreateLocationUseCase(repo, new LocationValidator());
+    public CreateLocationUseCase CreateLocationUseCase()
+    {
+        var repo = _repositories.LocationRepository();
+
+        return new CreateLocationUseCase(repo, new LocationValidator()); ;
+    }
 }
