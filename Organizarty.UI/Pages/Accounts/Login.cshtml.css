@@ -46,17 +46,17 @@ button{
 
 .registrar{
   background: linear-gradient(180deg, #EF5781 0%, #FBD54A 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  border: #FF7F31 solid 1px;
+  color: white;
+  font-weight: bold;
 }
 
 
 .registrar:hover{
   background: linear-gradient(180deg, #EF5781 0%, #FBD54A 100%);
-  color: white;
-  font-weight: bold;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  border: #FF7F31 solid 1px;
 }
 
 @media only screen and (max-width: 1020px) {

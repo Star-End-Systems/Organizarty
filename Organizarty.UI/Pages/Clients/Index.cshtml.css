@@ -1,0 +1,15 @@
+section{
+    border: red solid 1px;
+}
+
+nav{
+    border: purple solid 1px;
+}
+
+div{
+    border:greenyellow solid 1px;
+}
+
+h2{
+    font-family: Inter;
+}
