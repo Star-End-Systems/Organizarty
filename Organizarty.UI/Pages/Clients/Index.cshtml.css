@@ -13,3 +13,13 @@ div{
 h2{
     font-family: Inter;
 }
+
+.menu{
+    font-family: KonnectBold;
+    color: #948F8F;
+    transition: all 0.4s;
+}
+
+/* button{
+    border: blue solid 1px;
+} */
