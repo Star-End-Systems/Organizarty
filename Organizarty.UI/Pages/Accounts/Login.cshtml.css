@@ -33,9 +33,39 @@ button{
   font-weight: bold;
 }
 
-.registrar{
-  background: linear-gradient(180deg, #EF5781 0%, #FBD54A 100%);
-  border: linear-gradient(90deg, #FF008A 18.75%, #FFC700 81.77%);
-  color:white;
+.logar:hover{
+  background-color: white;
+  background: linear-gradient(90deg, #FF008A 18.75%, #FFC700 81.77%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  border: #9c9c9C solid 1px;
+  transition: all 0.4s;
+  border: #FF7F31 solid 1px;
 }
 
+.registrar{
+  background: linear-gradient(180deg, #EF5781 0%, #FBD54A 100%);
+  color: white;
+  font-weight: bold;
+}
+
+
+.registrar:hover{
+  background: linear-gradient(180deg, #EF5781 0%, #FBD54A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  border: #FF7F31 solid 1px;
+}
+
+@media only screen and (max-width: 1020px) {
+    .part2{
+      display:none;
+      position: relative;
+    }
+    
+    .part1{
+        width: 100%;
+    }
+}
