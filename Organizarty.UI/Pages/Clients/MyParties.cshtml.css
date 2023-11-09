@@ -2,6 +2,10 @@
     border: green solid 1px;
 } */
 
+section{
+    border: red solid 1px;
+}
+
 button:hover{
     transform: scale(1.1);
     transition: all 0.4s;
@@ -45,3 +49,13 @@ p{
 .clareador{
     filter: brightness(100%);
 }
+
+table{
+    width: 70%; 
+    border: solid black 1px;
+}
+
+td{
+    border: black solid 1px;
+}
+
