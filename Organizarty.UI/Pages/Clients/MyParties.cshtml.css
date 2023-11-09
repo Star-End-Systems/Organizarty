@@ -1,0 +1,39 @@
+/* div{
+    border: green solid 1px;
+} */
+
+button:hover{
+    transform: scale(1.1);
+    transition: all 0.4s;
+}
+
+.placeholder{
+  font-family: Inter;
+}
+
+h2{
+    font-family: inter;
+    font-weight: bold;
+}
+
+h1{
+    font-family: inter;
+    font-weight: bold;
+    color: #605959;
+}
+
+h3{
+    color: #B4B1B1;
+    font-family: KonnectBold;
+}
+
+h4{
+    font-family: KonnectBold;
+    color:white;
+}
+
+p{
+    color: white;
+    font-family: Inter;
+    font-size: 1vh;
+}
