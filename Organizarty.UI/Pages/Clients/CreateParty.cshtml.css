@@ -1,3 +1,22 @@
 .card{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
+
+
+.Template2{
+    margin-left: -10rem;
+}
+
+.Template2:hover {
+    z-index: 0;
+    transition: all 0.15s ease-in-out;
+}
+
+.Template3{
+    margin-left: -10rem;
+}
+
+.Template3:hover {
+    z-index: 0;
+    transition: all 0.15s ease-in-out;
+}
