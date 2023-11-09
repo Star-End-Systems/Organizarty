@@ -1,6 +1,6 @@
-div{
+/* div{
     border: green solid 1px;
-}
+} */
 
 button:hover{
     transform: scale(1.1);
@@ -38,5 +38,10 @@ p{
     font-size: 1vh;
 }
 
-.background{
+.escurecedor{
+    filter: brightness(50%);
+}
+
+.clareador{
+    filter: brightness(100%);
 }
