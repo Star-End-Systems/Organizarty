@@ -1,5 +1,8 @@
 {
     "recommendations": [
-        "vscodevim.vim"
+        "vscodevim.vim",
+        "enkia.tokyo-night",
+        "bradlc.vscode-tailwindcss",
+        "ms-dotnettools.csdevkit"
     ]
 }
