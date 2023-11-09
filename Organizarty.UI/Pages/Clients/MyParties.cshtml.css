@@ -1,12 +1,16 @@
-/* div{
+div{
     border: green solid 1px;
-} */
+}
 
 section{
     border: red solid 1px;
 }
 
-button:hover{
+.sexo{
+    border:blue solid 1px;
+}
+
+.menuButtons:hover{
     transform: scale(1.1);
     transition: all 0.4s;
 }
@@ -52,10 +56,14 @@ p{
 
 table{
     width: 70%; 
-    border: solid black 1px;
+    /* border: solid #D9D9D9 1px; */
+    font-family: Inter;
+    font-weight: bold;
+    border-radius: 20%;
 }
 
 td{
     border: black solid 1px;
+    
 }
 
