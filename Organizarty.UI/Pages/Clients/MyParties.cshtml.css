@@ -1,6 +1,6 @@
-/* div{
+div{
     border: green solid 1px;
-} */
+}
 
 button:hover{
     transform: scale(1.1);
@@ -36,4 +36,7 @@ p{
     color: white;
     font-family: Inter;
     font-size: 1vh;
+}
+
+.background{
 }
