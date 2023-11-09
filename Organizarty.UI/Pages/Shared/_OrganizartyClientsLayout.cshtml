@@ -1,13 +1,9 @@
-@{
-    Layout = "_NullLayout";
-}
-
-<section class="flex h-screen">
-    <nav class="w-1/6 shadow-2xl z-50">
-        <div class="w-full h-12 bg-[#FF008A]">
-            <button class="h-full w-full"><img class="justify-center w-7 h-6" src="/images/Clients/Index/Sininho.png"></img></button>
+<div class="flex-row fixed flex h-screen w-1/6">
+    <nav class="w-fit shadow-2xl">
+        <div class="sininho w-full h-12 bg-[#FF008A] flex flex-col">
+            <button class="h-full w-full"><img class="flex items-center w-7 h-17" src="/images/Clients/Index/Sininho.png"></img></button>
         </div>
-        <div class="border-b-5 border-solid border-[#FF008A] flex justify-center items-center w-full h-28">
+        <div class="border-b-5 border-[#FF008A] flex justify-center items-center w-full h-28">
             <img class="items-center w-17 h-16" src="/images/Clients/Index/LogoRosa.svg"></img>
             <h1 class="pl-4"> Olá, <strong> Cliente! </strong> </h2>
         </div>
@@ -24,5 +20,4 @@
             </div>
         </div>
     </nav>
-    @RenderBody()
-</section>
+</div>
