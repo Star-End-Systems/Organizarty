@@ -2,9 +2,8 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
-
 .Template2{
-    margin-left: -10rem;
+    margin-left: -7.5rem;
 }
 
 .Template2:hover {
@@ -13,10 +12,18 @@
 }
 
 .Template3{
-    margin-left: -10rem;
+    margin-left: -7.5rem;
 }
 
 .Template3:hover {
     z-index: 0;
     transition: all 0.15s ease-in-out;
 }
+/* 
+div{
+    border: red solid 1px;
+}
+
+img{
+    border: slateblue solid 1px;
+} */

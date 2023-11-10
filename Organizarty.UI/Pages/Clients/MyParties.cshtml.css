@@ -1,4 +1,4 @@
-div{
+/* div{
     border: green solid 1px;
 }
 
@@ -8,7 +8,7 @@ section{
 
 .sexo{
     border:blue solid 1px;
-}
+} */
 
 .menuButtons:hover{
     transform: scale(1.1);

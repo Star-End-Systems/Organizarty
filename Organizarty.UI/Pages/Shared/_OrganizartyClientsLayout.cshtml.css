@@ -13,8 +13,6 @@ h2{
     transition: all 0.4s;
 }
 
-.sininho{
-    border-bottom: 1px;
-    border-style: solid;
-    border-color: #FF008A;
+.rosinha{
+    border-bottom: solid 5px #FF008A;
 }
