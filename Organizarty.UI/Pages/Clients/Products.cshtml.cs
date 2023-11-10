@@ -3,18 +3,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 namespace Organizarty.UI.Pages;
 
-public class MyPartiesModel : PageModel
+public class ProductsModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
 
-    public MyPartiesModel(ILogger<IndexModel> logger)
+    public ProductsModel(ILogger<IndexModel> logger)
     {
         _logger = logger;
     }
-
+    
     public InputModel Input{get; set;} = default!;
 
     public class InputModel{
+  
         [Display(Name = "Search")]
         public string Search {get; set;} = default!;
     }
