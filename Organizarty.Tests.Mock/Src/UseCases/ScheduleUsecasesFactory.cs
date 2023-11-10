@@ -9,11 +9,4 @@ namespace Organizarty.Tests.Mock.UseCases;
 
 public partial class UseCasesFactory
 {
-    public ScheduleUseCase ScheduleUseCase()
-    {
-        var scheduleRepo = _repositories.ScheduleRepository();
-        var partyRepo = _repositories.PartyTemplateRepository();
-
-        return new ScheduleUseCase(scheduleRepo, partyRepo, new ScheduleValidation());
-    }
 }
