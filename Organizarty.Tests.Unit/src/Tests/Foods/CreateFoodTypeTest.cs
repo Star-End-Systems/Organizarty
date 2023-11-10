@@ -13,14 +13,12 @@ public class CreateFoodTypeTest
     {
         using (var context = DatabaseFactory.InMemoryDatabase())
         {
+            var usecases = new UseCasesFactory(context);
+
             var foodRepo = new RepositoriesFactory(context).FoodTypeRepository();
-            var createFood = new UseCasesFactory().CreateFoodTypeUseCase(foodRepo);
+            var createFood = usecases.CreateFoodTypeUseCase(foodRepo);
 
-            var thirdpartyRepo = new RepositoriesFactory(context).ThirdPartyRepository();
-            var registerThirdParty = new UseCasesFactory().RegisterThirdPartyUseCase(thirdpartyRepo);
-            var authorize = new UseCasesFactory().AuthorizeThirdPartyUseCase(thirdpartyRepo);
-
-            var thirdParty = await ThirdPartySample.SetupThirdPartyAuthorized(registerThirdParty, authorize);
+            var thirdParty = await ThirdPartySample.SetupThirdPartyAuthorized(usecases);
 
             var food = await FoodSample.SetupFoodType(createFood, thirdParty.Id);
 

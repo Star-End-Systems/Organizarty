@@ -7,7 +7,7 @@ public class DecorationGroup
     public Guid Id { get; set; }
 
     public int Quantity { get; set; }
-    public string? Note { get; set; }
+    public string Note { get; set; } = "";
 
     public Guid DecorationInfoId { get; set; } = default!;
     public DecorationInfo DecorationInfo { get; set; } = default!;

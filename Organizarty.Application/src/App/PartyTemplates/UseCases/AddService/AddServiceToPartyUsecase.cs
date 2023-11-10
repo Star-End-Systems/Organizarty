@@ -16,11 +16,11 @@ public class AddServiceToPartyUsecase
         _validator = validator;
     }
 
-    public async Task Execute(AddServiceToPartyDto serviceDto)
+    public async Task<ServiceGroup> Execute(AddServiceToPartyDto serviceDto)
     {
         var service = serviceDto.ToModel;
         ValidationUtils.Validate(_validator, service, "Fail to add service to party.");
 
-        await _serviceRepository.Add(service);
+        return await _serviceRepository.Add(service);
     }
 }

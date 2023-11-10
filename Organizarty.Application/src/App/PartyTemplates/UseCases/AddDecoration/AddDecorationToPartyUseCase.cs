@@ -16,11 +16,11 @@ public class AddDecorationToPartyUseCase
         _validator = validator;
     }
 
-    public async Task Execute(AddDecorationToPartyDto decorationDto)
+    public async Task<DecorationGroup> Execute(AddDecorationToPartyDto decorationDto)
     {
         var decoration = decorationDto.ToModel;
         ValidationUtils.Validate(_validator, decoration, "Validation for food fail");
 
-        await _decorationRepository.Add(decoration);
+        return await _decorationRepository.Add(decoration);
     }
 }

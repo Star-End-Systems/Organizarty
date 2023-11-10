@@ -24,8 +24,9 @@ public class RegisterUserTest : IAsyncLifetime
     [Fact]
     public async Task RegisterSample_ValidData_ReturnCreatedUser()
     {
-        var userRepo = new RepositoriesFactory(Context).UserRepository();
-        var registerUser = new UseCasesFactory().RegisterUserUseCase(userRepo);
+        var usecases = new UseCasesFactory(Context);
+
+        var registerUser = usecases.RegisterUserUseCase();
 
         var user = await UserSample.SetupUser(registerUser);
 
@@ -36,8 +37,9 @@ public class RegisterUserTest : IAsyncLifetime
     [Fact]
     public async Task Register_InvalidEmail_ReturnCreatedUser()
     {
-        var userRepo = new RepositoriesFactory(Context).UserRepository();
-        var registerUser = new UseCasesFactory().RegisterUserUseCase(userRepo);
+        var usecases = new UseCasesFactory(Context);
+
+        var registerUser = usecases.RegisterUserUseCase();
 
         var data = new RegisterUserDto("testuser", "Test User Da Silva", "São Paulo, SP", "invalid_email", "long_and_secure_password", null);
 

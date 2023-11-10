@@ -3,7 +3,7 @@ using Organizarty.Application.App.Users.UseCases;
 
 namespace Organizarty.Tests.Unit.Samples.Users;
 
-public static class UserSample
+public static partial class UserSample
 {
     public static async Task<User> SetupUser(RegisterUserUseCase registerUser)
     {

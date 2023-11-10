@@ -1,8 +1,10 @@
+using FluentValidation;
 using Organizarty.Application.App.Party.Data;
 using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Schedules.Data;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.Exceptions;
+using Organizarty.Application.Extras;
 
 namespace Organizarty.Application.App.Schedules.UseCases;
 
@@ -12,20 +14,28 @@ public class ScheduleUseCase
     private readonly IPartyTemplateRepository _partyRepository;
     private readonly OrderDecorationUseCase _orderDecoration;
     private readonly ChangeItemStatusUseCase _changeStatus;
+    private readonly IValidator<Schedule> _scheduleValidator;
 
-    public ScheduleUseCase(IScheduleRepository scheduleRepository, IPartyTemplateRepository partyRepository, OrderDecorationUseCase orderDecoration, ChangeItemStatusUseCase changeStatus)
+    private readonly int MAX_EVENT_DURATION;
+
+    public ScheduleUseCase(IScheduleRepository scheduleRepository, IPartyTemplateRepository partyRepository, OrderDecorationUseCase orderDecoration, ChangeItemStatusUseCase changeStatus, IValidator<Schedule> scheduleValidator)
     {
         _scheduleRepository = scheduleRepository;
         _partyRepository = partyRepository;
         _orderDecoration = orderDecoration;
         _changeStatus = changeStatus;
+        _scheduleValidator = scheduleValidator;
     }
 
     public async Task<Schedule> Execute(ScheduleDto scheduleDto)
     {
-        var party = await _partyRepository.FromId(scheduleDto.partyId) ?? throw new NotFoundException("user from schedule not found");
+        ValidEventTIme(scheduleDto);
+
+        var party = await _partyRepository.FromId(scheduleDto.partyId) ?? throw new NotFoundException("user from schedule not found.");
 
         var schedule = MountSchedule(party, scheduleDto);
+
+        ValidationUtils.Validate(_scheduleValidator, schedule, "Fail while validating schedule.");
 
         var s = await _scheduleRepository.Create(schedule);
 
@@ -34,9 +44,16 @@ public class ScheduleUseCase
         return s;
     }
 
-    private Schedule MountSchedule(PartyTemplate party, ScheduleDto scheduleDto)
+    private void ValidEventTIme(ScheduleDto schedule)
     {
-        return new Schedule
+        if (schedule.duration > MAX_EVENT_DURATION)
+        {
+            throw new ValidationFailException($"The max duration of an event is {MAX_EVENT_DURATION} hours.");
+        }
+    }
+
+    private Schedule MountSchedule(PartyTemplate party, ScheduleDto scheduleDto)
+        => new Schedule
         {
             Name = party.Name,
             ExpectedGuests = party.ExpectedGuests,
@@ -45,7 +62,7 @@ public class ScheduleUseCase
             UserId = party.UserId,
             PartyId = party.Id,
             StartDate = scheduleDto.startDate,
-            EndDate = scheduleDto.endDate
+            EndDate = scheduleDto.startDate.AddHours(scheduleDto.duration)
         };
-    }
+
 }

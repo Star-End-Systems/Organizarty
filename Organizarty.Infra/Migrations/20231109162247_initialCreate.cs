@@ -7,12 +7,36 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Organizarty.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "DecorationTypes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Name = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Size = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Model = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ObjectURL = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    TagsJSON = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DecorationTypes", x => x.Id);
+                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -46,7 +70,7 @@ namespace Organizarty.Infra.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Manager",
+                name: "Managers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -56,6 +80,8 @@ namespace Organizarty.Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Password = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Salt = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
@@ -63,7 +89,7 @@ namespace Organizarty.Infra.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Manager", x => x.Id);
+                    table.PrimaryKey("PK_Managers", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -74,7 +100,7 @@ namespace Organizarty.Infra.Migrations
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Name = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
+                    Description = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Address = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -96,7 +122,11 @@ namespace Organizarty.Infra.Migrations
                     ProfilePictureURL = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     TagJSON = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn)
                 },
                 constraints: table =>
                 {
@@ -119,11 +149,13 @@ namespace Organizarty.Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Salt = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CPF = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false)
+                    CPF = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     EmailConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.ComputedColumn),
                     RolesJson = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Location = table.Column<string>(type: "longtext", nullable: false)
@@ -138,31 +170,27 @@ namespace Organizarty.Infra.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "DecorationTypes",
+                name: "DecorationInfos",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Name = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
+                    Color = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Description = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false)
+                    Material = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Size = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false)
+                    IsAvaible = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(2)", precision: 2, nullable: false),
+                    TextureURL = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Model = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ObjectURL = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ThirdPartyId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    TagsJSON = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    DecorationTypeId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DecorationTypes", x => x.Id);
+                    table.PrimaryKey("PK_DecorationInfos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DecorationTypes_ThirdParties_ThirdPartyId",
-                        column: x => x.ThirdPartyId,
-                        principalTable: "ThirdParties",
+                        name: "FK_DecorationInfos_DecorationTypes_DecorationTypeId",
+                        column: x => x.DecorationTypeId,
+                        principalTable: "DecorationTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -276,33 +304,6 @@ namespace Organizarty.Infra.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "DecorationInfos",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Color = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Material = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    IsAvaible = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(2)", precision: 2, nullable: false),
-                    TextureURL = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DecorationTypeId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DecorationInfos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DecorationInfos_DecorationTypes_DecorationTypeId",
-                        column: x => x.DecorationTypeId,
-                        principalTable: "DecorationTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "FoodInfos",
                 columns: table => new
                 {
@@ -353,6 +354,35 @@ namespace Organizarty.Infra.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "DecorationGroups",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Note = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DecorationInfoId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    PartyTemplateId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DecorationGroups", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DecorationGroups_DecorationInfos_DecorationInfoId",
+                        column: x => x.DecorationInfoId,
+                        principalTable: "DecorationInfos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DecorationGroups_PartyTemplates_PartyTemplateId",
+                        column: x => x.PartyTemplateId,
+                        principalTable: "PartyTemplates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Schedules",
                 columns: table => new
                 {
@@ -386,35 +416,6 @@ namespace Organizarty.Infra.Migrations
                         name: "FK_Schedules_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "DecorationGroups",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Note = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DecorationInfoId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    PartyTemplateId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DecorationGroups", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DecorationGroups_DecorationInfos_DecorationInfoId",
-                        column: x => x.DecorationInfoId,
-                        principalTable: "DecorationInfos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DecorationGroups_PartyTemplates_PartyTemplateId",
-                        column: x => x.PartyTemplateId,
-                        principalTable: "PartyTemplates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -619,11 +620,6 @@ namespace Organizarty.Infra.Migrations
                 column: "ScheduleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DecorationTypes_ThirdPartyId",
-                table: "DecorationTypes",
-                column: "ThirdPartyId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_FoodGroups_FoodInfoId",
                 table: "FoodGroups",
                 column: "FoodInfoId");
@@ -664,8 +660,8 @@ namespace Organizarty.Infra.Migrations
                 column: "ThirdPartyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Manager_Email",
-                table: "Manager",
+                name: "IX_Managers_Email",
+                table: "Managers",
                 column: "Email",
                 unique: true);
 
@@ -774,7 +770,7 @@ namespace Organizarty.Infra.Migrations
                 name: "FoodOrders");
 
             migrationBuilder.DropTable(
-                name: "Manager");
+                name: "Managers");
 
             migrationBuilder.DropTable(
                 name: "ServiceGroups");

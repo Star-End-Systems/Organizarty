@@ -13,7 +13,7 @@ public class ServiceType
     public Guid ThirdPartyId { get; set; } = default!;
     public ThirdParty ThirdParty { get; set; } = default!;
 
-    public string TagsJSON { get; set; } = default!;
+    public string TagsJSON { get; set; } = "[]";
 
     public List<string> Tags
     {

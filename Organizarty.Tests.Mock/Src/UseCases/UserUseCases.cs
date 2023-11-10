@@ -2,20 +2,36 @@ using Organizarty.Application.App.Users.Data;
 using Organizarty.Application.App.Users.Entities;
 using Organizarty.Application.App.Users.UseCases;
 using Organizarty.Tests.Mock.Adapters;
+using Organizarty.Tests.Mock.Repositories;
 
 namespace Organizarty.Tests.Mock.UseCases;
 
 public partial class UseCasesFactory
 {
-    public RegisterUserUseCase RegisterUserUseCase(IUserRepository userRepository)
-      => new RegisterUserUseCase(userRepository, new CryptographyMock(), new UserValidator());
+    public RegisterUserUseCase RegisterUserUseCase()
+    {
+        var userRepo = _repositories.UserRepository();
+        return new RegisterUserUseCase(userRepo, new CryptographyMock(), new UserValidator());
+    }
 
-    public LoginUserUseCase LoginUserUseCase(IUserRepository userRepository)
-      => new LoginUserUseCase(new CryptographyMock(), userRepository);
+    public LoginUserUseCase LoginUserUseCase()
+    {
+        var userRepo = _repositories.UserRepository();
 
-    public SendEmailConfirmUseCase SendEmailConfirmUseCase(IUserConfirmationRepository confirmationRepository)
-      => new SendEmailConfirmUseCase(confirmationRepository, new EmailSenderMock());
+        return new LoginUserUseCase(new CryptographyMock(), userRepo);
+    }
 
-    public ConfirmCodeUseCase ConfirmCodeUseCase(IUserConfirmationRepository confirmationRepository, IUserRepository userRepository)
-      => new ConfirmCodeUseCase(confirmationRepository, userRepository);
+    public SendEmailConfirmUseCase SendEmailConfirmUseCase()
+    {
+        var confirmRepo = _repositories.UserConfirmationRepository();
+        return new SendEmailConfirmUseCase(confirmRepo, new EmailSenderMock());
+    }
+
+    public ConfirmCodeUseCase ConfirmCodeUseCase()
+    {
+        var confirmRepo = _repositories.UserConfirmationRepository();
+        var userRepo = _repositories.UserRepository();
+
+        return new ConfirmCodeUseCase(confirmRepo, userRepo);
+    }
 }

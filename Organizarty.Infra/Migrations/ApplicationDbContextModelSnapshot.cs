@@ -90,12 +90,7 @@ namespace Organizarty.Infra.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("ThirdPartyId")
-                        .HasColumnType("char(36)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ThirdPartyId");
 
                     b.ToTable("DecorationTypes");
                 });
@@ -220,7 +215,7 @@ namespace Organizarty.Infra.Migrations
                     b.ToTable("Locations");
                 });
 
-            modelBuilder.Entity("Organizarty.Application.App.Manager.Entities.Manager", b =>
+            modelBuilder.Entity("Organizarty.Application.App.Managers.Entities.Manager", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -243,6 +238,10 @@ namespace Organizarty.Infra.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Salt")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
@@ -252,7 +251,7 @@ namespace Organizarty.Infra.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Manager");
+                    b.ToTable("Managers");
                 });
 
             modelBuilder.Entity("Organizarty.Application.App.Party.Entities.DecorationGroup", b =>
@@ -265,6 +264,7 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Note")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<Guid>("PartyTemplateId")
@@ -631,7 +631,12 @@ namespace Organizarty.Infra.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
@@ -665,6 +670,10 @@ namespace Organizarty.Infra.Migrations
                     b.Property<string>("TagJSON")
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("LoginEmail")
@@ -680,11 +689,11 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("CPF")
-                        .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("varchar(11)");
 
                     b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
@@ -718,6 +727,7 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("UserName")
@@ -764,17 +774,6 @@ namespace Organizarty.Infra.Migrations
                         .IsRequired();
 
                     b.Navigation("DecorationType");
-                });
-
-            modelBuilder.Entity("Organizarty.Application.App.DecorationTypes.Entities.DecorationType", b =>
-                {
-                    b.HasOne("Organizarty.Application.App.ThirdParties.Entities.ThirdParty", "ThirdParty")
-                        .WithMany()
-                        .HasForeignKey("ThirdPartyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ThirdParty");
                 });
 
             modelBuilder.Entity("Organizarty.Application.App.FoodInfos.Entities.FoodInfo", b =>
