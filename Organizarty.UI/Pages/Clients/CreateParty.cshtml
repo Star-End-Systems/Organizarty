@@ -2,11 +2,13 @@
 
 @{
     ViewData["title"] = "Organizarty";
-    Layout = "_OrganizartyClientsLayout";
+    Layout = "_NullLayout";
 }
 
-<section class="w-fit h-full flex flex-col items-center">
-    <div class="fixed top-0 items-center flex flex-col w-full bg-white z-40">
+<partial name="_OrganizartyClientsLayout"/>
+
+<section class="w-5/6 ml-auto h-full flex flex-col items-center">
+    <div class="fixed items-center flex flex-col w-5/6 ml-auto bg-white -z-40">
         <img src="/images/General/ColoredLogo.svg" class="mt-5 w-16">
         <div class="w-fit mb-5">
             <p class="uppercase font-[KonnectBold] bg-gradient-to-r bg-clip-text text-transparent from-[#7D3098] via-[#EF5781] to-[#FBD54A] text-5xl">
@@ -27,7 +29,7 @@
             <img src="/images/Clients/CreateParty/Template3.png" class="h-full Template3 -z-30">
         </div>
     </div>
-    <div class="flex justify-center w-5/6 h-fit rounded-[40px] card my-5 -z-50">
+    <div class="flex justify-center w-5/6 h-fit rounded-[40px] card my-10 -z-50">
         <img src="/images/Clients/CreateParty/Couple.svg" class="ml-6 w-52">
         <div class="flex flex-col w-1/4 ml-4 mr-10 mt-10">
             <h1 class="text-justify text-3xl font-[KonnectBold] text-[#434343] mb-3">Comece a criar sua comemoração de<br><span class="underline">casamento</span></h1>
@@ -40,7 +42,7 @@
             <img src="/images/Clients/CreateParty/Template3.png" class="h-full Template3 -z-30">
         </div>
     </div>
-    <div class="flex justify-center w-5/6 h-fit rounded-[40px] card my-5 -z-50">
+    <div class="flex justify-center w-5/6 h-fit rounded-[40px] card my-10 -z-50">
         <img src="/images/Clients/CreateParty/Debutante.svg" class="ml-6 w-52">
         <div class="flex flex-col w-1/4 ml-4 mr-10 mt-10">
             <h1 class="text-justify text-3xl font-[KonnectBold] text-[#434343] mb-3">Comece a criar sua<br>festa de <span class="underline">debutante</span></h1>
@@ -53,7 +55,7 @@
             <img src="/images/Clients/CreateParty/Template3.png" class="h-full Template3 -z-30">
         </div>
     </div>
-    <div class="flex justify-center w-5/6 h-fit rounded-[40px] card my-5 -z-50">
+    <div class="flex justify-center w-5/6 h-fit rounded-[40px] card my-10 -z-50">
         <img src="/images/Clients/CreateParty/HappyHour.svg" class="ml-6 w-52">
         <div class="flex flex-col w-1/4 ml-4 mr-10 mt-10">
             <h1 class="text-justify text-3xl font-[KonnectBold] text-[#434343] mb-3">Comece a criar seu <br><span class="underline">happy hour</span></h1>
