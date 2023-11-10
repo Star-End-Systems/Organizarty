@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Schedules.Data;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.Schedules.Enum;
@@ -24,13 +25,16 @@ public class DecorationOrderRepository : IDecorationOrderRepository
     public async Task<DecorationOrder> ChangeStatus(DecorationOrder decoration, ItemStatus newStatus)
     {
         decoration.Status = newStatus;
+        return await Update(decoration);
+    }
+
+    public async Task<List<DecorationOrder>> ListFromShedule(Guid schedule)
+      => await _context.DecorationOrders.Where(x => x.ScheduleId == schedule).ToListAsync();
+
+    public async Task<DecorationOrder> Update(DecorationOrder decoration)
+    {
         _context.DecorationOrders.Update(decoration);
         await _context.SaveChangesAsync();
         return decoration;
-    }
-
-    public Task<DecorationOrder> Update(DecorationOrder decoration)
-    {
-        throw new NotImplementedException();
     }
 }
