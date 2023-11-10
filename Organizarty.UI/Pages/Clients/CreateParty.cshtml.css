@@ -3,22 +3,21 @@
 }
 
 .Template2{
-    margin-left: -7.5rem;
+    margin-left: -8rem;
 }
 
 .Template2:hover {
-    z-index: 0;
-    transition: all 0.15s ease-in-out;
+    z-index: 50;
 }
 
 .Template3{
-    margin-left: -7.5rem;
+    margin-left: -8rem;
 }
 
 .Template3:hover {
-    z-index: 0;
-    transition: all 0.15s ease-in-out;
+    z-index: 50;
 }
+
 /* 
 div{
     border: red solid 1px;
