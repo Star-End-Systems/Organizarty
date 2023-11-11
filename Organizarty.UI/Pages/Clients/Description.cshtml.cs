@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 namespace Organizarty.UI.Pages;
 
-public class MyPartiesModel : PageModel
+public class DescriptionModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
 
-    public MyPartiesModel(ILogger<IndexModel> logger)
+    public DescriptionModel(ILogger<IndexModel> logger)
     {
         _logger = logger;
     }
@@ -15,8 +15,8 @@ public class MyPartiesModel : PageModel
     public InputModel Input{get; set;} = default!;
 
     public class InputModel{
-        [Display(Name = "Search")]
-        public string Search {get; set;} = default!;
+        [Display(Name = "ClientNotes")]
+        public string ClientNotes {get; set;} = default!;
     }
     public void OnGet()
     {
@@ -29,6 +29,6 @@ public class MyPartiesModel : PageModel
             return Page();
         }
 
-        return RedirectToPage("", new { search = Input.Search});
+        return RedirectToPage("", new { clientNotes = Input.ClientNotes});
     }        
 }
