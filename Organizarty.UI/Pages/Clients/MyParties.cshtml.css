@@ -1,3 +1,4 @@
+
 div{
     border: rgba(0, 128, 0, 0) solid 1px;
 }
@@ -5,6 +6,7 @@ div{
 section{
     border: rgba(255, 0, 0, 0) solid 1px;
 } 
+
 
 .menuButtons:hover{
     transform: scale(1.1);
