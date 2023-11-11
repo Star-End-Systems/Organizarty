@@ -1,0 +1,26 @@
+@page
+@model ProductsModel 
+@{
+    Layout = "_NullLayout";
+    ViewData["Title"] = "Locais";
+}
+
+<partial name="_OrganizartyClientsLayout"/>
+<section class="h-screen w-5/6 ml-auto ">
+    <div class="flex flex-col">
+        <div class="flex">
+            <div class="w-full ml-16">
+                <p class="mt-6 font-[KonnectBold] text-5xl text-[#848484]">Locais para a sua festa</p>
+                <div class="bg-[#FF008A] rounded-xl h-2 w-52 mt-2"></div>
+            </div>
+            <div class="w-full flex justify-end items-center">
+                <button class="justify-center mr-12 bg-[#FF008A] text-white font-[Konnect] w-48 h-12 rounded-lg"><h2 class="flex items-center justify-center"><img class="w-6" src="/images/Clients/Places/Local.svg"></img><span class="">..</span>Minha Casa</h2></button>
+            </div>
+        </div>
+        <div class="">
+                <partial name="_PlacesList"/>
+                <partial name="_PlacesList"/>
+                <partial name="_PlacesList"/>
+        </div>      
+    </div>
+</section>
