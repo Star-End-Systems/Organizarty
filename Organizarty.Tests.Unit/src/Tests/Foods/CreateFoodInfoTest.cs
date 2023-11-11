@@ -17,12 +17,11 @@ public class CreateFoodInfoTest
             var foodRepo = repos.FoodTypeRepository();
             var thirdpartyRepo = repos.ThirdPartyRepository();
 
-            var usecases = new UseCasesFactory();
+            var usecases = new UseCasesFactory(context);
             var createFood = usecases.CreateFoodTypeUseCase(foodRepo);
-            var registerThirdParty = usecases.RegisterThirdPartyUseCase(thirdpartyRepo);
-            var authorize = usecases.AuthorizeThirdPartyUseCase(thirdpartyRepo);
 
-            var thirdParty = await ThirdPartySample.SetupThirdPartyAuthorized(registerThirdParty, authorize);
+            var thirdParty = await ThirdPartySample.SetupThirdPartyAuthorized(usecases);
+
             var type = await FoodSample.SetupFoodType(createFood, thirdParty.Id);
 
             var fRepo = repos.FoodInfoRepository();

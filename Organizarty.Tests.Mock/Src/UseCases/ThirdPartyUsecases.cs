@@ -7,12 +7,24 @@ namespace Organizarty.Tests.Mock.UseCases;
 
 public partial class UseCasesFactory
 {
-    public RegisterThirdPartyUseCase RegisterThirdPartyUseCase(IThirdPartyRepository thirdPartyRepository)
-      => new RegisterThirdPartyUseCase(thirdPartyRepository, new CryptographyMock(), new ThirdPartyValidator());
+    public RegisterThirdPartyUseCase RegisterThirdPartyUseCase()
+    {
+        var thirdPartyRepository = _repositories.ThirdPartyRepository();
 
-    public LoginThirdPartyUseCase LoginThirdPartyUseCase(IThirdPartyRepository thirdPartyRepository)
-      => new LoginThirdPartyUseCase(new CryptographyMock(), thirdPartyRepository);
+        return new RegisterThirdPartyUseCase(thirdPartyRepository, new CryptographyMock(), new ThirdPartyValidator());
+    }
 
-    public AuthorizeThirdPartyUseCase AuthorizeThirdPartyUseCase(IThirdPartyRepository thirdPartyRepository)
-      => new AuthorizeThirdPartyUseCase(thirdPartyRepository);
+    public LoginThirdPartyUseCase LoginThirdPartyUseCase()
+    {
+        var thirdPartyRepository = _repositories.ThirdPartyRepository();
+
+        return new LoginThirdPartyUseCase(new CryptographyMock(), thirdPartyRepository);
+    }
+
+    public AuthorizeThirdPartyUseCase AuthorizeThirdPartyUseCase()
+    {
+        var thirdPartyRepository = _repositories.ThirdPartyRepository();
+
+        return new AuthorizeThirdPartyUseCase(thirdPartyRepository);
+    }
 }

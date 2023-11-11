@@ -11,9 +11,10 @@ public class MyPartiesModel : PageModel
     {
         _logger = logger;
     }
+
     public InputModel Input{get; set;} = default!;
+
     public class InputModel{
-        [Required]
         [Display(Name = "Search")]
         public string Search {get; set;} = default!;
     }

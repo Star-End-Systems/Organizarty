@@ -13,11 +13,9 @@ public class CreatLocationTest
         using (var context = DatabaseFactory.InMemoryDatabase())
         {
             var repos = new RepositoriesFactory(context);
-            var usecases = new UseCasesFactory();
+            var usecases = new UseCasesFactory(context);
 
-            var repo = repos.LocationRepository();
-
-            var createLocation = usecases.CreateLocationUseCase(repo);
+            var createLocation = usecases.CreateLocationUseCase();
 
             var location = await LocationSample.SetupLocation(createLocation);
             Assert.NotEqual(Guid.Empty, location.Id);
