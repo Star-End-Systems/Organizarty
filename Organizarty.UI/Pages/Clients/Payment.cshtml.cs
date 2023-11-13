@@ -5,9 +5,9 @@ namespace Organizarty.UI.Pages;
 
 public class PaymentModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ILogger<PaymentModel> _logger;
 
-    public PaymentModel(ILogger<IndexModel> logger)
+    public PaymentModel(ILogger<PaymentModel> logger)
     {
         _logger = logger;
     }

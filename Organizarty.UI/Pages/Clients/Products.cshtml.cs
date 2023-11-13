@@ -5,9 +5,9 @@ namespace Organizarty.UI.Pages;
 
 public class ProductsModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ILogger<ProductsModel> _logger;
 
-    public ProductsModel(ILogger<IndexModel> logger)
+    public ProductsModel(ILogger<ProductsModel> logger)
     {
         _logger = logger;
     }
