@@ -1,0 +1,30 @@
+@page
+@model IndexModel 
+
+@{
+    Layout = "_NullLayout";
+    ViewData["Title"] = "Meus produtos";
+}
+<partial name="_OrganizartyThirdPartyLayout"/>
+<section class="ml-auto w-5/6">
+    <div clas="flex flex-col">
+        <div class="mt-4">
+            <div class="flex justify-start items-center w-full h-28 ml-20">
+                <img class="items-center w-24 " src="/images/Clients/Description/BakeryLogo.png"></img>
+                <div class="ml-4">
+                    <h1 class="text-[#BB00C7] font-[Inter] text-3xl"><strong>Pastry Shop</strong></h1>
+                    <p class="text-[#848484] font-[Inter] text-xs">Ana Fernandez</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex">
+            <div class="w-fit flex flex-col items-center font-[KonnectBold] text-[#908D8D] mr-4"><button class="flex menuButtons rounded-full w-32 h-32  bg-[#848484]"><img class="w-7 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Bolo.svg"></img></button><h4 class="text-sm">Bolos</h4></div>
+            <div class="w-fit flex flex-col items-center font-[KonnectBold] text-[#908D8D] mr-4"><button class="flex menuButtons rounded-full w-32 h-32  bg-[#848484]"><img class="w-7 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Brigadeiro.svg"></img></button><h4 class="text-sm">Doces</h4></div>
+            <div class="w-fit flex flex-col items-center font-[KonnectBold] text-[#908D8D] mr-4"><button class="flex menuButtons rounded-full w-32 h-32  bg-[#848484]"><img class="w-7 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Croisant.svg"></img></button><h4 class="text-sm">Salgados</h4></div>
+            <div class="w-fit flex flex-col items-center font-[KonnectBold] text-[#908D8D] mr-4"><button class="flex menuButtons rounded-full w-32 h-32  bg-[#848484]"><img class="w-7 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Shopping.svg"></img></button><h4 class="text-sm">Adicionar</h4></div>
+        </div>
+        <div class="">
+            
+        </div>
+    </div>
+</section>
