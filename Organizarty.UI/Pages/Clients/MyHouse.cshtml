@@ -1,0 +1,57 @@
+@page
+@model MyHouseModel 
+@{
+    Layout = "_NullLayout";
+    ViewData["Title"] = "Locais";
+}
+
+<partial name="_OrganizartyClientsLayout"/>
+<section class="h-screen w-5/6 ml-auto ">
+    <div class="flex flex-col">
+        <div class="flex">
+            <div class="w-full ml-16">
+                <p class="mt-16 font-[KonnectBold] text-4xl text-[#848484]">Preencha suas informações de endereço</p>
+                <div class="bg-[#FF008A] rounded-xl h-2 w-52 mt-2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-between items-center">
+        <div class="h-px w-full bg-[#C5BCBC]"></div>
+            <h1 class="p-12 font-[Konnect] text-[#C6C6C6] text-2xl">Endereço</h1> 
+        <div class="h-px w-full bg-[#C5BCBC]"></div>
+    </div>
+    <div class="flex justify-center ">
+        <div class="w-11/12 h-full flex ">
+            <div class="w-1/2 flex flex-col justify-between">
+                    <h2 class="text-[#A09898] font-[Inter] font-bold">CEP: </h2>
+                    <input asp-for="Input.CEP" class="font-[Konnect] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
+                    <span asp-validation-for="Input.CEP" class="placeholder"></span>
+
+                    <h2 class="text-[#A09898] font-[Inter] font-bold">Endereço: </h2>
+                    <input asp-for="Input.Address" class="font-[Konnect] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
+                    <span asp-validation-for="Input.Address" class="placeholder"></span>
+
+                    <h2 class="text-[#A09898] font-[Inter] font-bold">Complemento: </h2>
+                    <input asp-for="Input.Complement" class="font-[Konnect] mb-16 w-5/6 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
+                    <span asp-validation-for="Input.Complement" class="placeholder"></span>
+
+                    <div class="flex h-11">
+                        <button class="font-[Inter] text-[#FF008A] rounded-xl CancelButton pr-10 pl-10">Cancelar</button>                    
+                        <button class="font-[Inter] text-white rounded-xl RegisterButton bg-[#FF008A] pr-10 pl-10 ml-8">Cadastrar</button>                
+                    </div>
+            </div>
+            <div class="w-1/2 flex flex-col">
+                    <h2 class="text-[#A09898] font-[Inter] font-bold">Cidade: </h2>
+                    <input asp-for="Input.City" class="font-[Konnect] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
+                    <span asp-validation-for="Input.City" class="placeholder"></span>
+
+                    <h2 class="text-[#A09898] font-[Inter] font-bold">Número: </h2>
+                    <input asp-for="Input.Number" type="number" class="font-[Konnect] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
+                    <span asp-validation-for="Input.Number" class="placeholder"></span>
+
+                    <h2 class="text-[#A09898] font-[Inter] font-bold">Bairro: </h2>
+                    <input asp-for="Input.Neighbor" class="font-[Konnect] w-5/6 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
+                    <span asp-validation-for="Input.Neighbor" class="placeholder"></span>
+            </div>
+        </div>
+    </div>

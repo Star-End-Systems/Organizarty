@@ -1,0 +1,25 @@
+/* section{
+    border: red solid 1px;
+}
+
+div{
+    border: blue solid 1px;
+} */
+
+.CancelButton{
+    border: #FF008A solid 1px;
+}
+
+.CancelButton:hover{
+    border: transparent;
+    background-color:#FF008A;
+    color: white;
+    transition: all 0.4s;
+}
+
+.RegisterButton:hover{
+    border: #FF008A solid 1px;
+    background-color:white;
+    color: #FF008A;
+    transition: all 0.4s;
+}

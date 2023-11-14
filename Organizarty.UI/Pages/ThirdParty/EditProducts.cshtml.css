@@ -1,0 +1,12 @@
+.Image:hover{
+    cursor: pointer;
+    transition: all 0.4s;
+   background-image: url("/images/ThirdParty/EditProducts/BoloEscuro.png"); 
+}
+
+.Image{
+    background-image: url("/images/ThirdParty/EditProducts/Bolo1.png");
+    background-size: cover;
+    filter: brightness(100%);
+    backdrop-filter: brightness(100%);
+}

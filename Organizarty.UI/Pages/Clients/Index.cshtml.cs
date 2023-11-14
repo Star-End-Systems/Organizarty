@@ -5,12 +5,24 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Organizarty.UI.Pages.Clients;
 
-public class ClientModel: PageModel{
-    public void OnGet(){
+public class ClientIndexModel : PageModel
+{
+    [BindProperty]
+    public InputModel Input { get; set; } = default!;
+
+    public class InputModel
+    {
+        public string Search { get; set; } = default!;
 
     }
 
-    public IActionResult OnPost(){
+    public void OnGet()
+    {
+
+    }
+
+    public IActionResult OnPost()
+    {
         return Page();
     }
 }
