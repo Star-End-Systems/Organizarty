@@ -11,7 +11,7 @@ public partial class UseCasesFactory
     public RegisterUserUseCase RegisterUserUseCase()
     {
         var userRepo = _repositories.UserRepository();
-        return new RegisterUserUseCase(userRepo, new CryptographyMock(), new UserValidator());
+        return new RegisterUserUseCase(userRepo, new CryptographyMock(), new UserValidator(), SendEmailConfirmUseCase());
     }
 
     public LoginUserUseCase LoginUserUseCase()

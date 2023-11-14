@@ -5,9 +5,9 @@ namespace Organizarty.UI.Pages;
 
 public class ServicesModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ILogger<ServicesModel> _logger;
 
-    public ServicesModel(ILogger<IndexModel> logger)
+    public ServicesModel(ILogger<ServicesModel> logger)
     {
         _logger = logger;
     }

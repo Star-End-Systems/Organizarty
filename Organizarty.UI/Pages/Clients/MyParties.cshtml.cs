@@ -5,9 +5,9 @@ namespace Organizarty.UI.Pages;
 
 public class MyPartiesModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ILogger<MyPartiesModel> _logger;
 
-    public MyPartiesModel(ILogger<IndexModel> logger)
+    public MyPartiesModel(ILogger<MyPartiesModel> logger)
     {
         _logger = logger;
     }

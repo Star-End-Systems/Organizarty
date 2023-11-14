@@ -5,9 +5,9 @@ namespace Organizarty.UI.Pages;
 
 public class ContactUsModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ILogger<ContactUsModel> _logger;
 
-    public ContactUsModel(ILogger<IndexModel> logger)
+    public ContactUsModel(ILogger<ContactUsModel> logger)
     {
         _logger = logger;
     }

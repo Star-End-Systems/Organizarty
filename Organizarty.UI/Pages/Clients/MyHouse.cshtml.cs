@@ -5,9 +5,9 @@ namespace Organizarty.UI.Pages;
 
 public class MyHouseModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ILogger<MyHouseModel> _logger;
 
-    public MyHouseModel(ILogger<IndexModel> logger)
+    public MyHouseModel(ILogger<MyHouseModel> logger)
     {
         _logger = logger;
     }
