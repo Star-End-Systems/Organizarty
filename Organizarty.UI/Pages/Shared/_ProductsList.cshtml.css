@@ -1,8 +1,7 @@
 .Image:hover{
-    filter: brightness(50%);
     cursor: pointer;
     transition: all 0.4s;
-    
+   background-image: url("/images/Clients/Products/BoloEscuro.png"); 
 }
 
 .Image{

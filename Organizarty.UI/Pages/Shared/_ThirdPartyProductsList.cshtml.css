@@ -1,0 +1,21 @@
+.Image:hover{
+    cursor: pointer;
+    transition: all 0.4s;
+   background-image: url("/images/Clients/Products/BoloEscuro.png"); 
+}
+
+.Image{
+    background-image: url("/images/Clients/Products/Bolo1.png");
+    background-size: cover;
+    filter: brightness(100%);
+    backdrop-filter: brightness(100%);
+}
+
+.Image p{
+    opacity:0;
+    transition: opacity 0.5s ease;
+}
+
+.Image:hover p{
+    opacity: 1;
+}
