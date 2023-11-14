@@ -25,3 +25,11 @@ p{
     font-family: Inter;
     font-size: 1vh;
 }
+
+.Urso{
+    filter: brightness(50%);
+}
+
+.Festa:hover{
+    cursor: pointer;
+}
