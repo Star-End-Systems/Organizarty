@@ -1,8 +1,7 @@
 .Image:hover{
-    filter: brightness(50%);
     cursor: pointer;
     transition: all 0.4s;
-    
+    background-image: url("/images/ThirdParty/MyServices/FotografoEscuro.png");    
 }
 
 .Image{
@@ -14,7 +13,6 @@
 
 .Image p{
     opacity:0;
-    transition: opacity 0.5s ease;
 }
 
 .Image:hover p{

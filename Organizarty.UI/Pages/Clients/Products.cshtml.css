@@ -28,3 +28,8 @@ div{
 .Image:hover p{
     opacity: 1;
 }
+
+.Button:hover{
+    transition: all 0.4s;
+    transform: scale(1.1);
+} 
