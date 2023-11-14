@@ -1,0 +1,30 @@
+@page
+@model IndexModel 
+
+@{
+    Layout = "_NullLayout";
+    ViewData["Title"] = "Meus produtos";
+}
+
+<partial name="_OrganizartyManagerLayout"/>
+<section class="ml-auto w-5/6">
+    <div class="flex">
+            <div class="w-1/2 w-full items-center pl-16 pt-16 justify-evenly">
+                <p class="w-fit font-[KonnectBold] text-[#848484] text-6xl justify-self-start">Locais<hr class="rounded-[30px] border-[3.5px] border-[#FFC700] w-7/12 mb-4"></p>
+            </div>
+                <div class="w-2/3 flex items-center justify-end inline-block text-left mr-10">
+                    <a href="/Manager/NewPlace"><button class="flex justify-center items-center w-fit rounded-xl bg-[#FFC700] text-xl font-bold font-[Inter] text-white px-5 py-2" id="options-menu" aria-haspopup="true" aria-expanded="true">
+                        <img class="items-center mt-2 mr-2" src="/images/Manager/Places/+.png"></img>
+                        <p class="text-sm mr-1 mt-0.5 justify-center font-[Konnect] text-lg">Adicionar local</p>
+                        </svg> 
+                        </button></a>
+            </div>
+    </div>
+    <div class="flex flex-col">
+        <div class="flex">
+            <partial name="_ManagerPlacesList"/>
+            <partial name="_ManagerPlacesList"/>
+            <partial name="_ManagerPlacesList"/>
+        </div>
+    </div>
+</section>

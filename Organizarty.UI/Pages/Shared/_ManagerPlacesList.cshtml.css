@@ -1,0 +1,16 @@
+.Image{
+    background-image: url("/images/Clients/Places/HiredPlace.png");
+    background-size: cover;
+}
+
+.Code{
+    font-size: 1vh;
+}
+
+.Hire{
+    border: solid #FFC700 1px;
+}
+
+.Border{
+    border: solid #C6C6C6 1px;
+}
