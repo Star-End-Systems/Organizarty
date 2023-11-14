@@ -1,0 +1,11 @@
+/* div, h2{
+    border: solid 1px red;
+} */
+
+#bordaPreta{
+    border-bottom: #424242 solid 1.5px;
+}
+
+#bordaCinza{
+    border-bottom: #E8DEDE solid 0.5px;
+}
