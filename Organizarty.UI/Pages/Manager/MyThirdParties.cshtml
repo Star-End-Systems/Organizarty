@@ -1,0 +1,47 @@
+@page
+@model IndexModel
+@{
+    ViewData["title"] = "Pedidos";
+    Layout = "_NullLayout";
+}
+
+<partial name="_OrganizartyManagerLayout"/>
+
+<section class="w-5/6 ml-auto h-screen flex-col">
+    <div class="pt-[2.5%] pl-[5%] fixed">
+        <div class="w-fit">
+            <h1 class="font-[KonnectBold] text-[#848484] uppercase text-5xl xl:text-6xl 2xl:text-7xl">
+                Novos colaboradores
+                <hr class="rounded-[30px] border-[5px] border-[#FFC700] w-2/5">
+            </h1>
+        </div>
+        <p class="w-11/12 font-[Inter] text-[#848484] text-xl xl:text-2xl 2xl:text-3xl mt-[1%]">
+            Conheça os novos colaboradores
+        </p>
+    </div>
+    <div class="flex flex-col mt-44">
+        <div class="flex">
+            <div class="flex flex-col justify-center border border-solid border-[#C6C6C6] rounded-[30px]">
+                <div class="flex justify-evenly">
+                    <img src="/images/Manager/ThirdParties/Logo.png" class="h-full w-2/5">
+                    <div class="flex flex-col h-full w-2/5">
+                        <h2 class="font-bold text-[#C6C6C6]">
+                            Username:
+                        </h2>
+                        <p>
+                            Borcelle confeitaria
+                        </p>
+                        <div class="border border-solid border-[#FFC700] rounded-xl">
+                            <h2 class="font-bold text-[#C6C6C6]">
+                                Descrição
+                            </h2>
+                            <p>
+                                texto texto texto texto texto
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
