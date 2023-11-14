@@ -1,0 +1,56 @@
+@page
+@model CreateAccountModel
+@{
+Layout = "_NullLayout";
+ViewData["Title"] = "Register" ;
+}
+<section class="flex h-screen">
+  <div class="part1 w-full h-screen py-8 flex-col">
+    <div class="flex justify-center">
+      <img class="w-32" src="/images/login/OrganizartyLogo.svg" />
+    </div>
+    <div class="LoginForm flex justify-center py-8 text-center">
+      <form id="login" method="post" class="w-full">
+        <h2>Register</h2>
+        @* <div class="line pb-8 flex justify-center rounded-full"></div> *@
+        <div asp-validation-summary="ModelOnly" class=""></div>
+        <div class="h-48 flex flex-col items-center justify-evenly">
+
+          <!-- Email -->
+          <input asp-for="Input.Email" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Digite seu email" />
+          <span asp-validation-for="Input.Email" class="placeholder"></span>
+
+          <!-- Password -->
+          <input asp-for="Input.Password" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            autocomplete="current-password" aria-required="true" placeholder="Digite sua senha" type="password" />
+          <span asp-validation-for="Input.Password" class="placeholder"></span>
+
+          <!-- Fullname -->
+          <input asp-for="Input.FullName" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            autocomplete="current-password" aria-required="true" placeholder="Digite seu nome completo" type="text" />
+          <span asp-validation-for="Input.FullName" class="placeholder"></span>
+
+          <!-- Username -->
+          <input asp-for="Input.Username" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            autocomplete="current-password" aria-required="true" placeholder="Digite seu nome de usuário" type="text" />
+          <span asp-validation-for="Input.Username" class="placeholder"></span>
+
+          <!-- Location -->
+          <input asp-for="Input.LocationID" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            autocomplete="current-password" aria-required="true" placeholder="Digite sua Localização" type="text" />
+          <span asp-validation-for="Input.LocationID" class="placeholder"></span>
+
+          <!-- CPF -->
+          <input asp-for="Input.CPF" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            autocomplete="current-password" aria-required="true" placeholder="Digite seu CPF" type="text" />
+          <span asp-validation-for="Input.CPF" class="placeholder"></span>
+
+        </div>
+        <div class="flex w-full place-content-evenly py-14">
+          <button id="login-submit" type="submit" class="logar w-48 h-14 rounded-xl hover:shadow-2xl">Criar conta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
