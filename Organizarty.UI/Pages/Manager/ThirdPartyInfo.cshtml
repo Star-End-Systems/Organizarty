@@ -1,0 +1,71 @@
+@page
+@model AcceptThirdPartyModel
+@{
+    ViewData["title"] = "Terceirizado";
+    Layout = "_NullLayout";
+}
+
+<partial name="_OrganizartyManagerLayout"/>
+
+<section class="w-5/6 ml-auto h-screen flex-col">
+    <div class="flex">
+        <div class="flex flex-col h-screen py-16 pl-16 pr-10">
+        <img src="/images/Manager/ThirdParties/Logo.png" class="h-[55%] w-auto mb-5 rounded-[45px]">
+            <label class="font-[KonnectBold] text-md xl:text-lg 2xl:text-xl text-[#848484] m-5">Descrição</label>
+            <textarea asp-for="Input.Description" class="w-full h-full rounded-2xl shadow-xl border-[#FFC700] font-[Konnect]" aria-required="true"></textarea>
+            <span asp-validation-for="Input.Description" class="placeholder"></span>
+        </div>
+        <div class="flex flex-col pt-16">
+            <h1 class="font-[Inter] font-bold text-[#FFC700] text-5xl xl:text-6xl 2xl:text-7xl">
+                Borcelle Confeitaria
+            </h1>
+            <div class="flex my-10">
+                <p class="font-[Inter] font-bold text-white text-md xl:text-lg 2xl:text-xl bg-[#FFC700] rounded-[0.9rem] px-4 py-2">
+                    #Chocolate
+                </p>
+                <p class="font-[Inter] font-bold text-white text-md xl:text-lg 2xl:text-xl bg-[#FFC700] rounded-[0.9rem] px-4 py-2 ml-5">
+                    #Clássico
+                </p>
+                <p class="font-[Inter] font-bold text-white text-md xl:text-lg 2xl:text-xl bg-[#FFC700] rounded-[0.9rem] px-4 py-2 ml-5">
+                    #Recheado
+                </p>
+            </div>
+            <div class="flex justify-between w-full mt-5">
+                <div class="flex flex-col w-1/2 mr-4">
+                    <label class="font-[KonnectBold] text-md xl:text-lg 2xl:text-xl text-[#848484] mb-2">Email de Login</label>
+                    <input asp-for="Input.LoginEmail" class="w-full h-[4rem] rounded-2xl shadow-xl border-[#FFC700] font-[Konnect] mb-5" aria-required="true"/>
+                    <span asp-validation-for="Input.LoginEmail" class="placeholder"></span>
+
+                    <label class="font-[KonnectBold] text-md xl:text-lg 2xl:text-xl text-[#848484] mb-2">Nome</label>
+                    <input asp-for="Input.Name" class="w-full h-[4rem] rounded-2xl shadow-xl border-[#FFC700] font-[Konnect] mb-5" aria-required="true"/>
+                    <span asp-validation-for="Input.Name" class="placeholder"></span>
+
+                    <label class="font-[KonnectBold] text-md xl:text-lg 2xl:text-xl text-[#848484] mb-2">Cel / Tel 1</label>
+                    <input asp-for="Input.PrimaryTel" class="w-full h-[4rem] rounded-2xl shadow-xl border-[#FFC700] font-[Konnect] mb-5" aria-required="true"/>
+                    <span asp-validation-for="Input.PrimaryTel" class="placeholder"></span>
+                </div>
+                <div class="flex flex-col w-1/2">
+                    <label class="font-[KonnectBold] text-md xl:text-lg 2xl:text-xl text-[#848484] mb-2">Email de Contato</label>
+                    <input asp-for="Input.ContactEmail" class="w-full h-1/3 rounded-2xl shadow-xl border-[#FFC700] font-[Konnect] mb-5" aria-required="true"/>
+                    <span asp-validation-for="Input.ContactEmail" class="placeholder"></span>
+                    
+                    <label class="font-[KonnectBold] text-md xl:text-lg 2xl:text-xl text-[#848484] mb-2">CPF / CNPJ</label>
+                    <input asp-for="Input.CP" class="w-full h-1/3 rounded-2xl shadow-xl border-[#FFC700] font-[Konnect] mb-5" aria-required="true"/>
+                    <span asp-validation-for="Input.CP" class="placeholder"></span>
+
+                    <label class="font-[KonnectBold] text-md xl:text-lg 2xl:text-xl text-[#848484] mb-2">Cel / Tel 2</label>
+                    <input asp-for="Input.SecondaryTel" class="w-full h-1/3 rounded-2xl shadow-xl border-[#FFC700] font-[Konnect] mb-5" aria-required="true"/>
+                    <span asp-validation-for="Input.SecondaryTel" class="placeholder"></span>
+                </div>
+            </div>
+            <label class="font-[KonnectBold] text-md xl:text-lg 2xl:text-xl text-[#848484] mb-2 mt-5">Localização</label>
+            <input asp-for="Input.Location" class="w-full h-[4rem] rounded-2xl shadow-xl border-[#FFC700] font-[Konnect] mb-5" aria-required="true"/>
+            <span asp-validation-for="Input.Location" class="placeholder"></span>
+            <div class="flex font-[KonnectBold] text-white text-lg xl:text-xl 2xl:text-2xl w-full justify-around mt-[3.5rem]">
+                <button class="bg-[#2AD861] px-20 py-5 rounded-lg w-1/2 mr-8">Aceitar</button>
+                <button class="bg-[#E05252] px-20 py-5 rounded-lg w-1/2">Recusar</button>
+            </div>
+        </div>
+        <label></label>
+    </div>
+</section>
