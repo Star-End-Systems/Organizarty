@@ -1,4 +1,4 @@
-using Organizarty.Application.App.ServiceInfos.Entities;
+using Organizarty.Application.App.Services.Entities;
 
 namespace Organizarty.Application.App.Party.Entities;
 

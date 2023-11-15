@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Organizarty.Application.App.ServiceInfos.Entities;
+namespace Organizarty.Application.App.Services.Entities;
 
 public class ServiceInfoValidator : AbstractValidator<ServiceInfo>
 {

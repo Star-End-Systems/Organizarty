@@ -18,8 +18,7 @@ public static class UseCasesExtension
         services.AddDecorationInfoUsecases();
         services.AddDecorationTypeUsecases();
 
-        services.AddServiceTypeUsecases();
-        services.AddServiceInfoUsecases();
+        services.AddServicesUsecases();
 
         services.AddLocationUsecases();
         services.AddPartyUsecases();

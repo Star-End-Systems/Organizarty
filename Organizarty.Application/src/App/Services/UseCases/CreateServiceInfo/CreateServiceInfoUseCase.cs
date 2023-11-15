@@ -1,9 +1,9 @@
 using FluentValidation;
-using Organizarty.Application.App.ServiceInfos.Data;
-using Organizarty.Application.App.ServiceInfos.Entities;
+using Organizarty.Application.App.Services.Data;
+using Organizarty.Application.App.Services.Entities;
 using Organizarty.Application.Extras;
 
-namespace Organizarty.Application.App.ServiceInfos.UseCases;
+namespace Organizarty.Application.App.Services.UseCases;
 
 public class CreateServiceInfoUseCase
 {

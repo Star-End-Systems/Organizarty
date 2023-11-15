@@ -1,0 +1,11 @@
+.Image:hover{
+    filter: brightness(30%);
+    backdrop-filter: brightness(30%);
+}
+
+.Image{
+    cursor: pointer;
+    background-image: url("/images/ThirdParty/EditServices/Fotografia.png");
+    background-size: cover;
+    transition: all 0.4s;
+}

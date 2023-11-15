@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Organizarty.Application.App.ServiceTypes.Entities;
+namespace Organizarty.Application.App.Services.Entities;
 
 public class ServiceTypeValidator : AbstractValidator<ServiceType>
 {

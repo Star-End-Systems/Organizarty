@@ -1,7 +1,7 @@
 using System.Text.Json;
 using Organizarty.Application.App.ThirdParties.Entities;
 
-namespace Organizarty.Application.App.ServiceTypes.Entities;
+namespace Organizarty.Application.App.Services.Entities;
 
 public class ServiceType
 {
@@ -14,6 +14,8 @@ public class ServiceType
     public ThirdParty ThirdParty { get; set; } = default!;
 
     public string TagsJSON { get; set; } = "[]";
+
+    public ICollection<ServiceInfo> SubServices { get; set; } = default!;
 
     public List<string> Tags
     {

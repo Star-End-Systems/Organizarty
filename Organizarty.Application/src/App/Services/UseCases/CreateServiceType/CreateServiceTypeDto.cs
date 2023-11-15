@@ -1,6 +1,6 @@
-using Organizarty.Application.App.ServiceTypes.Entities;
+using Organizarty.Application.App.Services.Entities;
 
-namespace Organizarty.Application.App.ServiceTypes.UseCases;
+namespace Organizarty.Application.App.Services.UseCases;
 
 public record CreateServiceTypeDto(string name, string description, Guid thirdPartyId)
 {

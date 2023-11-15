@@ -7,8 +7,7 @@ using Organizarty.Application.App.Locations.Entities;
 using Organizarty.Application.App.Managers.Entities;
 using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Schedules.Entities;
-using Organizarty.Application.App.ServiceInfos.Entities;
-using Organizarty.Application.App.ServiceTypes.Entities;
+using Organizarty.Application.App.Services.Entities;
 using Organizarty.Application.App.ThirdParties.Entities;
 using Organizarty.Application.App.Users.Entities;
 

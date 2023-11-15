@@ -1,7 +1,6 @@
 using System.Text.Json;
-using Organizarty.Application.App.ServiceTypes.Entities;
 
-namespace Organizarty.Application.App.ServiceInfos.Entities;
+namespace Organizarty.Application.App.Services.Entities;
 
 public class ServiceInfo
 {
