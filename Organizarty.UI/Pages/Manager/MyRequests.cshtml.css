@@ -1,0 +1,7 @@
+.prancheta{
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.prancheta:hover{
+    box-shadow: 0 0 20px rgba(255, 199, 0, 0.3);
+}

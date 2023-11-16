@@ -1,0 +1,114 @@
+@page
+@model IndexModel
+@{
+    ViewData["title"] = "Minhas Decorações";
+    Layout = "_NullLayout";
+}
+
+<partial name="_OrganizartyManagerLayout"/>
+
+<section class="w-5/6 ml-auto h-screen flex-col">
+    <div class="flex flex-col fixed top-0 z-40 bg-white w-full h-1/4">
+        <div class="flex items-center pt-6 pl-52">
+            <h3 class="font-[KonnectBold] text-[#3E3B3B] text-2xl xl:text-3xl 2xl:text-4xl mr-10">
+                Decorações
+            </h3>
+            <p class="font-[Konnect]text-[#000000] text-md xl:text-lg 2xl:text-xl">
+                23 itens cadastrados
+            </p>
+        </div>
+        <div class="flex bg-[#D9D9D9] rounded-l-lg w-[95%] h-2/5 self-end items-center mt-3">
+            <input asp-for="Input.Search" class="w-1/5 h-[3.5rem] rounded-full border-transparent font-[Konnect] text-md xl:text-lg 2xl:text-xl bg-white ml-10 pb-[1px]" aria-required="true" placeholder="Item, valor ou código"/>
+            <img src="/images/Manager/Decorations/Search.svg" class="bg-[#757272] h-[3.5rem] w-auto px-5 py-2 rounded-full ml-4 mr-[40%]"/>
+            <button class="bg-white text-[#848484] font-[Konnect] text-md xl:text-lg 2xl:text-xl pr-10 pl-4 pt-1 h-[3.5rem] rounded-lg flex items-center">
+                <img src="/images/Manager/Decorations/Add.svg" class="mr-2">
+                Produto
+            </button>
+        </div>
+        <div class="ml-20 w-full font-[Konnect] text-lg xl:text-xl 2xl:text-2xl text-[#424242] flex text-left mt-12">
+            <h2 id="bordaPreta" class="w-1/5">Produto</h2>
+            <div class="w-4/5 flex" id="bordaCinza">
+                <h2 class="w-1/5 pl-2">Categoria</h2>
+                <h2 class="w-1/5">Preço</h2>
+                <h2 class="w-1/5">Alterar</h2>
+                <h2 class="w-1/5">Excluir</h2>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col mt-[17rem] ml-24 pb-5" id="bordaCinza">
+        <div class="flex font-[Konnect] text-[#848484] text-md xl:text-lg 2xl:text-xl items-center">
+            <div class="flex items-center">
+                <img src="/images/Manager/Decorations/Mesa.png" class="border border-black border-solid rounded-[30px]">
+                <p class="flex ml-5">
+                    Toalha de mesa rosa
+                </p>
+            </div>
+            <p class="flex items-center ml-[2%]">
+                Mesa
+                <img src="/images/Manager/Decorations/MesaIcon.svg" class="ml-1">
+            </p>
+            <p class="ml-[13%]">
+                R$ 20,00
+            </p>
+            <a href="/Manager/DecorationInfo" class=""><img src="/images/Manager/Decorations/Edit.svg" class="ml-[14rem]"></a>
+            <img src="/images/Manager/Decorations/Delete.svg" class="ml-[12%]">
+        </div>
+    </div>
+    <div class="flex flex-col mt-10 ml-24 pb-5" id="bordaCinza">
+        <div class="flex font-[Konnect] text-[#848484] text-md xl:text-lg 2xl:text-xl items-center">
+            <div class="flex items-center">
+                <img src="/images/Manager/Decorations/Mesa.png" class="border border-black border-solid rounded-[30px]">
+                <p class="flex ml-5">
+                    Toalha de mesa rosa
+                </p>
+            </div>
+            <p class="flex items-center ml-[2%]">
+                Mesa
+                <img src="/images/Manager/Decorations/MesaIcon.svg" class="ml-1">
+            </p>
+            <p class="ml-[13%]">
+                R$ 20,00
+            </p>
+            <a href="/Manager/DecorationInfo" class=""><img src="/images/Manager/Decorations/Edit.svg" class="ml-[14rem]"></a>
+            <img src="/images/Manager/Decorations/Delete.svg" class="ml-[12%]">
+        </div>
+    </div>
+    <div class="flex flex-col mt-10 ml-24 pb-5" id="bordaCinza">
+        <div class="flex font-[Konnect] text-[#848484] text-md xl:text-lg 2xl:text-xl items-center">
+            <div class="flex items-center">
+                <img src="/images/Manager/Decorations/Mesa.png" class="border border-black border-solid rounded-[30px]">
+                <p class="flex ml-5">
+                    Toalha de mesa rosa
+                </p>
+            </div>
+            <p class="flex items-center ml-[2%]">
+                Mesa
+                <img src="/images/Manager/Decorations/MesaIcon.svg" class="ml-1">
+            </p>
+            <p class="ml-[13%]">
+                R$ 20,00
+            </p>
+            <a href="/Manager/DecorationInfo" class=""><img src="/images/Manager/Decorations/Edit.svg" class="ml-[14rem]"></a>
+            <img src="/images/Manager/Decorations/Delete.svg" class="ml-[12%]">
+        </div>
+    </div>
+    <div class="flex flex-col mt-10 ml-24 pb-5" id="bordaCinza">
+        <div class="flex font-[Konnect] text-[#848484] text-md xl:text-lg 2xl:text-xl items-center">
+            <div class="flex items-center">
+                <img src="/images/Manager/Decorations/Mesa.png" class="border border-black border-solid rounded-[30px]">
+                <p class="flex ml-5">
+                    Toalha de mesa rosa
+                </p>
+            </div>
+            <p class="flex items-center ml-[2%]">
+                Mesa
+                <img src="/images/Manager/Decorations/MesaIcon.svg" class="ml-1">
+            </p>
+            <p class="ml-[13%]">
+                R$ 20,00
+            </p>
+            <a href="/Manager/DecorationInfo" class=""><img src="/images/Manager/Decorations/Edit.svg" class="ml-[14rem]"></a>
+            <img src="/images/Manager/Decorations/Delete.svg" class="ml-[12%]">
+        </div>
+    </div>
+</section>
