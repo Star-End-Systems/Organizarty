@@ -1,0 +1,41 @@
+@page
+@model MyHouseModel 
+@{
+    Layout = "_NullLayout";
+    ViewData["Title"] = "Locais";
+}
+
+<partial name="_OrganizartyManagerLayout"/>
+<section class="h-screen w-5/6 ml-auto ">
+    <div class="">
+        <div class=""> 
+            <div class="w-1/2 w-full items-center pl-10 pt-10 pb-2 justify-evenly">
+            <p class="w-fit font-[KonnectBold] text-[#848484] text-6xl justify-self-start">Bom dia, temos muito trabalho a fazer<hr class="rounded-[30px] border-[3.5px] border-[#FFC700] w-7/12 mb-4"></p>
+            <p class="font-[Inter] text-[#848484] text-md">Você tem algumas tarefas pendentes...</a>
+            </div>
+        </div>
+        <div class="ml-16 flex">
+            <div class="flex flex-col justify-between">
+                <div class="w-64 h-64 bg-[#FFC700] rounded-xl mb-3 mr-3">
+                    <div class="flex flex-col items-center">
+                        <p class="font-[Inter] text-white">Novos pedidos</p>
+                    </div>
+                    <div class="flex h-full justify-center items-center">
+                        <p class="font-[Inter] font-bold text-white text-6xl mb-8">7</p>
+                    </div>
+                </div>
+                <div class="w-64 h-64 bg-[#FFC700] rounded-xl mb-3">
+                    <div class="flex flex-col items-center">
+                        <p class="font-[Inter] text-white">Novos Colaboradores</p>
+                    </div>
+                    <div class="flex h-52 justify-center items-center">
+                        <p class="font-[Inter] font-bold text-white text-6xl">2</p>
+                    </div>
+                </div>
+        </div>
+            <div class="ChegouUmaMensagemPraVoce w-full rounded-xl h-7/12">
+                <div class="text-white font-[Inter] font-bold text-5xl ml-12 mt-2">Não se esqueça de checar o <br> E-mail e o WhatsApp</div>
+            </div>
+        </div>
+    </div>
+</section>
