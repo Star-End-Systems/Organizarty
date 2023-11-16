@@ -41,13 +41,13 @@ public class EditServicesModel : PageModel
         {
             Service = new ServiceInfo
             {
-                Price = 24.50M,
+                Price = 54.50M,
                 Plan = "500 fotos",
                 ServiceType = new()
                 {
                     Name = "Fotografo",
                     Description = "Um belo fotografo com ainda mais belas fotografias.",
-                    Tags = new() { "Xiaomi", "Iphone", "Veio da lancha" }
+                    Tags = new() { "Xiaomi", "Iphone", "Veio da lancha", "Debora" }
                 }
             };
         }

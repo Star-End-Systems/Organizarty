@@ -3,6 +3,11 @@
     backdrop-filter: brightness(30%);
 }
 
+.Image:hover ~ img{
+    filter: brightness(30%);
+    backdrop-filter: brightness(30%);
+}
+
 .Image{
     cursor: pointer;
     background-image: url("/images/ThirdParty/EditServices/Fotografia.png");
