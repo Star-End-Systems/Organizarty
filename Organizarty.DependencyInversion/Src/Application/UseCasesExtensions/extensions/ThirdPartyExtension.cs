@@ -14,6 +14,7 @@ internal static class ThirdPartyExtension
         services.AddScoped<RegisterThirdPartyUseCase>();
         services.AddScoped<LoginThirdPartyUseCase>();
         services.AddScoped<AuthorizeThirdPartyUseCase>();
+        services.AddScoped<SelectThirdPartyUseCase>();
 
         return services;
     }

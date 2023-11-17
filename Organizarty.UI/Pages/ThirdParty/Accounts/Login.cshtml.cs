@@ -1,28 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Adapters;
-using Organizarty.Application.App.Users.UseCases;
+using Organizarty.Application.App.ThirdParties.UseCases;
 using Organizarty.Application.Exceptions;
 using Organizarty.UI.Attributes;
 using Organizarty.UI.Helpers;
 using System.ComponentModel.DataAnnotations;
 
-namespace Organizarty.UI.Pages.Accounts;
+namespace Organizarty.UI.Pages.ThirdParty.Accounts;
 
 [Unauthenticated]
-public class LoginUserModel : PageModel
+public class LoginThirdPartyModel : PageModel
 {
-    private readonly LoginUserUseCase _loginUser;
-    private readonly ILogger<LoginUserModel> _logger;
+    private readonly LoginThirdPartyUseCase _loginUseCase;
+    private readonly ILogger<LoginThirdPartyModel> _logger;
 
     private readonly AuthenticationHelper _authHelper;
     private readonly ITokenProvider _tokenProvider;
 
-    public LoginUserModel(ILogger<LoginUserModel> logger, LoginUserUseCase loginUser, ITokenProvider tokenProvider, AuthenticationHelper authenticationHelper)
+    public LoginThirdPartyModel(ILogger<LoginThirdPartyModel> logger, LoginThirdPartyUseCase login, ITokenProvider tokenProvider, AuthenticationHelper authenticationHelper)
 
     {
         _logger = logger;
-        _loginUser = loginUser;
+        _loginUseCase = login;
         _tokenProvider = tokenProvider;
 
         _authHelper = authenticationHelper;
@@ -44,16 +44,7 @@ public class LoginUserModel : PageModel
 
     }
 
-    public void OnGet()
-    {
-        var user = AccountHelper.GetUser(Request);
-
-        if (user is not null)
-        {
-            Input.Email = user.Email;
-            Input.Password = user.Password;
-        }
-    }
+    public void OnGet(){}
 
     public async Task<IActionResult> OnPostAsync()
     {
@@ -64,12 +55,12 @@ public class LoginUserModel : PageModel
             return Page();
         }
 
-        var data = new LoginUserDto(Input.Email, Input.Password);
+        var data = new LoginThirdPartyDto(Input.Email, Input.Password);
 
         try
         {
-            var u = await _loginUser.Execute(data);
-            var token = _tokenProvider.GenerateToken(u.Id.ToString(), u.UserName, UserType.Client);
+            var u = await _loginUseCase.Execute(data);
+            var token = _tokenProvider.GenerateToken(u.Id.ToString(), u.LoginEmail, UserType.ThirdParty);
 
             _authHelper.WriteToken(token);
         }
@@ -77,7 +68,7 @@ public class LoginUserModel : PageModel
         {
             foreach (var err in e.Errors)
             {
-                ModelState.TryAddModelError(err.field, err.message);
+                ModelState.TryAddModelError(string.Empty, err.message);
             }
 
             return Page();

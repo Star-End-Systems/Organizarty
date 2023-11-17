@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Application.App.Users.UseCases;
 using Organizarty.Application.Exceptions;
+using Organizarty.UI.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace Organizarty.UI.Pages.Accounts;
 
+[Unauthenticated]
 public class CreateAccountModel : PageModel
 {
     private readonly RegisterUserUseCase _registerUser;
