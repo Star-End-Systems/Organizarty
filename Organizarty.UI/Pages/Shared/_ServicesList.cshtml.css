@@ -1,20 +1,20 @@
+.Text{
+    transition: all 0.6s;
+}
+
+.Text p{
+    opacity:0;
+    transition: opacity 0.5s ease;
+}
+
+.Text:hover p{
+    opacity: 1;
+}
+
+.Text:hover .Image{
+    filter: brightness(40%);
+}
+
 .Image:hover{
     cursor: pointer;
-    transition: all 0.4s;
-    background-image: url("/images/ThirdParty/MyServices/FotografoEscuro.png");    
-}
-
-.Image{
-    background-image: url("/images/Clients/Services/Fotografia.png");
-    background-size: cover;
-    filter: brightness(100%);
-    backdrop-filter: brightness(100%);
-}
-
-.Image p{
-    opacity:0;
-}
-
-.Image:hover p{
-    opacity: 1;
 }

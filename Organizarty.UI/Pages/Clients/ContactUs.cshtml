@@ -12,15 +12,17 @@
         <img src="/images/ContactUs/WhiteLogo.svg" class="h-16 opacity-70">
     </div>
     <div class="flex justify-around mt-10">
-        <div class="w-1/3">
-            <h1 class="font-[KonnectBold] text-5xl">Contate-nos</h1>
-            <p class="font-[Konnect] text-2xl mt-10"><span class="font-[KonnectBold]">Email:</span> Organi_zarty@gmail.com</p>
-            <p class="font-[Konnect] text-2xl mt-5"><span class="font-[KonnectBold]">Telefone:</span> +55 (11) 99999-9999</p>
-            <p class="font-[Konnect] text-2xl mt-5"><span class="font-[KonnectBold]">Endereço:</span> R. Guaipá, 678 - Vila Leopoldina, São Paulo - SP</p>
+        <div class="w-1/2 flex justify-center">
+            <div class="w-fit">
+                <h1 class="font-[KonnectBold] text-5xl">Contate-nos</h1>
+                <p class="font-[Konnect] text-2xl mt-6"><span class="font-[KonnectBold]">Email:</span> Organi_zarty@gmail.com</p>
+                <p class="font-[Konnect] text-2xl mt-5"><span class="font-[KonnectBold]">Telefone:</span> +55 (11) 99999-9999</p>
+                <p class="font-[Konnect] text-2xl mt-5"><span class="font-[KonnectBold]">Endereço:</span> R. Guaipá, 678 - Vila Leopoldina,<br> São Paulo - SP</p>
+            </div>
         </div>
-        <img src="/images/ContactUs/Macaco.png" class="absolute left-1/4 bottom-0">
-        <div class="w-1/3 h-full text-[#000000]">
-            <h1 class="font-[KonnectBold] text-5xl text-[#FFFFFF]">Envie sua mensagem</h1>
+        <img src="/images/ContactUs/Macaco.png" class="absolute left-1/4 bottom-0 w-[20%]">
+        <div class="w-1/2 h-full text-[#000000] flex flex-col items-center">
+            <h1 class="font-[KonnectBold] text-5xl text-[#FFFFFF] mb-4">Envie sua mensagem</h1>
             <input asp-for="Input.Name" class="font-[Konnect] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control placeholder-[#C6C6C6]" aria-required="true" placeholder="Nome"/>
             <span asp-validation-for="Input.Name" class="placeholder"></span>
 
