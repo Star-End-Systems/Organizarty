@@ -74,26 +74,30 @@
 
    protected override async Task OnInitializedAsync()
    {
-       await LoadService();
-      _tagsStr = String.Join(", ", Service.ServiceType.Tags);
+
+      await LoadService();
+      // _tagsStr = String.Join(", ", Service.ServiceType.Tags);
    }
 
    private async Task LoadService()
    {
-        Service = new ServiceInfo
-        {
-            Price = 54.50M,
-            Plan = "500 fotos",
-            ServiceType = new()
+        try{
+            var id = Guid.Parse(Serviceid);
+            Service = await SelectServices.FindSubServiceById(id);
+        } catch(Exception){
+            Service = new ServiceInfo
             {
-                Name = "Fotografo",
-                Description = "Um belo fotografo com ainda mais belas fotografias.",
-                Tags = new() { "Xiaomi", "Iphone", "Veio da lancha", "Debora" }
-            }
-        };
+                Price = 54.50M,
+                Plan = "500 fotos",
+                ServiceType = new()
+                {
+                    Name = "Fotografo",
+                    Description = "Um belo fotografo com ainda mais belas fotografias.",
+                    Tags = new() { "Xiaomi", "Iphone", "Veio da lancha", "Debora" }
+                }
+            };
 
-        Console.WriteLine(Service);
-    
+        }
    }
 
   public void ToggleTagMenu(){

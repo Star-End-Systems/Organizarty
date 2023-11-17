@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Organizarty.Adapters;
 using Organizarty.Application.App.Users.UseCases;
 using Organizarty.Application.Exceptions;
+using Organizarty.UI.Helpers;
 using System.ComponentModel.DataAnnotations;
 
 namespace Organizarty.UI.Pages.Accounts;
@@ -11,11 +13,17 @@ public class LoginUserModel : PageModel
     private readonly LoginUserUseCase _loginUser;
     private readonly ILogger<LoginUserModel> _logger;
 
-    public LoginUserModel(ILogger<LoginUserModel> logger, LoginUserUseCase loginUser)
+    private readonly AuthenticationHelper authHelper;
+    private readonly ITokenProvider _tokenProvider;
+
+    public LoginUserModel(ILogger<LoginUserModel> logger, LoginUserUseCase loginUser, ITokenProvider tokenProvider)
 
     {
         _logger = logger;
         _loginUser = loginUser;
+        _tokenProvider = tokenProvider;
+
+        authHelper = new AuthenticationHelper(Response);
     }
 
     [BindProperty]
@@ -46,7 +54,16 @@ public class LoginUserModel : PageModel
 
         try
         {
-            await _loginUser.Execute(data);
+            var u = await _loginUser.Execute(data);
+            var token = _tokenProvider.GenerateToken(u.Id.ToString(), u.UserName);
+        Response.Cookies.Append(
+            "JWT_TOKEN",
+            token ?? "nada",
+            new CookieOptions()
+            {
+                Path = "/"
+            }
+        );
         }
         catch (ValidationFailException e)
         {
@@ -54,16 +71,16 @@ public class LoginUserModel : PageModel
             {
                 ModelState.TryAddModelError(err.field, err.message);
             }
+
+            return Page();
         }
         catch (NotFoundException e)
         {
-            ModelState.TryAddModelError(string.Empty, e.Message);
+           if(ModelState.TryAddModelError(string.Empty, e.Message)){
+            return Page();
+           }
         }
 
-        if (!ModelState.IsValid)
-        {
-            return Page();
-        }
 
         return RedirectToPage("", new { email = Input.Email, password = Input.Password });
     }
