@@ -55,7 +55,7 @@ public class LoginUserModel : PageModel
         try
         {
             var u = await _loginUser.Execute(data);
-            var token = _tokenProvider.GenerateToken(u.Id.ToString(), u.UserName);
+            var token = _tokenProvider.GenerateToken(u.Id.ToString(), u.UserName, UserType.Client);
         Response.Cookies.Append(
             "JWT_TOKEN",
             token ?? "nada",
