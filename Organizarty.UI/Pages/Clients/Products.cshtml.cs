@@ -10,7 +10,7 @@ public class ManagerProductsModel : PageModel
     public ManagerProductsModel(ILogger<IndexModel> logger)
     
     {
-        _logger = logger;
+        _logger = _logger;
     }
     
     public InputModel Input{get; set;} = default!;
