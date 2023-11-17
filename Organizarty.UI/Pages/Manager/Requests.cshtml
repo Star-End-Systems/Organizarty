@@ -1,0 +1,48 @@
+@page
+@model IndexModel
+@{
+    ViewData["title"] = "Pedidos";
+    Layout = "_NullLayout";
+}
+
+<partial name="_OrganizartyManagerLayout"/>
+
+<section class="w-5/6 ml-auto h-screen flex-col">
+    <div class="fixed w-5/6 top-0 bg-white z-40">
+        <div class="w-full flex items-center p-10 justify-between">
+            <h1 class="w-fit font-[KonnectBold] text-[#848484] text-4xl justify-self-start">Meus Pedidos<hr class="rounded-[30px] border-[3.5px] border-[#FFC700] w-11/12"></h1>
+            <div class="justify-self-end">
+                <div class="relative inline-block text-left ml-2">
+                    <button class="inline-flex justify-center items-center w-full rounded-xl bg-[#FFC700] text-xl font-bold font-[Inter] text-white px-5 py-2" id="options-menu" aria-haspopup="true" aria-expanded="true">
+                        Selecione o item
+                        <svg class="ml-3 w-3" width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.5 15L0.674683 0H22.3253L11.5 15Z" fill="white"/>
+                        </svg> 
+                    </button>
+                    <div class="hidden origin-top-right absolute right-2 w-56 rounded-md shadow-lg bg-white" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        <div class="py-1" role="none">
+                            <a href="#" class="block px-4 py-2 text-sm text-[#848484] hover:bg-[#FFC700] hover:text-white" role="menuitem">Item 1</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-[#848484] hover:bg-[#FFC700] hover:text-white" role="menuitem">Item 2</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-[#848484] hover:bg-[#FFC700] hover:text-white" role="menuitem">Item 3</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ml-20 w-full font-[Konnect] text-2xl text-[#424242] flex text-left">
+            <h2 id="bordaPreta" class="w-1/4">Nome Item</h2>
+            <div class="w-3/4 flex" id="bordaCinza">
+                <h2 class="w-1/3">Categoria</h2>
+                <h2 class="w-1/3">Quantidade</h2>
+                <h2 class="w-1/3">Status</h2>
+            </div>
+        </div>
+    </div>
+    <div class="mt-44 z-30">
+        <partial name="_RequestElement"/>
+        <partial name="_RequestElement"/>
+        <partial name="_RequestElement"/>
+        <partial name="_RequestElement"/>
+        <partial name="_RequestElement"/>
+    </div>
+</section>
