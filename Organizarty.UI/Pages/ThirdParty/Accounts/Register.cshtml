@@ -1,0 +1,87 @@
+@page
+@model RegisterThirdPartyModel
+@{
+Layout = "_NullLayout";
+ViewData["Title"] = "Registro de terceirizado." ;
+}
+<section class="flex h-screen">
+  <div class="part1 w-full h-screen py-8 flex-col">
+    <div class="flex justify-center">
+      <img class="w-32" src="/images/login/OrganizartyLogo.svg" />
+    </div>
+    <div class="LoginForm flex justify-center py-8 text-center">
+      <form id="login" method="post" class="w-full">
+        <h2>Register</h2>
+        @* <div class="line pb-8 flex justify-center rounded-full"></div> *@
+        <div asp-validation-summary="ModelOnly" class=""></div>
+        <div class="h-full flex flex-col items-center justify-evenly">
+
+          <!-- Name -->
+          @Html.DisplayNameFor(m => m.Input.Name)
+          <input asp-for="Input.Name" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Digite o nome do seu negócio" />
+          <span asp-validation-for="Input.Name" class="placeholder"></span>
+
+          <!-- Description -->
+          @Html.DisplayNameFor(m => m.Input.Description)
+          <input asp-for="Input.Description" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Descrição" />
+          <span asp-validation-for="Input.Description" class="placeholder"></span>
+
+          <!-- Address -->
+          @Html.DisplayNameFor(m => m.Input.Address)
+          <input asp-for="Input.Address" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Seu endereço" />
+          <span asp-validation-for="Input.Address" class="placeholder"></span>
+
+          <!-- LoginEmail -->
+          @Html.DisplayNameFor(m => m.Input.LoginEmail)
+          <input asp-for="Input.LoginEmail" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Login Email" />
+          <span asp-validation-for="Input.LoginEmail" class="placeholder"></span>
+
+          <!-- ContactEmail -->
+          @Html.DisplayNameFor(m => m.Input.ContactEmail)
+          <input asp-for="Input.ContactEmail" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Contact Email" />
+          <span asp-validation-for="Input.ContactEmail" class="placeholder"></span>
+
+          <!-- Password -->
+          @Html.DisplayNameFor(m => m.Input.Password)
+          <input asp-for="Input.Password" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Password" />
+          <span asp-validation-for="Input.Password" class="placeholder"></span>
+
+          <!-- CNPJ -->
+          @Html.DisplayNameFor(m => m.Input.CNPJ)
+          <input asp-for="Input.CNPJ" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Login Email" />
+          <span asp-validation-for="Input.CNPJ" class="placeholder"></span>
+
+          <!-- ProfilePictureURL -->
+          @Html.DisplayNameFor(m => m.Input.ProfilePictureURL)
+          <input asp-for="Input.ProfilePictureURL" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Login Email" />
+          <span asp-validation-for="Input.ProfilePictureURL" class="placeholder"></span>
+
+          <!-- Phone -->
+          @Html.DisplayNameFor(m => m.Input.Phone)
+          <input asp-for="Input.Phone" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Login Email" />
+          <span asp-validation-for="Input.Phone" class="placeholder"></span>
+
+          <!-- ContactPhone -->
+          @Html.DisplayNameFor(m => m.Input.ContactPhone)
+          <input asp-for="Input.ContactPhone" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Login Email" />
+          <span asp-validation-for="Input.ContactPhone" class="placeholder"></span>
+
+        </div>
+        <div class="flex w-full place-content-evenly py-14">
+          <button id="login-submit" type="submit" class="logar w-48 h-14 rounded-xl hover:shadow-2xl">Criar
+            conta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

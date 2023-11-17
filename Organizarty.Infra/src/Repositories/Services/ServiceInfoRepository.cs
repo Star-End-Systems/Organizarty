@@ -1,5 +1,7 @@
-using Organizarty.Application.App.ServiceInfos.Data;
-using Organizarty.Application.App.ServiceInfos.Entities;
+using Microsoft.EntityFrameworkCore;
+
+using Organizarty.Application.App.Services.Data;
+using Organizarty.Application.App.Services.Entities;
 using Organizarty.Infra.Data.Contexts;
 
 namespace Organizarty.Infra.Repositories.Services;
@@ -20,4 +22,7 @@ public class ServiceInfoRepository : IServiceInfoRepository
 
         return s.Entity;
     }
+
+    public async Task<ServiceInfo?> FindByIdWithParent(Guid id)
+    => await _context.ServiceInfos.Include(x => x.ServiceType).Where(x => x.Id == id).FirstOrDefaultAsync();
 }

@@ -8,7 +8,6 @@ using Organizarty.Application.App.Locations.Data;
 using Organizarty.Application.App.Managers.Data;
 using Organizarty.Application.App.Party.Data;
 using Organizarty.Application.App.Schedules.Data;
-using Organizarty.Application.App.ServiceInfos.Data;
 using Organizarty.Application.App.Services.Data;
 using Organizarty.Application.App.ThirdParties.Data;
 using Organizarty.Application.App.Users.Data;
