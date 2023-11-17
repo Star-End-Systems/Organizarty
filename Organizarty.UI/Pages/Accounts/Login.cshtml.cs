@@ -13,17 +13,18 @@ public class LoginUserModel : PageModel
     private readonly LoginUserUseCase _loginUser;
     private readonly ILogger<LoginUserModel> _logger;
 
-    private readonly AuthenticationHelper authHelper;
+    private readonly AuthenticationHelper _authHelper;
     private readonly ITokenProvider _tokenProvider;
 
-    public LoginUserModel(ILogger<LoginUserModel> logger, LoginUserUseCase loginUser, ITokenProvider tokenProvider)
+    public LoginUserModel(ILogger<LoginUserModel> logger, LoginUserUseCase loginUser, ITokenProvider tokenProvider, AuthenticationHelper authenticationHelper)
 
     {
         _logger = logger;
         _loginUser = loginUser;
         _tokenProvider = tokenProvider;
 
-        authHelper = new AuthenticationHelper(Response);
+        _authHelper = authenticationHelper;
+
     }
 
     [BindProperty]
@@ -45,6 +46,9 @@ public class LoginUserModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
+        
+        _authHelper.AddResponse(Response);
+
         if (!ModelState.IsValid)
         {
             return Page();
@@ -56,14 +60,8 @@ public class LoginUserModel : PageModel
         {
             var u = await _loginUser.Execute(data);
             var token = _tokenProvider.GenerateToken(u.Id.ToString(), u.UserName, UserType.Client);
-        Response.Cookies.Append(
-            "JWT_TOKEN",
-            token ?? "nada",
-            new CookieOptions()
-            {
-                Path = "/"
-            }
-        );
+
+            _authHelper.WriteToken(token ?? "nada");
         }
         catch (ValidationFailException e)
         {
@@ -82,6 +80,6 @@ public class LoginUserModel : PageModel
         }
 
 
-        return RedirectToPage("", new { email = Input.Email, password = Input.Password });
+        return Page();
     }
 }

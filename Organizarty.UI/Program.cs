@@ -1,6 +1,7 @@
 using Organizarty.DependencyInversion.Infra.Database;
 using Organizarty.DependencyInversion.Infra.Providers;
 using Organizarty.DependencyInversion.Infra.Repositories;
+using Organizarty.UI.Helpers;
 
 using Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
@@ -23,6 +24,8 @@ builder.Services.AddUseCases();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<AuthenticationHelper>();
 
 var app = builder.Build();
 

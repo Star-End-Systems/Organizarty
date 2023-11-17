@@ -15,6 +15,7 @@ internal static class UserExtensions
         services.AddScoped<LoginUserUseCase>();
         services.AddScoped<RegisterUserUseCase>();
         services.AddScoped<SendEmailConfirmUseCase>();
+        services.AddScoped<SelectUserUseCase>();
 
         return services;
     }
