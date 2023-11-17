@@ -12,11 +12,15 @@ public class DescriptionModel : PageModel
         _logger = logger;
     }
 
+    [BindProperty]
     public InputModel Input{get; set;} = default!;
-
+    
     public class InputModel{
         [Display(Name = "ClientNotes")]
         public string ClientNotes {get; set;} = default!;
+
+        [Display(Name="Qtd")]
+        public string Quantity {get; set;} = default!;
     }
     public void OnGet()
     {
@@ -29,6 +33,6 @@ public class DescriptionModel : PageModel
             return Page();
         }
 
-        return RedirectToPage("", new { clientNotes = Input.ClientNotes});
+        return RedirectToPage("", new { clientNotes = Input.ClientNotes, quantity = Input.Quantity});
     }        
 }

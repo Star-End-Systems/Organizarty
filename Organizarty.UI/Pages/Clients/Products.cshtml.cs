@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 namespace Organizarty.UI.Pages;
 
-public class ManagerProductsModel : PageModel
+public class ProductsModel : PageModel
 {
     private readonly ILogger<ProductsModel> _logger;
 
-    public ManagerProductsModel(ILogger<IndexModel> logger)
+    public ProductsModel(ILogger<ProductsModel> logger)
     
     {
         _logger = logger;
