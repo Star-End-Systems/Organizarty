@@ -1,0 +1,55 @@
+@page
+@model EditProductsModel 
+@{
+    Layout = "_NullLayout";
+    ViewData["Title"] = "Descrição do Produto";
+}
+
+<section class="w-screen h-screen">
+    <div class="w-full h-full flex">
+        <div class="w-1/3 flex flex-col justify-evenly">
+            <div class="flex justify-center items-center w-full h-28">
+                <img class="items-center w-32 " src="/images/Clients/Description/BakeryLogo.png"></img>
+                <div class="ml-4">
+                    <h1 class="text-[#BB00C7] font-[Inter] text-3xl"><strong>Pastry Shop</strong></h1>
+                    <p class="text-[#848484] font-[Inter] text-xs">Ana Fernandez</p>
+                </div>
+            </div>
+            <div class="rounded self-center">
+                <div class="Image rounded-3xl w-96 h-80">
+                </div>
+                <input asp-for="Input.Search" class="mt-2 w-1/2 h-16 rounded-2xl shadow-xl border-[#BB00C7] form-control font-[Konnect]" aria-required="true" placeholder="R$ 00,00"/>
+                <span asp-validation-for="Input.Search" class="placeholder"></span>
+                <div class="bg-[#BB00C7] rounded-xl h-2 w-52 mt-4"></div>
+            </div>
+        </div>
+            <!-- Part 2 -->
+        <div class="w-2/3 flex flex-col justify-end mb-10">
+            <div class="w-full flex justify-end">
+                <a href="/ThirdParty/MyProducts"><button><img class="w-12 mr-6 mt-6" src="/images/ThirdParty/EditProducts/XisRoxo.svg"/></button></a>
+            </div>
+            <div class="w-fit self-start mt-48">
+                <h1 class="font-[Inter] font-bold text-[#BB00C7] text-5xl">Bolo de chocolate belga 4,2kg</h1>
+                <p class="text-[#848484]" font-[Konnect]>Bolo</p>
+            </div>
+            <div class="mt-4">
+                <input asp-for="Input.Search" class="w-11/12 h-24 rounded-2xl shadow-xl border-[#BB00C7] form-control font-[Konnect]" aria-required="true" placeholder="Descrição do produto"/>
+                <span asp-validation-for="Input.Search" class="placeholder"></span>
+            </div>
+            <div class="mt-4">
+                <div class="w-1/2 mr-12">
+                    <h2 class="text-[#A09898] font-[Inter] font-bold">Status do produto:</h2>
+                    <input asp-for="Input.Search" class="w-full h-12 rounded-2xl shadow-xl border-[#BB00C7] form-control font-[Konnect]" aria-required="true" placeholder="Ex: Disponível"/>
+                    <span asp-validation-for="Input.Search" class="placeholder"></span>
+                </div>
+            </div>
+            <div class="w-1/2 flex mt-8">
+                <div class="flex justify-center mr-2 items-center w-28 h-8 font-[Inter] text-white font-bold bg-[#BB00C7] rounded-xl"><p class="">#Chocolate</p></div>
+                <div class="flex justify-center mr-2 items-center w-28 h-8 font-[Inter] text-white font-bold bg-[#BB00C7] rounded-xl"><p class="">#Clássico</p></div>
+                <div class="flex justify-center items-center w-28 h-8 font-[Inter] text-white font-bold bg-[#BB00C7] rounded-xl"><p class="">#Recheado</p></div>
+            </div>
+            <div class="w-full flex justify-end">
+                <button class="justify-center mr-12 bg-[#BB00C7] text-white font-[Inter] font-bold w-52 h-12 rounded-lg"><h2 class="flex items-center justify-center">Confirmar</h2></button>
+            </div>
+    </div>
+</section>

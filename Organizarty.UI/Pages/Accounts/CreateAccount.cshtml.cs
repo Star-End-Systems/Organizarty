@@ -52,11 +52,8 @@ public class CreateAccountModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        _logger.LogDebug("Aqui foi");
-
         if (!ModelState.IsValid)
         {
-            _logger.LogDebug("Model invalid");
             return Page();
         }
 
@@ -66,12 +63,10 @@ public class CreateAccountModel : PageModel
         try
         {
             var user = await _registerUser.Execute(data);
-            Console.WriteLine(user.Email);
             return RedirectToPage("/Accounts/Login");
         }
         catch (ValidationFailException e)
         {
-            Console.WriteLine(e);
             foreach (var err in e.Errors)
             {
                 ModelState.AddModelError(err.field, err.message);

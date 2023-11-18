@@ -3,27 +3,26 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.Schedules.UseCases;
 using System.ComponentModel.DataAnnotations;
-namespace Organizarty.UI.Pages.Manager;
+namespace Organizarty.UI.Pages;
 
-public class DecorationsModel : PageModel
+public class RequestsThirdPartyModel : PageModel
 {
-    private readonly ILogger<DecorationsModel> _logger;
-
+    private readonly ILogger<IndexModel> _logger;
     private readonly SelectScheduleUseCase _selectSchedule;
 
-    public DecorationsModel(ILogger<DecorationsModel> logger, SelectScheduleUseCase selectSchedule)
+    public RequestsThirdPartyModel(ILogger<IndexModel> logger, SelectScheduleUseCase selectSchedule)
     {
         _logger = logger;
         _selectSchedule = selectSchedule;
     }
-    
+
     [BindProperty]
     public InputModel Input{get; set;} = default!;
 
     public List<DecorationOrder> Orders {get; set;}
 
     public class InputModel{
-  
+        [Required]
         [Display(Name = "Search")]
         public string Search {get; set;} = default!;
     }

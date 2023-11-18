@@ -10,7 +10,7 @@ namespace Organizarty.Infra.Providers.Token;
 
 public class JwtTokenProvider : ITokenProvider
 {
-    public string GenerateToken(string userId, string username)
+    public string GenerateToken(string userId, string username, UserType userType)
     {
         // TODO: Change to configuration class, so it will run when app starts
         string jwtSecretKey = Environment.GetEnvironmentVariable("JWY_SECRET_KEY") ?? throw new InvalidOperationException("\"JWT Sercret key\" Not founded. Pleace check the env variable");
@@ -24,6 +24,7 @@ public class JwtTokenProvider : ITokenProvider
             {
             new Claim(ClaimTypes.Name, username),
             new Claim(ClaimTypes.NameIdentifier, userId),
+            new Claim(ClaimTypes.Role, userType.ToString()),
         }),
             Expires = DateTime.UtcNow.AddHours(24),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

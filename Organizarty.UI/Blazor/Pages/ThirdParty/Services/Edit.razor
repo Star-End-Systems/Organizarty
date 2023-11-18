@@ -1,0 +1,113 @@
+@page "/ThirdParty/services/Edit/{Serviceid}"
+
+@using Organizarty.Application.App.Services.Entities;
+@using Organizarty.Application.App.Services.UseCases;
+@inject SelectServicesUseCase SelectServices
+
+<section class="w-screen h-screen">
+    <div class="w-full h-full flex">
+        <div class="w-1/3 flex flex-col justify-evenly">
+            <div class="flex justify-center items-center w-full h-28">
+                <img class="items-center w-32 " src="/images/Clients/Description/BakeryLogo.png" />
+                <div class="ml-4">
+                    <h1 class="text-[#BB00C7] font-[Inter] text-3xl"><strong>Pastry Shop</strong></h1>
+                    <p class="text-[#848484] font-[Inter] text-xs">Ana Fernandez</p>
+                </div>
+            </div>
+            <div class="rounded self-center">
+                <div class="Image rounded-3xl w-96 h-80">
+                </div>
+                <input asp-for="Input.Search" class="mt-2 w-1/2 h-16 rounded-2xl shadow-xl border-[#BB00C7] form-control font-[Konnect]" aria-required="true" value="@Service.Price" placeholder="R$ 00,00"/>
+                <span asp-validation-for="Input.Search" class="placeholder"></span>
+                <div class="bg-[#BB00C7] rounded-xl h-2 w-52 mt-4"></div>
+            </div>
+        </div>
+            <!-- Part 2 -->
+        <div class="w-2/3 flex flex-col justify-end mb-10">
+            <div class="w-full flex justify-end">
+                <a href="/Clients/Products"><button><img class="w-12 mr-6 mt-6" src="/images/ThirdParty/EditProducts/XisRoxo.svg"/></button></a>
+            </div>
+            <div class="w-fit self-start mt-48">
+                <h1 class="font-[Inter] font-bold text-[#BB00C7] text-5xl">@Service.ServiceType.Name - @Service.Plan</h1>
+                <p class="text-[#848484] font-[Konnect]">Service</p>
+            </div>
+            <div class="mt-4">
+                <input asp-for="Input.Search" class="w-11/12 h-24 rounded-2xl shadow-xl border-[#BB00C7] form-control font-[Konnect]" aria-required="true" value="@Service.ServiceType.Description" placeholder="Descrição do produto"/>
+                <span asp-validation-for="Input.Search" class="placeholder"></span>
+            </div>
+            <div class="mt-4">
+                <div class="w-1/2 mr-12">
+                    <h2 class="text-[#A09898] font-[Inter] font-bold">Status do produto:</h2>
+                    <input asp-for="Input.Search" class="w-full h-12 rounded-2xl shadow-xl border-[#BB00C7] form-control font-[Konnect]" aria-required="true" placeholder="Ex: Disponível"/>
+                    <span asp-validation-for="Input.Search" class="placeholder"></span>
+                </div>
+            </div>
+            <div class="w-1/2 bg-red mt-8 border" >
+                  @if(TagMenuOpen){
+                   <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tags, separado por Vírgula <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-200 rounded-lg dark:bg-gray-600 dark:text-gray-100 dark:border-gray-500">,</kbd> </label>
+                    <input @bind="_tagsStr" type="text" id="default-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-3">
+                    <button @onclick="UpdateTags" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
+                  } else{
+                    <div class="w-full h-full flex" >
+                      @foreach(var tag in Service.ServiceType.Tags){
+                        <div @onclick="ToggleTagMenu" class="cursor-pointer flex justify-center mr-2 items-center px-8 h-8 font-[Inter] text-white font-bold bg-[#BB00C7] rounded-xl"><p class="">#@tag</p></div>
+                      }
+                    </div>
+                  }
+
+            </div>
+            <div class="w-full flex justify-end">
+                <button class="justify-center mr-12 bg-[#BB00C7] text-white font-[Inter] font-bold w-52 h-12 rounded-lg"><h2 class="flex items-center justify-center">Confirmar</h2></button>
+            </div>
+    </div>
+    </div>
+</section>
+
+@code{
+  public string _tagsStr;
+  public ServiceInfo Service { get; set; } = default!;
+
+  [Parameter]
+  public string Serviceid {get; set;}
+
+  public bool TagMenuOpen {get; set;} = false;
+
+   protected override async Task OnInitializedAsync()
+   {
+
+      await LoadService();
+      // _tagsStr = String.Join(", ", Service.ServiceType.Tags);
+   }
+
+   private async Task LoadService()
+   {
+        try{
+            var id = Guid.Parse(Serviceid);
+            Service = await SelectServices.FindSubServiceById(id);
+        } catch(Exception){
+            Service = new ServiceInfo
+            {
+                Price = 54.50M,
+                Plan = "500 fotos",
+                ServiceType = new()
+                {
+                    Name = "Fotografo",
+                    Description = "Um belo fotografo com ainda mais belas fotografias.",
+                    Tags = new() { "Xiaomi", "Iphone", "Veio da lancha", "Debora" }
+                }
+            };
+
+        }
+   }
+
+  public void ToggleTagMenu(){
+    TagMenuOpen = !TagMenuOpen;
+  } 
+
+  public void UpdateTags(){
+      _tagsStr = _tagsStr.ToLower();
+      Service.ServiceType.Tags = _tagsStr.Split(',').Select(tag => tag.Trim()).ToList();
+
+      ToggleTagMenu();
+  }
+}

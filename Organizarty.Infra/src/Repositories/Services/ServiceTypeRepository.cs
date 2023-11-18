@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+
 using Organizarty.Application.App.Services.Data;
-using Organizarty.Application.App.ServiceTypes.Entities;
+using Organizarty.Application.App.Services.Entities;
 using Organizarty.Infra.Data.Contexts;
 
 namespace Organizarty.Infra.Repositories.Services;
@@ -20,4 +22,10 @@ public class ServiceTypeRepository : IServiceTypeRepository
 
         return s.Entity;
     }
+
+    public async Task<ServiceType?> FindById(Guid id)
+    => await _context.ServiceTypes.FindAsync(id);
+
+    public async Task<ServiceType?> FindByIdWithItens(Guid id)
+    => await _context.ServiceTypes.Include(x => x.SubServices).Where(x => x.Id == id).FirstOrDefaultAsync();
 }

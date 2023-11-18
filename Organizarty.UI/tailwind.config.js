@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./Pages/**/*.cshtml",
+    "./Blazor/**/*.razor",
     "./Organizarty.UI/Pages/**/*.cshtml",
     "./node_modules/flowbite/**/*.{js,razor,html,cshtml}"
   ],

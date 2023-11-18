@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-namespace Organizarty.UI.Pages;
+namespace Organizarty.UI.Pages.Clients;
 
 public class ProductsModel : PageModel
 {

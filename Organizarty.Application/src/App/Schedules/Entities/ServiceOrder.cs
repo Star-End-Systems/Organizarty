@@ -1,5 +1,5 @@
 using Organizarty.Application.App.Schedules.Enum;
-using Organizarty.Application.App.ServiceInfos.Entities;
+using Organizarty.Application.App.Services.Entities;
 using Organizarty.Application.App.ThirdParties.Entities;
 
 namespace Organizarty.Application.App.Schedules.Entities;
