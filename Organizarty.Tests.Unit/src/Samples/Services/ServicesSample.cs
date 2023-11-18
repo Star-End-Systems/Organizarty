@@ -1,7 +1,5 @@
-using Organizarty.Application.App.ServiceInfos.Entities;
-using Organizarty.Application.App.ServiceInfos.UseCases;
-using Organizarty.Application.App.ServiceTypes.Entities;
-using Organizarty.Application.App.ServiceTypes.UseCases;
+using Organizarty.Application.App.Services.Entities;
+using Organizarty.Application.App.Services.UseCases;
 using Organizarty.Tests.Mock.UseCases;
 
 namespace Organizarty.Tests.Unit.Samples.Services;
@@ -10,7 +8,7 @@ public static class ServicesSample
 {
     public static async Task<ServiceType> SetupServiceType(CreateServiceTypeUseCase createService, Guid thirdPartyId)
     {
-        var data = new CreateServiceTypeDto("Fotografo", "Um ótimo serviço de Fotografos", thirdPartyId);
+        var data = new CreateServiceTypeDto("Fotografo", "Um ótimo serviço de Fotografos", thirdPartyId, new());
 
         return await createService.Execute(data);
     }

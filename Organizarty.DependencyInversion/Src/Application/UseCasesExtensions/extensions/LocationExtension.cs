@@ -12,6 +12,7 @@ internal static class LocationExtension
         services.AddValidatorsFromAssemblyContaining<LocationValidator>();
 
         services.AddScoped<CreateLocationUseCase>();
+        services.AddScoped<SelectLocationUseCase>();
 
         return services;
     }

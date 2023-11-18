@@ -8,4 +8,8 @@ public interface IServiceTypeRepository
 
     Task<ServiceType?> FindById(Guid id);
     Task<ServiceType?> FindByIdWithItens(Guid id);
+
+    Task<List<ServiceType>> FindByThirdParty(Guid thirdPartyId);
+
+    Task<List<ServiceType>> GetAvaibleServices();
 }

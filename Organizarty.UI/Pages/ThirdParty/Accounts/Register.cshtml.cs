@@ -2,10 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Application.App.ThirdParties.UseCases;
 using Organizarty.Application.Exceptions;
+using Organizarty.UI.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace Organizarty.UI.Pages.ThirdParty.Accounts;
 
+[Unauthenticated("/ThirdParty")]
 public class RegisterThirdPartyModel : PageModel
 {
     private readonly ILogger<RegisterThirdPartyModel> _logger;
@@ -77,7 +79,7 @@ public class RegisterThirdPartyModel : PageModel
         try
         {
             var user = await _registerThirdParty.Execute(data);
-            return RedirectToPage("/");
+            return Redirect("/");
         }
         catch (ValidationFailException e)
         {

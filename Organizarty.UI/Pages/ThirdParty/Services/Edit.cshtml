@@ -1,0 +1,15 @@
+@page "{serviceId:Guid}"
+@model EditServiceModel
+
+@using Organizarty.UI.Blazor.Pages.ThirdParty.Services
+
+<base href="~/" />
+
+@{
+Layout = "_NullLayout";
+ViewData["Title"] = "list services";
+
+var guid = Model.Service.Id;
+}
+
+<component type="typeof(Edit)" render-mode="ServerPrerendered" param-Serviceid="@guid" param-Service="@Model.Service" />

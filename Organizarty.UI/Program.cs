@@ -1,6 +1,7 @@
 using Organizarty.DependencyInversion.Infra.Database;
 using Organizarty.DependencyInversion.Infra.Providers;
 using Organizarty.DependencyInversion.Infra.Repositories;
+using Organizarty.UI.Extensions;
 
 using Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
@@ -24,13 +25,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHelpers();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 
 }
@@ -43,6 +44,7 @@ else if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseRedirectMiddleware();
 app.UseRouting();
 
 app.MapBlazorHub();
@@ -53,10 +55,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapRazorPages();
-
-// app.MapAreaControllerRoute(
-//     name: "InitialArea",
-//     areaName: "Api",
-//     pattern: "api/{controller=Party}/{action=Index}/{id?}");
 
 app.Run();

@@ -3,27 +3,30 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Adapters;
 using Organizarty.Application.App.Users.UseCases;
 using Organizarty.Application.Exceptions;
+using Organizarty.UI.Attributes;
 using Organizarty.UI.Helpers;
 using System.ComponentModel.DataAnnotations;
 
-namespace Organizarty.UI.Pages.Accounts;
+namespace Organizarty.UI.Pages.Clients.Accounts;
 
+[Unauthenticated]
 public class LoginUserModel : PageModel
 {
     private readonly LoginUserUseCase _loginUser;
     private readonly ILogger<LoginUserModel> _logger;
 
-    private readonly AuthenticationHelper authHelper;
+    private readonly AuthenticationHelper _authHelper;
     private readonly ITokenProvider _tokenProvider;
 
-    public LoginUserModel(ILogger<LoginUserModel> logger, LoginUserUseCase loginUser, ITokenProvider tokenProvider)
+    public LoginUserModel(ILogger<LoginUserModel> logger, LoginUserUseCase loginUser, ITokenProvider tokenProvider, AuthenticationHelper authenticationHelper)
 
     {
         _logger = logger;
         _loginUser = loginUser;
         _tokenProvider = tokenProvider;
 
-        authHelper = new AuthenticationHelper(Response);
+        _authHelper = authenticationHelper;
+
     }
 
     [BindProperty]
@@ -41,10 +44,21 @@ public class LoginUserModel : PageModel
 
     }
 
-    public void OnGet() { }
+    public void OnGet()
+    {
+        var user = AccountHelper.GetUser(Request);
+
+        if (user is not null)
+        {
+            Input.Email = user.Email;
+            Input.Password = user.Password;
+        }
+    }
 
     public async Task<IActionResult> OnPostAsync()
     {
+        _authHelper.AddResponse(Response);
+
         if (!ModelState.IsValid)
         {
             return Page();
@@ -56,14 +70,8 @@ public class LoginUserModel : PageModel
         {
             var u = await _loginUser.Execute(data);
             var token = _tokenProvider.GenerateToken(u.Id.ToString(), u.UserName, UserType.Client);
-        Response.Cookies.Append(
-            "JWT_TOKEN",
-            token ?? "nada",
-            new CookieOptions()
-            {
-                Path = "/"
-            }
-        );
+
+            _authHelper.WriteToken(token);
         }
         catch (ValidationFailException e)
         {
@@ -76,12 +84,13 @@ public class LoginUserModel : PageModel
         }
         catch (NotFoundException e)
         {
-           if(ModelState.TryAddModelError(string.Empty, e.Message)){
-            return Page();
-           }
+            if (ModelState.TryAddModelError(string.Empty, e.Message))
+            {
+                return Page();
+            }
         }
 
-
-        return RedirectToPage("", new { email = Input.Email, password = Input.Password });
+        // Redirect to another page
+        return Page();
     }
 }

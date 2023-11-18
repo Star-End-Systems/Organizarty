@@ -1,5 +1,5 @@
-@page
-@model ProductsModel 
+@page "{productId:Guid}"
+@model DescriptionModel 
 @{
     Layout = "_NullLayout";
     ViewData["Title"] = "Descrição do Produto";
@@ -37,12 +37,13 @@
             <div class="flex mt-16">
                 <div class="w-1/2 mr-12">
                     <h2 class="text-[#A09898] font-[Inter] font-bold">Nota do cliente</h2>
-                    <input asp-for="Input.Search" class="w-full h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true" placeholder="Ex: Sem cobertura"/>
-                    <span asp-validation-for="Input.Search" class="placeholder"></span>
+                    <input asp-for="Input.Note" class="w-full h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true" placeholder="Ex: Sem cobertura"/>
+                    <span asp-validation-for="Input.Note" class="placeholder"></span>
                 </div>
                 <div class="w-fit flex flex-col items-center">
                     <h2 class="text-[#A09898] font-[Inter] font-bold">Qtd</h2>
-                    <input asp-for="Input.Search" type="number" min="0" class="w-12 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
+                    <input asp-for="Input.Quantity" type="number" min="0" class="w-12 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
+                    <span asp-validation-for="Input.Quantity" class="placeholder"></span>
                 </div>
             </div>
             <div class="w-1/2 flex mt-8">

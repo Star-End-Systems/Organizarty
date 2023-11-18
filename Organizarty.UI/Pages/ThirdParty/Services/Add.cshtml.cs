@@ -1,21 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel;
+using Organizarty.Adapters;
+using Organizarty.UI.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace Organizarty.UI.Pages.ThirdParty.Services;
 
+[Authorized("/ThirdParty/Accounts/Login", UserType.ThirdParty, UserType.Mannager)]
 public class AddServiceModel : PageModel
 {
-    public void OnGet()
-    {
-    }
+    public void OnGet() { }
 
-
-    public IActionResult OnPost()
-    {
-        return Page();
-    }
+    public IActionResult OnPost() { return Page(); }
 
     [BindProperty]
     public InputModel Input { get; set; } = default!;

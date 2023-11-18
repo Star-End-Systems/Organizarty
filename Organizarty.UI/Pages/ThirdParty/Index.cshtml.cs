@@ -1,35 +1,31 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Organizarty.Adapters;
+using Organizarty.UI.Attributes;
 using System.ComponentModel.DataAnnotations;
-namespace Organizarty.UI.Pages;
 
-public class AddServicesModel : PageModel
+namespace Organizarty.UI.Pages.ThirdParty;
+
+[Authorized("/ThirdParty/Accounts/Login", UserType.ThirdParty, UserType.Mannager)]
+public class IndexModel : PageModel
 {
-    private readonly ILogger<AddServicesModel> _logger;
-
-    public AddServicesModel(ILogger<AddServicesModel> logger)
-    {
-        _logger = logger;
-    }
-    
-    public InputModel Input{get; set;} = default!;
-
-    public class InputModel{
-  
-        [Display(Name = "Search")]
-        public string Search {get; set;} = default!;
-    }
     public void OnGet()
     {
-
     }
-        public IActionResult OnPost()
-    {
-        if (!ModelState.IsValid)
-        {
-            return Page();
-        }
 
-        return RedirectToPage("", new { search = Input.Search});
-        }        
+    public IActionResult OnPost()
+    {
+        return Page();
+    }
+
+    [BindProperty]
+    public InputModel Input { get; set; } = default!;
+
+    public class InputModel
+    {
+        public InputModel Input { get; set; } = default!;
+        [Required]
+        [Display(Name = "Search")]
+        public string Search { get; set; } = default!;
+    }
 }
