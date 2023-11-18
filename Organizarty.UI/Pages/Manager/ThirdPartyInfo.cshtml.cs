@@ -44,4 +44,13 @@ public class AcceptThirdPartyModel : PageModel
     {
 
     }
+        public IActionResult OnPost()
+    {
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+
+        return RedirectToPage("", new { description = Input.Description, loginEmail = Input.LoginEmail, contactEmail = Input.ContactEmail, name = Input.Name, cp = Input.CP, primaryTel = Input.PrimaryTel, secundaryTel = Input.SecondaryTel, location = Input.Location });
+    }        
 }

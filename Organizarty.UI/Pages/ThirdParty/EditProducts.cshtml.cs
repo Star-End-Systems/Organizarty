@@ -5,9 +5,9 @@ namespace Organizarty.UI.Pages;
 
 public class EditProductsModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ILogger<EditProductsModel> _logger;
 
-    public EditProductsModel(ILogger<IndexModel> logger)
+    public EditProductsModel(ILogger<EditProductsModel> logger)
     {
         _logger = logger;
     }
@@ -17,6 +17,12 @@ public class EditProductsModel : PageModel
     public class InputModel{
         [Display(Name = "Description")]
         public string Description {get; set;} = default!;
+
+        [Display(Name = "Price")]
+        public string Price {get; set;} = default!;
+
+        [Display(Name = "Status")]
+        public string Status {get; set;} = default!;
     }
     public void OnGet()
     {
@@ -29,6 +35,6 @@ public class EditProductsModel : PageModel
             return Page();
         }
 
-        return RedirectToPage("", new { description = Input.Description});
+        return RedirectToPage("", new { description = Input.Description, price = Input.Price, status = Input.Status});
     }        
 }

@@ -3,17 +3,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 namespace Organizarty.UI.Pages;
 
-public class RequestsManagerModel : PageModel
+public class AddServicesModel : PageModel
 {
-    private readonly ILogger<RequestsManagerModel> _logger;
+    private readonly ILogger<AddServicesModel> _logger;
 
-    public RequestsManagerModel(ILogger<RequestsManagerModel> logger)
+    public AddServicesModel(ILogger<AddServicesModel> logger)
     {
         _logger = logger;
     }
+    
     public InputModel Input{get; set;} = default!;
+
     public class InputModel{
-        [Required]
+  
         [Display(Name = "Search")]
         public string Search {get; set;} = default!;
     }
@@ -29,5 +31,5 @@ public class RequestsManagerModel : PageModel
         }
 
         return RedirectToPage("", new { search = Input.Search});
-    }        
+        }        
 }

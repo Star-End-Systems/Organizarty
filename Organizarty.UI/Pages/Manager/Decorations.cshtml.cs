@@ -3,17 +3,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 namespace Organizarty.UI.Pages;
 
-public class RequestsManagerModel : PageModel
+public class DecorationsModel : PageModel
 {
-    private readonly ILogger<RequestsManagerModel> _logger;
+    private readonly ILogger<DecorationsModel> _logger;
 
-    public RequestsManagerModel(ILogger<RequestsManagerModel> logger)
+    public DecorationsModel(ILogger<DecorationsModel> logger)
     {
         _logger = logger;
     }
+    
     public InputModel Input{get; set;} = default!;
+
     public class InputModel{
-        [Required]
+  
         [Display(Name = "Search")]
         public string Search {get; set;} = default!;
     }
