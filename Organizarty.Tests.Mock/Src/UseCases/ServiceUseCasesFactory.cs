@@ -1,8 +1,5 @@
-using Organizarty.Application.App.ServiceTypes.UseCases;
-using Organizarty.Application.App.ServiceTypes.Entities;
-using Organizarty.Application.App.ServiceInfos.Entities;
-using Organizarty.Application.App.ServiceInfos.Data;
-using Organizarty.Application.App.ServiceInfos.UseCases;
+using Organizarty.Application.App.Services.Entities;
+using Organizarty.Application.App.Services.UseCases;
 using Organizarty.Application.App.Services.Data;
 
 namespace Organizarty.Tests.Mock.UseCases;
