@@ -24,10 +24,7 @@ public class DescriptionModel : PageModel
         public int Quantity { get; set; } = default!;
     }
 
-    public async Task OnGetAsync(Guid productId)
-    {
-
-    }
+    public async Task OnGetAsync(Guid productId) { }
 
     public IActionResult OnPost()
     {

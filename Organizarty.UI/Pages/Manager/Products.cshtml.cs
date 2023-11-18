@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-namespace Organizarty.UI.Pages;
+namespace Organizarty.UI.Pages.Manager;
 
-public class ProductsModel : PageModel
+public class ManagerProductsModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ILogger<ManagerProductsModel> _logger;
 
-    public ProductsModel(ILogger<IndexModel> logger)
+    public ManagerProductsModel(ILogger<ManagerProductsModel> logger)
     {
         _logger = logger;
     }

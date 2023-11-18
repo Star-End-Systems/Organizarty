@@ -1,8 +1,10 @@
 button:hover{
     transform: scale(1.1);
-    transition: all 0.4s;
 }
 
+button{
+    transition: all 0.4s;
+}
 .placeholder{
   font-family: Inter;
   border: transparent;

@@ -11,23 +11,25 @@ public class IndexModel : PageModel
     {
         _logger = logger;
     }
-    public InputModel Input{get; set;} = default!;
-    public class InputModel{
+    public InputModel Input { get; set; } = default!;
+    public class InputModel
+    {
         [Required]
         [Display(Name = "Search")]
-        public string Search {get; set;} = default!;
+        public string Search { get; set; } = default!;
     }
-    public void OnGet()
+    public IActionResult OnGet()
     {
-
+        string url = "https://star-end-systems.github.io/OrganizartyOnePage/";
+        return Redirect(url);
     }
-        public IActionResult OnPost()
+    public IActionResult OnPost()
     {
         if (!ModelState.IsValid)
         {
             return Page();
         }
 
-        return RedirectToPage("", new { search = Input.Search});
-    }        
+        return RedirectToPage("", new { search = Input.Search });
+    }
 }
