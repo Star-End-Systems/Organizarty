@@ -73,13 +73,12 @@ public class CreateAccountModel : PageModel
             {
                 ModelState.AddModelError(string.Empty, err.message);
             }
-        }
-
-        if (!ModelState.IsValid)
-        {
             return Page();
         }
-
-        return RedirectToPage("./Login", new { email = Input.Email, password = Input.Password });
+        catch (EmailsenderException)
+        {
+            ModelState.AddModelError(string.Empty, "Erro ao enviar o email, tente novamente mais tarde.");
+            return Page();
+        }
     }
 }
