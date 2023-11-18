@@ -7,7 +7,7 @@ using Organizarty.UI.Attributes;
 using Organizarty.UI.Helpers;
 using System.ComponentModel.DataAnnotations;
 
-namespace Organizarty.UI.Pages.Accounts;
+namespace Organizarty.UI.Pages.Clients.Accounts;
 
 [Unauthenticated]
 public class LoginUserModel : PageModel
@@ -90,7 +90,7 @@ public class LoginUserModel : PageModel
             }
         }
 
-
+        // Redirect to another page
         return Page();
     }
 }

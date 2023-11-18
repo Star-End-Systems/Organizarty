@@ -5,7 +5,7 @@ using Organizarty.Application.Exceptions;
 using Organizarty.UI.Attributes;
 using System.ComponentModel.DataAnnotations;
 
-namespace Organizarty.UI.Pages.Accounts;
+namespace Organizarty.UI.Pages.Clients.Accounts;
 
 [Unauthenticated]
 public class CreateAccountModel : PageModel
@@ -65,13 +65,13 @@ public class CreateAccountModel : PageModel
         try
         {
             var user = await _registerUser.Execute(data);
-            return RedirectToPage("/Accounts/Login");
+            return RedirectToPage("/Clients/Accounts/Login");
         }
         catch (ValidationFailException e)
         {
             foreach (var err in e.Errors)
             {
-                ModelState.AddModelError(err.field, err.message);
+                ModelState.AddModelError(string.Empty, err.message);
             }
         }
 

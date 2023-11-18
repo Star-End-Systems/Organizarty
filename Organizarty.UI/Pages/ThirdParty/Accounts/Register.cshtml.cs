@@ -79,7 +79,7 @@ public class RegisterThirdPartyModel : PageModel
         try
         {
             var user = await _registerThirdParty.Execute(data);
-            return RedirectToPage("/");
+            return Redirect("/");
         }
         catch (ValidationFailException e)
         {

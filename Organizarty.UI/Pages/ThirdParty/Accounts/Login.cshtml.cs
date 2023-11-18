@@ -44,7 +44,7 @@ public class LoginThirdPartyModel : PageModel
 
     }
 
-    public void OnGet(){}
+    public void OnGet() { }
 
     public async Task<IActionResult> OnPostAsync()
     {
@@ -81,7 +81,6 @@ public class LoginThirdPartyModel : PageModel
             }
         }
 
-
-        return Page();
+        return Redirect("/");
     }
 }
