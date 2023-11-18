@@ -30,28 +30,35 @@ public class Authorized : Attribute, IPageFilter
             return;
         }
 
-        foreach (var type in _userTypes)
+        try
         {
-            switch (type)
+            foreach (var type in _userTypes)
             {
-                case (UserType.Client):
-                    if ((User?)account is not null)
-                        return;
-                    break;
+                switch (type)
+                {
+                    case (UserType.Client):
+                        if ((User?)account is not null)
+                            return;
+                        break;
 
-                case (UserType.ThirdParty):
-                    if ((ThirdParty?)account is not null)
-                        return;
-                    break;
+                    case (UserType.ThirdParty):
+                        if ((ThirdParty?)account is not null)
+                            return;
+                        break;
 
-                case (UserType.Mannager):
-                    if ((Manager?)account is not null)
-                        return;
-                    break;
-                default:
-                    context.Result = new RedirectResult(_redirectPage);
-                    break;
+                    case (UserType.Mannager):
+                        if ((Manager?)account is not null)
+                            return;
+                        break;
+                    default:
+                        context.Result = new RedirectResult(_redirectPage);
+                        break;
+                }
             }
+        }
+        catch (Exception)
+        {
+            context.Result = new RedirectResult(_redirectPage);
         }
     }
 

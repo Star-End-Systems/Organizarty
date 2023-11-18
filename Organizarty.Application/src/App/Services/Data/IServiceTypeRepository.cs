@@ -10,4 +10,6 @@ public interface IServiceTypeRepository
     Task<ServiceType?> FindByIdWithItens(Guid id);
 
     Task<List<ServiceType>> FindByThirdParty(Guid thirdPartyId);
+
+    Task<List<ServiceType>> GetAvaibleServices();
 }

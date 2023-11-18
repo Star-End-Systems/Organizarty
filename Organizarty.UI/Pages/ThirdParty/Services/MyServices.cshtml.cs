@@ -33,9 +33,6 @@ public class MyServiceModel : PageModel
         {
             DefaultItem();
         }
-
-        Services.ForEach(x => Console.WriteLine(x.SubServices.Count()));
-        Services.ForEach(x => x.SubServices.ToList().ForEach(y => Console.WriteLine(y.Plan)));
     }
 
     private void DefaultItem()

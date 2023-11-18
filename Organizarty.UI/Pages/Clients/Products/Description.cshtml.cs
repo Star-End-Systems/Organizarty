@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-namespace Organizarty.UI.Pages;
+namespace Organizarty.UI.Pages.Clients.Products;
 
 public class DescriptionModel : PageModel
 {
@@ -12,23 +12,30 @@ public class DescriptionModel : PageModel
         _logger = logger;
     }
 
-    public InputModel Input{get; set;} = default!;
+    [BindProperty]
+    public InputModel Input { get; set; } = default!;
 
-    public class InputModel{
+    public class InputModel
+    {
         [Display(Name = "ClientNotes")]
-        public string ClientNotes {get; set;} = default!;
+        public string Note { get; set; } = default!;
+
+        [Display(Name = "ClientNotes")]
+        public int Quantity { get; set; } = default!;
     }
-    public void OnGet()
+
+    public async Task OnGetAsync(Guid productId)
     {
 
     }
-        public IActionResult OnPost()
+
+    public IActionResult OnPost()
     {
         if (!ModelState.IsValid)
         {
             return Page();
         }
 
-        return RedirectToPage("", new { clientNotes = Input.ClientNotes});
-    }        
+        return Redirect("/");
+    }
 }

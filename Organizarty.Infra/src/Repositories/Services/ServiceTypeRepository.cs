@@ -43,4 +43,19 @@ public class ServiceTypeRepository : IServiceTypeRepository
                     TagsJSON = x.TagsJSON
                 })
                 .ToListAsync();
+
+    public async Task<List<ServiceType>> GetAvaibleServices()
+      => await _context.ServiceTypes
+                .Include(x => x.SubServices)
+                .Select(x => new ServiceType
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ThirdParty = x.ThirdParty,
+                    SubServices = x.SubServices,
+                    TagsJSON = x.TagsJSON
+                })
+                .ToListAsync();
+
 }
