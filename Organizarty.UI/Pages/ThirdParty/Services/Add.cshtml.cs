@@ -9,16 +9,9 @@ namespace Organizarty.UI.Pages.ThirdParty.Services;
 [Authorized("/ThirdParty/Accounts/Login", UserType.ThirdParty, UserType.Mannager)]
 public class AddServiceModel : PageModel
 {
-    public void OnGet()
-    {
-      Console.WriteLine("salve");
-    }
+    public void OnGet() { }
 
-
-    public IActionResult OnPost()
-    {
-        return Page();
-    }
+    public IActionResult OnPost() { return Page(); }
 
     [BindProperty]
     public InputModel Input { get; set; } = default!;

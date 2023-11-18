@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Locations.Data;
 using Organizarty.Application.App.Locations.Entities;
 using Organizarty.Infra.Data.Contexts;
@@ -20,4 +21,14 @@ public class LocationRepository : ILocationRepository
 
         return d.Entity;
     }
+
+    public async Task<Location?> FindById(Guid id)
+      => await _context.Locations.FindAsync(id);
+
+    public async Task<List<Location>> ListAll()
+      => await _context.Locations.ToListAsync();
+
+    // TOOD: Add   Avaible field
+    public async Task<List<Location>> ListAll(bool avaible)
+      => await _context.Locations.Where(x => x.RentPerDay < 50).ToListAsync();
 }
