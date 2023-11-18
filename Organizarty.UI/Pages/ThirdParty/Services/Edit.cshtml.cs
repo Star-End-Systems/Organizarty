@@ -30,11 +30,11 @@ public class EditServiceModel : PageModel
             {
                 Id = serviceId,
                 Price = 54.50M,
-                Plan = "1000 fotos",
+                Plan = "Sample plan",
                 ServiceType = new()
                 {
-                    Name = "Fotografo",
-                    Description = "Um belo fotografo com ainda mais belas fotografias.",
+                    Name = "Sample service",
+                    Description = "Sample Description",
                     Tags = new() { "Xiaomi", "Iphone", "Veio da lancha", "Debora" }
                 }
             };

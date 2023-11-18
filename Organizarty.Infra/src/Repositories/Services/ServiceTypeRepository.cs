@@ -28,4 +28,19 @@ public class ServiceTypeRepository : IServiceTypeRepository
 
     public async Task<ServiceType?> FindByIdWithItens(Guid id)
     => await _context.ServiceTypes.Include(x => x.SubServices).Where(x => x.Id == id).FirstOrDefaultAsync();
+
+    public async Task<List<ServiceType>> FindByThirdParty(Guid thirdPartyId)
+      => await _context.ServiceTypes
+                .Include(x => x.SubServices)
+                .Where(x => x.ThirdPartyId == thirdPartyId)
+                .Select(x => new ServiceType
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ThirdParty = x.ThirdParty,
+                    SubServices = x.SubServices,
+                    TagsJSON = x.TagsJSON
+                })
+                .ToListAsync();
 }

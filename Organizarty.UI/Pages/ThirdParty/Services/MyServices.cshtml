@@ -1,5 +1,7 @@
 @page
-@model IndexModel 
+@model MyServiceModel 
+
+@using Organizarty.UI.Blazor.Components.Services
 
 @{
     Layout = "_NullLayout";
@@ -28,12 +30,14 @@
             <div class="mt-6">
                 <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">Fotógrafo</h1>
             </div>
-            <div class="flex">
-                <partial name="_ThirdPartyServicesList"/>
-                <partial name="_ThirdPartyServicesList"/>
-                <partial name="_ThirdPartyServicesList"/>
-                <partial name="_ThirdPartyServicesList"/>
-            </div>
+              @foreach (var service in @Model.Services){
+                <h3>@service.Name</h3>
+                <div class="flex">
+                  @foreach (var item in service.SubServices){
+                    <component type="typeof(ThirdPartyServiceCard)" render-mode="ServerPrerendered" param-Service="@item" />
+                  }
+                </div>
+              }
         </div>
     </div>
 </section>

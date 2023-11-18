@@ -34,7 +34,7 @@ public class ServiceInfoRepository : IServiceInfoRepository
                 IsAvaible = x.IsAvaible,
                 Plan = x.Plan,
                 ImagesJson = x.ImagesJson,
-                ServiceType = x.ServiceType
+                ServiceType = x.ServiceType,
             })
             .FirstOrDefaultAsync();
 }
