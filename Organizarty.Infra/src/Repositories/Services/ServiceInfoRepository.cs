@@ -24,5 +24,17 @@ public class ServiceInfoRepository : IServiceInfoRepository
     }
 
     public async Task<ServiceInfo?> FindByIdWithParent(Guid id)
-    => await _context.ServiceInfos.Include(x => x.ServiceType).Where(x => x.Id == id).FirstOrDefaultAsync();
+    => await _context.ServiceInfos
+            .Include(x => x.ServiceType)
+            .Where(x => x.Id == id)
+            .Select(x => new ServiceInfo
+            {
+                Id = x.Id,
+                Price = x.Price,
+                IsAvaible = x.IsAvaible,
+                Plan = x.Plan,
+                ImagesJson = x.ImagesJson,
+                ServiceType = x.ServiceType
+            })
+            .FirstOrDefaultAsync();
 }

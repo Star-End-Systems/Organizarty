@@ -19,6 +19,8 @@ public class Unauthenticated : Attribute, IPageFilter
     public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
     {
         var account = context.HttpContext.Items["Account"];
+        Console.WriteLine("bosta");
+        Console.WriteLine(account);
         if (account is not null)
         {
             context.Result = new RedirectResult(_redirectPage);

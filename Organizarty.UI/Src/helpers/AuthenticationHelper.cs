@@ -87,11 +87,6 @@ public class AuthenticationHelper
             return null;
         }
 
-        if (userType.Value != UserType.Client.ToString())
-        {
-            return null;
-        }
-
         var id = jsonToken.Claims.FirstOrDefault(x => x.Type == "nameid")?.Value;
 
         if (id is null)

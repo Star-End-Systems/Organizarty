@@ -1,5 +1,3 @@
-@page "/ThirdParty/services/Edit/{Serviceid}"
-
 @using Organizarty.Application.App.Services.Entities;
 @using Organizarty.Application.App.Services.UseCases;
 @inject SelectServicesUseCase SelectServices
@@ -54,8 +52,8 @@
                       }
                     </div>
                   }
-
             </div>
+            <TagsEdit />
             <div class="w-full flex justify-end">
                 <button class="justify-center mr-12 bg-[#BB00C7] text-white font-[Inter] font-bold w-52 h-12 rounded-lg"><h2 class="flex items-center justify-center">Confirmar</h2></button>
             </div>
@@ -65,40 +63,22 @@
 
 @code{
   public string _tagsStr;
+
+  [Parameter]
   public ServiceInfo Service { get; set; } = default!;
 
   [Parameter]
-  public string Serviceid {get; set;}
+  public Guid Serviceid {get; set;}
 
   public bool TagMenuOpen {get; set;} = false;
 
    protected override async Task OnInitializedAsync()
    {
-
       await LoadService();
-      // _tagsStr = String.Join(", ", Service.ServiceType.Tags);
+      _tagsStr = String.Join(", ", Service.ServiceType.Tags);
    }
 
-   private async Task LoadService()
-   {
-        try{
-            var id = Guid.Parse(Serviceid);
-            Service = await SelectServices.FindSubServiceById(id);
-        } catch(Exception){
-            Service = new ServiceInfo
-            {
-                Price = 54.50M,
-                Plan = "500 fotos",
-                ServiceType = new()
-                {
-                    Name = "Fotografo",
-                    Description = "Um belo fotografo com ainda mais belas fotografias.",
-                    Tags = new() { "Xiaomi", "Iphone", "Veio da lancha", "Debora" }
-                }
-            };
-
-        }
-   }
+   private async Task LoadService() { }
 
   public void ToggleTagMenu(){
     TagMenuOpen = !TagMenuOpen;
