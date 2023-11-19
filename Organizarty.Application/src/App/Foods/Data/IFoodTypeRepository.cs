@@ -8,4 +8,6 @@ public interface IFoodTypeRepository
 
     Task<List<FoodType>> AllFoods();
     Task<List<FoodType>> AllFoods(bool avaible);
+
+    Task<List<FoodType>> AllFoodsFromThirdParty(Guid thirdPartyId);
 }

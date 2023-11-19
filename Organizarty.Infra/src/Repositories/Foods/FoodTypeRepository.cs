@@ -44,6 +44,21 @@ public class FoodTypeRepository : IFoodTypeRepository
               })
               .ToListAsync();
 
+    public async Task<List<FoodType>> AllFoodsFromThirdParty(Guid thirdPartyId)
+      => await _context.FoodTypes
+                .Include(x => x.Foods)
+                .Where(x => x.ThirdPartyId == thirdPartyId)
+                .Select(x => new FoodType
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ThirdParty = x.ThirdParty,
+                    Foods = x.Foods,
+                    TagsJSON = x.TagsJSON
+                })
+                .ToListAsync();
+
     public async Task<FoodType> Create(FoodType foodType)
     {
         await _context.FoodTypes.AddAsync(foodType);

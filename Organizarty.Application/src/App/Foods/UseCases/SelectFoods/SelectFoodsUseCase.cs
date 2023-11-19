@@ -1,7 +1,5 @@
-using FluentValidation;
 using Organizarty.Application.App.Foods.Data;
 using Organizarty.Application.App.Foods.Entities;
-using Organizarty.Application.Extras;
 
 namespace Organizarty.Application.App.Foods.UseCases;
 
@@ -15,6 +13,9 @@ public class SelectFoodsUseCase
         _infoRepository = foodRepository;
         _typeRepository = typeRepository;
     }
+
+    public async Task<List<FoodType>> AllFoodsFromThirdParty(Guid id)
+      => await _typeRepository.AllFoodsFromThirdParty(id);
 
     public async Task<List<FoodType>> AllFoodsAvaible()
       => await _typeRepository.AllFoods(true);
