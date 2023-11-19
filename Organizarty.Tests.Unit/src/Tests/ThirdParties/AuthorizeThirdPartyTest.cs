@@ -1,3 +1,4 @@
+using Organizarty.Application.App.Utils.Enums;
 using Organizarty.Tests.Mock.Database;
 using Organizarty.Tests.Mock.UseCases;
 using Organizarty.Tests.Unit.Samples.ThirdParties;
@@ -16,7 +17,7 @@ public class AuthorizeThirdPartyTest
             var thirdParty = await ThirdPartySample.SetupThirdPartyAuthorized(usecases);
 
             Assert.NotEqual(Guid.Empty, thirdParty.Id);
-            Assert.True(thirdParty.Authorized);
+            Assert.Equal(AuthorizationStatus.Authorized, thirdParty.AuthorizationStatus);
         }
     }
 
@@ -34,7 +35,7 @@ public class AuthorizeThirdPartyTest
             await authorize.Execute(thirdParty.LoginEmail);
 
             Assert.NotEqual(Guid.Empty, thirdParty.Id);
-            Assert.True(thirdParty.Authorized);
+            Assert.Equal(AuthorizationStatus.Authorized, thirdParty.AuthorizationStatus);
         }
     }
 
@@ -52,7 +53,7 @@ public class AuthorizeThirdPartyTest
             await authorize.Execute(thirdParty.Id);
 
             Assert.NotEqual(Guid.Empty, thirdParty.Id);
-            Assert.True(thirdParty.Authorized);
+            Assert.Equal(AuthorizationStatus.Authorized, thirdParty.AuthorizationStatus);
         }
     }
 }

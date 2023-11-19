@@ -1,6 +1,7 @@
 using Organizarty.Adapters;
 using Organizarty.Application.App.ThirdParties.Data;
 using Organizarty.Application.App.ThirdParties.Entities;
+using Organizarty.Application.App.Utils.Enums;
 using Organizarty.Application.Exceptions;
 
 namespace Organizarty.Application.App.ThirdParties.UseCases;
@@ -28,7 +29,7 @@ public class AuthorizeThirdPartyUseCase
 
     public async Task<ThirdParty> Execute(ThirdParty thirdParty)
     {
-        thirdParty.Authorized = true;
+        thirdParty.AuthorizationStatus = AuthorizationStatus.Authorized;
         return await _thirdPartyRepository.Update(thirdParty);
     }
 }

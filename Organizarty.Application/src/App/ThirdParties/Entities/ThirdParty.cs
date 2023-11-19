@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Organizarty.Application.App.Utils.Enums;
 
 namespace Organizarty.Application.App.ThirdParties.Entities;
 
@@ -20,7 +21,7 @@ public class ThirdParty
     public string ContactPhone { get; set; } = default!;
     public string CNPJ { get; set; } = default!;
 
-    public bool Authorized { get; set; }
+    public AuthorizationStatus AuthorizationStatus { get; set; } = AuthorizationStatus.Pending;
 
     public string ProfilePictureURL { get; set; } = default!;
 
