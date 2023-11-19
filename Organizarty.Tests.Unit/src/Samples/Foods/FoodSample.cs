@@ -1,22 +1,20 @@
-using Organizarty.Application.App.FoodInfos.Entities;
-using Organizarty.Application.App.FoodInfos.UseCases;
-using Organizarty.Application.App.FoodTypes.Entities;
-using Organizarty.Application.App.FoodTypes.UseCases;
+using Organizarty.Application.App.Foods.Entities;
+using Organizarty.Application.App.Foods.UseCases;
 
 namespace Organizarty.Tests.Unit.Samples.Foods;
 
 public static partial class FoodSample
 {
-    public static async Task<FoodType> SetupFoodType(CreateFoodTypeUseCase createFood, Guid thirdPartyId)
+    public static async Task<FoodType> SetupFoodType(CreateFoodUseCase createFood, Guid thirdPartyId)
     {
-        var data = new CreateFoodTypeDto("Coxinhas", "Uma deliciosa coxinha vegana, não contém glutem", "salgados", new(), thirdPartyId);
+        var data = new CreateFoodDto("Coxinhas", "Uma deliciosa coxinha vegana, não contém glutem", "salgados", new(), thirdPartyId);
 
         return await createFood.Execute(data);
     }
 
-    public static async Task<FoodInfo> SetupFoodInfo(CreateFoodInfoUseCase createFood, Guid foodTypeId)
+    public static async Task<FoodInfo> SetupFoodInfo(CreateFoodItemUseCase createFood, Guid foodTypeId)
     {
-        var data = new CreateFoodInfoDto(foodTypeId, true, "Carne", 50, new());
+        var data = new CreateFoodItemDto(foodTypeId, true, "Carne", 50, new());
 
         return await createFood.Execute(data);
     }

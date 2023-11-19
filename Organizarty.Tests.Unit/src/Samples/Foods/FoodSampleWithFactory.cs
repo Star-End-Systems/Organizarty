@@ -1,5 +1,4 @@
-using Organizarty.Application.App.FoodInfos.Entities;
-using Organizarty.Application.App.FoodTypes.Entities;
+using Organizarty.Application.App.Foods.Entities;
 using Organizarty.Tests.Mock.UseCases;
 
 namespace Organizarty.Tests.Unit.Samples.Foods;
