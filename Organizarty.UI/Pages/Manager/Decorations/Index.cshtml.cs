@@ -5,13 +5,13 @@ using Organizarty.Application.App.Schedules.UseCases;
 using System.ComponentModel.DataAnnotations;
 namespace Organizarty.UI.Pages.Manager;
 
-public class DecorationsModel : PageModel
+public class IndexModel : PageModel
 {
-    private readonly ILogger<DecorationsModel> _logger;
+    private readonly ILogger<IndexModel> _logger;
 
     private readonly SelectScheduleUseCase _selectSchedule;
 
-    public DecorationsModel(ILogger<DecorationsModel> logger, SelectScheduleUseCase selectSchedule)
+    public IndexModel(ILogger<IndexModel> logger, SelectScheduleUseCase selectSchedule)
     {
         _logger = logger;
         _selectSchedule = selectSchedule;
