@@ -11,8 +11,8 @@ using Organizarty.Infra.Data.Contexts;
 namespace Organizarty.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231109162247_initialCreate")]
-    partial class initialCreate
+    [Migration("20231119223228_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,7 +98,7 @@ namespace Organizarty.Infra.Migrations
                     b.ToTable("DecorationTypes");
                 });
 
-            modelBuilder.Entity("Organizarty.Application.App.FoodInfos.Entities.FoodInfo", b =>
+            modelBuilder.Entity("Organizarty.Application.App.Foods.Entities.FoodInfo", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -129,7 +129,7 @@ namespace Organizarty.Infra.Migrations
                     b.ToTable("FoodInfos");
                 });
 
-            modelBuilder.Entity("Organizarty.Application.App.FoodTypes.Entities.FoodType", b =>
+            modelBuilder.Entity("Organizarty.Application.App.Foods.Entities.FoodType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -543,7 +543,7 @@ namespace Organizarty.Infra.Migrations
                     b.ToTable("ServiceOrders");
                 });
 
-            modelBuilder.Entity("Organizarty.Application.App.ServiceInfos.Entities.ServiceInfo", b =>
+            modelBuilder.Entity("Organizarty.Application.App.Services.Entities.ServiceInfo", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -575,11 +575,14 @@ namespace Organizarty.Infra.Migrations
                     b.ToTable("ServiceInfos");
                 });
 
-            modelBuilder.Entity("Organizarty.Application.App.ServiceTypes.Entities.ServiceType", b =>
+            modelBuilder.Entity("Organizarty.Application.App.Services.Entities.ServiceType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -616,8 +619,8 @@ namespace Organizarty.Infra.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
-                    b.Property<bool>("Authorized")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int>("AuthorizationStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("CNPJ")
                         .IsRequired()
@@ -779,9 +782,9 @@ namespace Organizarty.Infra.Migrations
                     b.Navigation("DecorationType");
                 });
 
-            modelBuilder.Entity("Organizarty.Application.App.FoodInfos.Entities.FoodInfo", b =>
+            modelBuilder.Entity("Organizarty.Application.App.Foods.Entities.FoodInfo", b =>
                 {
-                    b.HasOne("Organizarty.Application.App.FoodTypes.Entities.FoodType", "FoodType")
+                    b.HasOne("Organizarty.Application.App.Foods.Entities.FoodType", "FoodType")
                         .WithMany("Foods")
                         .HasForeignKey("FoodTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -790,7 +793,7 @@ namespace Organizarty.Infra.Migrations
                     b.Navigation("FoodType");
                 });
 
-            modelBuilder.Entity("Organizarty.Application.App.FoodTypes.Entities.FoodType", b =>
+            modelBuilder.Entity("Organizarty.Application.App.Foods.Entities.FoodType", b =>
                 {
                     b.HasOne("Organizarty.Application.App.ThirdParties.Entities.ThirdParty", "ThirdParty")
                         .WithMany()
@@ -822,7 +825,7 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Party.Entities.FoodGroup", b =>
                 {
-                    b.HasOne("Organizarty.Application.App.FoodInfos.Entities.FoodInfo", "FoodInfo")
+                    b.HasOne("Organizarty.Application.App.Foods.Entities.FoodInfo", "FoodInfo")
                         .WithMany()
                         .HasForeignKey("FoodInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -872,7 +875,7 @@ namespace Organizarty.Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Organizarty.Application.App.ServiceInfos.Entities.ServiceInfo", "ServiceInfo")
+                    b.HasOne("Organizarty.Application.App.Services.Entities.ServiceInfo", "ServiceInfo")
                         .WithMany()
                         .HasForeignKey("ServiceInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -904,7 +907,7 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Schedules.Entities.FoodOrder", b =>
                 {
-                    b.HasOne("Organizarty.Application.App.FoodInfos.Entities.FoodInfo", "FoodInfo")
+                    b.HasOne("Organizarty.Application.App.Foods.Entities.FoodInfo", "FoodInfo")
                         .WithMany()
                         .HasForeignKey("FoodInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -972,7 +975,7 @@ namespace Organizarty.Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Organizarty.Application.App.ServiceInfos.Entities.ServiceInfo", "ServiceInfo")
+                    b.HasOne("Organizarty.Application.App.Services.Entities.ServiceInfo", "ServiceInfo")
                         .WithMany()
                         .HasForeignKey("ServiceInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -991,10 +994,10 @@ namespace Organizarty.Infra.Migrations
                     b.Navigation("ThirdParty");
                 });
 
-            modelBuilder.Entity("Organizarty.Application.App.ServiceInfos.Entities.ServiceInfo", b =>
+            modelBuilder.Entity("Organizarty.Application.App.Services.Entities.ServiceInfo", b =>
                 {
-                    b.HasOne("Organizarty.Application.App.ServiceTypes.Entities.ServiceType", "ServiceType")
-                        .WithMany()
+                    b.HasOne("Organizarty.Application.App.Services.Entities.ServiceType", "ServiceType")
+                        .WithMany("SubServices")
                         .HasForeignKey("ServiceTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1002,7 +1005,7 @@ namespace Organizarty.Infra.Migrations
                     b.Navigation("ServiceType");
                 });
 
-            modelBuilder.Entity("Organizarty.Application.App.ServiceTypes.Entities.ServiceType", b =>
+            modelBuilder.Entity("Organizarty.Application.App.Services.Entities.ServiceType", b =>
                 {
                     b.HasOne("Organizarty.Application.App.ThirdParties.Entities.ThirdParty", "ThirdParty")
                         .WithMany()
@@ -1029,9 +1032,14 @@ namespace Organizarty.Infra.Migrations
                     b.Navigation("Decorations");
                 });
 
-            modelBuilder.Entity("Organizarty.Application.App.FoodTypes.Entities.FoodType", b =>
+            modelBuilder.Entity("Organizarty.Application.App.Foods.Entities.FoodType", b =>
                 {
                     b.Navigation("Foods");
+                });
+
+            modelBuilder.Entity("Organizarty.Application.App.Services.Entities.ServiceType", b =>
+                {
+                    b.Navigation("SubServices");
                 });
 #pragma warning restore 612, 618
         }
