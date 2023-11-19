@@ -1,0 +1,8 @@
+@page "{code:Guid}"
+@model ConfirmCodeModel 
+
+@if(Model.Success){
+  <p>Parabens, email confirmado com sucesso</p>
+} else {
+  <p>Falha ao confirmar email</p>
+}

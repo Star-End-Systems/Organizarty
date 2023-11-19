@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Organizarty.UI.Pages.Clients.Accounts;
 
-[Unauthenticated]
+[Unauthenticated("/Clients")]
 public class LoginUserModel : PageModel
 {
     private readonly LoginUserUseCase _loginUser;
@@ -19,14 +19,12 @@ public class LoginUserModel : PageModel
     private readonly ITokenProvider _tokenProvider;
 
     public LoginUserModel(ILogger<LoginUserModel> logger, LoginUserUseCase loginUser, ITokenProvider tokenProvider, AuthenticationHelper authenticationHelper)
-
     {
         _logger = logger;
         _loginUser = loginUser;
         _tokenProvider = tokenProvider;
 
         _authHelper = authenticationHelper;
-
     }
 
     [BindProperty]
@@ -72,6 +70,7 @@ public class LoginUserModel : PageModel
             var token = _tokenProvider.GenerateToken(u.Id.ToString(), u.UserName, UserType.Client);
 
             _authHelper.WriteToken(token);
+            return Redirect("/Clients");
         }
         catch (ValidationFailException e)
         {

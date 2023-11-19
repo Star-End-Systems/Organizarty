@@ -32,11 +32,6 @@ public class LoginUserUseCase
         {
             throw new NotFoundException("Email or password is not valid.");
         }
-
-        if (!user.EmailConfirmed)
-        {
-            throw new NotFoundException($"Pleace Confirm your email");
-        }
     }
 }
 

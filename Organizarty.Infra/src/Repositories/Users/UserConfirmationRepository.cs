@@ -22,7 +22,16 @@ public class UserConfirmationRepository : IUserConfirmationRepository
     }
 
     public async Task<UserConfirmation?> FindById(Guid code)
-    => await _context.UserConfirmations.FindAsync(code);
+    => await _context.UserConfirmations
+              .Include(x => x.User)
+              .Where(x => x.Id == code)
+              .Select(x => new UserConfirmation
+              {
+                  Id = x.Id,
+                  ValidFor = x.ValidFor,
+                  User = x.User
+              })
+              .FirstOrDefaultAsync();
 
     public async Task<List<UserConfirmation>> FindByUserId(Guid userId)
       => await _context.UserConfirmations.Where(emails => emails.User.Id == userId).ToListAsync();
