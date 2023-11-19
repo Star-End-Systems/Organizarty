@@ -24,6 +24,9 @@ public class UserRepository : IUserRepository
     public async Task<User?> FindByEmail(string email)
     => await _context.Users.Where(x => x.Email == email).OrderBy(x => x.UpdatedAt).FirstOrDefaultAsync();
 
+    public async Task<User?> FindByEmailOrUsername(string emailorUsername)
+    => await _context.Users.Where(u => u.Email == emailorUsername || u.UserName == emailorUsername).OrderBy(x => x.UpdatedAt).FirstOrDefaultAsync();
+
     public async Task<User?> FindById(Guid id)
         => await _context.Users.FindAsync(id);
 

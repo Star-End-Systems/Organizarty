@@ -18,7 +18,7 @@ public class LoginUserUseCase
 
     public async Task<User> Execute(LoginUserDto userDto)
     {
-        var user = await _userRepository.FindByEmail(userDto.Email) ?? throw new NotFoundException($"User with email '{userDto.Email}' not found.");
+        var user = await _userRepository.FindByEmailOrUsername(userDto.Email) ?? throw new NotFoundException($"User with email '{userDto.Email}' not found.");
         ValidCredentials(userDto.Password, user);
 
         return user;
