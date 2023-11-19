@@ -1,4 +1,4 @@
-using Organizarty.Application.App.FoodInfos.Entities;
+using Organizarty.Application.App.Foods.Entities;
 using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Schedules.Enum;
 using Organizarty.Application.App.ThirdParties.Entities;

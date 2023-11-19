@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.DecorationInfos.Entities;
 using Organizarty.Application.App.DecorationTypes.Entities;
-using Organizarty.Application.App.FoodInfos.Entities;
-using Organizarty.Application.App.FoodTypes.Entities;
+using Organizarty.Application.App.Foods.Entities;
 using Organizarty.Application.App.Locations.Entities;
 using Organizarty.Application.App.Managers.Entities;
 using Organizarty.Application.App.Party.Entities;

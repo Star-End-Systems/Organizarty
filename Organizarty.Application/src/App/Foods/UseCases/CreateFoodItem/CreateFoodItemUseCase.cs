@@ -1,22 +1,22 @@
 using FluentValidation;
-using Organizarty.Application.App.FoodInfos.Data;
-using Organizarty.Application.App.FoodInfos.Entities;
+using Organizarty.Application.App.Foods.Data;
+using Organizarty.Application.App.Foods.Entities;
 using Organizarty.Application.Extras;
 
-namespace Organizarty.Application.App.FoodInfos.UseCases;
+namespace Organizarty.Application.App.Foods.UseCases;
 
-public class CreateFoodInfoUseCase
+public class CreateFoodItemUseCase
 {
     private readonly IValidator<FoodInfo> _validator;
     private readonly IFoodInfoRepository _foodRepository;
 
-    public CreateFoodInfoUseCase(IFoodInfoRepository foodRepository, IValidator<FoodInfo> validator)
+    public CreateFoodItemUseCase(IFoodInfoRepository foodRepository, IValidator<FoodInfo> validator)
     {
         _validator = validator;
         _foodRepository = foodRepository;
     }
 
-    public async Task<FoodInfo> Execute(CreateFoodInfoDto foodDto)
+    public async Task<FoodInfo> Execute(CreateFoodItemDto foodDto)
     {
         var food = foodDto.ToModel;
         ValidationUtils.Validate(_validator, food, "Validation for food fail");

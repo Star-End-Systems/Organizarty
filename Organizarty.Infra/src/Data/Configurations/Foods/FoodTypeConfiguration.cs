@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using Organizarty.Application.App.FoodTypes.Entities;
+using Organizarty.Application.App.Foods.Entities;
 
 namespace Organizarty.Infra.Data.Configurations;
 

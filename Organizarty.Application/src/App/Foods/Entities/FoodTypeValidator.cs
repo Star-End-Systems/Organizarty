@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Organizarty.Application.App.FoodTypes.Entities;
+namespace Organizarty.Application.App.Foods.Entities;
 
 public class FoodTypeValidator : AbstractValidator<FoodType>
 {

@@ -1,7 +1,5 @@
 using System.Text.Json;
-using Organizarty.Application.App.FoodTypes.Entities;
-
-namespace Organizarty.Application.App.FoodInfos.Entities;
+namespace Organizarty.Application.App.Foods.Entities;
 
 public class FoodInfo
 {

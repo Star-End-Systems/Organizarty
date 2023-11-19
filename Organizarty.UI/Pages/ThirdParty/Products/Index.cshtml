@@ -1,5 +1,6 @@
 @page
 @model IndexModel 
+@using Organizarty.UI.Blazor.Components.Products;
 
 @{
     Layout = "_NullLayout";
@@ -31,7 +32,7 @@
                 <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">Bolos</h1>
             </div>
             <div class="flex">
-                <partial name="_ThirdPartyProductsList"/>
+                <component type="typeof(ThirdPartyProductCard)" render-mode="ServerPrerendered" />
                 <partial name="_ThirdPartyProductsList"/>
                 <partial name="_ThirdPartyProductsList"/>
                 <partial name="_ThirdPartyProductsList"/>

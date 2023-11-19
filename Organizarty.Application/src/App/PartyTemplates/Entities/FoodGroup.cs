@@ -1,4 +1,4 @@
-using Organizarty.Application.App.FoodInfos.Entities;
+using Organizarty.Application.App.Foods.Entities;
 
 namespace Organizarty.Application.App.Party.Entities;
 

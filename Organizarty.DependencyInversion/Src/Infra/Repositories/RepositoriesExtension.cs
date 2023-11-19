@@ -2,8 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Organizarty.Application.App.DecorationInfos.Data;
 using Organizarty.Application.App.DecorationTypes.Data;
-using Organizarty.Application.App.FoodInfos.Data;
-using Organizarty.Application.App.FoodTypes.Data;
+using Organizarty.Application.App.Foods.Data;
 using Organizarty.Application.App.Locations.Data;
 using Organizarty.Application.App.Managers.Data;
 using Organizarty.Application.App.Party.Data;

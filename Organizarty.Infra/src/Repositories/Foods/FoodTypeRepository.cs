@@ -1,5 +1,5 @@
-using Organizarty.Application.App.FoodTypes.Data;
-using Organizarty.Application.App.FoodTypes.Entities;
+using Organizarty.Application.App.Foods.Data;
+using Organizarty.Application.App.Foods.Entities;
 using Organizarty.Infra.Data.Contexts;
 
 namespace Organizarty.Infra.Repositories.Foods;
