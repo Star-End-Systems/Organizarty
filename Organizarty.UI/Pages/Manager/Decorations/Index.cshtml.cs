@@ -1,37 +1,33 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Organizarty.Application.App.Schedules.Entities;
-using Organizarty.Application.App.Schedules.UseCases;
-using System.ComponentModel.DataAnnotations;
-namespace Organizarty.UI.Pages.Manager;
+using Organizarty.Application.App.DecorationTypes.Entities;
+using Organizarty.Application.App.DecorationTypes.UseCases;
+namespace Organizarty.UI.Pages.Manager.Decorations;
 
 public class IndexModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
 
-    private readonly SelectScheduleUseCase _selectSchedule;
+    private readonly SelectDecorationTypeUseCase _selectDecoration;
 
-    public IndexModel(ILogger<IndexModel> logger, SelectScheduleUseCase selectSchedule)
+    public IndexModel(ILogger<IndexModel> logger, SelectDecorationTypeUseCase selectDecoration)
     {
+        _selectDecoration = selectDecoration;
         _logger = logger;
-        _selectSchedule = selectSchedule;
-    }
-    
-    [BindProperty]
-    public InputModel Input{get; set;} = default!;
-
-    public List<DecorationOrder> Orders {get; set;}
-
-    public class InputModel{
-  
-        [Display(Name = "Search")]
-        public string Search {get; set;} = default!;
     }
 
-    public async Task OnGetAsync(Guid scheduleId)
+    public List<DecorationType> Decorations { get; set; } = new();
+
+    public async Task OnGetAsync()
     {
-        var decorations = await _selectSchedule.SelectDecorationOrders(scheduleId);
+        try
+        {
+            Decorations = await _selectDecoration.All();
+        }
+        catch (Exception)
+        {
 
+        }
     }
 
     public IActionResult OnPost()
@@ -41,6 +37,6 @@ public class IndexModel : PageModel
             return Page();
         }
 
-        return RedirectToPage("", new { search = Input.Search});
-    }        
+        return RedirectToPage("");
+    }
 }
