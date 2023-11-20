@@ -1,0 +1,8 @@
+@page "{thirdPartyId:Guid}"
+@model RefuseThirdPartyModel
+
+@if(Model.Success){
+  <p>@Model.ThirdParty.Name esta agora PROIBIDO de usar a plataforma.</p>
+} else{
+  <p>Falha ao recusar o terceirizado, tente novamente mais tarde.</p>
+}

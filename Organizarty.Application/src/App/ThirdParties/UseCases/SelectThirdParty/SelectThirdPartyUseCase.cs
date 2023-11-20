@@ -1,5 +1,6 @@
 using Organizarty.Application.App.ThirdParties.Data;
 using Organizarty.Application.App.ThirdParties.Entities;
+using Organizarty.Application.App.Utils.Enums;
 
 namespace Organizarty.Application.App.ThirdParties.UseCases;
 
@@ -17,4 +18,7 @@ public class SelectThirdPartyUseCase
 
     public async Task<ThirdParty?> FindById(Guid id)
       => await _thirdPartyRepository.FindById(id);
+
+    public async Task<List<ThirdParty>> GetAllPending()
+      => await _thirdPartyRepository.AllWithAuthorization(AuthorizationStatus.Pending);
 }

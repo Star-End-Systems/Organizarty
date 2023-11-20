@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.ThirdParties.Data;
 using Organizarty.Application.App.ThirdParties.Entities;
+using Organizarty.Application.App.Utils.Enums;
 using Organizarty.Infra.Data.Contexts;
 
 namespace Organizarty.Infra.Repositories.ThirdParties;
@@ -13,6 +14,9 @@ public class ThirdPartyRepository : IThirdPartyRepository
     {
         _context = context;
     }
+
+    public async Task<List<ThirdParty>> AllWithAuthorization(AuthorizationStatus status)
+      => await _context.ThirdParties.Where(x => x.AuthorizationStatus == status).ToListAsync();
 
     public async Task<ThirdParty> Create(ThirdParty thirdParty)
     {
