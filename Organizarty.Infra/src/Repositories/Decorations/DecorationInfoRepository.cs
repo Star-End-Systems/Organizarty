@@ -20,4 +20,15 @@ public class DecorationInfoRepository : IDecorationInfoRepository
 
         return d.Entity;
     }
+
+    public async Task<DecorationInfo?> FindById(Guid id)
+    => await _context.DecorationInfos.FindAsync(id);
+
+    public async Task<DecorationInfo> Update(DecorationInfo decoration)
+    {
+        var d = _context.DecorationInfos.Update(decoration);
+        await _context.SaveChangesAsync();
+
+        return d.Entity;
+    }
 }

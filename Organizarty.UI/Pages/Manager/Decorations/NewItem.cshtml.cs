@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TP = Organizarty.Application.App.ThirdParties.Entities.ThirdParty;
 using Organizarty.UI.Helpers;
 using Organizarty.Application.Exceptions;
 using Organizarty.Application.App.DecorationInfos.UseCases;
@@ -12,8 +11,6 @@ public class NewDecorationSubitemModel : PageModel
 {
     private readonly CreateDecorationInfoUseCase _createDecoration;
     private readonly AuthenticationHelper _authHelper;
-
-    public TP ThirdParty { get; set; } = new();
 
     public NewDecorationSubitemModel(CreateDecorationInfoUseCase createDecoration, AuthenticationHelper authHelper)
     {

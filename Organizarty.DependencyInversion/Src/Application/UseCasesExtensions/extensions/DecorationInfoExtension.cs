@@ -12,6 +12,8 @@ internal static class DecorationInfoExtension
         services.AddValidatorsFromAssemblyContaining<DecorationInfoValidator>();
 
         services.AddScoped<CreateDecorationInfoUseCase>();
+        services.AddScoped<EditDecorationItemUseCase>();
+        services.AddScoped<SelectDecorationItemUseCase>();
 
         return services;
     }
