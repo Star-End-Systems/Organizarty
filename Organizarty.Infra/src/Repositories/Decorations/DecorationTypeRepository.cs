@@ -15,7 +15,20 @@ public class DecorationTypeRepository : IDecorationTypeRepository
     }
 
     public async Task<List<DecorationType>> All()
-    => await _context.DecorationTypes.ToListAsync();
+    => await _context.DecorationTypes
+              .Include(x => x.Decorations)
+              .Select(x => new DecorationType
+              {
+                  Id = x.Id,
+                  Name = x.Name,
+                  Description = x.Description,
+                  Size = x.Size,
+                  Model = x.Model,
+                  ObjectURL = x.ObjectURL,
+                  TagsJSON = x.TagsJSON,
+                  Decorations = x.Decorations
+              })
+              .ToListAsync();
 
     public async Task<DecorationType> Create(DecorationType decoration)
     {

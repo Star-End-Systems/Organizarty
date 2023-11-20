@@ -11,7 +11,7 @@ using Organizarty.Infra.Data.Contexts;
 namespace Organizarty.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231119223228_InitialCreate")]
+    [Migration("20231120184622_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
