@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Organizarty.Application.App.DecorationTypes.Entities;
 using Organizarty.Application.App.DecorationTypes.UseCases;
 using Organizarty.Application.Exceptions;
 using System.ComponentModel.DataAnnotations;
@@ -18,8 +17,8 @@ public class NewDecorationModel : PageModel
         _createDecoration = createDecoration;
     }
 
-    [BindProperty]
     public InputModel Input { get; set; } = default!;
+
 
     public class InputModel
     {

@@ -37,4 +37,15 @@ public class DecorationTypeRepository : IDecorationTypeRepository
 
         return d.Entity;
     }
+
+    public async Task<DecorationType?> FindById(Guid id)
+    => await _context.DecorationTypes.FindAsync(id);
+
+    public async Task<DecorationType> Update(DecorationType decoration)
+    {
+        var d = _context.DecorationTypes.Update(decoration);
+        await _context.SaveChangesAsync();
+
+        return d.Entity;
+    }
 }

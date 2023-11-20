@@ -1,5 +1,6 @@
 using Organizarty.Application.App.DecorationTypes.Data;
 using Organizarty.Application.App.DecorationTypes.Entities;
+using Organizarty.Application.Exceptions;
 
 namespace Organizarty.Application.App.DecorationTypes.UseCases;
 
@@ -14,4 +15,7 @@ public class SelectDecorationTypeUseCase
 
     public async Task<List<DecorationType>> All()
     => await _decorationTypeRepository.All();
+
+    public async Task<DecorationType> FindById(Guid id)
+    => await _decorationTypeRepository.FindById(id) ?? throw new NotFoundException("Decoration not found.");
 }
