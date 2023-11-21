@@ -18,11 +18,6 @@ public class IndexModel : PageModel
         [Display(Name = "Search")]
         public string Search { get; set; } = default!;
     }
-    public IActionResult OnGet()
-    {
-        string url = "https://star-end-systems.github.io/OrganizartyOnePage/";
-        return Redirect(url);
-    }
     public IActionResult OnPost()
     {
         if (!ModelState.IsValid)
