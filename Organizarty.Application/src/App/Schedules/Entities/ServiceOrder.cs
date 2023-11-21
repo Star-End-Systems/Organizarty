@@ -11,7 +11,7 @@ public class ServiceOrder
     public string Note { get; set; } = "";
     public decimal Price { get; set; }
     public DateTime EventDate { get; set; } = default!;
-    public ItemStatus Status { get; set; }
+    public ItemStatus Status { get; set; } = ItemStatus.WAITING;
 
     public ServiceInfo ServiceInfo { get; set; } = default!;
     public Guid ServiceInfoId { get; set; } = default!;

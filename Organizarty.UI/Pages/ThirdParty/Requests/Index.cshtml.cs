@@ -1,45 +1,40 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.Schedules.UseCases;
-using System.ComponentModel.DataAnnotations;
 namespace Organizarty.UI.Pages;
 
 public class RequestsThirdPartyModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ILogger<RequestsThirdPartyModel> _logger;
     private readonly SelectScheduleUseCase _selectSchedule;
 
-    public RequestsThirdPartyModel(ILogger<IndexModel> logger, SelectScheduleUseCase selectSchedule)
+    public RequestsThirdPartyModel(ILogger<RequestsThirdPartyModel> logger, SelectScheduleUseCase selectSchedule)
     {
         _logger = logger;
         _selectSchedule = selectSchedule;
     }
 
-    [BindProperty]
-    public InputModel Input{get; set;} = default!;
+    public List<FoodOrder> Orders { get; set; } = new();
 
-    public List<DecorationOrder> Orders {get; set;}
-
-    public class InputModel{
-        [Required]
-        [Display(Name = "Search")]
-        public string Search {get; set;} = default!;
-    }
-
-    public async Task OnGetAsync(Guid scheduleId)
+    // public async Task OnGetAsync()
+    public async Task OnGetAsync()
     {
-        var decorations = await _selectSchedule.SelectDecorationOrders(scheduleId);
-
-    }
-
-    public IActionResult OnPost()
-    {
-        if (!ModelState.IsValid)
+        // Orders = await _selectSchedule.SelectFoodOrders(scheduleId);
+        var food = new FoodOrder
         {
-            return Page();
-        }
+            FoodInfo = new()
+            {
+                Flavour = "Carne",
+                FoodType = new()
+                {
+                    Name = "Coxinha"
+                }
+            },
+            Note = "Sem cebola",
+            Quantity = 29,
+            Status = Application.App.Schedules.Enum.ItemStatus.PENDING
+        };
 
-        return RedirectToPage("", new { search = Input.Search});
-    }        
+        Orders = new() { food, food, food, food, food, food, food, food, food, food, food, food, food, food, food, food, food, food, food, food };
+    }
 }
