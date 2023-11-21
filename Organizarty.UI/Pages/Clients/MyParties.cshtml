@@ -1,112 +1,133 @@
 @page
-@model IndexModel 
+@model MyPartiesModel
+@using Organizarty.UI.Blazor.Components.Party
 @{
-    Layout = "_NullLayout";
-    ViewData["Title"] = "Home";
+Layout = "_ClientLayout";
+ViewData["Title"] = "Home";
 }
+<div class="bg-[#D9D9D9] rounded-xl mt-8 w-full pb-4 h-60 flex-col flex self-center">
+  <div class="text-white self-center mt-6 text-3xl w-full flex justify-center items-center text-center">
+    <h2>Como planeja festejar hoje?</h2>
+  </div>
 
-<partial name="_OrganizartyClientsLayout"/>
- <section class="flex flex-col h-screen ml-auto w-5/6">
+  <div class="w-2/3 flex justify-center self-center mt-4">
+    <input asp-for="Input.Search" class="w-6/12 h-6 rounded-xl shadow-xl placeholder form-control" aria-required="true"
+      placeholder="Pesquisar Festa" />
+    <span asp-validation-for="Input.Search" class="placeholder"></span>
+    <button class="bg-[#757272] rounded-full w-10 ml-2"><img class=" self-center ml-auto mr-auto"
+        src="/images/Clients/Index/Lupa.svg"></img></button>
+  </div>
 
-    <div class="bg-[#D9D9D9] rounded-xl mt-8 w-5/6 pb-4 h-60 flex-col flex self-center">
-
-        <div class="text-white self-center mt-6 text-3xl">
-            <h2>Como planeja festejar hoje?</h2>
-        </div>
-        <div class="w-2/3 flex justify-center self-center mt-4">
-            <input asp-for="Input.Search" class="w-6/12 h-6 rounded-xl shadow-xl placeholder form-control" aria-required="true" placeholder="Pesquisar Festa"/>
-            <span asp-validation-for="Input.Search" class="placeholder"></span>
-            <button class="bg-[#757272] rounded-full w-10 ml-2"><img class=" self-center ml-auto mr-auto" src="/images/Clients/Index/Lupa.svg"></img></button>
-        </div>
-        <div class="self-center flex mt-4">
-            <button class="flex menuButtons rounded-full w-12 h-12 mr-4 bg-white"><img class="w-6 self-center ml-auto mr-auto" src="/images/Clients/Index/Urso.svg"></img></button>
-            <button class="flex menuButtons rounded-full w-12 h-12 mr-4 bg-white"><img class="w-6 self-center ml-auto mr-auto" src="/images/Clients/Index/Coracao.svg"></img></button>
-            <button class="flex menuButtons rounded-full w-12 h-12 mr-4 bg-white"><img class="w-6 self-center ml-auto mr-auto" src="/images/Clients/Index/Coroa.svg"></img></button>
-            <button class="flex menuButtons rounded-full w-12 h-12 mr-4 bg-white"><img class="w-6 self-center ml-auto mr-auto" src="/images/Clients/Index/Coquetel.svg"></img></button>
-            <button class="flex menuButtons rounded-full w-12 h-12 mr-4 bg-white"><img class="w-6 self-center ml-auto mr-auto" src="/images/Clients/Index/Bolo.svg"></img></button>   
-        </div>
+  <div class="flex mt-4 overflow-x-auto w-full justify-center px-8">
+    <div class="flex flex-col items-center Button font-[KonnectBold] text-[#908D8D]">
+      <button class="flex menuButtons rounded-full w-12 h-12 mr-4 bg-white"><img class="w-6 self-center ml-auto mr-auto"
+          src="/images/Clients/Index/Urso.svg"></img></button>
     </div>
-    <div class="w-5/6 h-3/4 self-center mt-[1%]">
-            <h1>Suas Festas</h1>
-            <div class="flex">
-                <partial name="_YourParties"/>
-                <partial name="_YourParties"/>
-                <partial name="_YourParties"/>
-            </div>
-        </div>
-    <div class="w-5/6 h-3/4 self-center mt-[1%]">
-            <h1>Continue editando...</h1>
-            <div class="flex">
-                <partial name="_EditingParty"/>
-            </div>
+    <div class="flex flex-col items-center Button font-[KonnectBold] text-[#908D8D]">
+      <button class="flex menuButtons rounded-full w-12 h-12 mr-4 bg-white"><img class="w-6 self-center ml-auto mr-auto"
+          src="/images/Clients/Index/Coracao.svg"></img></button>
     </div>
+    <div class="flex flex-col items-center Button font-[KonnectBold] text-[#908D8D]">
+      <button class="flex menuButtons rounded-full w-12 h-12 mr-4 bg-white"><img class="w-6 self-center ml-auto mr-auto"
+          src="/images/Clients/Index/Coroa.svg"></img></button>
+    </div>
+    <div class="flex flex-col items-center Button font-[KonnectBold] text-[#908D8D]">
+      <button class="flex menuButtons rounded-full w-12 h-12 mr-4 bg-white"><img class="w-6 self-center ml-auto mr-auto"
+          src="/images/Clients/Index/Coquetel.svg"></img></button>
+    </div>
+    <div class="flex flex-col items-center Button font-[KonnectBold] text-[#908D8D]">
+      <button class="flex menuButtons rounded-full w-12 h-12 mr-4 bg-white"><img class="w-6 self-center ml-auto mr-auto"
+          src="/images/Clients/Index/Bolo.svg"></img></button>
+    </div>
+  </div>
+</div>
+<div class="w-full self-center mt-[1%]">
+  <h1>Suas Festas</h1>
+  <div class="flex overflow-x-auto w-full h-auto">
+    @foreach(var schedule in Model.Schedules){
+      <component type="typeof(PartyScheduleCard)" render-mode="ServerPrerendered" param-Schedule="@schedule" />
+    }
+  </div>
+</div>
+<div class="w-5/6 h-3/4 self-center mt-[1%]">
+  <h1>Continue editando...</h1>
+  <div class="flex overflow-x-auto w-full h-auto">
+    @foreach(var party in Model.PartyTemplates){
+      <a class="mr-8" href="/Clients/Party/New"> <component type="typeof(PartyEditCard)" render-mode="ServerPrerendered" param-PartyTemplate="@party" /> </a>
+    }
+    <a class="mr-8" href="/Clients/Party/New"> <component type="typeof(PartyEditCard)" render-mode="ServerPrerendered" /> </a>
+  </div>
+</div>
 
-   </section>
-    <section class="h-screen ml-auto w-5/6">
-        <div class="mt-14 ml-14">
-            <h1>Confira as datas disponíveis</h1>
-        </div>
-        <div class="flex justify-end mr-28">
-            <button class="flex bg-[#FF008A] text-white font-[Inter] font-bold w-40 h-10 rounded-2xl"><div class="flex w-full h-full"><img class="flex self-center w-2 h-2 ml-2" src="/images/Clients/MyParties/Triangulin.png"></img><h2 class="flex items-center ml-6">Dezembro</h2></div></button>
-        </div>
-        <div class="mt-7 flex flex-col justify-center items-center">
-            <table class="table">
-                <tbody class="rounded-xl table">
-                    <tr class="calendary">
-                        <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Domingo</td>
-                        <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Segunda</td>
-                        <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Terça</td>
-                        <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Quarta</td>
-                        <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Quinta</td>
-                        <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Sexta</td>
-                        <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Sábado</td>
-                    </tr>
-                    <tr class="calendary">
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>1<span>..</span></mark></td>
-                        <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>2<span>..</span></mark></td>
-                    </tr>
-                    <tr class="calendary">
-                        <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>3<span>..</span></mark></td> 
-                        <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>4<span>..</span></mark></td>
-                        <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>5<span>..</span></mark></td>
-                        <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>6<span>..</span></mark></td>
-                        <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>7<span>..</span></mark></td>
-                        <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>8<span>..</span></mark></td>
-                        <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>9<span>..</span></mark></td>
-                    </tr>
-                    <tr class="calendary">
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                    </tr>
-                    <tr class="calendary">
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                    </tr>
-                    <tr class="calendary">
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                        <td class="calendary w-36 h-24">&nbsp;</td>
-                    </tr>
-            </tbody>
-        </table>
 </section>
-    
+<section class="h-screen ml-auto w-5/6">
+  <div class="mt-14 ml-14">
+    <h1>Confira as datas disponíveis</h1>
+  </div>
+  <div class="flex justify-end mr-28">
+    <button class="flex bg-[#FF008A] text-white font-[Inter] font-bold w-40 h-10 rounded-2xl">
+      <div class="flex w-full h-full"><img class="flex self-center w-2 h-2 ml-2"
+          src="/images/Clients/MyParties/Triangulin.png"></img>
+        <h2 class="flex items-center ml-6">Dezembro</h2>
+      </div>
+    </button>
+  </div>
+  <div class="mt-7 flex flex-col justify-center items-center">
+    <table class="table">
+      <tbody class="rounded-xl table">
+        <tr class="calendary">
+          <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Domingo</td>
+          <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Segunda</td>
+          <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Terça</td>
+          <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Quarta</td>
+          <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Quinta</td>
+          <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Sexta</td>
+          <td class="calendary bg-[#FF008A] text-white h-8 w-36 text-center">&nbsp; Sábado</td>
+        </tr>
+        <tr class="calendary">
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>1<span>..</span></mark></td>
+          <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>2<span>..</span></mark></td>
+        </tr>
+        <tr class="calendary">
+          <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>3<span>..</span></mark></td>
+          <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>4<span>..</span></mark></td>
+          <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>5<span>..</span></mark></td>
+          <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>6<span>..</span></mark></td>
+          <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>7<span>..</span></mark></td>
+          <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>8<span>..</span></mark></td>
+          <td class="calendary w-36 h-24">&nbsp;<mark><span>..</span>9<span>..</span></mark></td>
+        </tr>
+        <tr class="calendary">
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+        </tr>
+        <tr class="calendary">
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+        </tr>
+        <tr class="calendary">
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+          <td class="calendary w-36 h-24">&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>

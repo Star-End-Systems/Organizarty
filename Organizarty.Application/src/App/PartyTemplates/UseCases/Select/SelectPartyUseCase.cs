@@ -29,4 +29,7 @@ public class SelectPartyUseCase
 
     public async Task<List<ServiceGroup>> GetServices(Guid partyId)
       => await _serviceRepository.ListFromParty(partyId);
+
+    public async Task<List<PartyTemplate>> FromUser(Guid userId)
+      => await _partyRepository.FromUser(userId);
 }

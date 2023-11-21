@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Party.Data;
 using Organizarty.Infra.Data.Contexts;
 
@@ -22,4 +23,18 @@ public class PartyTemplateRepository : IPartyTemplateRepository
 
     public async Task<Application.App.Party.Entities.PartyTemplate?> FromId(Guid partyId)
     => await _context.PartyTemplates.FindAsync(partyId);
+
+    public async Task<List<Application.App.Party.Entities.PartyTemplate>> FromUser(Guid userId)
+      => await _context.PartyTemplates
+                .Where(x => x.UserId == userId)
+                .Select(x => new Application.App.Party.Entities.PartyTemplate
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ExpectedGuests = x.ExpectedGuests,
+                    User = x.User,
+                    Location = x.Location,
+                    OriginalPartyTemplate = x.OriginalPartyTemplate
+                })
+                .ToListAsync();
 }
