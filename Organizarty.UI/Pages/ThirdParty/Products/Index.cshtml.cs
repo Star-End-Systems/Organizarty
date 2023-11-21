@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Adapters;
 using Organizarty.Application.App.Foods.Entities;
+using TP = Organizarty.Application.App.ThirdParties.Entities.ThirdParty;
 using Organizarty.Application.App.Foods.UseCases;
 using Organizarty.UI.Attributes;
 using Organizarty.UI.Helpers;
@@ -14,6 +15,7 @@ public class IndexModel : PageModel
     private readonly AuthenticationHelper _authHelper;
 
     public List<FoodType> Foods { get; set; } = new();
+    public TP ThirdParty { get; set; } = new();
 
     public IndexModel(SelectFoodsUseCase selectFood, AuthenticationHelper authHelper)
     {
@@ -23,11 +25,11 @@ public class IndexModel : PageModel
 
     public async Task OnGetAsync()
     {
-        var thirdParty = await _authHelper.GetThirdPartyFromToken(_authHelper.GetToken() ?? "");
+        ThirdParty = (await _authHelper.GetThirdPartyFromToken(_authHelper.GetToken() ?? ""))!;
 
         try
         {
-            Foods = await _selectFood.AllFoodsFromThirdParty(thirdParty?.Id ?? Guid.NewGuid());
+            Foods = await _selectFood.AllFoodsFromThirdParty(ThirdParty.Id);
         }
         catch (Exception) { }
     }

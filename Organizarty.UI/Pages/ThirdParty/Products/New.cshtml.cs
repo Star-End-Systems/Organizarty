@@ -55,7 +55,7 @@ public class NewProductsModel : PageModel
         try
         {
             await _createFood.Execute(data);
-            return RedirectToPage("/ThirdParty/Products/MyProducts");
+            return RedirectToPage("/ThirdParty/Products/Index");
         }
         catch (ValidationFailException e)
         {
