@@ -6,4 +6,6 @@ public interface IFoodOrderRepository
 {
     Task<FoodOrder> Add(FoodOrder food);
     Task<FoodOrder> Update(FoodOrder food);
+
+    Task<List<FoodOrder>> ListFromThirdParty(Guid thirdPartyId);
 }

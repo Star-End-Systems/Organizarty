@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Adapters;
 using Organizarty.Application.App.Services.Entities;
+using ThirdPartyEntity = Organizarty.Application.App.ThirdParties.Entities.ThirdParty;
 using Organizarty.Application.App.Services.UseCases;
 using Organizarty.UI.Attributes;
 using Organizarty.UI.Helpers;
+using Organizarty.Application.Exceptions;
 
 namespace Organizarty.UI.Pages.ThirdParty.Services;
 
@@ -14,6 +16,7 @@ public class MyServiceModel : PageModel
     private readonly AuthenticationHelper _authHelper;
 
     public List<ServiceType> Services { get; set; } = new();
+    public ThirdPartyEntity ThirdParty { get; set; } = new();
 
     public MyServiceModel(SelectServicesUseCase selectServices, AuthenticationHelper authHelper)
     {
@@ -23,11 +26,10 @@ public class MyServiceModel : PageModel
 
     public async Task OnGetAsync(Guid serviceId)
     {
-        var thirdParty = await _authHelper.GetThirdPartyFromToken(_authHelper.GetToken() ?? "");
-
         try
         {
-            Services = await _selectServices.FindServicesByThirdParty(thirdParty?.Id ?? Guid.NewGuid());
+            ThirdParty = await _authHelper.GetThirdPartyFromToken(_authHelper.GetToken() ?? "") ?? throw new NotFoundException("Invalid token");
+            Services = await _selectServices.FindServicesByThirdParty(ThirdParty.Id);
         }
         catch (Exception)
         {

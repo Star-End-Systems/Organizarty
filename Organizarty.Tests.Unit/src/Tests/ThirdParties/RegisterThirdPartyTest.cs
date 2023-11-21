@@ -1,3 +1,4 @@
+using Organizarty.Application.App.Utils.Enums;
 using Organizarty.Tests.Mock.Database;
 using Organizarty.Tests.Mock.UseCases;
 using Organizarty.Tests.Unit.Samples.ThirdParties;
@@ -18,7 +19,7 @@ public class RegisterThirdPartyTest
             var thirdParty = await ThirdPartySample.SetupThirdParty(registerThirdParty);
 
             Assert.NotEqual(Guid.Empty, thirdParty.Id);
-            Assert.False(thirdParty.Authorized);
+            Assert.Equal(AuthorizationStatus.Pending, thirdParty.AuthorizationStatus);
         }
     }
 }

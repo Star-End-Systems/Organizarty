@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Organizarty.UI.Pages.Clients.Accounts;
 
-[Unauthenticated]
+[Unauthenticated("/Clients")]
 public class CreateAccountModel : PageModel
 {
     private readonly RegisterUserUseCase _registerUser;

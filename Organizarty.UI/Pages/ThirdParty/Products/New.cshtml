@@ -1,0 +1,46 @@
+@page
+@model NewProductsModel
+
+@{
+    ViewData["Title"] = "New Service";
+}
+
+<section class="flex h-screen">
+  <div class="part1 w-full h-screen py-8 flex-col">
+    <div class="flex justify-center">
+      <img class="w-32" src="/images/login/OrganizartyLogo.svg" />
+    </div>
+    <div class="LoginForm flex justify-center py-8 text-center">
+      <form id="login" method="post" class="w-full">
+        <h2>Register</h2>
+        @* <div class="line pb-8 flex justify-center rounded-full"></div> *@
+        <div asp-validation-summary="ModelOnly" class=""></div>
+        <div class="h-full flex flex-col items-center justify-evenly">
+
+          <!-- Name -->
+          @Html.DisplayNameFor(m => m.Input.Name)
+          <input asp-for="Input.Name" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Digite o nome do seu negócio" />
+          <span asp-validation-for="Input.Name" class="placeholder"></span>
+
+          <!-- Description -->
+          @Html.DisplayNameFor(m => m.Input.Description)
+          <input asp-for="Input.Description" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Descrição" />
+          <span asp-validation-for="Input.Description" class="placeholder"></span>
+
+          <!-- Category -->
+          @Html.DisplayNameFor(m => m.Input.Category)
+          <input asp-for="Input.Category" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Descrição" />
+          <span asp-validation-for="Input.Category" class="placeholder"></span>
+        </div>
+        <div class="flex w-full place-content-evenly py-14">
+          <button id="login-submit" type="submit" class="logar w-48 h-14 rounded-xl hover:shadow-2xl">Criar
+            conta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+

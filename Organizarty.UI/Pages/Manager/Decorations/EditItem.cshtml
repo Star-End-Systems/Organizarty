@@ -1,0 +1,56 @@
+@page "{decorationId:Guid}"
+@model EditDecorationItemModel
+
+@{
+    ViewData["Title"] = "New Service";
+}
+
+<section class="flex h-screen">
+  <div class="part1 w-full h-screen py-8 flex-col">
+    <div class="flex justify-center">
+      <img class="w-32" src="/images/login/OrganizartyLogo.svg" />
+    </div>
+    <div class="LoginForm flex justify-center py-8 text-center">
+      <form id="login" method="post" class="w-full">
+        <h2>Register</h2>
+        @* <div class="line pb-8 flex justify-center rounded-full"></div> *@
+        <div asp-validation-summary="ModelOnly" class=""></div>
+        <div class="h-full flex flex-col items-center justify-evenly">
+          <!-- Color -->
+          @Html.DisplayNameFor(m => m.Input.Color)
+          <input asp-for="Input.Color" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Color" />
+          <span asp-validation-for="Input.Color" class="placeholder"></span>
+
+          <!-- Price -->
+          @Html.DisplayNameFor(m => m.Input.Price)
+          <input asp-for="Input.Price" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Preço" />
+          <span asp-validation-for="Input.Price" class="placeholder"></span>
+
+          <!-- IsAvaible -->
+          @Html.DisplayNameFor(m => m.Input.IsAvaible)
+          <input asp-for="Input.IsAvaible" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Disponibildiade" />
+          <span asp-validation-for="Input.IsAvaible" class="placeholder"></span>
+
+          <!-- ImgURL -->
+          @Html.DisplayNameFor(m => m.Input.TextureURL)
+          <input asp-for="Input.TextureURL" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="URL da imagem" />
+          <span asp-validation-for="Input.TextureURL" class="placeholder"></span>
+
+          <!-- Material -->
+          @Html.DisplayNameFor(m => m.Input.Material)
+          <input asp-for="Input.Material" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="URL da imagem" />
+          <span asp-validation-for="Input.Material" class="placeholder"></span>
+        </div>
+        <div class="flex w-full place-content-evenly py-14">
+          <button id="login-submit" type="submit" class="logar w-48 h-14 rounded-xl hover:shadow-2xl">Criar
+            conta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

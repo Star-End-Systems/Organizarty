@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Schedules.Data;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.Schedules.Enum;
@@ -28,6 +29,20 @@ public class FoodOrderRepository : IFoodOrderRepository
         await _context.SaveChangesAsync();
         return food;
     }
+
+    public async Task<List<FoodOrder>> ListFromThirdParty(Guid thirdPartyId)
+    => await _context.FoodOrders
+              .Where(x => x.ThirdPartyId == thirdPartyId)
+              .Select(x => new FoodOrder
+              {
+                  Id = x.Id,
+                  Quantity = x.Quantity,
+                  Note = x.Note,
+                  Status = x.Status,
+                  FoodInfo = x.FoodInfo,
+                  Schedule = x.Schedule
+              })
+    .ToListAsync();
 
     public Task<FoodOrder> Update(FoodOrder food)
     {

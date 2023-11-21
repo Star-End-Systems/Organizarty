@@ -18,7 +18,7 @@ public class LoginUserUseCase
 
     public async Task<User> Execute(LoginUserDto userDto)
     {
-        var user = await _userRepository.FindByEmail(userDto.Email) ?? throw new NotFoundException($"User with email '{userDto.Email}' not found.");
+        var user = await _userRepository.FindByEmailOrUsername(userDto.Email) ?? throw new NotFoundException($"User with email '{userDto.Email}' not found.");
         ValidCredentials(userDto.Password, user);
 
         return user;
@@ -31,11 +31,6 @@ public class LoginUserUseCase
         if (!valid)
         {
             throw new NotFoundException("Email or password is not valid.");
-        }
-
-        if (!user.EmailConfirmed)
-        {
-            throw new NotFoundException($"Pleace Confirm your email");
         }
     }
 }

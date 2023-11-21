@@ -1,0 +1,35 @@
+@page
+@using Organizarty.UI.Blazor.Components.ThirdParties;
+@model MyThirdPartiesModel
+@{
+ViewData["title"] = "Novos Terceirizados";
+Layout = "_NullLayout";
+}
+
+<partial name="_OrganizartyManagerLayout" />
+
+<section class="w-5/6 ml-auto h-screen flex-col">
+  <div class="pt-[2.5%] pl-[5%] fixed top-0 bg-white z-40 w-full">
+    <div class="w-fit">
+      <h1 class="font-[KonnectBold] text-[#848484] uppercase text-5xl xl:text-6xl 2xl:text-7xl">
+        Novos colaboradores
+        <hr class="rounded-[30px] border-[5px] border-[#FFC700] w-2/5">
+      </h1>
+    </div>
+    <p class="w-11/12 font-[Inter] text-[#848484] text-xl xl:text-2xl 2xl:text-3xl mt-[1%] pb-2">
+      Conheça os novos colaboradores!
+    </p>
+  </div>
+  <div class="flex flex-col mt-56">
+    @if(@Model.ThirdParties.Count == 0){
+      <div class="w-full h-3/4 flex-col flex justify-center items-center">
+          <img class="w-12" src="/images/Clients/Index/Zart.svg"></img>
+          <h3>Nenhum novo colaborador</h3>
+      </div>
+    } else{
+      @foreach(var tp in Model.ThirdParties){
+      <component type="typeof(AuthorizeThirdPartyCard)" render-mode="ServerPrerendered" param-ThirdParty="tp" />
+      }
+    }
+  </div>
+</section>

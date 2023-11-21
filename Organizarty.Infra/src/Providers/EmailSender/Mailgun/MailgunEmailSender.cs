@@ -21,12 +21,14 @@ public class MailgunEmailSender : IEmailSender
             var authToken = Encoding.ASCII.GetBytes($"api:{_emailconfiguration.ApiKey}");
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(authToken));
 
+            var confirmUrl = _emailconfiguration.ConfirmEndpoint + code;
+
             var formContent = new FormUrlEncodedContent(new Dictionary<string, string> {
               { "from", $"Mailgun Sandbox <postmaster@{_emailconfiguration.Domain}>"},
               { "h:Reply-To", $"{_emailconfiguration.DisplayName} <{_emailconfiguration.ReplyTo}>" },
               { "to", targetEmail },
               { "subject", "Email confirm" },
-              { "text", $"Place confirm your email using this code {code}" }
+              { "text", $"Place confirm your email using this code {confirmUrl}" }
             });
 
             var result = await httpClient.PostAsync($"https://api.mailgun.net/v3/{_emailconfiguration.Domain}/messages", formContent);

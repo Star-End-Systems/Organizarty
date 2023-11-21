@@ -2,14 +2,13 @@
 @model IndexModel 
 
 @{
-    Layout = "_NullLayout";
+Layout = "_ThirdPartyLayout";
     ViewData["Title"] = "Home";
 }
 
-<partial name="_OrganizartyThirdPartyLayout"/>
- <section class="flex flex-col h-screen ml-auto w-5/6">
-    <div class="bg-[#D9D9D9] rounded-xl mt-8 w-5/6 pb-4 h-44 flex-col flex self-center">
-        <div class="text-white self-center mt-6 text-lg">
+ <section class="flex flex-col h-screen ml-auto w-full">
+    <div class="bg-[#D9D9D9] rounded-xl mt-8 w-5/6 pb-4 h-44 flex-col flex self-center mb-28">
+        <div class="text-white self-center mt-6 text-lg px-8">
             <h2>Vamos ajudar nossos clientes a festejar hoje com seus serviços e produtos?</h2>
         </div>
         <div class="w-2/3 flex justify-center self-center mt-4">
@@ -19,7 +18,7 @@
         </div>
     </div>
 
-    <div class="w-full h-3/4 flex-col flex justify-center items-center">
+    <div class="w-full h-auto flex-col flex items-center">
         <img class="w-14 mb-4" src="/images/Clients/Index/Zart.svg"></img>
         <h3 class="mb-6">Cadastre um novo produto ou serviço...</h3>
             <div class="flex mb-6">

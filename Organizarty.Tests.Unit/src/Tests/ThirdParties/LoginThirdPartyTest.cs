@@ -1,4 +1,5 @@
 using Organizarty.Application.App.ThirdParties.UseCases;
+using Organizarty.Application.App.Utils.Enums;
 using Organizarty.Infra.Data.Contexts;
 using Organizarty.Tests.Mock.Database;
 using Organizarty.Tests.Mock.UseCases;
@@ -33,7 +34,7 @@ public class LoginThirdPartyTest : IAsyncLifetime
         var b = await loginThirdParty.Execute(new LoginThirdPartyDto(thirdParty.LoginEmail, "long_password"));
 
         Assert.NotNull(b);
-        Assert.True(b.Authorized);
+        Assert.Equal(AuthorizationStatus.Authorized, b.AuthorizationStatus);
     }
 
     [Fact]

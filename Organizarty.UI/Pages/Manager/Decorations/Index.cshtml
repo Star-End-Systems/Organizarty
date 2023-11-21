@@ -1,0 +1,35 @@
+@page
+@model IndexModel
+@using Organizarty.UI.Blazor.Components.Decorations;
+
+@{
+    ViewData["title"] = "Minhas Decorações";
+    Layout = "_NullLayout";
+}
+
+<partial name="_OrganizartyManagerLayout"/>
+
+<section class="ml-auto w-5/6">
+    <div clas="flex flex-col">
+        <div class="">
+            <h1 class="font-[Inter] font-bold text-[#848484] text-md ml-20 mt-10">Suas Decorações</h1>
+        </div>
+        <div class="flex ml-20 mt-4">
+            <div class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D] mr-4"><button class="flex menuButtons rounded-full w-28 h-28  bg-[#424242]"><img class="w-14 self-center ml-auto mr-auto" src="/images/ThirdParty/MyServices/Camera.svg"></img></button><h4 class="text-sm">Fotógrafo</h4></div>
+            <a href="/Manager/Decorations/New"><div class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D] mr-4"><button class="flex menuButtons rounded-full w-28 h-28  hover:bg-[#D9D9D9]"><img class="w-10 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Cruz.png"></img></button><h4 class="text-sm">Adicionar</h4></div></a>
+        </div>
+        <div class="ml-20">
+              @foreach (var decoration in @Model.Decorations){
+                <div class="mt-6">
+                    <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">@decoration.Name <a href="/Manager/Decorations/NewItem/@decoration.Id">+</a></h1>
+                    <a href="/Manager/Decorations/Edit/@decoration.Id">Editar</a>
+                </div>
+                <div class="flex">
+                    @foreach (var item in decoration.Decorations){
+                      <component type="typeof(ManagerDecorationCard)" render-mode="ServerPrerendered" param-Decoration="@item" />
+                  }
+                </div>
+              }
+        </div>
+    </div>
+</section>

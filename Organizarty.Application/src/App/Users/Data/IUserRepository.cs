@@ -8,5 +8,6 @@ public interface IUserRepository
     Task<User> Update(User user);
 
     Task<User?> FindByEmail(string email);
+    Task<User?> FindByEmailOrUsername(string emailorUsername);
     Task<User?> FindById(Guid id);
 }

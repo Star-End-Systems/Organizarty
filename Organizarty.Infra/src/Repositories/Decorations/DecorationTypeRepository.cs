@@ -15,11 +15,35 @@ public class DecorationTypeRepository : IDecorationTypeRepository
     }
 
     public async Task<List<DecorationType>> All()
-    => await _context.DecorationTypes.ToListAsync();
+    => await _context.DecorationTypes
+              .Include(x => x.Decorations)
+              .Select(x => new DecorationType
+              {
+                  Id = x.Id,
+                  Name = x.Name,
+                  Description = x.Description,
+                  Size = x.Size,
+                  Model = x.Model,
+                  ObjectURL = x.ObjectURL,
+                  TagsJSON = x.TagsJSON,
+                  Decorations = x.Decorations
+              })
+              .ToListAsync();
 
     public async Task<DecorationType> Create(DecorationType decoration)
     {
         var d = await _context.DecorationTypes.AddAsync(decoration);
+        await _context.SaveChangesAsync();
+
+        return d.Entity;
+    }
+
+    public async Task<DecorationType?> FindById(Guid id)
+    => await _context.DecorationTypes.FindAsync(id);
+
+    public async Task<DecorationType> Update(DecorationType decoration)
+    {
+        var d = _context.DecorationTypes.Update(decoration);
         await _context.SaveChangesAsync();
 
         return d.Entity;

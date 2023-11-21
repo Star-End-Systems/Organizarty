@@ -7,11 +7,11 @@ public class DecorationType
 {
     public Guid Id { get; set; }
 
-    public string? Name { get; set; }
-    public string? Description { get; set; }
-    public string? Size { get; set; }
-    public string? Model { get; set; }
-    public string? ObjectURL { get; set; }
+    public string Name { get; set; } = default!;
+    public string Description { get; set; } = default!;
+    public string Size { get; set; } = default!;
+    public string Model { get; set; } = default!;
+    public string ObjectURL { get; set; } = default!;
 
     public string TagsJSON { get; set; } = "[]";
 

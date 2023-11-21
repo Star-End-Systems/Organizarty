@@ -1,0 +1,8 @@
+@page "{thirdPartyId:Guid}"
+@model AuthorizeThirdPartyModel
+
+@if(Model.Success){
+  <p>@Model.ThirdParty.Name esta agora autorizado a usar a plataforma.</p>
+} else{
+  <p>Falha ao autorizar o terceirizado, tente novamente mais tarde.</p>
+}

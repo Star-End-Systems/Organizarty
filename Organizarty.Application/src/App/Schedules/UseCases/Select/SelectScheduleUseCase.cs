@@ -7,17 +7,25 @@ namespace Organizarty.Application.App.Schedules.UseCases;
 public class SelectScheduleUseCase
 {
     private readonly IScheduleRepository _scheduleRepository;
-    private readonly IDecorationOrderRepository _decorationOrder;
 
-    public SelectScheduleUseCase(IScheduleRepository scheduleRepository, IDecorationOrderRepository decorationOrder)
+    private readonly IDecorationOrderRepository _decorationRepository;
+    private readonly IFoodOrderRepository _foodRepository;
+    private readonly IServiceOrderRepository _serviceRepository;
+
+    public SelectScheduleUseCase(IScheduleRepository scheduleRepository, IDecorationOrderRepository decorationOrder, IFoodOrderRepository foodRepository, IServiceOrderRepository serviceRepository)
     {
         _scheduleRepository = scheduleRepository;
-        _decorationOrder = decorationOrder;
+        _decorationRepository = decorationOrder;
+        _foodRepository = foodRepository;
+        _serviceRepository = serviceRepository;
     }
 
     public async Task<Schedule> FindById(Guid scheduleId)
     => await _scheduleRepository.FindById(scheduleId) ?? throw new NotFoundException("Schedule not found.");
 
     public async Task<List<DecorationOrder>> SelectDecorationOrders(Guid scheduleId)
-    => await _decorationOrder.ListFromShedule(scheduleId);
+    => await _decorationRepository.ListFromShedule(scheduleId);
+
+    public async Task<List<FoodOrder>> SelectFoodOrders(Guid thirdPartyId)
+    => await _foodRepository.ListFromThirdParty(thirdPartyId);
 }
