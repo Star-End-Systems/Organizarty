@@ -6,53 +6,54 @@
 Layout = "_ThirdPartyLayout";
 ViewData["Title"] = "Meus produtos";
 }
-<section class="w-full">
-  <div class="mt-4">
-    <div class="flex justify-start items-center w-fit h-28">
-      <img class="items-center w-24 " src="/images/Clients/Description/BakeryLogo.png"></img>
-      <div class="ml-4">
-        <h1 class="text-[#BB00C7] font-[Inter] text-3xl"><strong>@Model.ThirdParty.Name</strong></h1>
-        <p class="text-[#848484] font-[Inter] text-xs">@Model.ThirdParty.Address</p>
-      </div>
+<div class="mt-4">
+  <div class="flex justify-start items-center w-fit h-28">
+    <img class="items-center w-24 " src="/images/Clients/Description/BakeryLogo.png"></img>
+    <div class="ml-4">
+      <h1 class="text-[#BB00C7] font-[Inter] text-3xl"><strong>@Model.ThirdParty.Name</strong></h1>
+      <p class="text-[#848484] font-[Inter] text-xs">@Model.ThirdParty.Address</p>
     </div>
   </div>
-  <div class="">
-    <h2 class="font-[Inter] font-bold text-[#848484] text-md mt-10 text-center">Seus Produtos</h2>
+</div>
+
+<div class="">
+  <h2 class="font-[Inter] font-bold text-[#848484] text-md mt-10 text-center">Seus Produtos</h2>
+</div>
+
+<div class="flex overflow-x-auto mt-4">
+  <div class="w-48 flex flex-col items-center Button font-[KonnectBold] text-[#908D8D] mr-4"><button
+      class="flex menuButtons rounded-full w-28 h-28  bg-[#424242]"><img class="w-14 self-center ml-auto
+mr-auto" src="/images/ThirdParty/MyProducts/Bolo.svg"></img></button>
+    <h4 class="text-sm">Bolos</h4>
   </div>
-  <div class="flex mt-4 justify-center">
-    <div class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D] mr-4"><button
-        class="flex menuButtons rounded-full w-28 h-28  bg-[#424242]"><img class="w-14 self-center ml-auto mr-auto"
-          src="/images/ThirdParty/MyProducts/Bolo.svg"></img></button>
-      <h4 class="text-sm">Bolos</h4>
-    </div>
-    <div class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D] mr-4"><button
-        class="flex menuButtons rounded-full w-28 h-28 bg-[#848484] hover:bg-[#424242]"><img
-          class="w-14 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Brigadeiro.svg"></img></button>
-      <h4 class="text-sm">Doces</h4>
-    </div>
-    <div class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D] mr-4"><button
-        class="flex menuButtons rounded-full w-28 h-28 bg-[#848484] hover:bg-[#424242]"><img
-          class="w-20 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Croisant.svg"></img></button>
-      <h4 class="text-sm">Salgados</h4>
-    </div>
-    <a href="/ThirdParty/products/new"
-      class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D] mr-4"><button
-        class="flex menuButtons rounded-full w-28 h-28  hover:bg-[#D9D9D9]"><img
-          class="w-10 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Cruz.png"></img></button>
-      <h4 class="text-sm">Adicionar</h4>
-    </a>
+  <div class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D] mr-4"><button
+      class="flex menuButtons rounded-full w-28 h-28 bg-[#848484] hover:bg-[#424242]"><img
+        class="w-14 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Brigadeiro.svg"></img></button>
+    <h4 class="text-sm">Doces</h4>
   </div>
-  <div class="ml-20">
-    @foreach(var food in Model.Foods){
-    <div class="mt-6">
-      <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">@food.Name <a
-          href="/ThirdParty/Products/NewSubitem/@food.Id">+</a></h1>
-    </div>
-    <div class="flex">
-      @foreach (var item in food.Foods){
-      <component type="typeof(ThirdPartyProductCard)" render-mode="ServerPrerendered" param-Food="@item" />
-      }
-    </div>
+  <div class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D] mr-4"><button
+      class="flex menuButtons rounded-full w-28 h-28 bg-[#848484] hover:bg-[#424242]"><img
+        class="w-20 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Croisant.svg"></img></button>
+    <h4 class="text-sm">Salgados</h4>
+  </div>
+  <a href="/ThirdParty/products/new"
+    class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D] mr-4">
+    <button class="flex menuButtons rounded-full w-28 h-28  hover:bg-[#D9D9D9]"><img
+        class="w-10 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Cruz.png"></img></button>
+    <h4 class="text-sm">Adicionar</h4>
+  </a>
+</div>
+
+@foreach(var food in Model.Foods){
+<div class="w-full">
+  <div class="mt-6">
+    <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">@food.Name <a
+        href="/ThirdParty/Products/NewSubitem/@food.Id">+</a></h1>
+  </div>
+  <div class="w-full overflow-x-auto flex">
+    @foreach (var item in food.Foods){
+    <component type="typeof(ThirdPartyProductCard)" render-mode="ServerPrerendered" param-Food="@item" />
     }
   </div>
-</section>
+</div>
+}
