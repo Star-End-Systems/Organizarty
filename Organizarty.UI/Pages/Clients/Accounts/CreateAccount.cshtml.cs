@@ -48,37 +48,10 @@ public class CreateAccountModel : PageModel
         [Display(Name = "CPF")]
         public string? CPF { get; set; }
 
+        [Required]
+        [Display(Name = "Telefone")]
+        public string Tel { get; set; } = default!;
     }
 
     public void OnGet() { }
-
-    public async Task<IActionResult> OnPostAsync()
-    {
-        if (!ModelState.IsValid)
-        {
-            return Page();
-        }
-
-        var data = new RegisterUserDto(Input.Username, Input.FullName, Input.LocationID, Input.Email, Input.Password, Input.CPF);
-
-
-        try
-        {
-            var user = await _registerUser.Execute(data);
-            return RedirectToPage("/Clients/Accounts/Login");
-        }
-        catch (ValidationFailException e)
-        {
-            foreach (var err in e.Errors)
-            {
-                ModelState.AddModelError(string.Empty, err.message);
-            }
-            return Page();
-        }
-        catch (EmailsenderException)
-        {
-            ModelState.AddModelError(string.Empty, "Erro ao enviar o email, tente novamente mais tarde.");
-            return Page();
-        }
-    }
 }
