@@ -48,7 +48,7 @@ public class DescriptionModel : PageModel
 
     public DecorationInfo Decoration { get; set; } = new();
     public List<PartyTemplate> Parties { get; set; } = new();
-    public User UserModel { get; set; }
+    public User UserModel { get; set; } = new();
 
     public async Task OnGetAsync(Guid decorationId)
     {
