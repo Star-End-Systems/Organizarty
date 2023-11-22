@@ -1,8 +1,8 @@
 @page
 @model NewDecorationModel
 @{
-    ViewData["title"] = "Minhas Decorações";
-    Layout = "_NullLayout";
+ViewData["title"] = "Minhas Decorações";
+Layout = "_NullLayout";
 }
 
 <section class="flex h-screen">
@@ -28,6 +28,138 @@
           <input asp-for="Input.Description" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
             aria-required="true" placeholder="Descrição" />
           <span asp-validation-for="Input.Description" class="placeholder"></span>
+
+
+          <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Categorias</h3>
+          <ul class="w-9/12 grid  gap-6 md:grid-cols-2">
+            <li>
+              <input asp-for="Input.Category" type="radio" id="category-balao" value="Balao" class="hidden peer"
+                required>
+              <label for="category-balao"
+                class="inline-flex items-center justify-center p-5 text-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white peer-checked:border-white peer-checked:bg-purple-500 peer-checked:text-white hover:bg-purple-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 bg-purple-950 w-40 h-40 rounded-full">
+                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+                Balão
+
+              </label>
+            </li>
+            <li>
+              <input asp-for="Input.Category" type="radio" id="category-mesa" value="Mesa" class="hidden peer" required>
+              <label for="category-mesa"
+                class="inline-flex items-center justify-center p-5 text-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white peer-checked:border-white peer-checked:bg-purple-500 peer-checked:text-white hover:bg-purple-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 bg-purple-950 w-40 h-40 rounded-full">
+                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+                Mesa
+
+              </label>
+            </li>
+            <li>
+              <input asp-for="Input.Category" type="radio" id="category-copo" value="2" class="hidden peer" required>
+              <label for="category-copo"
+                class="inline-flex items-center justify-center p-5 text-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white peer-checked:border-white peer-checked:bg-purple-500 peer-checked:text-white hover:bg-purple-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 bg-purple-950 w-40 h-40 rounded-full">
+                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+
+              </label>
+            </li>
+            <li>
+              <input asp-for="Input.Category" type="radio" id="category-mesa" value="3" class="hidden peer" required>
+              <label for="category-mesa"
+                class="inline-flex items-center justify-center p-5 text-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white peer-checked:border-white peer-checked:bg-purple-500 peer-checked:text-white hover:bg-purple-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 bg-purple-950 w-40 h-40 rounded-full">
+                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+
+              </label>
+            </li>
+            <li>
+              <input asp-for="Input.Category" type="radio" id="category-descartavel" value="0" class="hidden peer"
+                required>
+              <label for="category-descartavel"
+                class="inline-flex items-center justify-center p-5 text-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white peer-checked:border-white peer-checked:bg-purple-500 peer-checked:text-white hover:bg-purple-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 bg-purple-950 w-40 h-40 rounded-full">
+                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+
+              </label>
+            </li>
+            <li>
+              <input asp-for="Input.Category" type="radio" id="category-quardanapo" value="3" class="hidden peer"
+                required>
+              <label for="category-quardanapo"
+                class="inline-flex items-center justify-center p-5 text-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white peer-checked:border-white peer-checked:bg-purple-500 peer-checked:text-white hover:bg-purple-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 bg-purple-950 w-40 h-40 rounded-full">
+                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+
+              </label>
+            </li>
+            <li>
+              <input asp-for="Input.Category" type="radio" id="category-toalhademesa" value="4" class="hidden peer"
+                required>
+              <label for="category-toalhademesa"
+                class="inline-flex items-center justify-center p-5 text-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white peer-checked:border-white peer-checked:bg-purple-500 peer-checked:text-white hover:bg-purple-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 bg-purple-950 w-40 h-40 rounded-full">
+                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+
+              </label>
+            </li>
+            <li>
+              <input asp-for="Input.Category" type="radio" id="category-extras" value="5" class="hidden peer" required>
+              <label for="category-extras"
+                class="inline-flex items-center justify-center p-5 text-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white peer-checked:border-white peer-checked:bg-purple-500 peer-checked:text-white hover:bg-purple-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 bg-purple-950 w-40 h-40 rounded-full">
+                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+
+              </label>
+            </li>
+            <li> <input asp-for="Input.Category" type="radio" id="category-cadeira" value="6" class="hidden peer"
+                required>
+              <label for="category-cadeira"
+                class="inline-flex items-center justify-center p-5 text-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white peer-checked:border-white peer-checked:bg-purple-500 peer-checked:text-white hover:bg-purple-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 bg-purple-950 w-40 h-40 rounded-full">
+                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+
+              </label>
+            </li>
+            <li>
+              <input asp-for="Input.Category" type="radio" id="category-arranjosdemesa" value="7" class="hidden peer"
+                required>
+              <label for="category-arranjosdemesa"
+                class="inline-flex items-center justify-center p-5 text-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-white peer-checked:border-white peer-checked:bg-purple-500 peer-checked:text-white hover:bg-purple-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 bg-purple-950 w-40 h-40 rounded-full">
+                <svg class="w-5 h-5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 14 10">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 5h12m0 0L9 1m4 4L9 9" />
+                </svg>
+
+              </label>
+            </li>
+          </ul>
 
           <!-- Size -->
           @Html.DisplayNameFor(m => m.Input.Size)
