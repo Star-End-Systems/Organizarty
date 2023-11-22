@@ -18,4 +18,7 @@ public class SelectDecorationTypeUseCase
 
     public async Task<DecorationType> FindById(Guid id)
     => await _decorationTypeRepository.FindById(id) ?? throw new NotFoundException("Decoration not found.");
+
+    public async Task<List<DecorationType>> GetAllAvaible()
+    => await _decorationTypeRepository.GetWithAvaible(true);
 }

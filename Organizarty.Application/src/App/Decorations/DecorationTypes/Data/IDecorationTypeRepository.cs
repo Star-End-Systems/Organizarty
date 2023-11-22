@@ -9,4 +9,6 @@ public interface IDecorationTypeRepository
     Task<List<DecorationType>> All();
 
     Task<DecorationType?> FindById(Guid id);
+
+    Task<List<DecorationType>> GetWithAvaible(bool avaible);
 }
