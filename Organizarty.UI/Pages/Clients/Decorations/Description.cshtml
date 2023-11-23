@@ -1,9 +1,9 @@
-@page "{productId:Guid}"
+@page "{decorationId:Guid}"
 @model DescriptionModel 
 @using Organizarty.UI.Blazor.Components.Utils;
 @{
     Layout = "_NullLayout";
-    ViewData["Title"] = "Descrição do Produto";
+    ViewData["Title"] = "Descrição da Decoração";
 }
 
 <section class="w-screen h-screen">
@@ -18,7 +18,7 @@
             </div>
             <div class="rounded self-center">
                 <img class="w-80" src="/images/Clients/Description/Bolo1.png"/>
-                <p class="mt-6 font-[Konnect] font- text-4xl text-[#848484]">R$ @Model.Food.Price</p>
+                <p class="mt-6 font-[Konnect] font- text-4xl text-[#848484]">R$ @Model.Decoration.Price</p>
                 <div class="bg-[#FF008A] rounded-xl h-2 w-52"></div>
             </div>
         </div>
@@ -28,11 +28,11 @@
                 <a href="/Clients/Products"><button><img class="w-12 mr-6 mt-6" src="/images/Clients/Description/Xis.svg"/></button></a>
             </div>
             <div class="w-fit self-start mt-48">
-                <h1 class="font-[Inter] font-bold text-[#FF008A] text-5xl">@Model.Food.FoodType.Name - @Model.Food.Flavour</h1>
-                <p class="text-[#848484]" font-[Konnect]>@Model.Food.FoodType.Category</p>
+                <h1 class="font-[Inter] font-bold text-[#FF008A] text-5xl">@Model.Decoration.DecorationType.Name</h1>
+                <p class="text-[#848484]" font-[Konnect]>@Model.Decoration.DecorationType.Category</p>
             </div>
             <div class="mt-4">
-                <p class="text-[#848484] font-[Inter] text-lg w-11/12">@Model.Food.FoodType.Description</p>
+                <p class="text-[#848484] font-[Inter] text-lg w-11/12">@Model.Decoration.DecorationType.Description</p>
             </div>
             <form class="flex mt-16" method="post">
                 <div class="w-1/2 mr-12">
@@ -60,7 +60,9 @@
                 </div>
             </form>
             <div class="w-1/2 flex mt-8">
-              <component type="typeof(ShowTags)" render-mode="ServerPrerendered" param-Tags="@Model.Food.FoodType.Tags" />
+              <component type="typeof(ShowTags)" render-mode="ServerPrerendered" param-Tags="@Model.Decoration.DecorationType.Tags" />
             </div>
     </div>
 </section>
+
+

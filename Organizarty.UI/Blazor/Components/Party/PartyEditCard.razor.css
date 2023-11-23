@@ -25,10 +25,10 @@ p{
     font-size: 1vh;
 }
 
-.Urso{
+.escuro{
     filter: brightness(50%);
 }
 
-.Festa:hover{
+.Festa{
     cursor: pointer;
 }

@@ -6,4 +6,6 @@ public interface IPartyTemplateRepository
 {
     Task<PartyTemplate> Create(PartyTemplate party);
     Task<PartyTemplate?> FromId(Guid partyId);
+
+    Task<List<PartyTemplate>> FromUser(Guid userId);
 }

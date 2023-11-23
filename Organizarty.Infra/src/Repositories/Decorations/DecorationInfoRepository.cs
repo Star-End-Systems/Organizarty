@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.DecorationInfos.Data;
 using Organizarty.Application.App.DecorationInfos.Entities;
 using Organizarty.Infra.Data.Contexts;
@@ -23,6 +24,21 @@ public class DecorationInfoRepository : IDecorationInfoRepository
 
     public async Task<DecorationInfo?> FindById(Guid id)
     => await _context.DecorationInfos.FindAsync(id);
+
+    public async Task<DecorationInfo?> FindByIdWithType(Guid id)
+    => await _context.DecorationInfos
+              .Where(x => x.Id == id)
+              .Include(x => x.DecorationType)
+              .Select(x => new DecorationInfo
+              {
+                  Id = x.Id,
+                  Color = x.Color,
+                  Material = x.Material,
+                  IsAvaible = x.IsAvaible,
+                  Price = x.Price,
+                  DecorationType = x.DecorationType
+              })
+              .FirstOrDefaultAsync();
 
     public async Task<DecorationInfo> Update(DecorationInfo decoration)
     {

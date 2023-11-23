@@ -1,0 +1,51 @@
+@page
+@model NewPartyModel
+
+@{
+Layout = "_ClientLayout";
+ViewData["Title"] = "Home";
+}
+
+<section class="flex h-screen">
+  <div class="part1 w-full h-screen py-8 flex-col">
+    <div class="flex justify-center">
+      <img class="w-32" src="/images/login/OrganizartyLogo.svg" />
+    </div>
+    <div class="LoginForm flex justify-center py-8 text-center">
+      <form id="login" method="post" class="w-full">
+        <h2>Register</h2>
+        @* <div class="line pb-8 flex justify-center rounded-full"></div> *@
+        <div asp-validation-summary="ModelOnly" class=""></div>
+        <div class="h-full flex flex-col items-center justify-evenly">
+
+          <!-- Name -->
+          @Html.DisplayNameFor(m => m.Input.Name)
+          <input asp-for="Input.Name" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Digite o nome do seu negócio" />
+          <span asp-validation-for="Input.Name" class="placeholder"></span>
+
+          <!-- Description -->
+          @Html.DisplayNameFor(m => m.Input.Guests)
+          <input asp-for="Input.Guests" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="1" />
+          <span asp-validation-for="Input.Guests" class="placeholder"></span>
+
+          <!-- Category -->
+          @Html.DisplayNameFor(m => m.Input.LocationId)
+          <select id="large" asp-for="Input.LocationId"
+            class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option selected>Selecione uma localização</option>
+            @foreach(var location in Model.Locations){
+              <option value="@location.Id">@location.Name</option>
+            }
+          </select>
+          <span asp-validation-for="Input.LocationId" class="placeholder"></span>
+        </div>
+        <div class="flex w-full place-content-evenly py-14">
+          <button id="login-submit" type="submit" class="logar w-48 h-14 rounded-xl hover:shadow-2xl">Criar
+            conta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

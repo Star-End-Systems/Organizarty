@@ -1,0 +1,39 @@
+@using Organizarty.Application.App.Party.Entities
+
+@if(PartyTemplate is null){
+  <div class="w-fit mr-[5%] self-center ">
+      <div class="bg-[#D9D9D9] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
+          <div class=" w-80 rounded-2xl z-0 ">
+              <div class="flex Festa relative h-full">
+                  <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
+                  </div>
+
+                  <div class="h-full w-full flex items-center justify-center ">
+                    <img class="w-24 z-0 flex items-center" src="/images/Clients/MyParties/Cruz.svg">
+                  </div>
+              </div>
+          </div> 
+      </div>
+  </div>
+} else{
+  <div class="w-fit mr-[5%] self-center ">
+      <div class="bg-[#594560] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
+          <div class=" w-80 rounded-2xl z-0 ">
+              <div class="flex Festa relative h-full">
+                  <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
+                      <h4 class="clareador">@PartyTemplate.Name</h4>
+                      <p class="clareador">Chá de bebê <br> Data do Evento: @PartyTemplate.ExpectedGuests</p>
+                  </div>
+                  <div class="h-full w-full flex items-center justify-center ">
+                    <img class="h-full escuro" src="/images/Clients/MyParties/Urso.png">
+                  </div>
+              </div>
+          </div> 
+      </div>
+  </div>
+}
+
+@code{
+  [Parameter]
+  public PartyTemplate? PartyTemplate {get; set;} = null;
+}
