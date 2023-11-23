@@ -1,5 +1,6 @@
 @page "{productId:Guid}"
 @model DescriptionModel 
+@using Organizarty.UI.Blazor.Components.Utils;
 @{
     Layout = "_NullLayout";
     ViewData["Title"] = "Descrição do Produto";
@@ -17,7 +18,7 @@
             </div>
             <div class="rounded self-center">
                 <img class="w-80" src="/images/Clients/Description/Bolo1.png"/>
-                <p class="mt-6 font-[Konnect] font- text-4xl text-[#848484]">R$ 55,90</p>
+                <p class="mt-6 font-[Konnect] font- text-4xl text-[#848484]">R$ @Model.Food.Price</p>
                 <div class="bg-[#FF008A] rounded-xl h-2 w-52"></div>
             </div>
         </div>
@@ -27,14 +28,13 @@
                 <a href="/Clients/Products"><button><img class="w-12 mr-6 mt-6" src="/images/Clients/Description/Xis.svg"/></button></a>
             </div>
             <div class="w-fit self-start mt-48">
-                <h1 class="font-[Inter] font-bold text-[#FF008A] text-5xl">Bolo de chocolate belga 4,2kg</h1>
-                <p class="text-[#848484]" font-[Konnect]>Bolo</p>
+                <h1 class="font-[Inter] font-bold text-[#FF008A] text-5xl">@Model.Food.FoodType.Name - @Model.Food.Flavour</h1>
+                <p class="text-[#848484]" font-[Konnect]>@Model.Food.FoodType.Category</p>
             </div>
             <div class="mt-4">
-                <p class="text-[#848484] font-[Inter] text-lg w-11/12">  O bolo de chocolate belga é uma sobremesa deliciosa e sofisticada, feita com chocolate 
-                belga de alta qualidade e uma ganache cremosa. </p>
+                <p class="text-[#848484] font-[Inter] text-lg w-11/12">@Model.Food.FoodType.Description</p>
             </div>
-            <div class="flex mt-16">
+            <form class="flex mt-16" method="post">
                 <div class="w-1/2 mr-12">
                     <h2 class="text-[#A09898] font-[Inter] font-bold">Nota do cliente</h2>
                     <input asp-for="Input.Note" class="w-full h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true" placeholder="Ex: Sem cobertura"/>
@@ -45,14 +45,22 @@
                     <input asp-for="Input.Quantity" type="number" min="0" class="w-12 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
                     <span asp-validation-for="Input.Quantity" class="placeholder"></span>
                 </div>
-            </div>
+
+                <select id="large" asp-for="Input.PartyId"
+                  class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected>Selecione uma Festa</option>
+                  @foreach(var party in Model.Parties){
+                    <option value="@party.Id">@party.Name</option>
+                  }
+                </select>
+                <span asp-validation-for="Input.PartyId" class="placeholder"></span>
+
+                <div class="w-full flex justify-end">
+                    <button class="justify-center mr-12 bg-[#FF008A] text-white font-[Inter] font-bold w-52 h-12 rounded-lg"><h2 class="flex items-center justify-center">Incluir na festa</h2></button>
+                </div>
+            </form>
             <div class="w-1/2 flex mt-8">
-                <div class="flex justify-center mr-2 items-center w-28 h-8 font-[Inter] text-white font-bold bg-[#FF008A] rounded-xl"><p class="">#Chocolate</p></div>
-                <div class="flex justify-center mr-2 items-center w-28 h-8 font-[Inter] text-white font-bold bg-[#FF008A] rounded-xl"><p class="">#Clássico</p></div>
-                <div class="flex justify-center items-center w-28 h-8 font-[Inter] text-white font-bold bg-[#FF008A] rounded-xl"><p class="">#Recheado</p></div>
-            </div>
-            <div class="w-full flex justify-end">
-                <button class="justify-center mr-12 bg-[#FF008A] text-white font-[Inter] font-bold w-52 h-12 rounded-lg"><h2 class="flex items-center justify-center">Incluir na festa</h2></button>
+              <component type="typeof(ShowTags)" render-mode="ServerPrerendered" param-Tags="@Model.Food.FoodType.Tags" />
             </div>
     </div>
 </section>

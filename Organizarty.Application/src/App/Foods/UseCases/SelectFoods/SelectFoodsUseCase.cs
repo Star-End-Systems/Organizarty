@@ -19,4 +19,7 @@ public class SelectFoodsUseCase
 
     public async Task<List<FoodType>> AllFoodsAvaible()
       => await _typeRepository.AllFoods(true);
+
+    public async Task<FoodInfo?> FindByIdWithDetail(Guid id)
+      => await _infoRepository.FindWithIdWithDetail(id);
 }
