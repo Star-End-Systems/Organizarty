@@ -35,6 +35,8 @@ public class NewServiceModel : PageModel
         [Required]
         public string Description { get; set; } = default!;
 
+        public List<string> Tags { get; set; } = new();
+
     }
 
     public async Task<IActionResult> OnPostAsync()
