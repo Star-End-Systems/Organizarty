@@ -1,23 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Organizarty.Application.App.Users.UseCases;
+using Organizarty.Application.App.ThirdParties.UseCases;
 using Organizarty.Application.Exceptions;
 using Organizarty.UI.Attributes;
 using System.ComponentModel.DataAnnotations;
 
-namespace Organizarty.UI.Pages.Clients.Accounts;
+namespace Organizarty.UI.Pages.ThirdParty.Accounts;
 
-[Unauthenticated("/Clients")]
-public class CreateAccountModel : PageModel
+[Unauthenticated("/ThirdParty")]
+public class CreateThirdPartyAccountModel : PageModel
 {
-    private readonly RegisterUserUseCase _registerUser;
-    private readonly ILogger<CreateAccountModel> _logger;
+    private readonly RegisterThirdPartyUseCase _registerThirdParty;
+    private readonly ILogger<CreateThirdPartyAccountModel> _logger;
 
-    public CreateAccountModel(ILogger<CreateAccountModel> logger, RegisterUserUseCase registerUser)
+    public CreateThirdPartyAccountModel(ILogger<CreateThirdPartyAccountModel> logger, RegisterThirdPartyUseCase registerThirdParty)
 
     {
         _logger = logger;
-        _registerUser = registerUser;
+        _registerThirdParty = registerThirdParty;
     }
 
     [BindProperty]
@@ -28,6 +28,11 @@ public class CreateAccountModel : PageModel
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; } = default!;
+
+        [Required]
+        [Display(Name = "Localização")]
+        public string Location { get; set; } = default!;
+
 
         [Required]
         [Display(Name = "Nome Completo")]
@@ -42,15 +47,16 @@ public class CreateAccountModel : PageModel
         public string LocationID { get; set; } = default!;
 
         [Required]
-        [Display(Name = "Senha ruim")]
-        public string Password { get; set; } = default!;
-
-        [Display(Name = "CPF")]
-        public string? CPF { get; set; }
+        [Display(Name = "CNPJ")]
+        public string CNPJ { get; set; } = default!;
 
         [Required]
         [Display(Name = "Telefone")]
         public string Tel { get; set; } = default!;
+
+        [Required]
+        [Display(Name = "Senha ruim")]
+        public string Password { get; set; } = default!;
 
         [Required]
         [Display(Name = "Senha")]
