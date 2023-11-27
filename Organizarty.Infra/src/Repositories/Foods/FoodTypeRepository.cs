@@ -65,4 +65,15 @@ public class FoodTypeRepository : IFoodTypeRepository
         await _context.SaveChangesAsync();
         return foodType;
     }
+
+    public async Task<FoodType?> FindById(Guid id)
+      => await _context.FoodTypes.FindAsync(id);
+
+    public async Task<FoodType> Update(FoodType foodType)
+    {
+        var f = _context.FoodTypes.Update(foodType);
+        await _context.SaveChangesAsync();
+
+        return f.Entity;
+    }
 }

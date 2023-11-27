@@ -21,6 +21,10 @@ public class FoodInfoRepository : IFoodInfoRepository
         return foodType;
     }
 
+    public async Task<FoodInfo?> FindById(Guid id)
+      => await _context.FoodInfos.FindAsync(id);
+
+
     public async Task<FoodInfo?> FindWithIdWithDetail(Guid id)
     => await _context.FoodInfos
               .Where(x => x.Id == id)
@@ -35,4 +39,12 @@ public class FoodInfoRepository : IFoodInfoRepository
                   FoodType = x.FoodType
               })
               .FirstOrDefaultAsync();
+
+    public async Task<FoodInfo> Update(FoodInfo food)
+    {
+        _context.FoodInfos.Update(food);
+        await _context.SaveChangesAsync();
+
+        return food;
+    }
 }

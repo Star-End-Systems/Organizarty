@@ -20,6 +20,8 @@ public class NewProductsModel : PageModel
         _authHelper = authHelper;
     }
 
+    public string Category { get; set; } = "";
+
     [BindProperty]
     public InputModel Input { get; set; } = default!;
 
@@ -37,11 +39,13 @@ public class NewProductsModel : PageModel
         [Display(Name = "Tags")]
         public List<string> Tags { get; set; } = new();
     }
-    public void OnGet()
-    {
 
+    public async Task OnGetAsync(string category)
+    {
+        Category = category;
     }
-    public async Task<IActionResult> OnPostAsync()
+
+    public async Task<IActionResult> OnPostAsync(string category)
     {
         var thirdParty = await _authHelper.GetThirdPartyFromToken(_authHelper.GetToken() ?? "");
 
@@ -50,11 +54,9 @@ public class NewProductsModel : PageModel
             return Page();
         }
 
-        var data = new CreateFoodDto(Input.Name, Input.Description, Input.Category, Input.Tags, thirdParty.Id);
-
         try
         {
-            await _createFood.Execute(data);
+            await _createFood.Execute(new(Input.Name, Input.Description, category, Input.Tags, thirdParty.Id));
             return RedirectToPage("/ThirdParty/Products/Index");
         }
         catch (ValidationFailException e)

@@ -25,21 +25,20 @@
     </div>
     <section class="w-full flex justify-center h-5/6">
         <div class="w-5/6">
-            <div class="mt-20">
-                <h1 class="font-[KonnectBold] text-[#A09898] text-4xl">Bolos</h1>
-            </div>
-            <div class="flex mt-[1%]">
-                <partial name="_ProductsList"/>
-                <partial name="_ProductsList"/>
-                <partial name="_ProductsList"/>
-                <partial name="_ProductsList"/>
-            </div>
-            <div class="flex">
-                <partial name="_ProductsList"/>
-                <partial name="_ProductsList"/>
-                <partial name="_ProductsList"/>
-                <partial name="_ProductsList"/>
-            </div>
+            @if(Model.Foods.Count == 0){
+              <p>sem comida meu nobne</p>
+      } else{
+            @foreach(var item in Model.Foods){
+              <div class="mt-20">
+                  <h1 class="font-[KonnectBold] text-[#A09898] text-4xl">item.Name</h1>
+              </div>
+              <div class="flex">
+                  @foreach(var subitem in item.Foods){
+                    <partial name="_ProductsList"/>
+                  }
+              </div>
+            }
+      }
         </div>
     </section>
 </section>

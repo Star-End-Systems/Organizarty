@@ -13,6 +13,9 @@ internal static class FoodInfoExtension
         services.AddScoped<CreateFoodUseCase>();
         services.AddScoped<CreateFoodItemUseCase>();
 
+        services.AddScoped<EditFoodUseCase>();
+        services.AddScoped<EditFoodSubItemUseCase>();
+
         services.AddScoped<SelectFoodsUseCase>();
 
         return services;
