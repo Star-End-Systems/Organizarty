@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Adapters;
-using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Party.Enums;
+using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Party.UseCases;
 using Organizarty.UI.Attributes;
 namespace Organizarty.UI.Pages.Clients.Party;
@@ -36,13 +36,25 @@ public class PartyDetailModel : PageModel
             return Redirect("/Clients");
         }
 
+        var t = ItemType.Food;
+
+        switch (t)
+        {
+            case ItemType.Decoration:
+                break;
+            case ItemType.Food:
+                break;
+            case ItemType.Service:
+                break;
+        }
+
         Party = p;
 
         Foods = await _selectParty.GetFoods(partyId);
         Services = await _selectParty.GetServices(partyId);
         Decoration = await _selectParty.GetDecorations(partyId);
 
-        Items.AddRange(Foods.Select(x => new ItemOrder(x.Id, ItemType.Food, $"{x.FoodInfo?.FoodType?.Name ?? "no name"} - {x.FoodInfo.Flavour}", x.Quantity, x.Note, x.PartyTemplateId)));
+        Items.AddRange(Foods.Select(x => new ItemOrder(x.Id, ItemType.Food, $"{x.FoodInfo?.FoodType?.Name ?? "no name"} - {x?.FoodInfo?.Flavour ?? ""} ", x.Quantity, x.Note, x.PartyTemplateId)));
         Items.AddRange(Services.Select(x => new ItemOrder(x.Id, ItemType.Service, $"{x.ServiceInfo?.ServiceType?.Name ?? "no name"} - {x.ServiceInfo.Plan}", 1, x.Note, x.PartyTemplateId)));
         Items.AddRange(Decoration.Select(x => new ItemOrder(x.Id, ItemType.Decoration, $"{x.DecorationInfo?.DecorationType?.Name ?? "no name"} - {x.DecorationInfo.Material}", x.Quantity, x.Note, x.PartyTemplate!.Id)));
 

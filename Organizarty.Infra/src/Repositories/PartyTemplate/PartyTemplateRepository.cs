@@ -21,7 +21,7 @@ public class PartyTemplateRepository : IPartyTemplateRepository
         return a.Entity;
     }
 
-    public async Task<Application.App.Party.Entities.PartyTemplate?> FromId(Guid partyId)
+    public async Task<Application.App.Party.Entities.PartyTemplate?> FindById(Guid partyId)
     => await _context.PartyTemplates.FindAsync(partyId);
 
     public async Task<Application.App.Party.Entities.PartyTemplate?> FromIdWithLocation(Guid partyId)
@@ -43,4 +43,12 @@ public class PartyTemplateRepository : IPartyTemplateRepository
                     OriginalPartyTemplate = x.OriginalPartyTemplate
                 })
                 .ToListAsync();
+
+    public async Task<Application.App.Party.Entities.PartyTemplate> Update(Application.App.Party.Entities.PartyTemplate party)
+    {
+        var p = _context.PartyTemplates.Update(party);
+        await _context.SaveChangesAsync();
+
+        return p.Entity;
+    }
 }

@@ -77,7 +77,7 @@ public class DescriptionModel : PageModel
             await _selectFoods.FindByIdWithDetail(productId);
 
             await _addFood.Execute(new(productId, Input.PartyId, Input.Quantity, Input.Note ?? ""));
-            return Redirect("/");
+            return Redirect($"/Clients/Party/Detail/{Input.PartyId}");
         }
         catch (Exception e)
         {

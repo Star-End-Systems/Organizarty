@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+
 // Add services to the container.
 builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddRepositories();

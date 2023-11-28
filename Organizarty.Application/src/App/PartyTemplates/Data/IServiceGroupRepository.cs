@@ -5,5 +5,9 @@ namespace Organizarty.Application.App.Party.Data;
 public interface IServiceGroupRepository
 {
     Task<ServiceGroup> Add(ServiceGroup group);
+    Task<ServiceGroup> Update(ServiceGroup group);
+    Task Delete(Guid id);
     Task<List<ServiceGroup>> ListFromParty(Guid partyId);
+
+    Task<ServiceGroup?> FindById(Guid id);
 }

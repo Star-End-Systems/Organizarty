@@ -70,7 +70,7 @@ public class DescriptionModel : PageModel
         {
             await _selectDecoration.FinbByIdWithType(decorationId);
             await _addDecoration.Execute(new(decorationId, Input.PartyId, Input.Quantity, Input.Note ?? ""));
-            return Redirect("/Clients/Party/New");
+            return Redirect($"/Clients/Party/Detail/{Input.PartyId}");
         }
         catch (Exception e)
         {
