@@ -42,9 +42,9 @@ public class PartyDetailModel : PageModel
         Services = await _selectParty.GetServices(partyId);
         Decoration = await _selectParty.GetDecorations(partyId);
 
-        Items.AddRange(Foods.Select(x => new ItemOrder(x.Id, ItemType.Food, x.FoodInfo?.FoodType?.Name ?? "no name", x.Quantity, x.Note, x.PartyTemplateId)));
-        Items.AddRange(Services.Select(x => new ItemOrder(x.Id, ItemType.Service, x.ServiceInfo?.ServiceType?.Name ?? "no name", 0, x.Note, x.PartyTemplateId)));
-        Items.AddRange(Decoration.Select(x => new ItemOrder(x.Id, ItemType.Decoration, x.DecorationInfo?.DecorationType?.Name ?? "no name", x.Quantity, x.Note, x.PartyTemplate!.Id)));
+        Items.AddRange(Foods.Select(x => new ItemOrder(x.Id, ItemType.Food, $"{x.FoodInfo?.FoodType?.Name ?? "no name"} - {x.FoodInfo.Flavour}", x.Quantity, x.Note, x.PartyTemplateId)));
+        Items.AddRange(Services.Select(x => new ItemOrder(x.Id, ItemType.Service, $"{x.ServiceInfo?.ServiceType?.Name ?? "no name"} - {x.ServiceInfo.Plan}", 1, x.Note, x.PartyTemplateId)));
+        Items.AddRange(Decoration.Select(x => new ItemOrder(x.Id, ItemType.Decoration, $"{x.DecorationInfo?.DecorationType?.Name ?? "no name"} - {x.DecorationInfo.Material}", x.Quantity, x.Note, x.PartyTemplate!.Id)));
 
         return Page();
     }

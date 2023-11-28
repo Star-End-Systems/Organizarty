@@ -23,5 +23,6 @@ public class ServiceGroupRepository : IServiceGroupRepository
 
 
     public async Task<List<ServiceGroup>> ListFromParty(Guid partyId)
-      => await _context.ServiceGroups.Where(x => x.PartyTemplateId == partyId).ToListAsync();
+      => await _context.ServiceGroups.Where(x => x.PartyTemplateId == partyId).Include(x => x.ServiceInfo).Include(x => x.ServiceInfo!.ServiceType).ToListAsync();
+      // => await _context.ServiceGroups.Where(x => x.PartyTemplateId == partyId).ToListAsync();
 }
