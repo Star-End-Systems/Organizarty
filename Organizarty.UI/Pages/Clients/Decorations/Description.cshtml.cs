@@ -34,15 +34,15 @@ public class DescriptionModel : PageModel
 
     public class InputModel
     {
-        [Display(Name = "ClientNotes")]
-        public string Note { get; set; } = "";
+        [Display(Name = "Notes")]
+        public string? Note { get; set; }
 
         [Required]
-        [Display(Name = "ClientNotes")]
-        public int Quantity { get; set; } = default!;
+        [Display(Name = "Quantity")]
+        public int Quantity { get; set; }
 
         [Required]
-        [Display(Name = "festa")]
+        [Display(Name = "Festa")]
         public Guid PartyId { get; set; } = default!;
     }
 
@@ -61,24 +61,22 @@ public class DescriptionModel : PageModel
     {
         if (!ModelState.IsValid)
         {
+            Decoration = await _selectDecoration.FinbByIdWithType(decorationId);
+            await OnGetAsync(decorationId);
             return Page();
         }
 
-        await _selectDecoration.FinbByIdWithType(decorationId);
-        var user = await _authHelper.GetUserFromToken(_authHelper.GetToken()!);
-
-        var data = new AddDecorationToPartyDto(decorationId, Input.PartyId, Input.Quantity, Input.Note);
-
         try
         {
-            await _addDecoration.Execute(data);
-            return Redirect("/");
+            await _selectDecoration.FinbByIdWithType(decorationId);
+            await _addDecoration.Execute(new(decorationId, Input.PartyId, Input.Quantity, Input.Note ?? ""));
+            return Redirect("/Clients/Party/New");
         }
         catch (Exception e)
         {
             // TODO: add error to ModelState
             _logger.LogError(e.ToString());
-            return Page();
+            return Redirect("/");
         }
 
     }

@@ -21,6 +21,9 @@ public class SelectPartyUseCase
     public async Task<PartyTemplate?> FromId(Guid partyId)
       => await _partyRepository.FromId(partyId);
 
+    public async Task<PartyTemplate?> FromIdWithLocation(Guid partyId)
+      => await _partyRepository.FromIdWithLocation(partyId);
+
     public async Task<List<DecorationGroup>> GetDecorations(Guid partyId)
       => await _decorationRepository.ListFromParty(partyId);
 
