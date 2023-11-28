@@ -44,14 +44,12 @@ public class OrderFoodUseCase
 
         decimal total = food.Quantity * food!.FoodInfo.Price;
 
-        Console.WriteLine(food.PartyTemplateId);
         return new FoodOrder
         {
             Quantity = food.Quantity,
             Note = food.Note ?? "",
             FoodInfoId = food.FoodInfoId,
-            PartyTemplateId = schedule.PartyId,
-            ThirdPartyId = food.PartyTemplateId,
+            ThirdPartyId = food.FoodInfo.FoodType.ThirdPartyId,
             EventDate = schedule.StartDate,
             ScheduleId = schedule.Id,
             Status = ItemStatus.WAITING,

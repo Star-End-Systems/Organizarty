@@ -49,7 +49,7 @@ public class ScheduleUseCase
         var s = await _scheduleRepository.Create(schedule);
 
         await _orderDecoration.Execute(s, Enum.ItemStatus.PENDING);
-        // await _orderfood.Execute(s);
+        await _orderfood.Execute(s);
         await _orderService.Execute(s);
 
         return s;

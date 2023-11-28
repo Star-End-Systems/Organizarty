@@ -12,6 +12,6 @@ public class DecorationInfoConfiguration : IEntityTypeConfiguration<DecorationIn
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
         builder.Property(x => x.Color).IsRequired().HasMaxLength(32);
         builder.Property(x => x.Material).IsRequired().HasMaxLength(32);
-        builder.Property(x => x.Price).IsRequired().HasPrecision(5, 2);
+        builder.Property(x => x.Price).IsRequired().HasPrecision(7, 2);
     }
 }

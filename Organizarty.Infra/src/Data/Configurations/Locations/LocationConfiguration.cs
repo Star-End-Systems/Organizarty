@@ -16,7 +16,7 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
 
         builder.Property(x => x.Category).IsRequired().HasMaxLength(32);
 
-        builder.Property(x => x.RentPerDay).IsRequired().HasPrecision(5, 2);
+        builder.Property(x => x.RentPerDay).IsRequired().HasPrecision(7, 2);
 
         builder.Property(x => x.CEP).IsRequired().HasMaxLength(8);
 
