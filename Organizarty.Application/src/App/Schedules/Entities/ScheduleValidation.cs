@@ -8,6 +8,6 @@ public class ScheduleValidation : AbstractValidator<Schedule>
     {
         RuleFor(x => x.ExpectedGuests).GreaterThan(1);
         RuleFor(x => x.StartDate).GreaterThan(DateTime.Today);
-        RuleFor(x => x).Must(x => x.StartDate > x.EndDate).WithMessage("End date must be after start date");
+        RuleFor(x => x).Must(x => x.StartDate <= x.EndDate).WithMessage("End date must be after start date");
     }
 }

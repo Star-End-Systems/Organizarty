@@ -30,6 +30,10 @@ public class FoodOrderRepository : IFoodOrderRepository
         return food;
     }
 
+    public async Task<FoodOrder?> FindById(Guid id)
+      => await _context.FoodOrders.FindAsync(id);
+
+
     public async Task<List<FoodOrder>> ListFromThirdParty(Guid thirdPartyId)
     => await _context.FoodOrders
               .Where(x => x.ThirdPartyId == thirdPartyId)

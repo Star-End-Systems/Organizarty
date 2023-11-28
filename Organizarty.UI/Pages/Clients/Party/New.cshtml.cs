@@ -60,6 +60,7 @@ public class NewPartyModel : PageModel
 
         if (!ModelState.IsValid)
         {
+            await OnGetAsync();
             return Page();
         }
 
@@ -73,12 +74,14 @@ public class NewPartyModel : PageModel
         catch (ValidationFailException e)
         {
             e.Errors.ForEach(e => ModelState.AddModelError(string.Empty, e.message));
+            await OnGetAsync();
             return Page();
         }
         catch (Exception e)
         {
             _logger.LogError(e.ToString());
             ModelState.AddModelError(string.Empty, "Erro ao criar festa. Tente novamente mais tarde ");
+            await OnGetAsync();
             return Page();
         }
     }

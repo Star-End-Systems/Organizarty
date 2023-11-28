@@ -9,9 +9,12 @@ using Organizarty.UI.Helpers;
 using Organizarty.Application.App.Party.UseCases;
 using Organizarty.Application.App.ThirdParties.UseCases;
 using Organizarty.Application.App.Foods.UseCases;
+using Organizarty.UI.Attributes;
+using Organizarty.Adapters;
 
 namespace Organizarty.UI.Pages.Clients.Products;
 
+[Authorized("/Clients/Accounts/Login", UserType.Client)]
 public class DescriptionModel : PageModel
 {
     private readonly ILogger<DescriptionModel> _logger;

@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Schedules.Data;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Infra.Data.Contexts;
@@ -23,4 +24,9 @@ public class ScheduleRepository : IScheduleRepository
 
     public async Task<Schedule?> FindById(Guid scheduleId)
     => await _context.Schedules.FindAsync(scheduleId);
+
+    public async Task<List<Schedule>> ListFromUser(Guid userid)
+      => await _context.Schedules
+                .Where(x => x.UserId == userid)
+                .ToListAsync();
 }

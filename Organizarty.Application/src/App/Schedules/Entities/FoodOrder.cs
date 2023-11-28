@@ -1,5 +1,4 @@
 using Organizarty.Application.App.Foods.Entities;
-using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Schedules.Enum;
 using Organizarty.Application.App.ThirdParties.Entities;
 
@@ -16,9 +15,6 @@ public class FoodOrder
     public DateTime EventDate { get; set; }
 
     public decimal Price { get; set; }
-
-    public Guid PartyTemplateId { get; set; }
-    public PartyTemplate? PartyTemplate { get; set; }
 
     public Guid FoodInfoId { get; set; }
     public FoodInfo? FoodInfo { get; set; }
