@@ -24,5 +24,5 @@ public class DecorationGroupRepository : IDecorationGroupRepository
     }
 
     public async Task<List<DecorationGroup>> ListFromParty(Guid partyId)
-      => await _context.DecorationGroups.Where(x => x.PartyTemplateId == partyId).ToListAsync();
+      => await _context.DecorationGroups.Where(x => x.PartyTemplateId == partyId).Include(x => x.DecorationInfo).Include(x => x.DecorationInfo!.DecorationType).ToListAsync();
 }
