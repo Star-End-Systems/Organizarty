@@ -12,10 +12,12 @@ internal static class PartyExtension
         services.AddValidatorsFromAssemblyContaining<PartyTemplateValidator>();
 
         services.AddScoped<CreatePartyUseCase>();
+        services.AddScoped<EditPartyUseCase>();
 
         services.AddScoped<AddFoodToPartyUseCase>();
         services.AddScoped<AddDecorationToPartyUseCase>();
         services.AddScoped<AddServiceToPartyUsecase>();
+        services.AddScoped<RemoveFromPartyUseCase>();
 
         services.AddScoped<SelectPartyUseCase>();
 

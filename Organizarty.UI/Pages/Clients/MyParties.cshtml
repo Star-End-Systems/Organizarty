@@ -53,7 +53,7 @@ ViewData["Title"] = "Home";
   <h1>Continue editando...</h1>
   <div class="flex overflow-x-auto w-full h-auto">
     @foreach(var party in Model.PartyTemplates){
-      <a class="mr-8" href="/Clients/Party/New"> <component type="typeof(PartyEditCard)" render-mode="ServerPrerendered" param-PartyTemplate="@party" /> </a>
+      <a class="mr-8" href="/Clients/Party/Detail/@party.Id"> <component type="typeof(PartyEditCard)" render-mode="ServerPrerendered" param-PartyTemplate="@party" /> </a>
     }
     <a class="mr-8" href="/Clients/Party/New"> <component type="typeof(PartyEditCard)" render-mode="ServerPrerendered" /> </a>
   </div>

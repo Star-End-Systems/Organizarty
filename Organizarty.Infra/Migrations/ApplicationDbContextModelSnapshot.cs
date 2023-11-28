@@ -42,8 +42,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("TextureURL")
                         .IsRequired()
@@ -119,8 +119,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.HasKey("Id");
 
@@ -136,6 +136,7 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Category")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Description")
@@ -208,7 +209,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<decimal>("RentPerDay")
-                        .HasColumnType("decimal(65,30)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
@@ -390,8 +392,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -431,7 +433,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(65,30)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -482,8 +485,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
@@ -517,8 +520,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<Guid>("ScheduleId")
                         .HasColumnType("char(36)");
@@ -562,8 +565,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(64)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<Guid>("ServiceTypeId")
                         .HasColumnType("char(36)");

@@ -1,0 +1,41 @@
+@page "{partyId:Guid}"
+@using Organizarty.UI.Blazor.Components.Party;
+@model PartyDetailModel
+
+@{
+  Layout = "_ClientLayout";
+  ViewData["Title"] = "Party Detail";
+}
+
+<base href="~/" />
+
+<h1>@Model.Party.Name</h1>
+
+<p>Localização: @Model.Party.Location.Name</p>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">Category</th>
+        <th scope="col" class="px-6 py-3">Name</th>
+        <th scope="col" class="px-6 py-3">Quantity</th>
+        <th scope="col" class="px-6 py-3">Note</th>
+        <th scope="col" class="px-6 py-3">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach(var item in Model.Items){
+      <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">@item.type</th>
+        <td class="px-6 py-4">@item.name</td>
+        <td class="px-6 py-4">@item.quantity</td>
+        <td class="px-6 py-4">@item.note</td>
+        <td class="px-6 py-4">
+            <component type="typeof(EditRemoveItemOrder)" render-mode="ServerPrerendered" param-ItemId="@item.id" param-Type="@item.type" />
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

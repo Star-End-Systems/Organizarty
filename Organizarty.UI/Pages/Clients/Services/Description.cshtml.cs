@@ -37,7 +37,7 @@ public class DescriptionModel : PageModel
     public class InputModel
     {
         [Display(Name = "Notas")]
-        public string Note { get; set; } = "";
+        public string? Note { get; set; }
 
         [Required]
         [Display(Name = "Festa")]
@@ -60,19 +60,7 @@ public class DescriptionModel : PageModel
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            Service = new ServiceInfo
-            {
-                Id = serviceId,
-                Price = 54.50M,
-                Plan = "Sample plan",
-                ServiceType = new()
-                {
-                    Name = "Sample service",
-                    Description = "Sample Description",
-                    Tags = new() { "Xiaomi", "Iphone", "Veio da lancha", "Debora" }
-                }
-            };
+            _logger.LogError(e.ToString());
         }
     }
 
@@ -80,23 +68,25 @@ public class DescriptionModel : PageModel
     {
         if (!ModelState.IsValid)
         {
+            await OnGetAsync(serviceId);
             return Page();
         }
 
         await _selectServices.FindSubServiceById(serviceId);
         var user = await _authHelper.GetUserFromToken(_authHelper.GetToken()!);
 
-        var data = new AddServiceToPartyDto(serviceId, Input.PartyId, Input.Note);
+        var data = new AddServiceToPartyDto(serviceId, Input.PartyId, Input.Note ?? "");
 
         try
         {
             await _addService.Execute(data);
-            return Redirect("/");
+            return Redirect($"/Clients/Party/Detail/{Input.PartyId}");
         }
         catch (Exception e)
         {
             // TODO: add error to ModelState
             _logger.LogError(e.ToString());
+            await OnGetAsync(serviceId);
             return Page();
         }
 

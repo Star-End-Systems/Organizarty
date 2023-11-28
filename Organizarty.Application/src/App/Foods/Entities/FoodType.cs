@@ -7,9 +7,9 @@ public class FoodType
 {
     public Guid Id { get; set; }
 
-    public string? Name { get; set; }
-    public string? Description { get; set; }
-    public string? Category { get; set; }
+    public string Name { get; set; } = default!;
+    public string Description { get; set; } = default!;
+    public string Category { get; set; } = default!;
 
     public ThirdParty ThirdParty { get; set; } = default!;
     public Guid ThirdPartyId { get; set; }

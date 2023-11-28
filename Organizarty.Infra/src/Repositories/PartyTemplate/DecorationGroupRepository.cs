@@ -23,6 +23,31 @@ public class DecorationGroupRepository : IDecorationGroupRepository
         return decoration;
     }
 
+    public async Task Delete(Guid id)
+    {
+        var item = await FindById(id);
+
+        if (item is null)
+        {
+            return;
+        }
+
+        _context.DecorationGroups.Remove(item);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<DecorationGroup?> FindById(Guid id)
+      => await _context.DecorationGroups.FindAsync(id);
+
     public async Task<List<DecorationGroup>> ListFromParty(Guid partyId)
-      => await _context.DecorationGroups.Where(x => x.PartyTemplateId == partyId).ToListAsync();
+      => await _context.DecorationGroups.Where(x => x.PartyTemplateId == partyId).Include(x => x.DecorationInfo).Include(x => x.DecorationInfo!.DecorationType).ToListAsync();
+
+    public async Task<DecorationGroup> Update(DecorationGroup decoration)
+    {
+        var d = _context.DecorationGroups.Update(decoration);
+
+        await _context.SaveChangesAsync();
+
+        return d.Entity;
+    }
 }

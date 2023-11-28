@@ -36,12 +36,12 @@ public class DescriptionModel : PageModel
 
     public class InputModel
     {
-        [Required]
         [Display(Name = "Notas")]
-        public string Note { get; set; } = default!;
+        public string? Note { get; set; }
 
         [Display(Name = "Quantidade")]
-        public int Quantity { get; set; } = default!;
+        [Required]
+        public int Quantity { get; set; }
 
         [Required]
         [Display(Name = "Festa")]
@@ -68,18 +68,16 @@ public class DescriptionModel : PageModel
     {
         if (!ModelState.IsValid)
         {
+            await OnGetAsync(productId);
             return Page();
         }
 
-        await _selectFoods.FindByIdWithDetail(productId);
-        var user = await _authHelper.GetUserFromToken(_authHelper.GetToken()!);
-
-        var data = new AddFoodToPartyDto(productId, Input.PartyId, Input.Quantity, Input.Note);
-
         try
         {
-            await _addFood.Execute(data);
-            return Redirect("/");
+            await _selectFoods.FindByIdWithDetail(productId);
+
+            await _addFood.Execute(new(productId, Input.PartyId, Input.Quantity, Input.Note ?? ""));
+            return Redirect($"/Clients/Party/Detail/{Input.PartyId}");
         }
         catch (Exception e)
         {

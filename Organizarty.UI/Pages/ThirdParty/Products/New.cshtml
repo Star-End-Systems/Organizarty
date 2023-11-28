@@ -1,4 +1,4 @@
-@page
+@page "{category}"
 @model NewProductsModel
 
 @{
@@ -17,8 +17,9 @@
           <div class="h-full flex flex-col items-center justify-evenly font-[Inter]">
               <div class="flex items-center gap-x-2">
                   <img src="/images/ThirdParty/NewProducts/bolo.png" class="w-8">
-                  <p class="uppercase text-white font-[Inter]">Bolos</p>
+                  <p class="uppercase text-white font-[Inter]">@Model.Category</p>
               </div>
+            <div asp-validation-summary="ModelOnly" class=""></div>
             <!-- Name -->
             <input asp-for="Input.Name" class="font-[Inter] w-2/3 h-14 rounded-xl shadow-xl placeholder form-control"
               aria-required="true" placeholder="Nome do produto" />

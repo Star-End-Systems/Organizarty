@@ -18,8 +18,11 @@ public class SelectPartyUseCase
         _serviceRepository = serviceRepository;
     }
 
-    public async Task<PartyTemplate?> FromId(Guid partyId)
-      => await _partyRepository.FromId(partyId);
+    public async Task<PartyTemplate?> ById(Guid partyId)
+      => await _partyRepository.FindById(partyId);
+
+    public async Task<PartyTemplate?> FromIdWithLocation(Guid partyId)
+      => await _partyRepository.FromIdWithLocation(partyId);
 
     public async Task<List<DecorationGroup>> GetDecorations(Guid partyId)
       => await _decorationRepository.ListFromParty(partyId);
@@ -32,4 +35,13 @@ public class SelectPartyUseCase
 
     public async Task<List<PartyTemplate>> FromUser(Guid userId)
       => await _partyRepository.FromUser(userId);
+
+    public async Task<FoodGroup?> FindFood(Guid id)
+      => await _foodRepository.FindById(id);
+
+    public async Task<DecorationGroup?> FindDecoration(Guid id)
+      => await _decorationRepository.FindById(id);
+
+    public async Task<ServiceGroup?> FindService(Guid id)
+      => await _serviceRepository.FindById(id);
 }

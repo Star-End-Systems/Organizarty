@@ -35,6 +35,7 @@
                 <p class="text-[#848484] font-[Inter] text-lg w-11/12">@Model.Food.FoodType.Description</p>
             </div>
             <form class="flex mt-16" method="post">
+                <div asp-validation-summary="ModelOnly" class=""></div>
                 <div class="w-1/2 mr-12">
                     <h2 class="text-[#A09898] font-[Inter] font-bold">Nota do cliente</h2>
                     <input asp-for="Input.Note" class="w-full h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true" placeholder="Ex: Sem cobertura"/>

@@ -1,0 +1,49 @@
+@using Organizarty.Application.App.Party.Enums;
+@using Organizarty.Application.App.Party.UseCases;
+@inject RemoveFromPartyUseCase RemoveFromParty
+@inject NavigationManager NavigationManager
+
+<a href="/Clients/Party/Edit/@TypePath()/@ItemId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+<button @onclick="RemoveItem" disable="@IsLoading" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</button>
+
+@code{
+  [Parameter]
+  public Guid ItemId {get; set;}
+  [Parameter]
+  public ItemType Type {get; set;}
+
+  public bool IsLoading = false;
+
+  public string TypePath(){
+    switch (Type)
+    {
+        case ItemType.Decoration:
+            return "Decorations";
+        case ItemType.Food:
+            return "Products";
+        case ItemType.Service:
+            return "Services";
+    }
+
+    return "Services";
+  }
+
+  public async Task RemoveItem(){
+    IsLoading = true;
+    StateHasChanged();
+    switch (Type)
+    {
+        case ItemType.Decoration:
+            await RemoveFromParty.RemoveDecoration(ItemId);
+            break;
+        case ItemType.Food:
+            await RemoveFromParty.RemoveFood(ItemId);
+            break;
+        case ItemType.Service:
+            await RemoveFromParty.RemoveService(ItemId);
+            break;
+    }
+
+     NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+  }
+}
