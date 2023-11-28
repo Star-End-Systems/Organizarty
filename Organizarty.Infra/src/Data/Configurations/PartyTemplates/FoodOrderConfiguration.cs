@@ -12,7 +12,7 @@ public class FoodOrderConfiguration : IEntityTypeConfiguration<FoodOrder>
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
         builder.Property(x => x.Quantity).IsRequired();
-        builder.Property(x => x.Price).IsRequired();
+        builder.Property(x => x.Price).IsRequired().HasPrecision(5, 2);
         builder.Property(x => x.EventDate).IsRequired();
         builder.Property(x => x.Note).HasMaxLength(256);
     }

@@ -12,7 +12,7 @@ public class FoodInfoConfiguration : IEntityTypeConfiguration<FoodInfo>
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
         builder.Property(x => x.Flavour).IsRequired().HasMaxLength(35);
-        builder.Property(x => x.Price).IsRequired().HasPrecision(2);
+        builder.Property(x => x.Price).IsRequired().HasPrecision(5, 2);
 
         builder.Ignore(x => x.Images);
     }

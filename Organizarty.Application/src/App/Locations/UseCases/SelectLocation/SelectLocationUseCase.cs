@@ -1,7 +1,5 @@
-using FluentValidation;
 using Organizarty.Application.App.Locations.Data;
 using Organizarty.Application.App.Locations.Entities;
-using Organizarty.Application.Extras;
 
 namespace Organizarty.Application.App.Locations.UseCases;
 

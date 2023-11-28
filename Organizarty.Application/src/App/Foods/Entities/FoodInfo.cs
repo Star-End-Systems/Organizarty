@@ -5,7 +5,7 @@ public class FoodInfo
 {
     public Guid Id { get; set; }
 
-    public string? Flavour { get; set; }
+    public string Flavour { get; set; } = default!;
     public decimal Price { get; set; }
     public bool Available { get; set; }
 

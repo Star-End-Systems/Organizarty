@@ -1,0 +1,33 @@
+@page
+@{
+    ViewData["Title"] = "New Product";
+    Layout = "_NullLayout";
+}
+
+<section id="Index" class="flex h-screen">
+    <div class="w-screen h-screen">
+        <div class="w-1/2 h-screen flex flex-col items-center justify-center">
+            <div class="flex flex-col gap-y-5">
+                <div class="w-fit">
+                    <h1 class="text-white text-5xl font-[Inter] font-bold">Adicionar novo produto</h1>
+                    <p class="text-white text-md font-[Inter]">Selecione o tipo de produto</p>
+                </div>
+                <div class="flex mt-[1%] text-white"> <!-- Trocar a extensão das imagens para svg       #848484-->
+                    <div class="w-fit flex flex-col items-center font-[KonnectBold] mr-3"><button class="Button flex menuButtons rounded-full w-20 h-20 bg-[#58255B] hover:bg-[#9747FF]"><img class="w-9 self-center ml-auto mr-auto" src="/images/Clients/Products/Bolo.png"></img></button><h4 class="text-sm">Bolos</h4></div>
+                    <div class="w-fit flex flex-col items-center font-[KonnectBold] mr-3"><button class="Button flex menuButtons rounded-full w-20 h-20 hover:bg-[#9747FF] bg-[#58255B]"><img class="w-9 self-center ml-auto mr-auto" src="/images/Clients/Products/Brigadeiro.png"></img></button><h4 class="text-sm">Doces</h4></div>
+                    <div class="w-fit flex flex-col items-center font-[KonnectBold] mr-3"><button class="Button flex menuButtons rounded-full w-20 h-20 hover:bg-[#9747FF] bg-[#58255B]"><img class="w-9 self-center ml-auto mr-auto" src="/images/Clients/Products/Croissant.png"></img></button><h4 class="text-sm">Salgados</h4></div>
+                    <div class="w-fit flex flex-col items-center font-[KonnectBold] mr-3"><button class="Button flex menuButtons rounded-full w-20 h-20 hover:bg-[#9747FF] bg-[#58255B]"><img class="w-9 self-center ml-auto mr-auto" src="/images/Clients/Products/Coquetel.png"></img></button><h4 class="text-sm">Bebidas</h4></div>
+                    <div class="w-fit flex flex-col items-center font-[KonnectBold] mr-3"><button class="Button flex menuButtons rounded-full w-20 h-20 hover:bg-[#9747FF] bg-[#58255B]"><img class="w-9 self-center ml-auto mr-auto" src="/images/Clients/Products/Shopping.png"></img></button><h4 class="text-sm">Decorações</h4></div>
+                </div>
+                <div class="flex w-full h-14 gap-x-5 mt-4">
+                    <button class="bg-transparent font-[Inter] hover:drop-shadow-2xl rounded-3xl text-white h-full w-40 p-3 border border-white border-solid transition ease-in-out delay-150">
+                        Cancelar 
+                    </button>
+                    <a href="New"><button class="bg-white hover:drop-shadow-2xl font-[Inter] rounded-3xl text-sm text-[#BB00C7] font-bold h-full w-40 p-3 border border-white border-solid transition ease-in-out">
+                        Informar mais
+                    </button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

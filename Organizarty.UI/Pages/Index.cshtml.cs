@@ -18,6 +18,7 @@ public class IndexModel : PageModel
         [Display(Name = "Search")]
         public string Search { get; set; } = default!;
     }
+
     public IActionResult OnPost()
     {
         if (!ModelState.IsValid)

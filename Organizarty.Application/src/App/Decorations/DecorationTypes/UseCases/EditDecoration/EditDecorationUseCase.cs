@@ -23,6 +23,7 @@ public class EditDecorationUseCase
 
         decoration.Name = decorationDto.name;
         decoration.Description = decorationDto.description;
+        decoration.Category = decorationDto.category;
         decoration.Size = decorationDto.size;
         decoration.Model = decorationDto.model;
         decoration.ObjectURL = decorationDto.objectURL;

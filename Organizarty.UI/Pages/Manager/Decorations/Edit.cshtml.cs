@@ -28,18 +28,18 @@ public class EditDecorationModel : PageModel
     {
         try
         {
-            Input  = await _selectDecoration.FindById(decorationId);
+            Input = await _selectDecoration.FindById(decorationId);
 
         }
         catch (Exception e)
         {
-          _logger.LogError(e.ToString());
+            _logger.LogError(e.ToString());
         }
     }
 
     public async Task<IActionResult> OnPostAsync(Guid decorationId)
     {
-        var data = new EditDecorationDto(decorationId, Input.Name, Input.Description, Input.Size, Input.Model, "https://www.google.com");
+        var data = new EditDecorationDto(decorationId, Input.Name, Input.Description, Input.Category, Input.Size, Input.Model, "https://www.google.com");
 
         try
         {

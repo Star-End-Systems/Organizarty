@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Application.App.DecorationTypes.UseCases;
+using Organizarty.Application.App.Decorations.Entities;
 using Organizarty.Application.Exceptions;
 using System.ComponentModel.DataAnnotations;
 namespace Organizarty.UI.Pages.Manager;
@@ -17,8 +18,8 @@ public class NewDecorationModel : PageModel
         _createDecoration = createDecoration;
     }
 
+    [BindProperty]
     public InputModel Input { get; set; } = default!;
-
 
     public class InputModel
     {
@@ -29,6 +30,9 @@ public class NewDecorationModel : PageModel
         public string Description { get; set; } = default!;
 
         [Required]
+        public DecorationCategory Category { get; set; } = default!;
+
+        [Required]
         public string Size { get; set; } = default!;
 
         [Required]
@@ -37,7 +41,11 @@ public class NewDecorationModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        var data = new CreateDecorationTypeDto(Input.Name, Input.Description, Input.Size, Input.Model, "https://www.google.com");
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+        var data = new CreateDecorationTypeDto(Input.Name, Input.Description, Input.Category, Input.Size, Input.Model, "https://www.google.com");
 
         try
         {

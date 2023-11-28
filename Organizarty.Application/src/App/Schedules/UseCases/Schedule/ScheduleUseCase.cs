@@ -31,7 +31,7 @@ public class ScheduleUseCase
     {
         ValidEventTIme(scheduleDto);
 
-        var party = await _partyRepository.FromId(scheduleDto.partyId) ?? throw new NotFoundException("user from schedule not found.");
+        var party = await _partyRepository.FindById(scheduleDto.partyId) ?? throw new NotFoundException("user from schedule not found.");
 
         var schedule = MountSchedule(party, scheduleDto);
 

@@ -5,6 +5,10 @@ using TP = Organizarty.Application.App.ThirdParties.Entities.ThirdParty;
 using Organizarty.Application.App.Services.UseCases;
 using Organizarty.Application.App.ThirdParties.UseCases;
 using System.ComponentModel.DataAnnotations;
+using Organizarty.UI.Helpers;
+using Organizarty.Application.App.Party.UseCases;
+using Organizarty.Application.App.Party.Entities;
+using Organizarty.Application.App.Users.Entities;
 
 namespace Organizarty.UI.Pages.Clients.Services;
 
@@ -13,12 +17,18 @@ public class DescriptionModel : PageModel
     private readonly SelectServicesUseCase _selectServices;
     private readonly SelectThirdPartyUseCase _selectThirdParty;
     private readonly ILogger<DescriptionModel> _logger;
+    private readonly AuthenticationHelper _authHelper;
+    private readonly SelectPartyUseCase _selectParty;
+    private readonly AddServiceToPartyUsecase _addService;
 
-    public DescriptionModel(ILogger<DescriptionModel> logger, SelectServicesUseCase selectServices, SelectThirdPartyUseCase selectThirdParty)
+    public DescriptionModel(ILogger<DescriptionModel> logger, SelectServicesUseCase selectServices, SelectThirdPartyUseCase selectThirdParty, AuthenticationHelper authHelper, SelectPartyUseCase selectParty, AddServiceToPartyUsecase addService)
     {
         _logger = logger;
         _selectServices = selectServices;
         _selectThirdParty = selectThirdParty;
+        _authHelper = authHelper;
+        _selectParty = selectParty;
+        _addService = addService;
     }
 
     [BindProperty]
@@ -26,15 +36,18 @@ public class DescriptionModel : PageModel
 
     public class InputModel
     {
-        [Display(Name = "ClientNotes")]
-        public string Note { get; set; } = default!;
+        [Display(Name = "Notas")]
+        public string? Note { get; set; }
 
-        [Display(Name = "ClientNotes")]
-        public int Quantity { get; set; } = default!;
+        [Required]
+        [Display(Name = "Festa")]
+        public Guid PartyId { get; set; } = default!;
     }
 
     public ServiceInfo Service { get; set; } = new();
     public TP ThirdParty { get; set; } = new();
+    public List<PartyTemplate> Parties { get; set; } = new();
+    public User UserModel { get; set; } = new();
 
     public async Task OnGetAsync(Guid serviceId)
     {
@@ -42,34 +55,40 @@ public class DescriptionModel : PageModel
         {
             Service = await _selectServices.FindSubServiceById(serviceId);
             ThirdParty = await _selectThirdParty.FindById(Service.ServiceType.ThirdPartyId) ?? throw new Exception(Service.ServiceType.ThirdPartyId.ToString());
+            UserModel = (await _authHelper.GetUserFromToken(_authHelper.GetToken()!))!;
+            Parties = await _selectParty.FromUser(UserModel.Id);
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            Service = new ServiceInfo
-            {
-                Id = serviceId,
-                Price = 54.50M,
-                Plan = "Sample plan",
-                ServiceType = new()
-                {
-                    Name = "Sample service",
-                    Description = "Sample Description",
-                    Tags = new() { "Xiaomi", "Iphone", "Veio da lancha", "Debora" }
-                }
-            };
+            _logger.LogError(e.ToString());
         }
-
-
     }
 
-    public IActionResult OnPost()
+    public async Task<IActionResult> OnPostAsync(Guid serviceId)
     {
         if (!ModelState.IsValid)
         {
+            await OnGetAsync(serviceId);
             return Page();
         }
 
-        return Redirect("/");
+        await _selectServices.FindSubServiceById(serviceId);
+        var user = await _authHelper.GetUserFromToken(_authHelper.GetToken()!);
+
+        var data = new AddServiceToPartyDto(serviceId, Input.PartyId, Input.Note ?? "");
+
+        try
+        {
+            await _addService.Execute(data);
+            return Redirect($"/Clients/Party/Detail/{Input.PartyId}");
+        }
+        catch (Exception e)
+        {
+            // TODO: add error to ModelState
+            _logger.LogError(e.ToString());
+            await OnGetAsync(serviceId);
+            return Page();
+        }
+
     }
 }

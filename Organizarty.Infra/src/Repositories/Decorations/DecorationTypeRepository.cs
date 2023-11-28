@@ -41,6 +41,19 @@ public class DecorationTypeRepository : IDecorationTypeRepository
     public async Task<DecorationType?> FindById(Guid id)
     => await _context.DecorationTypes.FindAsync(id);
 
+    public async Task<List<DecorationType>> GetWithAvaible(bool avaible)
+      => await _context.DecorationTypes
+                .Include(x => x.Decorations)
+                .Select(x => new DecorationType
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    Decorations = x.Decorations.Where(y => y.IsAvaible).ToList(),
+                    TagsJSON = x.TagsJSON
+                })
+                .ToListAsync();
+
     public async Task<DecorationType> Update(DecorationType decoration)
     {
         var d = _context.DecorationTypes.Update(decoration);

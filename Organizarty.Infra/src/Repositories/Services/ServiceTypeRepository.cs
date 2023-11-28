@@ -53,7 +53,7 @@ public class ServiceTypeRepository : IServiceTypeRepository
                     Name = x.Name,
                     Description = x.Description,
                     ThirdParty = x.ThirdParty,
-                    SubServices = x.SubServices,
+                    SubServices = x.SubServices.Where(y => y.IsAvaible).ToList(),
                     TagsJSON = x.TagsJSON
                 })
                 .ToListAsync();
