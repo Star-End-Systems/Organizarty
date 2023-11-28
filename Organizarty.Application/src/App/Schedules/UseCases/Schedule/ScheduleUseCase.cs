@@ -12,19 +12,25 @@ public class ScheduleUseCase
 {
     private readonly IScheduleRepository _scheduleRepository;
     private readonly IPartyTemplateRepository _partyRepository;
-    private readonly OrderDecorationUseCase _orderDecoration;
     private readonly ChangeItemStatusUseCase _changeStatus;
     private readonly IValidator<Schedule> _scheduleValidator;
 
-    private readonly int MAX_EVENT_DURATION;
+    private readonly OrderDecorationUseCase _orderDecoration;
+    private readonly OrderFoodUseCase _orderfood;
+    private readonly OrderServiceUseCase _orderService;
 
-    public ScheduleUseCase(IScheduleRepository scheduleRepository, IPartyTemplateRepository partyRepository, OrderDecorationUseCase orderDecoration, ChangeItemStatusUseCase changeStatus, IValidator<Schedule> scheduleValidator)
+    private readonly int MAX_EVENT_DURATION = 8;
+
+    public ScheduleUseCase(IScheduleRepository scheduleRepository, IPartyTemplateRepository partyRepository, OrderDecorationUseCase orderDecoration, ChangeItemStatusUseCase changeStatus, IValidator<Schedule> scheduleValidator, OrderFoodUseCase orderFood, OrderServiceUseCase orderService)
     {
         _scheduleRepository = scheduleRepository;
         _partyRepository = partyRepository;
-        _orderDecoration = orderDecoration;
         _changeStatus = changeStatus;
         _scheduleValidator = scheduleValidator;
+
+        _orderDecoration = orderDecoration;
+        _orderfood = orderFood;
+        _orderService = orderService;
     }
 
     public async Task<Schedule> Execute(ScheduleDto scheduleDto)
@@ -35,11 +41,16 @@ public class ScheduleUseCase
 
         var schedule = MountSchedule(party, scheduleDto);
 
+        Console.WriteLine(schedule.StartDate);
+        Console.WriteLine(schedule.EndDate);
+
         ValidationUtils.Validate(_scheduleValidator, schedule, "Fail while validating schedule.");
 
         var s = await _scheduleRepository.Create(schedule);
 
-        await _orderDecoration.Execute(s);
+        await _orderDecoration.Execute(s, Enum.ItemStatus.PENDING);
+        // await _orderfood.Execute(s);
+        await _orderService.Execute(s);
 
         return s;
     }

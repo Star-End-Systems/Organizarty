@@ -298,7 +298,8 @@ namespace Organizarty.Infra.Migrations
 
                     b.Property<string>("Note")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<Guid>("PartyTemplateId")
                         .HasColumnType("char(36)");
@@ -357,7 +358,8 @@ namespace Organizarty.Infra.Migrations
 
                     b.Property<string>("Note")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<Guid>("PartyTemplateId")
                         .HasColumnType("char(36)");

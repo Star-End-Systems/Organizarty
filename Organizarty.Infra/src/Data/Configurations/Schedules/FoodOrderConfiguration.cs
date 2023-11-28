@@ -15,5 +15,9 @@ public class FoodOrderConfiguration : IEntityTypeConfiguration<FoodOrder>
         builder.Property(x => x.Price).IsRequired().HasPrecision(5, 2);
         builder.Property(x => x.EventDate).IsRequired();
         builder.Property(x => x.Note).HasMaxLength(256);
+
+        builder.HasOne(x => x.ThirdParty)
+                .WithMany()
+                .HasForeignKey(x => x.ThirdPartyId);
     }
 }

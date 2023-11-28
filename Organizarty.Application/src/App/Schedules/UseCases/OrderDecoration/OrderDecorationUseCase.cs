@@ -21,15 +21,16 @@ public class OrderDecorationUseCase
     }
 
     public async Task Execute(Guid scheduleId)
-      => await Execute(await _selectSchedule.FindById(scheduleId));
+      => await Execute(await _selectSchedule.FindById(scheduleId), ItemStatus.WAITING);
 
-    public async Task Execute(Schedule schedule)
+    public async Task Execute(Schedule schedule, ItemStatus status)
     {
         var decorations = await _selectParty.GetDecorations(schedule.PartyId);
 
         foreach (var decoration in decorations)
         {
             var order = MountOrder(schedule, decoration);
+            order.Status = status;
             await _decorationRepository.Add(order);
         }
     }

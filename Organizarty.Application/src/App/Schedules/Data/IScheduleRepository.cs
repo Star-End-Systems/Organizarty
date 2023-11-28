@@ -6,4 +6,6 @@ public interface IScheduleRepository
 {
     Task<Schedule> Create(Schedule schedule);
     Task<Schedule?> FindById(Guid scheduleId);
+
+    Task<List<Schedule>> ListFromUser(Guid userid);
 }

@@ -20,6 +20,7 @@ public class PartyDetailModel : PageModel
     }
 
     public PartyTemplate Party { get; set; } = default!;
+    public Guid PartyId { get; set; }
 
     public List<FoodGroup> Foods { get; set; } = new();
     public List<ServiceGroup> Services { get; set; } = new();
@@ -29,6 +30,7 @@ public class PartyDetailModel : PageModel
 
     public async Task<IActionResult> OnGetAsync(Guid partyId)
     {
+        PartyId = partyId;
         var p = await _selectParty.FromIdWithLocation(partyId);
 
         if (p is null)

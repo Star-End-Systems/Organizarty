@@ -23,6 +23,9 @@ public class SelectScheduleUseCase
     public async Task<Schedule> FindById(Guid scheduleId)
     => await _scheduleRepository.FindById(scheduleId) ?? throw new NotFoundException("Schedule not found.");
 
+    public async Task<List<Schedule>> FromUser(Guid userid)
+    => await _scheduleRepository.ListFromUser(userid);
+
     public async Task<List<DecorationOrder>> SelectDecorationOrders(Guid scheduleId)
     => await _decorationRepository.ListFromShedule(scheduleId);
 

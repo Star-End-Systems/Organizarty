@@ -8,4 +8,5 @@ public interface IFoodOrderRepository
     Task<FoodOrder> Update(FoodOrder food);
 
     Task<List<FoodOrder>> ListFromThirdParty(Guid thirdPartyId);
+    Task<FoodOrder?> FindById(Guid id);
 }
