@@ -41,7 +41,7 @@ public class ServiceOrderRepository : IServiceOrderRepository
     public async Task<List<ServiceOrder>> ListFromThirdParty(Guid thirdPartyId)
     => await _context.ServiceOrders
               .Where(x => x.ThirdPartyId == thirdPartyId)
-              .Where(x => x.Status != ItemStatus.WAITING)
+              .Where(x => x.Status == ItemStatus.PENDING)
               .Include(x => x.ServiceInfo)
               .Include(x => x.ServiceInfo!.ServiceType)
               .Select(x => new ServiceOrder
