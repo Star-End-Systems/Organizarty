@@ -1,5 +1,6 @@
-@page
-@model IndexModel
+@page "{scheduleid:Guid}"
+@model PaymentModel
+@using Organizarty.UI.Blazor.Components.Schedule
 @{
     ViewData["title"] = "Pagamento";
     Layout = "_NullLayout";
@@ -8,7 +9,7 @@
 <partial name="_OrganizartyClientsLayout"/>
 
 <section class="w-5/6 ml-auto h-screen flex-col">
-    <div class="fixed w-5/6 top-0 bg-white z-40">
+    <div class="w-5/6 top-0 bg-white z-40">
         <div class="w-full flex flex-col items-center py-4">
             <div class="flex w-fit" id="titleDropdown">
                 <img src="/images/General/Logo.svg" class="w-12">
@@ -29,18 +30,18 @@
                 </div>
             </div> <!--Termina aqui-->
             <div clas="flex flex-col w-fit">
-                <h1 class="font-[KonnectBold] text-[#C6C6C6] text-5xl">Chá de fralda</h1>
-                <h3 class="font-[Inter] text-[#848484] text-md">Chá de bebê</h1>
+                <h1 class="font-[KonnectBold] text-[#C6C6C6] text-5xl">@Model.Schedule.Name</h1>
+                <h3 class="font-[Inter] text-[#848484] text-md">@Model.Schedule.Name</h1>
             </div>
         </div>
         <div class="w-full flex font-[Inter] h-1/3 justify-center text-[#C6C6C6]"> 
             <div class="border border-solid border-[#C6C6C6] text-[#C6C6C6] w-1/4 rounded-2xl h-full flex items-center flex-col px-10 pb-5 mr-10">
-                <h1>Código <span class="font-bold top-0">3457</span></h1>
+                <h1>Código <span class="font-bold top-0">@Model.Schedule.Id.ToString().Substring(0, 5)</span></h1>
                 <img src="/images/Clients/CreateParty/Bear.svg" class="h-44 mt-4">
             </div>
             <div class="flex flex-col w-fit">
                 <div class="flex items-end">
-                    <h1 class="font-[KonnectBold] text-[#848484] text-4xl">R$ 5.000</h1>
+                    <h1 class="font-[KonnectBold] text-[#848484] text-4xl">@Model.Schedule.Price</h1>
                     <p class="text-xs mb-2 ml-1">Valor total</p>
                 </div>
                 <hr class="rounded-[30px] border-[5px] border-[#FF008A] mt-[-7px] w-4/5">
@@ -78,19 +79,9 @@
     </div>
     <div class="h-fit w-full flex items-end">
     <div class="w-full">        
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
+        @foreach(var order in Model.Items){
+          <component type="typeof(ScheduleOrderCard)" render-mode="ServerPrerendered" param-Item="@order" />
+        }
     </div>
     </div>
 </section>

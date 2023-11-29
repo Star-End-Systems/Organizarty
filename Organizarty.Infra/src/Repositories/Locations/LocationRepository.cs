@@ -30,5 +30,5 @@ public class LocationRepository : ILocationRepository
 
     // TOOD: Add   Avaible field
     public async Task<List<Location>> ListAll(bool avaible)
-      => await _context.Locations.Where(x => x.RentPerDay < 50).ToListAsync();
+      => await _context.Locations.Where(x => x.RentPerDay > 0).ToListAsync();
 }
