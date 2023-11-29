@@ -23,7 +23,7 @@ public class RegisterUserUseCase
 
     public async Task<User> Execute(RegisterUserDto userDto)
     {
-        var user = userDto.ToModel;
+        var user = userDto.ToModel();
 
         ValidationUtils.Validate(_userValidator, user, "Fail while valiating user.");
 

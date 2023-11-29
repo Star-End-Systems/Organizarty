@@ -35,8 +35,7 @@ public class MailgunEmailSender : IEmailSender
 
             if (!result.IsSuccessStatusCode)
             {
-                string responseBody = await result.Content.ReadAsStringAsync();
-                throw new EmailsenderException(responseBody);
+                throw new EmailsenderException("Erro ao enviar email de confirmação, tente novamente mais tarde.");
             }
         }
     }
