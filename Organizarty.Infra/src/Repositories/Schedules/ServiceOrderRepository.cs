@@ -11,9 +11,7 @@ public class ServiceOrderRepository : IServiceOrderRepository
     private readonly ApplicationDbContext _context;
 
     public ServiceOrderRepository(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+      => _context = context;
 
     public async Task<ServiceOrder> Add(ServiceOrder service)
     {
@@ -30,10 +28,8 @@ public class ServiceOrderRepository : IServiceOrderRepository
         return food;
     }
 
-    public Task<ServiceOrder?> FindById(Guid id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<ServiceOrder?> FindById(Guid id)
+    => await _context.ServiceOrders.FindAsync(id);
 
     public async Task<List<ServiceOrder>> ListFromShedule(Guid scheduleid)
       => await _context.ServiceOrders
@@ -67,8 +63,10 @@ public class ServiceOrderRepository : IServiceOrderRepository
               })
     .ToListAsync();
 
-    public Task<ServiceOrder> Update(ServiceOrder service)
+    public async Task<ServiceOrder> Update(ServiceOrder service)
     {
-        throw new NotImplementedException();
+        _context.ServiceOrders.Update(service);
+        await _context.SaveChangesAsync();
+        return service;
     }
 }

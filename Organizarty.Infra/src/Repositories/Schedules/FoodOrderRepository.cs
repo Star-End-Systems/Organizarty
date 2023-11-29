@@ -68,8 +68,10 @@ public class FoodOrderRepository : IFoodOrderRepository
               })
     .ToListAsync();
 
-    public Task<FoodOrder> Update(FoodOrder food)
+    public async Task<FoodOrder> Update(FoodOrder food)
     {
-        throw new NotImplementedException();
+        _context.FoodOrders.Update(food);
+        await _context.SaveChangesAsync();
+        return food;
     }
 }

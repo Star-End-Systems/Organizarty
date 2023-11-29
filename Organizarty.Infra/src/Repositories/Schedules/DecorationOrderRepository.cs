@@ -57,6 +57,10 @@ public class DecorationOrderRepository : IDecorationOrderRepository
         return await Update(decoration);
     }
 
+    public async Task<DecorationOrder?> FindById(Guid id)
+      => await _context.DecorationOrders.FindAsync(id);
+
+
     public async Task<List<DecorationOrder>> ListFromSchedule(Guid schedule)
       => await _context.DecorationOrders
                         .Include(x => x.Decoration)
