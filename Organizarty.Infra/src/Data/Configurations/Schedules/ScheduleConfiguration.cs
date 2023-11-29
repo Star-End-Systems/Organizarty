@@ -20,5 +20,8 @@ public class ScheduleConfiguration : IEntityTypeConfiguration<Schedule>
         builder.Property(x => x.LocationId).IsRequired();
         builder.Property(x => x.UserId).IsRequired();
         builder.Property(x => x.PartyId).IsRequired();
+
+        builder.Property(x => x.CreatedAt).ValueGeneratedOnAdd();
+        builder.Property(x => x.UpdatedAt).ValueGeneratedOnAddOrUpdate();
     }
 }

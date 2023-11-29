@@ -30,6 +30,11 @@ public class ScheduleRepository : IScheduleRepository
                 .Where(x => x.UserId == userid)
                 .ToListAsync();
 
+    public async Task<List<Schedule>> Since(DateTime date, Guid userid)
+    => await _context.Schedules
+                      .Where(x => x.CreatedAt.Date > date.Date && x.UserId == userid)
+                      .ToListAsync();
+
     public async Task<Schedule> Update(Schedule schedule)
     {
         var s = _context.Schedules.Update(schedule);

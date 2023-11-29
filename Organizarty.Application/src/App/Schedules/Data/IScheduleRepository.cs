@@ -9,4 +9,5 @@ public interface IScheduleRepository
     Task<Schedule?> FindById(Guid scheduleId);
 
     Task<List<Schedule>> ListFromUser(Guid userid);
+    Task<List<Schedule>> Since(DateTime date, Guid userid);
 }

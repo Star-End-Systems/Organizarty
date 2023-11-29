@@ -55,4 +55,18 @@ public class SelectScheduleUseCase
 
         return itemOrder;
     }
+
+    public async Task<List<ItemOrder>> OrdersSince(DateTime date, Guid userid)
+    {
+        var orders = new List<ItemOrder>();
+
+        var schedules = await _scheduleRepository.Since(date, userid);
+
+        foreach (var schedule in schedules)
+        {
+            orders.AddRange(await SelectOrdersFromSchedule(schedule.Id));
+        }
+
+        return orders;
+    }
 }
