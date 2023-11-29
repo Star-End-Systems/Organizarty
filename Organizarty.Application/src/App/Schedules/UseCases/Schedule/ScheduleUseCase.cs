@@ -48,11 +48,24 @@ public class ScheduleUseCase
 
         var s = await _scheduleRepository.Create(schedule);
 
-        await _orderDecoration.Execute(s, Enum.ItemStatus.PENDING);
-        await _orderfood.Execute(s);
-        await _orderService.Execute(s);
+        var decorations = await _orderDecoration.Execute(s, Enum.ItemStatus.PENDING);
+        var foods = await _orderfood.Execute(s);
+        var services = await _orderService.Execute(s);
 
-        return s;
+        s.Price = PartyTotal(decorations, foods, services);
+
+        return await _scheduleRepository.Update(s);
+    }
+
+    private decimal PartyTotal(List<DecorationOrder> decorations, List<FoodOrder> foods, List<ServiceOrder> services)
+    {
+        var total = 0m;
+
+        total += decorations.Aggregate(0m, (acc, x) => acc + x.Price);
+        total += foods.Aggregate(0m, (acc, x) => acc + x.Price);
+        total += services.Aggregate(0m, (acc, x) => acc + x.Price);
+
+        return total;
     }
 
     private void ValidEventTIme(ScheduleDto schedule)

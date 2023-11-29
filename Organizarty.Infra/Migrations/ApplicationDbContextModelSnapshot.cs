@@ -464,6 +464,10 @@ namespace Organizarty.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
 
@@ -486,6 +490,10 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("decimal(7,2)");
 
                     b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid>("UserId")

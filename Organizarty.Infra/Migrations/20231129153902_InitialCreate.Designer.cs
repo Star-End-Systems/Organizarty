@@ -11,8 +11,8 @@ using Organizarty.Infra.Data.Contexts;
 namespace Organizarty.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231128191226_Initialcreate")]
-    partial class Initialcreate
+    [Migration("20231129153902_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -467,6 +467,10 @@ namespace Organizarty.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
 
@@ -489,6 +493,10 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("decimal(7,2)");
 
                     b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid>("UserId")

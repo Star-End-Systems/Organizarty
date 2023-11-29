@@ -20,19 +20,22 @@ public class OrderDecorationUseCase
         _selectSchedule = selectSchedule;
     }
 
-    public async Task Execute(Guid scheduleId)
+    public async Task<List<DecorationOrder>> Execute(Guid scheduleId)
       => await Execute(await _selectSchedule.FindById(scheduleId), ItemStatus.WAITING);
 
-    public async Task Execute(Schedule schedule, ItemStatus status)
+    public async Task<List<DecorationOrder>> Execute(Schedule schedule, ItemStatus status)
     {
+        var dec = new List<DecorationOrder>();
         var decorations = await _selectParty.GetDecorations(schedule.PartyId);
 
         foreach (var decoration in decorations)
         {
             var order = MountOrder(schedule, decoration);
             order.Status = status;
-            await _decorationRepository.Add(order);
+            dec.Add(await _decorationRepository.Add(order));
         }
+
+        return dec;
     }
 
     private DecorationOrder MountOrder(Schedule schedule, DecorationGroup decoration)

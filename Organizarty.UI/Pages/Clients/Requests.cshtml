@@ -1,5 +1,6 @@
 @page
-@model IndexModel
+@using Organizarty.UI.Blazor.Components.Schedule
+@model RequestsModel
 @{
     ViewData["title"] = "Pedidos";
     Layout = "_NullLayout";
@@ -54,10 +55,8 @@
         </div>
     </div>
     <div class="mt-44 z-30">
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
-        <partial name="_RequestElement"/>
+        @foreach(var order in Model.Items){
+          <component type="typeof(ScheduleOrderCard)" render-mode="ServerPrerendered" param-Item="@order" />
+        }
     </div>
 </section>
