@@ -22,6 +22,35 @@ public class DecorationOrderRepository : IDecorationOrderRepository
         return decoration;
     }
 
+    public async Task<List<DecorationOrder>> All()
+    => await _context.DecorationOrders.ToListAsync();
+
+    public async Task<List<DecorationOrder>> AllOpen()
+    => await _context.DecorationOrders
+                     .Where(x => x.Status == ItemStatus.PENDING)
+                     .Include(x => x.Decoration)
+                     .Include(x => x.Decoration!.DecorationType)
+                     .Select(x => new DecorationOrder
+                     {
+                         Id = x.Id,
+                         Quantity = x.Quantity,
+                         Note = x.Note,
+                         Status = x.Status,
+                         Decoration = new()
+                         {
+                             Id = x.Id,
+                             DecorationType = new()
+                             {
+                                 Name = x.Decoration!.DecorationType.Name,
+                             },
+                             Price = x.Price,
+                             Color = x.Decoration.Color,
+                         },
+                         Schedule = x.Schedule
+                     })
+                     .ToListAsync();
+
+
     public async Task<DecorationOrder> ChangeStatus(DecorationOrder decoration, ItemStatus newStatus)
     {
         decoration.Status = newStatus;

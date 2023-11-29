@@ -36,16 +36,16 @@ public class SelectScheduleUseCase
     {
         var decorations = (await _decorationRepository
                                 .ListFromSchedule(scheduleid))
-                                .Select(x => new ItemOrder(x.Id, Party.Enums.ItemType.Decoration, x.Decoration.DecorationType.Name, x.Status, x.Quantity, x.Note, x.Price, scheduleid));
+                                .Select(ItemOrder.FromItem);
 
         var foods = (await _foodRepository
                           .ListFromShedule(scheduleid))
-                          .Select(x => new ItemOrder(x.Id, Party.Enums.ItemType.Food, x.FoodInfo.FoodType.Name, x.Status, x.Quantity, x?.Note ?? "", x.Price, scheduleid));
+                          .Select(ItemOrder.FromItem);
 
 
         var services = (await _serviceRepository
                               .ListFromShedule(scheduleid))
-                              .Select(x => new ItemOrder(x.Id, Party.Enums.ItemType.Service, x.ServiceInfo.ServiceType.Name, x.Status, 1, x.Note, x.Price, scheduleid));
+                              .Select(ItemOrder.FromItem);
 
         var itemOrder = new List<ItemOrder>();
 
@@ -74,17 +74,29 @@ public class SelectScheduleUseCase
     {
         var foods = (await _foodRepository
                           .ListFromThirdParty(thirdpartyid))
-                          .Select(x => new ItemOrder(x.Id, Party.Enums.ItemType.Food, $"{x.FoodInfo.FoodType.Name} - {x.FoodInfo.Flavour}", x.Status, x.Quantity, x?.Note ?? "", x.Price, x.ScheduleId));
+                          .Select(ItemOrder.FromItem);
 
 
         var services = (await _serviceRepository
                               .ListFromThirdParty(thirdpartyid))
-                              .Select(x => new ItemOrder(x.Id, Party.Enums.ItemType.Service, $"{x.ServiceInfo.ServiceType.Name} - {x.ServiceInfo.Plan}", x.Status, 1, x.Note, x.Price, x.ScheduleId));
+                              .Select(ItemOrder.FromItem);
 
         var itemOrder = new List<ItemOrder>();
 
         itemOrder.AddRange(foods);
         itemOrder.AddRange(services);
+
+        return itemOrder;
+    }
+
+    public async Task<List<ItemOrder>> OrdersFromManager()
+    {
+        var decorations = (await _decorationRepository.AllOpen())
+                              .Select(ItemOrder.FromItem);
+
+        var itemOrder = new List<ItemOrder>();
+
+        itemOrder.AddRange(decorations);
 
         return itemOrder;
     }

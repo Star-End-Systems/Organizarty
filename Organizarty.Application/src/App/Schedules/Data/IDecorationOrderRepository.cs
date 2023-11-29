@@ -8,4 +8,6 @@ public interface IDecorationOrderRepository
     Task<DecorationOrder> Update(DecorationOrder decoration);
 
     Task<List<DecorationOrder>> ListFromSchedule(Guid schedule);
+    Task<List<DecorationOrder>> All();
+    Task<List<DecorationOrder>> AllOpen();
 }
