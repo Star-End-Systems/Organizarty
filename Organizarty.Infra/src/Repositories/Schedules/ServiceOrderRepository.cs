@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Schedules.Data;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.Schedules.Enum;
@@ -27,6 +28,23 @@ public class ServiceOrderRepository : IServiceOrderRepository
         _context.ServiceOrders.Update(food);
         await _context.SaveChangesAsync();
         return food;
+    }
+
+    public Task<ServiceOrder?> FindById(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<List<ServiceOrder>> ListFromShedule(Guid scheduleid)
+      => await _context.ServiceOrders
+                        .Where(x => x.ScheduleId == scheduleid && x.Status != ItemStatus.WAITING)
+                        .Include(x => x.ServiceInfo)
+                        .Include(x => x.ServiceInfo!.ServiceType)
+                        .ToListAsync();
+
+    public Task<List<ServiceOrder>> ListFromThirdParty(Guid thirdPartyId)
+    {
+        throw new NotImplementedException();
     }
 
     public Task<ServiceOrder> Update(ServiceOrder service)

@@ -27,8 +27,32 @@ public class SelectScheduleUseCase
     => await _scheduleRepository.ListFromUser(userid);
 
     public async Task<List<DecorationOrder>> SelectDecorationOrders(Guid scheduleId)
-    => await _decorationRepository.ListFromShedule(scheduleId);
+    => await _decorationRepository.ListFromSchedule(scheduleId);
 
     public async Task<List<FoodOrder>> SelectFoodOrders(Guid thirdPartyId)
     => await _foodRepository.ListFromThirdParty(thirdPartyId);
+
+    public async Task<List<ItemOrder>> SelectOrdersFromSchedule(Guid scheduleid)
+    {
+        var decorations = (await _decorationRepository
+                                .ListFromSchedule(scheduleid))
+                                .Select(x => new ItemOrder(x.Id, Party.Enums.ItemType.Decoration, x.Decoration.DecorationType.Name, x.Status, x.Quantity, x.Note, x.Price, scheduleid));
+
+        var foods = (await _foodRepository
+                          .ListFromShedule(scheduleid))
+                          .Select(x => new ItemOrder(x.Id, Party.Enums.ItemType.Food, x.FoodInfo.FoodType.Name, x.Status, x.Quantity, x?.Note ?? "", x.Price, scheduleid));
+
+
+        var services = (await _serviceRepository
+                              .ListFromShedule(scheduleid))
+                              .Select(x => new ItemOrder(x.Id, Party.Enums.ItemType.Service, x.ServiceInfo.ServiceType.Name, x.Status, 1, x.Note, x.Price, scheduleid));
+
+        var itemOrder = new List<ItemOrder>();
+
+        itemOrder.AddRange(decorations);
+        itemOrder.AddRange(foods);
+        itemOrder.AddRange(services);
+
+        return itemOrder;
+    }
 }

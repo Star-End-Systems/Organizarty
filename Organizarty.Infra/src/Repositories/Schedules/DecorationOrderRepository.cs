@@ -28,8 +28,12 @@ public class DecorationOrderRepository : IDecorationOrderRepository
         return await Update(decoration);
     }
 
-    public async Task<List<DecorationOrder>> ListFromShedule(Guid schedule)
-      => await _context.DecorationOrders.Where(x => x.ScheduleId == schedule).ToListAsync();
+    public async Task<List<DecorationOrder>> ListFromSchedule(Guid schedule)
+      => await _context.DecorationOrders
+                        .Include(x => x.Decoration)
+                        .Include(x => x.Decoration!.DecorationType)
+                        .Where(x => x.ScheduleId == schedule)
+                        .ToListAsync();
 
     public async Task<DecorationOrder> Update(DecorationOrder decoration)
     {

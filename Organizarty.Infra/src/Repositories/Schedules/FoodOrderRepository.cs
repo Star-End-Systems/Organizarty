@@ -33,6 +33,13 @@ public class FoodOrderRepository : IFoodOrderRepository
     public async Task<FoodOrder?> FindById(Guid id)
       => await _context.FoodOrders.FindAsync(id);
 
+    public async Task<List<FoodOrder>> ListFromShedule(Guid scheduleid)
+      => await _context.FoodOrders
+                        .Where(x => x.ScheduleId == scheduleid)
+                        .Where(x => x.Status != ItemStatus.WAITING)
+                        .Include(x => x.FoodInfo)
+                        .Include(x => x.FoodInfo!.FoodType)
+                        .ToListAsync();
 
     public async Task<List<FoodOrder>> ListFromThirdParty(Guid thirdPartyId)
     => await _context.FoodOrders
