@@ -6,6 +6,7 @@ using Organizarty.Tests.Unit.Samples.Foods;
 using Organizarty.Tests.Unit.Samples.Locations;
 using Organizarty.Tests.Unit.Samples.PartyTemplates;
 using Organizarty.Tests.Unit.Samples.ThirdParties;
+using Organizarty.Tests.Unit.Samples.Users;
 
 namespace Organizarty.Tests.Unit.Tests.Parties;
 
@@ -23,7 +24,8 @@ public class AddFoodToPartyTest
 
             var location = await LocationSample.SetupLocation(createLocation);
             var thirdParty = await ThirdPartySample.SetupThirdParty(usecases);
-            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id);
+            var user = await UserSample.SetupUserEmailConfirmed(usecases);
+            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id, user.Id);
 
             var foodType = await FoodSample.SetupFoodType(usecases, thirdParty.Id);
             var foodInfo = await FoodSample.SetupFoodInfo(usecases, foodType.Id);
@@ -52,7 +54,8 @@ public class AddFoodToPartyTest
 
             var location = await LocationSample.SetupLocation(createLocation);
             var thirdParty = await ThirdPartySample.SetupThirdParty(usecases);
-            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id);
+            var user = await UserSample.SetupUserEmailConfirmed(usecases);
+            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id, user.Id);
 
             var foodType = await FoodSample.SetupFoodType(usecases, thirdParty.Id);
             var foodInfo = await FoodSample.SetupFoodInfo(usecases, foodType.Id);
@@ -84,7 +87,9 @@ public class AddFoodToPartyTest
 
             var location = await LocationSample.SetupLocation(createLocation);
             var thirdParty = await ThirdPartySample.SetupThirdParty(usecases);
-            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id);
+
+            var user = await UserSample.SetupUserEmailConfirmed(usecases);
+            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id, user.Id);
 
             var foodType = await FoodSample.SetupFoodType(usecases, thirdParty.Id);
             var foodInfo = await FoodSample.SetupFoodInfo(usecases, foodType.Id);

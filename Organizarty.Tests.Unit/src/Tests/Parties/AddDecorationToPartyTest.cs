@@ -5,6 +5,7 @@ using Organizarty.Tests.Mock.UseCases;
 using Organizarty.Tests.Unit.Samples.Decorations;
 using Organizarty.Tests.Unit.Samples.Locations;
 using Organizarty.Tests.Unit.Samples.PartyTemplates;
+using Organizarty.Tests.Unit.Samples.Users;
 
 namespace Organizarty.Tests.Unit.Tests.Parties;
 
@@ -22,7 +23,9 @@ public class AddDecorationToPartyTest
             var createLocation = usecases.CreateLocationUseCase();
 
             var location = await LocationSample.SetupLocation(createLocation);
-            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id);
+
+            var user = await UserSample.SetupUserEmailConfirmed(usecases);
+            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id, user.Id);
 
             var decorationType = await DecorationSample.SetupDecorationType(usecases);
             var decorationInfo = await DecorationSample.SetupDecorationInfo(usecases, decorationType.Id);
@@ -50,7 +53,9 @@ public class AddDecorationToPartyTest
             var createLocation = usecases.CreateLocationUseCase();
 
             var location = await LocationSample.SetupLocation(createLocation);
-            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id);
+
+            var user = await UserSample.SetupUserEmailConfirmed(usecases);
+            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id, user.Id);
 
             var decorationType = await DecorationSample.SetupDecorationType(usecases);
             var decorationInfo = await DecorationSample.SetupDecorationInfo(usecases, decorationType.Id);
@@ -81,7 +86,9 @@ public class AddDecorationToPartyTest
             var createLocation = usecases.CreateLocationUseCase();
 
             var location = await LocationSample.SetupLocation(createLocation);
-            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id);
+
+            var user = await UserSample.SetupUserEmailConfirmed(usecases);
+            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id, user.Id);
 
             var decorationType = await DecorationSample.SetupDecorationType(usecases);
             var decorationInfo = await DecorationSample.SetupDecorationInfo(usecases, decorationType.Id);

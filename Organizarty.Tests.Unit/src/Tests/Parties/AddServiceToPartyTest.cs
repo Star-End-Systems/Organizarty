@@ -6,6 +6,7 @@ using Organizarty.Tests.Unit.Samples.Services;
 using Organizarty.Tests.Unit.Samples.Locations;
 using Organizarty.Tests.Unit.Samples.PartyTemplates;
 using Organizarty.Tests.Unit.Samples.ThirdParties;
+using Organizarty.Tests.Unit.Samples.Users;
 
 namespace Organizarty.Tests.Unit.Tests.Parties;
 
@@ -23,7 +24,8 @@ public class AddServiceToPartyTest
 
             var location = await LocationSample.SetupLocation(createLocation);
             var thirdParty = await ThirdPartySample.SetupThirdParty(usecases);
-            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id);
+            var user = await UserSample.SetupUserEmailConfirmed(usecases);
+            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id, user.Id);
 
             var serviceType = await ServicesSample.SetupServiceType(usecases, thirdParty.Id);
             var serviceInfo = await ServicesSample.SetupServiceInfo(usecases, serviceType.Id);
@@ -52,7 +54,8 @@ public class AddServiceToPartyTest
 
             var location = await LocationSample.SetupLocation(createLocation);
             var thirdParty = await ThirdPartySample.SetupThirdParty(usecases);
-            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id);
+            var user = await UserSample.SetupUserEmailConfirmed(usecases);
+            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id, user.Id);
 
             var serviceType = await ServicesSample.SetupServiceType(usecases, thirdParty.Id);
             var serviceInfo = await ServicesSample.SetupServiceInfo(usecases, serviceType.Id);
