@@ -44,13 +44,26 @@ public class FoodOrderRepository : IFoodOrderRepository
     public async Task<List<FoodOrder>> ListFromThirdParty(Guid thirdPartyId)
     => await _context.FoodOrders
               .Where(x => x.ThirdPartyId == thirdPartyId)
+              .Where(x => x.Status != ItemStatus.WAITING)
+              .Include(x => x.FoodInfo)
+              .Include(x => x.FoodInfo!.FoodType)
               .Select(x => new FoodOrder
               {
                   Id = x.Id,
                   Quantity = x.Quantity,
                   Note = x.Note,
                   Status = x.Status,
-                  FoodInfo = x.FoodInfo,
+                  FoodInfo = new()
+                  {
+                      FoodType = new()
+                      {
+                          Name = x.FoodInfo!.FoodType.Name,
+                          ThirdParty = x.ThirdParty!
+                      },
+                      Price = x.Price,
+                      Flavour = x.FoodInfo.Flavour,
+                      Id = x.Id
+                  },
                   Schedule = x.Schedule
               })
     .ToListAsync();

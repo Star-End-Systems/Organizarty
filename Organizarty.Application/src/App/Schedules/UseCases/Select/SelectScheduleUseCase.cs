@@ -69,4 +69,23 @@ public class SelectScheduleUseCase
 
         return orders;
     }
+
+    public async Task<List<ItemOrder>> OrdersFromThirdParty(Guid thirdpartyid)
+    {
+        var foods = (await _foodRepository
+                          .ListFromThirdParty(thirdpartyid))
+                          .Select(x => new ItemOrder(x.Id, Party.Enums.ItemType.Food, $"{x.FoodInfo.FoodType.Name} - {x.FoodInfo.Flavour}", x.Status, x.Quantity, x?.Note ?? "", x.Price, x.ScheduleId));
+
+
+        var services = (await _serviceRepository
+                              .ListFromThirdParty(thirdpartyid))
+                              .Select(x => new ItemOrder(x.Id, Party.Enums.ItemType.Service, $"{x.ServiceInfo.ServiceType.Name} - {x.ServiceInfo.Plan}", x.Status, 1, x.Note, x.Price, x.ScheduleId));
+
+        var itemOrder = new List<ItemOrder>();
+
+        itemOrder.AddRange(foods);
+        itemOrder.AddRange(services);
+
+        return itemOrder;
+    }
 }

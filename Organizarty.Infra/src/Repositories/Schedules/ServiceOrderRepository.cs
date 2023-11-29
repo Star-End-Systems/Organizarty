@@ -42,10 +42,30 @@ public class ServiceOrderRepository : IServiceOrderRepository
                         .Include(x => x.ServiceInfo!.ServiceType)
                         .ToListAsync();
 
-    public Task<List<ServiceOrder>> ListFromThirdParty(Guid thirdPartyId)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<List<ServiceOrder>> ListFromThirdParty(Guid thirdPartyId)
+    => await _context.ServiceOrders
+              .Where(x => x.ThirdPartyId == thirdPartyId)
+              .Where(x => x.Status != ItemStatus.WAITING)
+              .Include(x => x.ServiceInfo)
+              .Include(x => x.ServiceInfo!.ServiceType)
+              .Select(x => new ServiceOrder
+              {
+                  Id = x.Id,
+                  Note = x.Note,
+                  Status = x.Status,
+                  ServiceInfo = new()
+                  {
+                      ServiceType = new()
+                      {
+                          Name = x.ServiceInfo!.ServiceType.Name,
+                          ThirdParty = x.ThirdParty!
+                      },
+                      Price = x.Price,
+                      Plan = x.ServiceInfo.Plan
+                  },
+                  Schedule = x.Schedule
+              })
+    .ToListAsync();
 
     public Task<ServiceOrder> Update(ServiceOrder service)
     {
