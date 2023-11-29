@@ -20,11 +20,13 @@ public class OrderServiceUseCase
         _selectSchedule = selectSchedule;
     }
 
-    public async Task Execute(Guid scheduleId)
+    public async Task<List<ServiceOrder>> Execute(Guid scheduleId)
       => await Execute(await _selectSchedule.FindById(scheduleId), ItemStatus.PENDING);
 
-    public async Task Execute(Schedule schedule, ItemStatus status = ItemStatus.WAITING)
+    public async Task<List<ServiceOrder>> Execute(Schedule schedule, ItemStatus status = ItemStatus.WAITING)
     {
+        var orders = new List<ServiceOrder>();
+
         var services = await _selectParty.GetServices(schedule.PartyId);
 
         foreach (var service in services)
@@ -32,8 +34,10 @@ public class OrderServiceUseCase
             var order = MountOrder(schedule, service);
             order.Status = status;
 
-            await _serviceRepository.Add(order);
+            orders.Add(await _serviceRepository.Add(order));
         }
+
+        return orders;
     }
 
     private ServiceOrder MountOrder(Schedule schedule, ServiceGroup service)

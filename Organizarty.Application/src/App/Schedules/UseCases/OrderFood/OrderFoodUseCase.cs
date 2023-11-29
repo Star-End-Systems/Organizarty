@@ -20,19 +20,23 @@ public class OrderFoodUseCase
         _selectSchedule = selectSchedule;
     }
 
-    public async Task Execute(Guid scheduleId)
+    public async Task<List<FoodOrder>> Execute(Guid scheduleId)
       => await Execute(await _selectSchedule.FindById(scheduleId), ItemStatus.PENDING);
 
-    public async Task Execute(Schedule schedule, ItemStatus status = ItemStatus.WAITING)
+    public async Task<List<FoodOrder>> Execute(Schedule schedule, ItemStatus status = ItemStatus.WAITING)
     {
+        var orders = new List<FoodOrder>();
+
         var foods = await _selectParty.GetFoods(schedule.PartyId);
 
         foreach (var food in foods)
         {
             var order = MountOrder(schedule, food);
             order.Status = status;
-            await _foodRepository.Add(order);
+            orders.Add(await _foodRepository.Add(order));
         }
+
+        return orders;
     }
 
     private FoodOrder MountOrder(Schedule schedule, FoodGroup food)
