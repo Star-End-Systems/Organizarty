@@ -33,7 +33,7 @@ public class JwtMiddleware
                 context.Items["Account"] = await jwtUtils.GetThirdPartyFromToken(token);
                 break;
             case (UserType.Mannager):
-                context.Items["Account"] = await jwtUtils.GetUserFromToken(token);
+                context.Items["Account"] = await jwtUtils.GetManagerFromToken(token);
                 break;
             default:
                 context.Items["Account"] = null;
