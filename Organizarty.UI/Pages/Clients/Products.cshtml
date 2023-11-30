@@ -25,9 +25,13 @@
     </div>
     <section class="w-full flex justify-center h-5/6">
         <div class="w-5/6">
-            @if(Model.Foods.Count == 0){
-              <p>sem comida meu nobre</p>
-      } else{
+
+          @if(Model.Foods.Count == 0){
+            <div class="w-full h-3/4 flex-col flex justify-center items-center">
+                <img class="w-12" src="/images/Clients/Index/Zart.svg"></img>
+                <h3 class="text-gray-600">Algo deu errado ao carregar produtos.</h3>
+            </div>
+          } else{
             @foreach(var item in Model.Foods){
               <div class="mt-20">
                   <h1 class="font-[KonnectBold] text-[#A09898] text-4xl">@item.Name</h1>

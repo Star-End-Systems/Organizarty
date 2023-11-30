@@ -9,9 +9,12 @@ using Organizarty.UI.Helpers;
 using Organizarty.Application.App.Party.UseCases;
 using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Users.Entities;
+using Organizarty.UI.Attributes;
+using Organizarty.Adapters;
 
 namespace Organizarty.UI.Pages.Clients.Services;
 
+[Authorized("/Clients/Accounts/Login", UserType.Client)]
 public class DescriptionModel : PageModel
 {
     private readonly SelectServicesUseCase _selectServices;

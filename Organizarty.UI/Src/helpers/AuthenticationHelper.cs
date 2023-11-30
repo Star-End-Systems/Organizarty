@@ -53,6 +53,11 @@ public class AuthenticationHelper
         );
     }
 
+    public void ClaerToken()
+    {
+        _response.Cookies.Delete(COOKIE_NAME);
+    }
+
     public (string? Token, UserType? Role) GetTokenAndRole()
     {
         var jwtToken = GetToken();
