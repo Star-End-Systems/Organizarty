@@ -8,7 +8,7 @@ public static partial class PartyTemplateSample
 {
     public static async Task<PartyTemplate> SetuoPartyTemplate(UseCasesFactory usecases, Guid locationId, Guid userid)
     {
-        var data = new CreatePartyDto("Festa de coxinhas", 50, locationId, userid);
+        var data = new CreatePartyDto("Festa de coxinhas", 50,"chadebebe", locationId, userid);
         var createParty = usecases.CreatePartyUseCase();
 
         return await createParty.Execute(data);
