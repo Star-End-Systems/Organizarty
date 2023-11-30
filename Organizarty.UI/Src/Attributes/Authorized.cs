@@ -51,7 +51,7 @@ public class Authorized : Attribute, IPageFilter
                         {
                             if (!user.EmailConfirmed)
                             {
-                                throw new RedirectException("", "/Clients/Accounts/ConfirmYourAccount");
+                                throw new RedirectException("", "/Clients/Accounts/ConfirmEmail");
                             }
 
                             return;

@@ -42,6 +42,14 @@
                 <span asp-validation-for="Input.Password" class="placeholder"></span>
               </div>
 
+              <div class="relative w-7/12 mb-6">
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
+                  <img src="/images/Clients/Accounts/IconPassword.svg" class="h-4/5">
+                </div>
+                <InputText type="password" @bind-Value="@UserModel.ConfirmPassword" id="tel" class="bg-white shadow-2xl border border-transparent text-[#948F8F]  text-sm rounded-2xl block w-full ps-12 p-4" placeholder="Crie uma senha" />
+                <span asp-validation-for="Input.ConfirmPassword" class="placeholder"></span>
+              </div>
+
               <div class="relative w-7/12">
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
                   <img src="/images/Clients/Accounts/IconConfPassword.svg" class="h-4/5">
@@ -98,18 +106,39 @@
   public bool Registering;
   public List<string> Errors = new();
 
-  public User UserModel {get; set;} = new();
+  public InputModel UserModel {get; set;} = new();
+
+  public class InputModel : User
+  {
+    public string ConfirmPassword = "";
+  }
 
   public void ToggleForm(){
+    if(checkPassword()){
+      return;
+    }
+
     FirstForm = !FirstForm;
     StateHasChanged();
 
     Console.WriteLine(FirstForm ? "a" : "b");
   }
 
+  public bool checkPassword(){
+    if(UserModel.Password != UserModel.ConfirmPassword){
+        Errors = new(){"Senhas diferem"};
+        return true;
+    }
+      return false;
+  }
+
   public async Task Submit()
   {
     Registering = true;
+
+    if(checkPassword()){
+      return;
+    }
 
     try{
         Console.WriteLine(UserModel.Email);
