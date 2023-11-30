@@ -38,7 +38,18 @@ Layout = "_NullLayout";
         </div>
 
         <div class="relative w-9/12">
+          <select asp-for="Input.PartyType" id="countries"
+            class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option>Selecione um tipo de festa</option>
+            <option value="chadebebe">Chá de bebe</option>
+            <option value="casamento">Casamento</option>
+            <option value="aniversario">Aniversário</option>
+            <option value="debutante">Debutante</option>
+            <option value="happyhour">Happy Hour</option>
+          </select>
+        </div>
 
+        <div class="relative w-9/12">
           <select id="large" asp-for="Input.LocationId"
             class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option selected>Selecione uma localização</option>

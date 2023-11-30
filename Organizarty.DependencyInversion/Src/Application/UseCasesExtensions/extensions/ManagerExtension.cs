@@ -14,6 +14,8 @@ internal static class ManagerExtension
         services.AddScoped<LoginManagerUseCase>();
         services.AddScoped<RegisterManagerUseCase>();
 
+        services.AddScoped<SelectManagerUseCase>();
+
         return services;
     }
 }

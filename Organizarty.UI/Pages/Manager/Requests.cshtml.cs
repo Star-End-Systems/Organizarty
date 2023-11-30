@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Organizarty.Adapters;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.Schedules.UseCases;
+using Organizarty.UI.Attributes;
 using System.ComponentModel.DataAnnotations;
 namespace Organizarty.UI.Pages;
 
+[Authorized("/Manager/Accounts/Login", UserType.Mannager)]
 public class RequestsManagerModel : PageModel
 {
     private readonly ILogger<RequestsManagerModel> _logger;

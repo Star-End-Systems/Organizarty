@@ -10,6 +10,8 @@ public class PartyTemplate
     public string Name { get; set; } = default!;
     public int ExpectedGuests { get; set; }
 
+    public string PartyType { get; set; } = default!;
+
     public Guid UserId { get; set; }
     public User? User { get; set; }
 

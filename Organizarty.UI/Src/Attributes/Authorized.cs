@@ -44,31 +44,37 @@ public class Authorized : Attribute, IPageFilter
         {
             foreach (var type in _userTypes)
             {
-                if (account is User user)
+                switch (type)
                 {
-                    if (!user.EmailConfirmed)
-                    {
-                        throw new RedirectException("", "/Clients/Accounts/ConfirmYourAccount");
-                    }
+                    case (UserType.Client):
+                        if (account is User user)
+                        {
+                            if (!user.EmailConfirmed)
+                            {
+                                throw new RedirectException("", "/Clients/Accounts/ConfirmYourAccount");
+                            }
 
-                    return;
+                            return;
+                        }
+                        break;
+                    case (UserType.ThirdParty):
+                        if (account is ThirdParty thirdParty)
+                        {
+                            if (thirdParty.AuthorizationStatus != Application.App.Utils.Enums.AuthorizationStatus.Authorized)
+                            {
+                                throw new RedirectException("", "/ThirdParty/Accounts/ConfirmAccount");
+                            }
+
+                            return;
+                        }
+                        break;
+                    case (UserType.Mannager):
+                        if (account is Manager manager)
+                        {
+                            return;
+                        }
+                        break;
                 }
-
-                if (account is ThirdParty thirdParty)
-                {
-                    if (thirdParty.AuthorizationStatus != Application.App.Utils.Enums.AuthorizationStatus.Authorized)
-                    {
-                        throw new RedirectException("", "/ThirdParty/Accounts/ConfirmAccount");
-                    }
-
-                    return;
-                }
-
-                if (account is Manager manager)
-                {
-                    return;
-                }
-
                 throw new Exception("");
             }
         }

@@ -8,7 +8,7 @@ using Organizarty.UI.Attributes;
 
 namespace Organizarty.UI.Pages.Manager.Locations;
 
-// [Authorized("/", UserType.Mannager)]
+[Authorized("/Manager/Accounts/Login", UserType.Mannager)]
 public class NewLocationModel : PageModel
 {
     private readonly CreateLocationUseCase _createLocation;
