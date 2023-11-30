@@ -9,8 +9,9 @@ section{
 
 
 .menuButtons:hover{
-    transform: scale(1.1);
     transition: all 0.4s;
+    height: 3.5rem;
+    width: 3.5rem;
 }
 
 .placeholder{
