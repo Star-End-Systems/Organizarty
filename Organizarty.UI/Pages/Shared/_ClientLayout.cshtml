@@ -3,14 +3,14 @@ Layout = "_NullLayout";
 }
 
 <div class="flex-row flex h-screen w-full">
-  <nav class="fixed w-2/12 h-screen shadow-2xl hidden invisible lg:block lg:visible">
+  <nav class="fixed w-1/6 h-screen shadow-2xl hidden invisible lg:block lg:visible">
     <div class="w-full">
       <a href="/ThirdParty/AddServices">
         <div class="w-full h-12 bg-[#FF008A] flex justify-center">
           <button class="h-full w-fit"><img class="w-7 h-17" src="/images/Clients/Index/Sininho.png" /></button>
         </div>
       </a>
-      <div class="flex justify-center items-center w-full h-28">
+      <div class="flex justify-center items-center w-full h-28 border-b-[5px] border-solid border-[#FF008A]">
         <img class="items-center w-17 h-16" src="/images/Clients/Index/LogoRosa.svg"></img>
 
         <h1 class="pl-4 text-[#848484] font-[Inter]">Olá, <strong>Cliente</strong></h1>
@@ -22,10 +22,9 @@ Layout = "_NullLayout";
               <a href="/Clients/MyParties"><button class="mt-[25%] w-full hover:bg-[#FF008A] hover:text-white h-12">Home</button></a>
               <a href="/Clients/CreateParty"><button class="w-full hover:bg-[#FF008A] hover:text-white h-12">Criar festa</button></a>
               <a href="/Clients/Products"><button class="w-full hover:bg-[#FF008A] hover:text-white h-12">Produtos</button></a>
-              <a href="/Clients/Services"><button class="w-full hover:bg-[#FF008A] hover:text-white h-12">Serviços</button></a>
-              <a href="/Clients/Decorations"><button class="w-full hover:bg-[#FF008A] hover:text-white h-12">Decorações</button></a>
+              <a href="/Clients/Services/Index"><button class="w-full hover:bg-[#FF008A] hover:text-white h-12">Serviços</button></a>
+              <a href="/Clients/Decorations/Index"><button class="w-full hover:bg-[#FF008A] hover:text-white h-12">Decorações</button></a>
               <a href="/Clients/Requests"><button class="w-full hover:bg-[#FF008A] hover:text-white h-12">Pedidos</button></a>
-              <a href="/Clients/Payment"><button class="w-full hover:bg-[#FF008A] hover:text-white h-12">Pagamento</button></a>
               <a href="/Clients/Places"><button class="w-full hover:bg-[#FF008A] hover:text-white h-12">Locais</button></a>
               <a href="/More/ContactUs"><button class="w-full hover:bg-[#FF008A] hover:text-white h-12">Contato</button></a>
           </div>
@@ -33,7 +32,7 @@ Layout = "_NullLayout";
     </div>
   </nav>
   <span class="w-3/12 hidden lg:block"></span>
-  <div class="p-8 pt-12 w-full">
+  <div class="p-8 pt-12 w-full lg:w-5/6 min-h-screen flex flex-col">
     @RenderBody()
     <partial name="_Footer" />
   </div>
