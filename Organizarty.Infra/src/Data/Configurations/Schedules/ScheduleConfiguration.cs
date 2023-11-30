@@ -15,10 +15,13 @@ public class ScheduleConfiguration : IEntityTypeConfiguration<Schedule>
         builder.Property(x => x.ExpectedGuests).IsRequired();
         builder.Property(x => x.StartDate).IsRequired();
         builder.Property(x => x.EndDate).IsRequired();
-        builder.Property(x => x.Price).IsRequired().HasPrecision(5, 2);
+        builder.Property(x => x.Price).IsRequired().HasPrecision(7, 2);
 
         builder.Property(x => x.LocationId).IsRequired();
         builder.Property(x => x.UserId).IsRequired();
         builder.Property(x => x.PartyId).IsRequired();
+
+        builder.Property(x => x.CreatedAt).ValueGeneratedOnAdd();
+        builder.Property(x => x.UpdatedAt).ValueGeneratedOnAddOrUpdate();
     }
 }

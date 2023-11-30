@@ -42,8 +42,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(32)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<string>("TextureURL")
                         .IsRequired()
@@ -119,8 +119,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.HasKey("Id");
 
@@ -209,8 +209,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<decimal>("RentPerDay")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
@@ -298,7 +298,8 @@ namespace Organizarty.Infra.Migrations
 
                     b.Property<string>("Note")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<Guid>("PartyTemplateId")
                         .HasColumnType("char(36)");
@@ -335,6 +336,11 @@ namespace Organizarty.Infra.Migrations
                     b.Property<Guid?>("OriginalPartyTemplateId")
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("PartyType")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("varchar(32)");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
 
@@ -357,7 +363,8 @@ namespace Organizarty.Infra.Migrations
 
                     b.Property<string>("Note")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<Guid>("PartyTemplateId")
                         .HasColumnType("char(36)");
@@ -392,8 +399,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -429,12 +436,9 @@ namespace Organizarty.Infra.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
-                    b.Property<Guid>("PartyTemplateId")
-                        .HasColumnType("char(36)");
-
                     b.Property<decimal>("Price")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -452,8 +456,6 @@ namespace Organizarty.Infra.Migrations
 
                     b.HasIndex("FoodInfoId");
 
-                    b.HasIndex("PartyTemplateId");
-
                     b.HasIndex("ScheduleId");
 
                     b.HasIndex("ThirdPartyId");
@@ -466,6 +468,10 @@ namespace Organizarty.Infra.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime(6)");
@@ -485,10 +491,14 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid>("UserId")
@@ -520,8 +530,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<Guid>("ScheduleId")
                         .HasColumnType("char(36)");
@@ -565,8 +575,8 @@ namespace Organizarty.Infra.Migrations
                         .HasColumnType("varchar(64)");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<Guid>("ServiceTypeId")
                         .HasColumnType("char(36)");
@@ -916,12 +926,6 @@ namespace Organizarty.Infra.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Organizarty.Application.App.Party.Entities.PartyTemplate", "PartyTemplate")
-                        .WithMany()
-                        .HasForeignKey("PartyTemplateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Organizarty.Application.App.Schedules.Entities.Schedule", "Schedule")
                         .WithMany()
                         .HasForeignKey("ScheduleId")
@@ -935,8 +939,6 @@ namespace Organizarty.Infra.Migrations
                         .IsRequired();
 
                     b.Navigation("FoodInfo");
-
-                    b.Navigation("PartyTemplate");
 
                     b.Navigation("Schedule");
 

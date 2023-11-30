@@ -12,19 +12,25 @@ public class ScheduleUseCase
 {
     private readonly IScheduleRepository _scheduleRepository;
     private readonly IPartyTemplateRepository _partyRepository;
-    private readonly OrderDecorationUseCase _orderDecoration;
     private readonly ChangeItemStatusUseCase _changeStatus;
     private readonly IValidator<Schedule> _scheduleValidator;
 
-    private readonly int MAX_EVENT_DURATION;
+    private readonly OrderDecorationUseCase _orderDecoration;
+    private readonly OrderFoodUseCase _orderfood;
+    private readonly OrderServiceUseCase _orderService;
 
-    public ScheduleUseCase(IScheduleRepository scheduleRepository, IPartyTemplateRepository partyRepository, OrderDecorationUseCase orderDecoration, ChangeItemStatusUseCase changeStatus, IValidator<Schedule> scheduleValidator)
+    private readonly int MAX_EVENT_DURATION = 8;
+
+    public ScheduleUseCase(IScheduleRepository scheduleRepository, IPartyTemplateRepository partyRepository, OrderDecorationUseCase orderDecoration, ChangeItemStatusUseCase changeStatus, IValidator<Schedule> scheduleValidator, OrderFoodUseCase orderFood, OrderServiceUseCase orderService)
     {
         _scheduleRepository = scheduleRepository;
         _partyRepository = partyRepository;
-        _orderDecoration = orderDecoration;
         _changeStatus = changeStatus;
         _scheduleValidator = scheduleValidator;
+
+        _orderDecoration = orderDecoration;
+        _orderfood = orderFood;
+        _orderService = orderService;
     }
 
     public async Task<Schedule> Execute(ScheduleDto scheduleDto)
@@ -35,13 +41,31 @@ public class ScheduleUseCase
 
         var schedule = MountSchedule(party, scheduleDto);
 
+        Console.WriteLine(schedule.StartDate);
+        Console.WriteLine(schedule.EndDate);
+
         ValidationUtils.Validate(_scheduleValidator, schedule, "Fail while validating schedule.");
 
         var s = await _scheduleRepository.Create(schedule);
 
-        await _orderDecoration.Execute(s);
+        var decorations = await _orderDecoration.Execute(s, Enum.ItemStatus.PENDING);
+        var foods = await _orderfood.Execute(s);
+        var services = await _orderService.Execute(s);
 
-        return s;
+        s.Price = PartyTotal(decorations, foods, services);
+
+        return await _scheduleRepository.Update(s);
+    }
+
+    private decimal PartyTotal(List<DecorationOrder> decorations, List<FoodOrder> foods, List<ServiceOrder> services)
+    {
+        var total = 0m;
+
+        total += decorations.Aggregate(0m, (acc, x) => acc + x.Price);
+        total += foods.Aggregate(0m, (acc, x) => acc + x.Price);
+        total += services.Aggregate(0m, (acc, x) => acc + x.Price);
+
+        return total;
     }
 
     private void ValidEventTIme(ScheduleDto schedule)

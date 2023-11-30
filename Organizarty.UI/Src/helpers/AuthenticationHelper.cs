@@ -1,5 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using Organizarty.Adapters;
+using Organizarty.Application.App.Managers.Entities;
+using Organizarty.Application.App.Managers.UseCases;
 using Organizarty.Application.App.ThirdParties.Entities;
 using Organizarty.Application.App.ThirdParties.UseCases;
 using Organizarty.Application.App.Users.Entities;
@@ -16,11 +18,13 @@ public class AuthenticationHelper
 
     private readonly SelectUserUseCase _selectUser;
     private readonly SelectThirdPartyUseCase _selectThirdParty;
+    private readonly SelectManagerUseCase _selectManager;
 
-    public AuthenticationHelper(SelectUserUseCase selectUser, SelectThirdPartyUseCase selectThirdParty)
+    public AuthenticationHelper(SelectUserUseCase selectUser, SelectThirdPartyUseCase selectThirdParty, SelectManagerUseCase selectManager)
     {
         _selectUser = selectUser;
         _selectThirdParty = selectThirdParty;
+        _selectManager = selectManager;
     }
 
     public AuthenticationHelper AddResponse(HttpResponse response)
@@ -107,6 +111,18 @@ public class AuthenticationHelper
         }
 
         return await _selectUser.GetUserId((Guid)guid);
+    }
+
+    public async Task<Manager?> GetManagerFromToken(string jwtToken)
+    {
+        var guid = GetIdFromToken(jwtToken, UserType.Mannager);
+
+        if (guid is null)
+        {
+            return null;
+        }
+
+        return await _selectManager.ById((Guid)guid);
     }
 
     public async Task<ThirdParty?> GetThirdPartyFromToken(string jwtToken)

@@ -4,6 +4,7 @@ using Organizarty.Adapters;
 using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Party.UseCases;
 using Organizarty.Application.App.Schedules.Entities;
+using Organizarty.Application.App.Schedules.UseCases;
 using Organizarty.UI.Attributes;
 using Organizarty.UI.Helpers;
 using System.ComponentModel.DataAnnotations;
@@ -14,12 +15,14 @@ public class MyPartiesModel : PageModel
 {
     private readonly ILogger<MyPartiesModel> _logger;
     private readonly SelectPartyUseCase _selectParty;
+    private readonly SelectScheduleUseCase _selectSchedule;
     private readonly AuthenticationHelper _authHelper;
 
-    public MyPartiesModel(ILogger<MyPartiesModel> logger, SelectPartyUseCase selectParty, AuthenticationHelper authHelper)
+    public MyPartiesModel(ILogger<MyPartiesModel> logger, SelectPartyUseCase selectParty, AuthenticationHelper authHelper, SelectScheduleUseCase selectSchedule)
     {
         _logger = logger;
         _selectParty = selectParty;
+        _selectSchedule = selectSchedule;
         _authHelper = authHelper;
     }
 
@@ -39,13 +42,7 @@ public class MyPartiesModel : PageModel
     {
         var user = (await _authHelper.GetUserFromToken(_authHelper.GetToken() ?? ""))!;
 
-        var schedule = new Schedule
-        {
-            Name = "Cha de alguma coisa",
-            StartDate = DateTime.Now
-        };
-
-        Schedules = new() { schedule, schedule, schedule };
+        Schedules = await _selectSchedule.FromUser(user.Id);
         PartyTemplates = await _selectParty.FromUser(user.Id);
     }
 

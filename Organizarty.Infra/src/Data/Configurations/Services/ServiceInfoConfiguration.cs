@@ -12,7 +12,7 @@ public class ServiceInfoConfiguration : IEntityTypeConfiguration<ServiceInfo>
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
         builder.Property(x => x.Plan).IsRequired().HasMaxLength(64);
-        builder.Property(x => x.Price).IsRequired().HasPrecision(5, 2);
+        builder.Property(x => x.Price).IsRequired().HasPrecision(7, 2);
 
         builder.Ignore(x => x.Images);
     }

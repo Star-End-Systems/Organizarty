@@ -20,24 +20,30 @@ public class OrderFoodUseCase
         _selectSchedule = selectSchedule;
     }
 
-    public async Task Execute(Guid scheduleId)
+    public async Task<List<FoodOrder>> Execute(Guid scheduleId)
+      => await Execute(await _selectSchedule.FindById(scheduleId), ItemStatus.PENDING);
+
+    public async Task<List<FoodOrder>> Execute(Schedule schedule, ItemStatus status = ItemStatus.WAITING)
     {
-        var schedule = await _selectSchedule.FindById(scheduleId);
+        var orders = new List<FoodOrder>();
 
         var foods = await _selectParty.GetFoods(schedule.PartyId);
 
         foreach (var food in foods)
         {
             var order = MountOrder(schedule, food);
-            await _foodRepository.Add(order);
+            order.Status = status;
+            orders.Add(await _foodRepository.Add(order));
         }
+
+        return orders;
     }
 
     private FoodOrder MountOrder(Schedule schedule, FoodGroup food)
     {
         if (food.FoodInfo is null)
         {
-            throw new NotFoundException("Decoration not found");
+            throw new NotFoundException("Food not found");
         }
 
         decimal total = food.Quantity * food!.FoodInfo.Price;
@@ -47,6 +53,7 @@ public class OrderFoodUseCase
             Quantity = food.Quantity,
             Note = food.Note ?? "",
             FoodInfoId = food.FoodInfoId,
+            ThirdPartyId = food.FoodInfo.FoodType.ThirdPartyId,
             EventDate = schedule.StartDate,
             ScheduleId = schedule.Id,
             Status = ItemStatus.WAITING,

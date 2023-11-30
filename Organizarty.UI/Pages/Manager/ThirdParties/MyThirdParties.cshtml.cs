@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TP = Organizarty.Application.App.ThirdParties.Entities.ThirdParty;
 using Organizarty.Application.App.ThirdParties.UseCases;
+using Organizarty.UI.Attributes;
+using Organizarty.Adapters;
 
 namespace Organizarty.UI.Pages;
 
+[Authorized("/Manager/Accounts/Login", UserType.Mannager)]
 public class MyThirdPartiesModel : PageModel
 {
     private readonly ILogger<ThirdPartyInfoModel> _logger;

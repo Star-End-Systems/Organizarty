@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Organizarty.Adapters;
+using Organizarty.UI.Attributes;
 using System.ComponentModel.DataAnnotations;
+
 namespace Organizarty.UI.Pages.Manager;
 
+[Authorized("/Manager/Accounts/Login", UserType.Mannager)]
 public class ManagerProductsModel : PageModel
 {
     private readonly ILogger<ManagerProductsModel> _logger;

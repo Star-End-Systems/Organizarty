@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.UI.Helpers;
 using Organizarty.Application.Exceptions;
 using Organizarty.Application.App.DecorationInfos.UseCases;
+using Organizarty.UI.Attributes;
+using Organizarty.Adapters;
 
 namespace Organizarty.UI.Pages.Manager.Decorations;
 
+[Authorized("/Manager/Accounts/Login", UserType.Mannager)]
 public class NewDecorationSubitemModel : PageModel
 {
     private readonly CreateDecorationInfoUseCase _createDecoration;

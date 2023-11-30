@@ -20,18 +20,24 @@ public class OrderServiceUseCase
         _selectSchedule = selectSchedule;
     }
 
-    public async Task Execute(Guid scheduleId)
+    public async Task<List<ServiceOrder>> Execute(Guid scheduleId)
+      => await Execute(await _selectSchedule.FindById(scheduleId), ItemStatus.PENDING);
+
+    public async Task<List<ServiceOrder>> Execute(Schedule schedule, ItemStatus status = ItemStatus.WAITING)
     {
-        var schedule = await _selectSchedule.FindById(scheduleId);
+        var orders = new List<ServiceOrder>();
 
         var services = await _selectParty.GetServices(schedule.PartyId);
 
-        foreach (var food in services)
+        foreach (var service in services)
         {
-            var order = MountOrder(schedule, food);
+            var order = MountOrder(schedule, service);
+            order.Status = status;
 
-            await _serviceRepository.Add(order);
+            orders.Add(await _serviceRepository.Add(order));
         }
+
+        return orders;
     }
 
     private ServiceOrder MountOrder(Schedule schedule, ServiceGroup service)
@@ -45,6 +51,7 @@ public class OrderServiceUseCase
         {
             Note = service.Note ?? "",
             ServiceInfoId = service.ServiceInfoId,
+            ThirdPartyId = service.ServiceInfo.ServiceType.ThirdPartyId,
             EventDate = schedule.StartDate,
             ScheduleId = schedule.Id,
             Status = ItemStatus.WAITING,

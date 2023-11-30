@@ -3,6 +3,7 @@ using Organizarty.Tests.Mock.Repositories;
 using Organizarty.Tests.Mock.UseCases;
 using Organizarty.Tests.Unit.Samples.Locations;
 using Organizarty.Tests.Unit.Samples.PartyTemplates;
+using Organizarty.Tests.Unit.Samples.Users;
 
 namespace Organizarty.Tests.Unit.Tests.Parties;
 
@@ -18,8 +19,9 @@ public class CreatePartyTest
 
             var createLocation = usecases.CreateLocationUseCase();
             var location = await LocationSample.SetupLocation(createLocation);
+            var user = await UserSample.SetupUserEmailConfirmed(usecases);
 
-            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id);
+            var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id, user.Id);
 
             Assert.NotEqual(Guid.Empty, party.Id);
         }

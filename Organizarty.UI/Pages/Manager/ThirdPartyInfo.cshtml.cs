@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Organizarty.Adapters;
+using Organizarty.UI.Attributes;
 using System.ComponentModel.DataAnnotations;
+
 namespace Organizarty.UI.Pages;
 
+[Authorized("/Manager/Accounts/Login", UserType.Mannager)]
 public class AcceptThirdPartyModel : PageModel
 {
     private readonly ILogger<IndexModel> _logger;
@@ -12,38 +16,39 @@ public class AcceptThirdPartyModel : PageModel
         _logger = logger;
     }
 
-    public InputModel Input{get; set;} = default!;
+    public InputModel Input { get; set; } = default!;
 
-    public class InputModel{
+    public class InputModel
+    {
         [Display(Name = "Descrição")]
-        public string Description {get; set;} = default!;
+        public string Description { get; set; } = default!;
 
         [Display(Name = "Email de Login")]
-        public string LoginEmail {get; set;} = default!;
+        public string LoginEmail { get; set; } = default!;
 
         [Display(Name = "Email de Contato")]
-        public string ContactEmail {get; set;} = default!;
+        public string ContactEmail { get; set; } = default!;
 
         [Display(Name = "Nome")]
-        public string Name {get; set;} = default!;
+        public string Name { get; set; } = default!;
 
         [Display(Name = "CPF/CNPJ")]
-        public string CP {get; set;} = default!;
+        public string CP { get; set; } = default!;
 
         [Display(Name = "Cel/Tel 2")]
-        public string PrimaryTel {get; set;} = default!;
-        
+        public string PrimaryTel { get; set; } = default!;
+
         [Display(Name = "Cel/Tel 2")]
-        public string SecondaryTel {get; set;} = default!;
+        public string SecondaryTel { get; set; } = default!;
 
         [Display(Name = "Localização")]
-        public string Location {get; set;} = default!;
+        public string Location { get; set; } = default!;
     }
     public void OnGet()
     {
 
     }
-        public IActionResult OnPost()
+    public IActionResult OnPost()
     {
         if (!ModelState.IsValid)
         {
@@ -51,5 +56,5 @@ public class AcceptThirdPartyModel : PageModel
         }
 
         return RedirectToPage("", new { description = Input.Description, loginEmail = Input.LoginEmail, contactEmail = Input.ContactEmail, name = Input.Name, cp = Input.CP, primaryTel = Input.PrimaryTel, secundaryTel = Input.SecondaryTel, location = Input.Location });
-    }        
+    }
 }

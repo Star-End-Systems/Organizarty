@@ -1,10 +1,17 @@
 @page "{partyId:Guid}"
 @using Organizarty.UI.Blazor.Components.Party;
+@using Organizarty.Application.App.Party.Entities;
 @model PartyDetailModel
 
 @{
   Layout = "_ClientLayout";
   ViewData["Title"] = "Party Detail";
+
+  decimal GetTotalPrice(decimal price, int quantity)
+    => price * quantity;
+
+  decimal PartyTotal(List<ItemOrder> orders)
+  => orders.Aggregate(0m, (acc, x) => acc + (x.price * x.quantity));
 }
 
 <base href="~/" />
@@ -21,6 +28,7 @@
         <th scope="col" class="px-6 py-3">Name</th>
         <th scope="col" class="px-6 py-3">Quantity</th>
         <th scope="col" class="px-6 py-3">Note</th>
+        <th scope="col" class="px-6 py-3">Total</th>
         <th scope="col" class="px-6 py-3">Action</th>
       </tr>
     </thead>
@@ -31,6 +39,7 @@
         <td class="px-6 py-4">@item.name</td>
         <td class="px-6 py-4">@item.quantity</td>
         <td class="px-6 py-4">@item.note</td>
+        <td class="px-6 py-4">R$ @GetTotalPrice(item.price, item.quantity)</td>
         <td class="px-6 py-4">
             <component type="typeof(EditRemoveItemOrder)" render-mode="ServerPrerendered" param-ItemId="@item.id" param-Type="@item.type" />
         </td>
@@ -39,3 +48,6 @@
     </tbody>
   </table>
 </div>
+
+<p>Total: @PartyTotal(Model.Items)</p>
+<a href="/Clients/Schedules/New/@Model.PartyId" class="mt-16">Agendar</a>

@@ -7,6 +7,16 @@ using Organizarty.Application.App.Managers.Entities;
 
 namespace Organizarty.UI.Attributes;
 
+class RedirectException : Exception
+{
+    public string Route { get; }
+
+    public RedirectException(string msg, string route) : base(msg)
+    {
+        Route = route;
+    }
+}
+
 public class Authorized : Attribute, IPageFilter
 {
     private readonly string _redirectPage;
@@ -37,24 +47,40 @@ public class Authorized : Attribute, IPageFilter
                 switch (type)
                 {
                     case (UserType.Client):
-                        if ((User?)account is not null)
-                            return;
-                        break;
+                        if (account is User user)
+                        {
+                            if (!user.EmailConfirmed)
+                            {
+                                throw new RedirectException("", "/Clients/Accounts/ConfirmYourAccount");
+                            }
 
+                            return;
+                        }
+                        break;
                     case (UserType.ThirdParty):
-                        if ((ThirdParty?)account is not null)
-                            return;
-                        break;
+                        if (account is ThirdParty thirdParty)
+                        {
+                            if (thirdParty.AuthorizationStatus != Application.App.Utils.Enums.AuthorizationStatus.Authorized)
+                            {
+                                throw new RedirectException("", "/ThirdParty/Accounts/ConfirmAccount");
+                            }
 
-                    case (UserType.Mannager):
-                        if ((Manager?)account is not null)
                             return;
+                        }
                         break;
-                    default:
-                        context.Result = new RedirectResult(_redirectPage);
+                    case (UserType.Mannager):
+                        if (account is Manager manager)
+                        {
+                            return;
+                        }
                         break;
                 }
+                throw new Exception("");
             }
+        }
+        catch (RedirectException e)
+        {
+            context.Result = new RedirectResult(e.Route);
         }
         catch (Exception)
         {

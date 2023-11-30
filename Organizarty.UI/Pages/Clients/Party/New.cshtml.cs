@@ -39,6 +39,10 @@ public class NewPartyModel : PageModel
         public string Name { get; set; } = default!;
 
         [Required]
+        [Display(Name = "Tipo de Festa")]
+        public string PartyType { get; set; } = default!;
+
+        [Required]
         [Display(Name = "Número de convidados")]
         public int Guests { get; set; } = default!;
 
@@ -60,10 +64,11 @@ public class NewPartyModel : PageModel
 
         if (!ModelState.IsValid)
         {
+            await OnGetAsync();
             return Page();
         }
 
-        var data = new CreatePartyDto(Input.Name, Input.Guests, Input.LocationId, user.Id);
+        var data = new CreatePartyDto(Input.Name, Input.Guests, Input.PartyType, Input.LocationId, user.Id);
 
         try
         {
@@ -73,12 +78,14 @@ public class NewPartyModel : PageModel
         catch (ValidationFailException e)
         {
             e.Errors.ForEach(e => ModelState.AddModelError(string.Empty, e.message));
+            await OnGetAsync();
             return Page();
         }
         catch (Exception e)
         {
             _logger.LogError(e.ToString());
             ModelState.AddModelError(string.Empty, "Erro ao criar festa. Tente novamente mais tarde ");
+            await OnGetAsync();
             return Page();
         }
     }

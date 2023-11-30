@@ -22,4 +22,7 @@ public class Schedule
 
     public Guid PartyId { get; set; }
     public PartyTemplate? Party { get; set; }
+
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
 }

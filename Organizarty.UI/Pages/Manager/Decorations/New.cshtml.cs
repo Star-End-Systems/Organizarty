@@ -4,8 +4,12 @@ using Organizarty.Application.App.DecorationTypes.UseCases;
 using Organizarty.Application.App.Decorations.Entities;
 using Organizarty.Application.Exceptions;
 using System.ComponentModel.DataAnnotations;
+using Organizarty.UI.Attributes;
+using Organizarty.Adapters;
+
 namespace Organizarty.UI.Pages.Manager;
 
+[Authorized("/Manager/Accounts/Login", UserType.Mannager)]
 public class NewDecorationModel : PageModel
 {
     private readonly ILogger<NewDecorationModel> _logger;

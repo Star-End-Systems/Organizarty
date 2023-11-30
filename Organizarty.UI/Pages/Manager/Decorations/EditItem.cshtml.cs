@@ -1,13 +1,14 @@
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Organizarty.UI.Helpers;
 using Organizarty.Application.Exceptions;
 using Organizarty.Application.App.DecorationInfos.UseCases;
 using Organizarty.Application.App.DecorationInfos.Entities;
+using Organizarty.UI.Attributes;
+using Organizarty.Adapters;
 
 namespace Organizarty.UI.Pages.Manager.Decorations;
 
+[Authorized("/Manager/Accounts/Login", UserType.Mannager)]
 public class EditDecorationItemModel : PageModel
 {
     private readonly EditDecorationItemUseCase _editDecoration;
