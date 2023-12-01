@@ -43,28 +43,27 @@ public class MailKitEmailSender : IEmailSender
             message.From.Add(new MailboxAddress(_settings.DisplayName,
                                                 _settings.Domain));
             message.To.Add(new MailboxAddress("destino", targetEmail));
-            message.Subject = _settings.DisplayName;
-            message.Body = new TextPart("html")
+            message.Subject = "Pedrao";
+            message.Body = new TextPart("plain")
             {
                 Text = $"<p>Confirma teu email jovem, code => {code}</p>"
             };
 
             using (var client = new SmtpClient())
             {
-                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+                // client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                if (_settings.IsDevelopment)
-                {
-                    await client.ConnectAsync(_settings.Server,
-                                              _settings.Port, true);
-                }
-                else
-                {
-                    await client.ConnectAsync(_settings.Server);
-                }
+                // if (_settings.IsDevelopment)
+                // {
+                await client.ConnectAsync(_settings.Server,
+                                          _settings.Port, true);
+                // }
+                // else
+                // {
+                //     await client.ConnectAsync(_settings.Server);
+                // }
 
-                await client.AuthenticateAsync(_settings.Username,
-                                               _settings.Password);
+                await client.AuthenticateAsync(_settings.Username, _settings.Password);
                 await client.SendAsync(message);
                 await client.DisconnectAsync(true);
             }
