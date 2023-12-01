@@ -4,12 +4,7 @@ public enum DecorationCategory
 {
     Balao,
     Mesa,
-    Copo,
-    Desk,
     Descartaveis,
-    Guardanapo,
-    ToalhaDeMesa,
-    Extras,
-    Cadeira,
-    ArranjosDeMesa
+    Enfeites,
+    Loucas 
 }
