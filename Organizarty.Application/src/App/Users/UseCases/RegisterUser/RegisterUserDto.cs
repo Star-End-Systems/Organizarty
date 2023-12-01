@@ -2,7 +2,7 @@ using Organizarty.Application.App.Users.Entities;
 
 namespace Organizarty.Application.App.Users.UseCases;
 
-public record RegisterUserDto(string UserName, string FullName, string Location, string Email, string Password, string? CPF)
+public record RegisterUserDto(string UserName, string FullName, string Location, string Email, string Password, string? CPF, string img)
 {
     public User ToModel()
       => new User
@@ -12,6 +12,7 @@ public record RegisterUserDto(string UserName, string FullName, string Location,
           Email = this.Email,
           Password = this.Password,
           Location = this.Location,
-          CPF = CPF
+          CPF = CPF,
+          ProfilePictureURL = img
       };
 }

@@ -41,7 +41,7 @@ public class RegisterUserTest : IAsyncLifetime
 
         var registerUser = usecases.RegisterUserUseCase();
 
-        var data = new RegisterUserDto("testuser", "Test User Da Silva", "São Paulo, SP", "invalid_email", "long_and_secure_password", null);
+        var data = new RegisterUserDto("testuser", "Test User Da Silva", "São Paulo, SP", "invalid_email", "long_and_secure_password", null, "https://google.com");
 
         var task = registerUser.Execute(data);
 
