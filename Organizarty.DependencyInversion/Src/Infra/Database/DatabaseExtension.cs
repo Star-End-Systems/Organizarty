@@ -24,7 +24,17 @@ public static class DatabaseExtension
         services.AddDbContext<ApplicationDbContext>(options =>
                   options.UseMySql(GetConnectionString(configuration),
                   new MySqlServerVersion(new Version(8, 0, 26)),
-                  b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+                  b =>
+                  {
+                      b.EnableRetryOnFailure(
+                          maxRetryCount: 5,
+                          maxRetryDelay: TimeSpan.FromSeconds(30),
+                          errorNumbersToAdd: null
+                          );
+                      b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
+                  }
+
+                ));
 
         return services;
     }
