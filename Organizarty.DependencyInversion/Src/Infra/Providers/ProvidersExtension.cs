@@ -12,7 +12,7 @@ public static class ProvidersExtension
     public static IServiceCollection AddProviders(this IServiceCollection services)
     {
         services.AddProvidersConfiguration();
-        services.AddScoped<IEmailSender, MailgunEmailSender>();
+        services.AddScoped<IEmailSender, MailKitEmailSender>();
         services.AddScoped<ICryptographys, Pbkdf2Cryptography>();
         services.AddScoped<ITokenProvider, JwtTokenProvider>();
         services.AddScoped<IImageUpload, SupabaseImageUpload>();

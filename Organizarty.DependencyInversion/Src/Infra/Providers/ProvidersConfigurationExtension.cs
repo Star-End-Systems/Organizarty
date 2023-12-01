@@ -9,6 +9,7 @@ internal static class ProvidersConfigrationExtensions
     public static IServiceCollection AddProvidersConfiguration(this IServiceCollection services)
     {
         services.AddSingleton<MailgunConfiguration>();
+        services.AddSingleton<MailKitEmailSender.Configuration>();
         services.AddSingleton<SupabaseImageUpload.Configuration>();
 
         return services;
