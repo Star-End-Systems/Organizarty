@@ -33,11 +33,8 @@ public class NewProductsModel : PageModel
         [Display(Name = "Descrição")]
         public string Description { get; set; } = default!;
 
-        [Display(Name = "Categoria")]
-        public string Category { get; set; } = default!;
-
         [Display(Name = "Tags")]
-        public List<string> Tags { get; set; } = new();
+        public string Tags { get; set; } = "";
     }
 
     public async Task OnGetAsync(string category)
@@ -56,7 +53,7 @@ public class NewProductsModel : PageModel
 
         try
         {
-            await _createFood.Execute(new(Input.Name, Input.Description, category, Input.Tags, thirdParty.Id));
+            await _createFood.Execute(new(Input.Name, Input.Description, category, Input.Tags.Split(",").ToList(), thirdParty.Id));
             return RedirectToPage("/ThirdParty/Products/Index");
         }
         catch (ValidationFailException e)

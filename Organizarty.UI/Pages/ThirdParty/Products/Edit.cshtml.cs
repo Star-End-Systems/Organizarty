@@ -21,7 +21,24 @@ public class EditProductsModel : PageModel
     }
 
     [BindProperty]
-    public FoodType Input { get; set; } = default!;
+    public InputModel Input { get; set; } = default!;
+
+    public class InputModel : FoodType
+    {
+        public string StrTags {get; set;} = "";
+
+        public InputModel() { }
+
+        public InputModel(FoodType food)
+        {
+            Id = food.Id;
+            Name = food.Name;
+            Description = food.Description;
+            Category = food.Category;
+            Tags = food.Tags;
+            StrTags = String.Join(", ", food.Tags);
+        }
+    }
 
     public async Task<IActionResult> OnGetAsync(Guid foodid)
     {
@@ -31,7 +48,7 @@ public class EditProductsModel : PageModel
             return Redirect("/ThirdParty/Products");
         }
 
-        Input = f;
+        Input = new InputModel(f);
 
         return Page();
     }
@@ -40,7 +57,11 @@ public class EditProductsModel : PageModel
     {
         try
         {
-            await _editFood.Execute(new(foodid, Input.Name, Input.Description, Input.Category, Input.Tags));
+            var f = (await _selectFood.FindFoodById(foodid))!;
+
+            var tags = Input.StrTags.Split(",").ToList();
+            Console.WriteLine($"Tags => {Input.StrTags}");
+            await _editFood.Execute(new(foodid, Input.Name, Input.Description, f.Category, tags));
             return RedirectToPage("/ThirdParty/Products/Index");
         }
         catch (ValidationFailException e)
