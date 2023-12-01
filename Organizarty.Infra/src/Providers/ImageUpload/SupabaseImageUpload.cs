@@ -64,6 +64,6 @@ public class SupabaseImageUpload : IImageUpload
             Console.WriteLine("Image uploaded successfully");
         }
 
-        return path;
+        return $"{_configuration.ApplicationURL}/storage/v1/object/public/{bucket}/{path}";
     }
 }
