@@ -60,7 +60,6 @@ public class EditProductsModel : PageModel
             var f = (await _selectFood.FindFoodById(foodid))!;
 
             var tags = Input.StrTags.Split(",").ToList();
-            Console.WriteLine($"Tags => {Input.StrTags}");
             await _editFood.Execute(new(foodid, Input.Name, Input.Description, f.Category, tags));
             return RedirectToPage("/ThirdParty/Products/Index");
         }

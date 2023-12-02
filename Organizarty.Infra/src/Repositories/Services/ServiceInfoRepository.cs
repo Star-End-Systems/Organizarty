@@ -23,6 +23,9 @@ public class ServiceInfoRepository : IServiceInfoRepository
         return s.Entity;
     }
 
+    public async Task<ServiceInfo?> FindById(Guid id)
+    => await _context.ServiceInfos.FindAsync(id);
+
     public async Task<ServiceInfo?> FindByIdWithParent(Guid id)
     => await _context.ServiceInfos
             .Include(x => x.ServiceType)
@@ -37,4 +40,12 @@ public class ServiceInfoRepository : IServiceInfoRepository
                 ServiceType = x.ServiceType,
             })
             .FirstOrDefaultAsync();
+
+    public async Task<ServiceInfo> Update(ServiceInfo service)
+    {
+        var s = _context.ServiceInfos.Update(service);
+        await _context.SaveChangesAsync();
+
+        return s.Entity;
+    }
 }

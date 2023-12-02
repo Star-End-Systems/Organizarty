@@ -15,6 +15,9 @@ internal static class ServicesExtension
         services.AddValidatorsFromAssemblyContaining<ServiceTypeValidator>();
         services.AddScoped<CreateServiceTypeUseCase>();
 
+        services.AddScoped<EditServiceItemUseCase>();
+        services.AddScoped<EditServiceSubItemUseCase>();
+
         services.AddScoped<SelectServicesUseCase>();
         return services;
     }
