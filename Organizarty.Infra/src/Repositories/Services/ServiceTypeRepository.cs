@@ -58,4 +58,11 @@ public class ServiceTypeRepository : IServiceTypeRepository
                 })
                 .ToListAsync();
 
+    public async Task<ServiceType> Update(ServiceType service)
+    {
+        var s = _context.ServiceTypes.Update(service);
+        await _context.SaveChangesAsync();
+
+        return s.Entity;
+    }
 }

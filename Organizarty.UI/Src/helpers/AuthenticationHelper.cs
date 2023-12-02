@@ -6,6 +6,7 @@ using Organizarty.Application.App.ThirdParties.Entities;
 using Organizarty.Application.App.ThirdParties.UseCases;
 using Organizarty.Application.App.Users.Entities;
 using Organizarty.Application.App.Users.UseCases;
+using Organizarty.Application.Exceptions;
 
 namespace Organizarty.UI.Helpers;
 
@@ -53,6 +54,11 @@ public class AuthenticationHelper
         );
     }
 
+    public void ClaerToken()
+    {
+        _response.Cookies.Delete(COOKIE_NAME);
+    }
+
     public (string? Token, UserType? Role) GetTokenAndRole()
     {
         var jwtToken = GetToken();
@@ -77,10 +83,24 @@ public class AuthenticationHelper
     }
 
     public string? GetToken()
-      => _request.Cookies[COOKIE_NAME];
+    {
+        string? authHeader = _request.Headers["Authorization"];
+
+        if (authHeader is not null && authHeader.StartsWith("Bearer "))
+        {
+            return authHeader.Substring("Bearer ".Length).Trim();
+        }
+
+        return _request.Cookies[COOKIE_NAME];
+    }
 
     private Guid? GetIdFromToken(string token, UserType type)
     {
+        if (string.IsNullOrWhiteSpace(token))
+        {
+            throw new ValidationFailException("Token not found", new());
+        }
+
         var handler = new JwtSecurityTokenHandler();
         var jsonToken = handler.ReadJwtToken(token);
 
@@ -100,6 +120,9 @@ public class AuthenticationHelper
 
         return Guid.Parse(id);
     }
+
+    public async Task<User?> GetUserFromToken()
+    => await GetUserFromToken(GetToken() ?? "");
 
     public async Task<User?> GetUserFromToken(string jwtToken)
     {

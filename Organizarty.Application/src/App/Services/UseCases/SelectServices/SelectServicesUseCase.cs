@@ -19,6 +19,9 @@ public class SelectServicesUseCase
       => await _serviceTypeRepository.FindByIdWithItens(id) ?? throw new NotFoundException("Service not found");
 
     public async Task<ServiceInfo> FindSubServiceById(Guid id)
+      => await _serviceInfoRepository.FindById(id) ?? throw new NotFoundException("Service not found");
+
+    public async Task<ServiceInfo> FindSubServiceByIdParent(Guid id)
       => await _serviceInfoRepository.FindByIdWithParent(id) ?? throw new NotFoundException("Service not found");
 
     public async Task<List<ServiceType>> FindServicesByThirdParty(Guid thirdParty)

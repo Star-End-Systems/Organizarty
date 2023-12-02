@@ -1,8 +1,8 @@
 @page
 @model IndexModel
 @{
-Layout = "_ClientLayout";
-ViewData["Title"] = "Products";
+  Layout = "_ClientLayout";
+  ViewData["Title"] = "Products";
 }
 
 <section class="min-h-screen ml-auto w-full">
@@ -47,27 +47,32 @@ ViewData["Title"] = "Products";
   </div>
   <div class="w-full flex justify-center h-5/6">
     <div class="w-5/6">
-      @foreach(var decoration in Model.Decorations){
-      @if(decoration.Decorations.Count > 0){
-        <div class="mt-20">
-          <h1 class="font-[KonnectBold] text-[#A09898] text-4xl">@decoration.Name</h1>
+      @if(Model.Decorations.Count == 0){
+        <div class="w-full h-3/4 flex-col flex justify-center items-center">
+            <img class="w-12" src="/images/Clients/Index/Zart.svg"></img>
+            <h3 class="text-gray-600">Algo deu errado ao carregar decorações.</h3>
         </div>
-        <div class="flex">
-          @foreach(var item in decoration.Decorations){
-          <div class="w-52 h-60 flex-col mr-16 mb-10 rounded">
-            <div class="Image w-full h-3/4 flex rounded">
-              <div class="Text flex flex-col justify-end ml-2 mb-2">
-                <p class="z-10 font-[KonnectBold] text-white">R$ @item.Price</p>
-                <p class="z-10 font-[KonnectBold] text-white">@item.Color</p>
-              </div>
+      } else{
+          @foreach(var decoration in Model.Decorations){
+            <div class="mt-20">
+              <h1 class="font-[KonnectBold] text-[#A09898] text-4xl">@decoration.Name</h1>
             </div>
-            <a href="/Clients/decorations/Description/@item.Id">
-              <button class="w-full mt-5 h-10 bg-[#484343] font-[Inter] font-bold text-white rounded-xl">Detalhes</button>
-            </a>
-          </div>
+            <div class="flex">
+              @foreach(var item in decoration.Decorations){
+              <div class="w-52 h-60 flex-col mr-16 mb-10 rounded">
+                <div class="Image w-full h-3/4 flex rounded">
+                  <div class="Text flex flex-col justify-end ml-2 mb-2">
+                    <p class="z-10 font-[KonnectBold] text-white">R$ @item.Price</p>
+                    <p class="z-10 font-[KonnectBold] text-white">@item.Color</p>
+                  </div>
+                </div>
+                <a href="/Clients/decorations/Description/@item.Id">
+                  <button class="w-full mt-5 h-10 bg-[#484343] font-[Inter] font-bold text-white rounded-xl">Detalhes</button>
+                </a>
+              </div>
+            }
+            </div>
           }
-        </div>
-      }
       }
     </div>
   </div>

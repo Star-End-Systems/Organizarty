@@ -4,7 +4,6 @@ using Organizarty.UI.Attributes;
 
 namespace Organizarty.UI.Pages.Clients.Accounts;
 
-[Unauthenticated("/Clients")]
 public class ConfirmCodeModel : PageModel
 {
     private readonly ILogger<ConfirmCodeModel> _logger;

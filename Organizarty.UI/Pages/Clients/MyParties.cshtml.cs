@@ -10,7 +10,7 @@ using Organizarty.UI.Helpers;
 using System.ComponentModel.DataAnnotations;
 namespace Organizarty.UI.Pages;
 
-[Authorized("Clients/Accounts/Login", UserType.Client)]
+[Authorized("/Clients/Accounts/Login", UserType.Client)]
 public class MyPartiesModel : PageModel
 {
     private readonly ILogger<MyPartiesModel> _logger;

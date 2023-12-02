@@ -18,6 +18,8 @@ public class NewFoodSubitemModel : PageModel
 
     public TP ThirdParty { get; set; } = new();
 
+    public Guid FoodId { get; set; }
+
     public NewFoodSubitemModel(CreateFoodItemUseCase createFood, AuthenticationHelper authHelper)
     {
         _createFood = createFood;
@@ -42,6 +44,11 @@ public class NewFoodSubitemModel : PageModel
 
     }
 
+    public void OnGet(Guid foodId)
+    {
+        FoodId = foodId;
+    }
+
     public async Task<IActionResult> OnPostAsync(Guid foodId)
     {
         var thirdParty = await _authHelper.GetThirdPartyFromToken(_authHelper.GetToken() ?? "");
@@ -51,11 +58,9 @@ public class NewFoodSubitemModel : PageModel
             return Page();
         }
 
-        var data = new CreateFoodItemDto(foodId, Input.IsAvaible, Input.Flavour, Input.Price, new() { Input.ImgURL });
-
         try
         {
-            await _createFood.Execute(data);
+            await _createFood.Execute(new(foodId, Input.IsAvaible, Input.Flavour, Input.Price, new() { Input.ImgURL }));
             return RedirectToPage("./Index");
         }
         catch (ValidationFailException e)

@@ -27,9 +27,13 @@ public class EditFoodSubitemModel : PageModel
     [BindProperty]
     public string ImgURL { get; set; } = "";
 
+    public Guid FoodId { get; set; }
+
     public async Task<IActionResult> OnGetAsync(Guid foodId)
     {
-        var f = await _selectFood.FindByIdWithDetail(foodId);
+        FoodId = foodId;
+
+        var f = await _selectFood.FindFoodSubItem(foodId);
         if (f is null)
         {
             return Redirect("/ThirdParty/Products");

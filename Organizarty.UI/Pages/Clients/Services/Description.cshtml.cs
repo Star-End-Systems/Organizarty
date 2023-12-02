@@ -9,9 +9,12 @@ using Organizarty.UI.Helpers;
 using Organizarty.Application.App.Party.UseCases;
 using Organizarty.Application.App.Party.Entities;
 using Organizarty.Application.App.Users.Entities;
+using Organizarty.UI.Attributes;
+using Organizarty.Adapters;
 
 namespace Organizarty.UI.Pages.Clients.Services;
 
+[Authorized("/Clients/Accounts/Login", UserType.Client)]
 public class DescriptionModel : PageModel
 {
     private readonly SelectServicesUseCase _selectServices;
@@ -53,7 +56,7 @@ public class DescriptionModel : PageModel
     {
         try
         {
-            Service = await _selectServices.FindSubServiceById(serviceId);
+            Service = await _selectServices.FindSubServiceByIdParent(serviceId);
             ThirdParty = await _selectThirdParty.FindById(Service.ServiceType.ThirdPartyId) ?? throw new Exception(Service.ServiceType.ThirdPartyId.ToString());
             UserModel = (await _authHelper.GetUserFromToken(_authHelper.GetToken()!))!;
             Parties = await _selectParty.FromUser(UserModel.Id);
@@ -72,7 +75,7 @@ public class DescriptionModel : PageModel
             return Page();
         }
 
-        await _selectServices.FindSubServiceById(serviceId);
+        await _selectServices.FindSubServiceByIdParent(serviceId);
         var user = await _authHelper.GetUserFromToken(_authHelper.GetToken()!);
 
         var data = new AddServiceToPartyDto(serviceId, Input.PartyId, Input.Note ?? "");

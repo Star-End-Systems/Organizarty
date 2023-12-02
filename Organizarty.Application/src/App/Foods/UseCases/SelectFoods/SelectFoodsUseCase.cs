@@ -25,4 +25,7 @@ public class SelectFoodsUseCase
 
     public async Task<FoodInfo?> FindByIdWithDetail(Guid id)
       => await _infoRepository.FindWithIdWithDetail(id);
+
+    public async Task<FoodInfo?> FindFoodSubItem(Guid id)
+      => await _infoRepository.FindById(id);
 }

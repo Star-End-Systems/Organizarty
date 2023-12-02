@@ -27,6 +27,7 @@ public class EditDecorationUseCase
         decoration.Size = decorationDto.size;
         decoration.Model = decorationDto.model;
         decoration.ObjectURL = decorationDto.objectURL;
+        decoration.Tags = decorationDto.Tags;
 
         ValidationUtils.Validate(_validator, decoration, "Fail to update decoration.");
 

@@ -53,7 +53,7 @@ public class LoginUserModel : PageModel
         }
     }
 
-    public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostAsync(string? redirectUrl)
     {
         _authHelper.AddResponse(Response);
 
@@ -70,7 +70,12 @@ public class LoginUserModel : PageModel
             var token = _tokenProvider.GenerateToken(u.Id.ToString(), u.UserName, UserType.Client);
 
             _authHelper.WriteToken(token);
-            return Redirect("/Clients");
+
+            if (u.EmailConfirmed)
+            {
+                return Redirect("/Clients");
+            }
+                return Redirect("./ConfirmEmail");
         }
         catch (ValidationFailException e)
         {
