@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.DecorationTypes.Data;
 using Organizarty.Application.App.DecorationTypes.Entities;
+using Organizarty.Application.App.Decorations.Entities;
 using Organizarty.Infra.Data.Contexts;
 
 namespace Organizarty.Infra.Repositories.Decorations;
@@ -30,10 +31,10 @@ public class DecorationTypeRepository : IDecorationTypeRepository
                   Decorations = x.Decorations
               })
               .ToListAsync();
-    public async Task<List<DecorationType>> FromCategory(int Category)
+    public async Task<List<DecorationType>> FindByCategory(DecorationCategory Category)
     => await _context.DecorationTypes
               .Include(x => x.Decorations)
-              .Where(x => x.Category == )
+              .Where(x => x.Category == Category)
               .Select(x => new DecorationType
               {
                   Id = x.Id,
