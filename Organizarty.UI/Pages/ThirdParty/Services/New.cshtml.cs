@@ -35,7 +35,7 @@ public class NewServiceModel : PageModel
         [Required]
         public string Description { get; set; } = default!;
 
-        public List<string> Tags { get; set; } = new();
+        public string Tags { get; set; } = "";
 
     }
 
@@ -48,7 +48,8 @@ public class NewServiceModel : PageModel
             return Page();
         }
 
-        var data = new CreateServiceTypeDto(Input.Name, Input.Description, thirdParty.Id, new() { "chocolate" });
+        var tags = Input.Tags.Split(",").ToList();
+        var data = new CreateServiceTypeDto(Input.Name, Input.Description, thirdParty.Id, tags);
 
         try
         {

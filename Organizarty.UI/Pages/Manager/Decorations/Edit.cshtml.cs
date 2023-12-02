@@ -24,15 +24,32 @@ public class EditDecorationModel : PageModel
     }
 
     [BindProperty]
+    public InputModel Input { get; set; } = new();
 
-    public DecorationType Input { get; set; } = new();
+    public class InputModel : DecorationType
+    {
+        public InputModel() { }
+
+        public InputModel(DecorationType _)
+        {
+            Id = _.Id;
+            Name = _.Name;
+            Description = _.Description;
+            Category = _.Category;
+            Size = _.Size;
+            Model = _.Model;
+            Tags = _.Tags;
+            TagsStr = String.Join(", ", _.Tags);
+        }
+
+        public string TagsStr { get; set; } = "";
+    }
 
     public async Task OnGetAsync(Guid decorationId)
     {
         try
         {
-            Input = await _selectDecoration.FindById(decorationId);
-
+            Input = new(await _selectDecoration.FindById(decorationId));
         }
         catch (Exception e)
         {
@@ -42,7 +59,8 @@ public class EditDecorationModel : PageModel
 
     public async Task<IActionResult> OnPostAsync(Guid decorationId)
     {
-        var data = new EditDecorationDto(decorationId, Input.Name, Input.Description, Input.Category, Input.Size, Input.Model, "https://www.google.com");
+        var tags = Input.TagsStr.Split(",").ToList();
+        var data = new EditDecorationDto(decorationId, Input.Name, Input.Description, Input.Category, Input.Size, Input.Model, "https://www.google.com", tags);
 
         try
         {

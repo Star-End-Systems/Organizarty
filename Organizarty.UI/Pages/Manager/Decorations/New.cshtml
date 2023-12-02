@@ -172,6 +172,11 @@ Layout = "_NullLayout";
           <input asp-for="Input.Model" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
             aria-required="true" placeholder="Descrição" />
           <span asp-validation-for="Input.Model" class="placeholder"></span>
+
+          @Html.DisplayNameFor(_ => _.Input.TagsStr)
+          <input asp-for="Input.TagsStr" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
+            aria-required="true" placeholder="Tags" />
+          <span asp-validation-for="Input.TagsStr" class="placeholder"></span>
         </div>
         <div class="flex w-full place-content-evenly py-14">
           <button id="login-submit" type="submit" class="logar w-48 h-14 rounded-xl hover:shadow-2xl">Criar</button>
