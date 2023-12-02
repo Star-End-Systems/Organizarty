@@ -45,7 +45,7 @@ ViewData["Title"] = "Home";
   <h1>Suas Festas</h1>
   <div class="flex overflow-x-auto w-full h-auto">
     @foreach(var schedule in Model.Schedules){
-      <a href="/Clients/Payment/@schedule.Id">
+      <a href="/Clients/Payment/@schedule.Id" class="mr-8">
         <component type="typeof(PartyScheduleCard)" render-mode="ServerPrerendered" param-Schedule="@schedule"/>
       </a>
     }
