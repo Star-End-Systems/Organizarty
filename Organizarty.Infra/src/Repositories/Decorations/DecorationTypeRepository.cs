@@ -26,6 +26,24 @@ public class DecorationTypeRepository : IDecorationTypeRepository
                   Model = x.Model,
                   ObjectURL = x.ObjectURL,
                   TagsJSON = x.TagsJSON,
+                  Category = x.Category,
+                  Decorations = x.Decorations
+              })
+              .ToListAsync();
+    public async Task<List<DecorationType>> FromCategory(int Category)
+    => await _context.DecorationTypes
+              .Include(x => x.Decorations)
+              .Where(x => x.Category == )
+              .Select(x => new DecorationType
+              {
+                  Id = x.Id,
+                  Name = x.Name,
+                  Description = x.Description,
+                  Size = x.Size,
+                  Model = x.Model,
+                  ObjectURL = x.ObjectURL,
+                  TagsJSON = x.TagsJSON,
+                  Category = x.Category,
                   Decorations = x.Decorations
               })
               .ToListAsync();

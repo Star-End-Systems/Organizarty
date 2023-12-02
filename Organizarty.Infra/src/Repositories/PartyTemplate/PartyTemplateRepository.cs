@@ -40,6 +40,7 @@ public class PartyTemplateRepository : IPartyTemplateRepository
                     ExpectedGuests = x.ExpectedGuests,
                     User = x.User,
                     Location = x.Location,
+                    PartyType = x.PartyType,
                     OriginalPartyTemplate = x.OriginalPartyTemplate
                 })
                 .ToListAsync();
