@@ -41,6 +41,8 @@ public class NewDecorationModel : PageModel
 
         [Required]
         public string Model { get; set; } = default!;
+
+        public string TagsStr { get; set; } = "";
     }
 
     public async Task<IActionResult> OnPostAsync()
@@ -49,7 +51,9 @@ public class NewDecorationModel : PageModel
         {
             return Page();
         }
-        var data = new CreateDecorationTypeDto(Input.Name, Input.Description, Input.Category, Input.Size, Input.Model, "https://www.google.com");
+
+        var tags = Input.TagsStr.Split(",").ToList();
+        var data = new CreateDecorationTypeDto(Input.Name, Input.Description, Input.Category, Input.Size, Input.Model, "https://www.google.com", tags);
 
         try
         {
