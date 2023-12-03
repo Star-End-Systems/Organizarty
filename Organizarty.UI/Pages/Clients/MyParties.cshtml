@@ -44,32 +44,44 @@ ViewData["Title"] = "Home";
 <div class="w-full self-center mt-[1%]">
   <h1>Suas Festas</h1>
   <div class="flex overflow-x-auto w-full h-auto">
-    @if(Model.Schedules is null){
-      <div clsss="w-full flex flex-col">
-          <img>
-          <h1>
-              Você não tem nenhuma festa agendada... <a href="/Clients/Party/New" class="decoration-none">Clique aqui para criar uma</a>
-          </h1>
-      </div>
+    @if(Model.PartyTemplates.Count == 0){
     } else {
-      foreach(var schedule in Model.Schedules){
-      <a href="/Clients/Payment/@schedule.Id" class="mr-8">
-        <component type="typeof(PartyScheduleCard)" render-mode="ServerPrerendered" param-Schedule="@schedule"/>
-      </a>
+      if(Model.Schedules.Count == 0){
+        <div class="w-full h-3/4 flex-col flex justify-center items-center my-6">
+          <img class="w-12" src="/images/Clients/Index/Zart.svg"></img>
+          <h3>Poxa, você ainda não agendou nenhuma festa...</h3>
+        </div>
+      } else {
+        foreach(var schedule in Model.Schedules){
+        <a href="/Clients/Payment/@schedule.Id" class="mr-8">
+          <component type="typeof(PartyScheduleCard)" render-mode="ServerPrerendered" param-Schedule="@schedule"/>
+        </a>
+        }
       }
     }
   </div>
 </div>
 <div class="w-full h-3/4 self-center mt-[1%]">
-  <h1>Continue editando...</h1>
   <div class="flex overflow-x-auto w-full h-auto">
-    @foreach(var party in Model.PartyTemplates){
-      <a class="mr-8 pb-4" href="/Clients/Party/Detail/@party.Id"> <component type="typeof(PartyEditCard)" render-mode="ServerPrerendered" param-PartyTemplate="@party" /> </a>
+    @if(Model.PartyTemplates.Count == 0){
+      <div class="w-full h-3/4 flex-col flex justify-center items-center my-6">
+        <img class="w-12" src="/images/Clients/Index/Zart.svg"></img>
+        <h3>Poxa, você ainda não criou nenhuma festa...</h3>
+      </div>
+    } else {
+      <div class="flex flex-col overflow-x-auto w-full h-auto">
+        <h1>Continue editando...</h1>
+        <div class="flex w-full h-auto overflow-x-auto">
+          @foreach(var party in Model.PartyTemplates){
+            <a class="mr-8 pb-4" href="/Clients/Party/Detail/@party.Id"> <component type="typeof(PartyEditCard)" render-mode="ServerPrerendered" param-PartyTemplate="@party" /> </a>
+          }
+        </div>
+      </div>
     }
   </div>
-  <h1 class="mt-4">
-    Adicionar uma Festa
-    <a href="/Clients/Party/New"> <component type="typeof(PartyEditCard)" render-mode="ServerPrerendered" /> </a>
-  </h1>
+    <h1 class="mt-4">
+      Adicionar uma Festa
+      <a href="/Clients/Party/New"> <component type="typeof(PartyEditCard)" render-mode="ServerPrerendered" /></a>
+    </h1>
 </div>
 </section>
