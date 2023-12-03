@@ -1,0 +1,182 @@
+@using Organizarty.Application.App.ThirdParties.UseCases;
+@using Organizarty.Application.App.ThirdParties.Entities;
+@using Organizarty.Application.Exceptions;
+@using Organizarty.Adapters;
+
+@inject IImageUpload UploadImage
+@inject NavigationManager NavigationManager
+@inject RegisterThirdPartyUseCase RegisterThirdParty
+@inject NavigationManager NavigationManager
+
+<section class="flex h-screen font-[Inter] bg-[url('/images/Clients/Accounts/BackgroundUser.png')]">
+  <div class="w-screen h-full flex flex-col items-center">
+    <h2 class="text-[#B1B0B0] uppercase font-[Inter] font-bold text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl mt-5">Register</h2>
+    <p class="text-[#908D8D] font-[Inter] text-xs md:text-xs lg:text-sm xl:text-md 2xl:text-lg mt-2 mb-10">Precisamos somente de algumas informações para dar play na sua festa.</p>
+    <div class="flex w-screen justify-center h-full">
+      <div class="flex justify-end w-2/5 h-1/2 self-center pr-10">
+        <label>
+          <img class="w-4/5 h-4/5 border-2 border-solid border-[#FF008A] rounded-2xl shadow-2xl bg-white px-10 py-5" src="@ImgUrl"/>
+
+          <InputFile OnChange="@OnInputFileChange" />
+        </label>
+      </div>
+      <div class="flex justify-center justify-self-end text-center w-3/5 h-full">
+        <EditForm Model="@ThirdPartyModel" id="login" OnSubmit="@Submit" FormName="registeruser" class="w-full h-full flex flex-col items-start justify-center self-center">
+          <div asp-validation-summary="ModelOnly" class=""></div>
+          <div class="h-52 w-full flex flex-col justify-between items-start pl-10 mt-[23%]">
+
+            @if(FirstForm){
+              <div class="relative w-7/12 mb-6">
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
+                  <img src="/images/Clients/Accounts/IconEmail.svg" class="h-4/5">
+                </div>
+                <InputText @bind-Value="@ThirdPartyModel.Email" type="email" id="name" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl block w-full ps-12 p-4" placeholder="Digite seu email" />
+                <span asp-validation-for="@ThirdPartyModel.Email" class="placeholder"></span>
+              </div>
+
+              <div class="relative w-7/12 mb-6">
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
+                  <img src="/images/Clients/Accounts/IconUsername.svg" class="h-4/5">
+                </div>
+                <InputText @bind-Value="@ThirdPartyModel.UserName" id="cpf" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl block w-full ps-12 p-4" placeholder="Digite seu nome de usuario" />
+                <span asp-validation-for="Input.Username" class="placeholder"></span>
+              </div>
+
+              <div class="relative w-7/12 mb-6">
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
+                  <img src="/images/Clients/Accounts/IconPassword.svg" class="h-4/5">
+                </div>
+                <InputText type="password" @bind-Value="@ThirdPartyModel.Password" id="tel" class="bg-white shadow-2xl border border-transparent text-[#948F8F]  text-sm rounded-2xl block w-full ps-12 p-4" placeholder="Crie uma senha" />
+                <span asp-validation-for="Input.Password" class="placeholder"></span>
+              </div>
+
+              <div class="relative w-7/12 mb-6">
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
+                  <img src="/images/Clients/Accounts/IconPassword.svg" class="h-4/5">
+                </div>
+                <InputText type="password" @bind-Value="@ThirdPartyModel.ConfirmPassword" id="tel" class="bg-white shadow-2xl border border-transparent text-[#948F8F]  text-sm rounded-2xl block w-full ps-12 p-4" placeholder="Crie uma senha" />
+                <span asp-validation-for="Input.ConfirmPassword" class="placeholder"></span>
+              </div>
+
+              <div class="relative w-7/12">
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
+                  <img src="/images/Clients/Accounts/IconConfPassword.svg" class="h-4/5">
+                </div>
+                <span asp-validation-for="Input.ConfirmPassword" class="placeholder"></span>
+              </div>
+            } else{
+              <div class="relative w-7/12 mb-6">
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
+                  <img src="/images/Clients/Accounts/IconName.svg" class="h-4/5">
+                </div>
+                <InputText @bind-Value="@ThirdPartyModel.Fullname" type="text" id="name" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Digite seu nome completo" />
+                <span asp-validation-for="Input.FullName" class="placeholder"></span>
+              </div>
+
+              <div class="relative w-7/12 mb-6">
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
+                  <img src="/images/Clients/Accounts/IconCPF.svg" class="h-4/5">
+                </div>
+                <InputText @bind-Value="@ThirdPartyModel.CPF" type="text" id="cpf" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Informe seu CPF" />
+                <span asp-validation-for="Input.CPF" class="placeholder"></span>
+              </div>
+
+              <div class="relative w-7/12">
+                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
+                  <img src="/images/Clients/Accounts/IconTEL.svg" class="h-4/5">
+                </div>
+                <InputText @bind-Value="@ThirdPartyModel.Location" type="text" id="tel" class="bg-white shadow-2xl border border-transparent text-[#948F8F]  text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Informe seu Telefone" />
+                <span asp-validation-for="Input.Tel" class="placeholder"></span>
+              </div>
+            }
+          </div>
+          @foreach(var err in Errors){
+            <p class="">@err</p>
+          }
+          @if(FirstForm){
+            <div class="flex w-3/5 h-full justify-evenly items-end pb-5 self-end">
+              <button @onclick="ToggleForm" id="login-submit" type="button" class="w-2/5 py-5 rounded-xl hover:shadow-2xl text-xs xl:text-sm 2xl:text-md uppercase text-white bg-[#FF008A]">Continuar</button>
+            </div>
+          } else{
+            <div class="flex w-3/5 h-full justify-evenly items-end pb-5 self-end">
+              <button @onclick="() => FirstForm = true" type="button" class="w-2/5 py-5 rounded-xl hover:shadow-2xl text-xs xl:text-sm 2xl:text-md uppercase text-[#FF008A] bg-white border-2 border-solid border-[#FF008A]">Voltar</button>
+              <button id="login-submit" type="submit" disable="@Registering" class="w-2/5 py-5 rounded-xl hover:shadow-2xl text-xs xl:text-sm 2xl:text-md uppercase text-white bg-[#FF008A]">Criar conta</button>
+            </div>
+          }
+        </EditForm>
+      </div>
+    </div>
+  </div>
+</section>
+
+@code{
+  public bool FirstForm = true;
+  public bool Registering;
+  public List<string> Errors = new();
+
+  public InputModel ThirdPartyModel {get; set;} = new();
+
+  public string ImgUrl {get; set;} = "/images/Clients/Accounts/LogoRosa.svg";
+
+  public class InputModel : ThirdParty
+  {
+    public string ConfirmPassword = "";
+  }
+
+  public void ToggleForm(){
+    if(checkPassword()){
+      return;
+    }
+
+    FirstForm = !FirstForm;
+    StateHasChanged();
+
+    Console.WriteLine(FirstForm ? "a" : "b");
+  }
+
+  public bool checkPassword(){
+    if(ThirdPartyModel.Password != ThirdPartyModel.ConfirmPassword){
+        Errors = new(){"Senhas diferem"};
+        return true;
+    }
+      return false;
+  }
+
+  public async Task Submit()
+  {
+    Registering = true;
+
+    if(checkPassword()){
+      return;
+    }
+
+    try{
+        Console.WriteLine(ThirdPartyModel.Email);
+        await RegisterUser.Execute(new(ThirdPartyModel.UserName, ThirdPartyModel.Fullname, ThirdPartyModel.Location, ThirdPartyModel.Email, ThirdPartyModel.Password, ThirdPartyModel.CPF, ImgUrl));
+        NavigationManager.NavigateTo("/Clients/Accounts/Login", forceLoad: true);
+     } catch(ValidationFailException e){
+        Errors.AddRange(e.Errors.Select(x => x.message));
+     } catch(Exception e){
+        Errors = new(){e.Message};
+     }
+     finally {
+      Registering = false;
+     }
+  }
+
+    public async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+       var file = e.File;
+       if (file != null)
+       {
+           using var memoryStream = new MemoryStream();
+           await file.OpenReadStream().CopyToAsync(memoryStream);
+           var byteArray = memoryStream.ToArray();
+           try{
+              ImgUrl = await UploadImage.UploadImage("avatars", "assets", byteArray);
+           } catch(Exception ex){
+             Console.WriteLine(ex.ToString());
+           }
+       }
+   }
+}
