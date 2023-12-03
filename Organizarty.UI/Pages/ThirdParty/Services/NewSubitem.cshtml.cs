@@ -42,6 +42,13 @@ public class NewServiceSubitemModel : PageModel
 
     }
 
+    public Guid ServiceId { get; set; }
+
+    public void OnGet(Guid serviceId)
+    {
+        ServiceId = serviceId;
+    }
+
     public async Task<IActionResult> OnPostAsync(Guid serviceId)
     {
         var thirdParty = await _authHelper.GetThirdPartyFromToken(_authHelper.GetToken() ?? "");
@@ -51,11 +58,9 @@ public class NewServiceSubitemModel : PageModel
             return Page();
         }
 
-        var data = new CreateserviceInfoDto(Input.Price, Input.IsAvaible, Input.Plan, new() { Input.ImgURL }, serviceId);
-
         try
         {
-            await _createService.Execute(data);
+            await _createService.Execute(new(Input.Price, Input.IsAvaible, Input.Plan, new() { Input.ImgURL }, serviceId));
             return RedirectToPage("/ThirdParty/Services/MyServices");
         }
         catch (ValidationFailException e)
