@@ -70,7 +70,7 @@
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
                   <img src="/images/Clients/Accounts/IconName.svg" class="h-4/5">
                 </div>
-                <InputText @bind-Value="@ThirdPartyModel.Description" type="text" id="name" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Digite seu nome completo" />
+                <InputText @bind-Value="@ThirdPartyModel.Description" type="text" id="name" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Descrição" />
                 <span asp-validation-for="Input.FullName" class="placeholder"></span>
               </div>
 
@@ -78,7 +78,7 @@
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
                   <img src="/images/Clients/Accounts/IconCPF.svg" class="h-4/5">
                 </div>
-                <InputText @bind-Value="@ThirdPartyModel.Address" type="text" id="cpf" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Informe seu CPF" />
+                <InputText @bind-Value="@ThirdPartyModel.Address" type="text" id="cpf" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Endereço" />
                 <span asp-validation-for="Input.CPF" class="placeholder"></span>
               </div>
 
@@ -86,7 +86,7 @@
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
                   <img src="/images/Clients/Accounts/IconCPF.svg" class="h-4/5">
                 </div>
-                <InputText @bind-Value="@ThirdPartyModel.CNPJ" type="text" id="cpf" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Informe seu CPF" />
+                <InputText @bind-Value="@ThirdPartyModel.CNPJ" type="text" id="cpf" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Informe seu CNPJ" />
                 <span asp-validation-for="Input.CPF" class="placeholder"></span>
               </div>
 
@@ -94,7 +94,7 @@
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
                   <img src="/images/Clients/Accounts/IconTEL.svg" class="h-4/5">
                 </div>
-                <InputText @bind-Value="@ThirdPartyModel.ProfissionalPhone" type="text" id="tel" class="bg-white shadow-2xl border border-transparent text-[#948F8F]  text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Informe seu Telefone" />
+                <InputText @bind-Value="@ThirdPartyModel.ProfissionalPhone" type="text" id="tel" class="bg-white shadow-2xl border border-transparent text-[#948F8F]  text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Número profissional" />
                 <span asp-validation-for="Input.Tel" class="placeholder"></span>
               </div>
             }
