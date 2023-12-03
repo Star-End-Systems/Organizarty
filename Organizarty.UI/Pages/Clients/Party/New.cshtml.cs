@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Organizarty.Adapters;
 using Organizarty.Application.App.Locations.Entities;
 using Organizarty.Application.App.Locations.UseCases;
+using Organizarty.Application.App.Party.Enums;
 using Organizarty.Application.App.Party.UseCases;
 using Organizarty.Application.Exceptions;
 using Organizarty.UI.Attributes;
@@ -40,7 +41,7 @@ public class NewPartyModel : PageModel
 
         [Required]
         [Display(Name = "Tipo de Festa")]
-        public string PartyType { get; set; } = default!;
+        public PartyType PartyType { get; set; } = default!;
 
         [Required]
         [Display(Name = "Número de convidados")]

@@ -9,6 +9,6 @@ public class PartyTemplateValidator : AbstractValidator<PartyTemplate>
         RuleFor(x => x.Name).Length(5, 50);
         RuleFor(x => x.ExpectedGuests).Must(x => x > 1).WithMessage("Guests number must be greater than one.");
 
-        RuleFor(x => x.PartyType).NotEmpty();
+        RuleFor(x => x.Type).NotEmpty();
     }
 }

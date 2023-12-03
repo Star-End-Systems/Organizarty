@@ -1,5 +1,6 @@
 using Organizarty.Application.App.Locations.Entities;
 using Organizarty.Application.App.Party.Entities;
+using Organizarty.Application.App.Party.Enums;
 using Organizarty.Application.App.Users.Entities;
 
 namespace Organizarty.Application.App.Schedules.Entities;
@@ -14,7 +15,7 @@ public class Schedule
     public DateTime EndDate { get; set; } = default!;
     public decimal Price { get; set; } = default!;
 
-    public string PartyType { get; set; } = default!;
+    public PartyType Type { get; set; }
 
     public Guid UserId { get; set; } = default!;
     public User User { get; set; } = default!;
