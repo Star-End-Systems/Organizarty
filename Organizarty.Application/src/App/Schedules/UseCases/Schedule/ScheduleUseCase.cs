@@ -83,6 +83,7 @@ public class ScheduleUseCase
             ExpectedGuests = party.ExpectedGuests,
             Price = 0,
             LocationId = party.LocationId,
+            PartyType = party.PartyType,
             UserId = party.UserId,
             PartyId = party.Id,
             StartDate = scheduleDto.startDate,

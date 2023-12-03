@@ -14,6 +14,8 @@ public class Schedule
     public DateTime EndDate { get; set; } = default!;
     public decimal Price { get; set; } = default!;
 
+    public string PartyType { get; set; } = default!;
+
     public Guid UserId { get; set; } = default!;
     public User User { get; set; } = default!;
 
