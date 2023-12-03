@@ -16,21 +16,95 @@
       </div>
   </div>
 } else{
-  <div class="w-fit mr-[5%] self-center ">
-      <div class="bg-[#594560] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
-          <div class=" w-80 rounded-2xl z-0 ">
+    @switch(PartyTemplate.PartyType){
+      case "Chá de Bebê":
+        <div class="w-fit mr-[5%] self-center ">
+          <div class="bg-[#594560] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
+            <div class=" w-80 rounded-2xl z-0 ">
               <div class="flex Festa relative h-full">
-                  <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
-                      <h4 class="clareador">@PartyTemplate.Name</h4>
-                      <p class="clareador">@PartyTemplate.PartyType <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
-                  </div>
-                  <div class="h-full w-full flex items-center justify-center ">
-                    <img class="h-full escuro" src="/images/Clients/MyParties/Urso.png">
-                  </div>
+                <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
+                  <h4 class="clareador">@PartyTemplate.Name</h4>
+                  <p class="clareador">@PartyTemplate.PartyType <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
+                </div>
+                <div class="h-full w-full flex items-center justify-center">
+                  <img class="h-full escuro" src="/images/Clients/MyParties/Urso.png">
+                </div>
               </div>
-          </div> 
-      </div>
-  </div>
+            </div> 
+          </div>
+        </div>
+      break;
+      case "Happy Hour":
+        <div class="w-fit mr-[5%] self-center ">
+          <div class="bg-gradient-to-b from-[#003664] to-[#023C10] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
+            <div class=" w-80 rounded-2xl z-0 ">
+              <div class="flex Festa relative h-full">
+                <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
+                    <h4 class="clareador">@PartyTemplate.Name</h4>
+                    <p class="clareador">@PartyTemplate.PartyType <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
+                </div>
+                <div class="h-full w-full flex items-center justify-center">
+                  <img class="h-full escuro" src="/images/Clients/MyParties/HappyHour.png">
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+      break;
+      case "Aniversário":
+        <div class="w-fit mr-[5%] self-center ">
+          <div class="bg-gradient-to-b from-[#4A0065] via-[#BC2450] to-[#C8A217] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
+            <div class=" w-80 rounded-2xl z-0 ">
+              <div class="flex Festa relative h-full">
+                <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
+                    <h4 class="clareador">@PartyTemplate.Name</h4>
+                    <p class="clareador">@PartyTemplate.PartyType <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
+                </div>
+                <div class="h-full w-full flex items-center justify-center">
+                  <img class="h-full escuro" src="/images/Clients/MyParties/Aniversario.png">
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+      break;
+      case "Debutante":
+        <div class="w-fit mr-[5%] self-center ">
+          <div class="bg-gradient-to-b from-[#4B5267] to-[#000000] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
+            <div class=" w-80 rounded-2xl z-0 ">
+              <div class="flex Festa relative h-full">
+                <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
+                    <h4 class="clareador">@PartyTemplate.Name</h4>
+                    <p class="clareador">@PartyTemplate.PartyType <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
+                </div>
+                <div class="h-full w-full flex items-center justify-center">
+                  <img class="h-full escuro" src="/images/Clients/MyParties/Debutante.png">
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+      break;
+      case "Casamento":
+        <div class="w-fit mr-[5%] self-center ">
+          <div class="bg-[#928164] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
+            <div class=" w-80 rounded-2xl z-0 ">
+              <div class="flex Festa relative h-full">
+                <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
+                    <h4 class="clareador">@PartyTemplate.Name</h4>
+                    <p class="clareador">@PartyTemplate.PartyType <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
+                </div>
+                <div class="h-full w-full flex items-center justify-center">
+                  <img class="h-full escuro" src="/images/Clients/MyParties/Casamento.png">
+                </div>
+              </div>
+            </div> 
+          </div>
+        </div>
+      break;
+      default:
+      break;
+    }
 }
 
 @code{
