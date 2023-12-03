@@ -10,7 +10,7 @@ public static partial class DecorationSample
 {
     public static async Task<DecorationType> SetupDecorationType(CreateDecorationTypeUseCase usecase)
       => await usecase.Execute(
-          new("Caneca Organizarty", "Caneca oficial com logo da organizarty", DecorationCategory.Copo, "Grande", "Caneca", "localhost:8000")
+          new("Caneca Organizarty", "Caneca oficial com logo da organizarty", DecorationCategory.Mesa, "Grande", "Caneca", "localhost:8000", new())
         );
 
     public static async Task<DecorationInfo> SetupDecorationInfo(CreateDecorationInfoUseCase usecase, Guid decorationId)
