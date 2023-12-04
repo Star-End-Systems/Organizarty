@@ -125,7 +125,7 @@
 
   public InputModel ThirdPartyModel {get; set;} = new();
 
-  public string ImgUrl {get; set;} = "/images/Clients/Accounts/LogoRosa.svg";
+  public string ImgUrl {get; set;} = "/images/ThirdParty/Accounts/LogoRoxa.svg";
 
   public class InputModel : ThirdParty
   {
@@ -162,7 +162,7 @@
     try{
         var tags = new List<string>();
         await RegisterThirdParty.Execute(new(ThirdPartyModel.Name, ThirdPartyModel.Description, ThirdPartyModel.Address, ThirdPartyModel.LoginEmail, ThirdPartyModel.Password, ThirdPartyModel.ProfissionalPhone, ThirdPartyModel.CNPJ, ImgUrl, tags));
-        NavigationManager.NavigateTo("/Clients/Accounts/Login", forceLoad: true);
+        NavigationManager.NavigateTo("/ThirdParty/Accounts/Login", forceLoad: true);
      } catch(ValidationFailException e){
         Errors.AddRange(e.Errors.Select(x => x.message));
      } catch(Exception e){

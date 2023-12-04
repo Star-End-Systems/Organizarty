@@ -34,11 +34,11 @@ public class LoginThirdPartyModel : PageModel
 
     public class InputModel
     {
-        [Required]
+        [Required(ErrorMessage="O campo 'Email' é obrigatório!")]
         [Display(Name = "Email")]
         public string Email { get; set; } = default!;
 
-        [Required]
+        [Required(ErrorMessage="O campo 'Senha' é obrigatório!")]
         [Display(Name = "Password")]
         public string Password { get; set; } = default!;
 
