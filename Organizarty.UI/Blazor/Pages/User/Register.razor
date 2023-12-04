@@ -8,22 +8,23 @@
 @inject RegisterUserUseCase RegisterUser
 @inject NavigationManager NavigationManager
 
-<section class="flex h-screen font-[Inter] bg-[url('/images/Clients/Accounts/BackgroundUser.png')]">
+<section class="flex h-screen font-[Inter] bg-[url('/images/Clients/Accounts/BackgroundUser.png')] bg-cover">
   <div class="w-screen h-full flex flex-col items-center">
     <h2 class="text-[#B1B0B0] uppercase font-[Inter] font-bold text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl mt-5">Register</h2>
     <p class="text-[#908D8D] font-[Inter] text-xs md:text-xs lg:text-sm xl:text-md 2xl:text-lg mt-2 mb-10">Precisamos somente de algumas informações para dar play na sua festa.</p>
     <div class="flex w-screen justify-center h-full">
       <div class="flex justify-end w-2/5 h-1/2 self-center pr-10">
         <label>
-          <img class="w-4/5 h-4/5 border-2 border-solid border-[#FF008A] rounded-2xl shadow-2xl bg-white px-10 py-5" src="@ImgUrl"/>
+          <img class="w-4/5 h-4/5 border-2 border-solid border-[#FF008A] rounded-2xl shadow-2xl bg-white px-10 py-5 mb-3" src="@ImgUrl"/>
 
-          <InputFile OnChange="@OnInputFileChange" />
+          <InputFile OnChange="@OnInputFileChange" class="font-[Konnect] text-white"/>
         </label>
       </div>
       <div class="flex justify-center justify-self-end text-center w-3/5 h-full">
+
         <EditForm Model="@UserModel" id="login" OnSubmit="@Submit" FormName="registeruser" class="w-full h-full flex flex-col items-start justify-center self-center">
           <div asp-validation-summary="ModelOnly" class=""></div>
-          <div class="h-52 w-full flex flex-col justify-between items-start pl-10 mt-[23%]">
+          <div class="h-52 w-full flex flex-col justify-center items-start pl-10 mt-[23%] font-[Konnect]">
 
             @if(FirstForm){
               <div class="relative w-7/12 mb-6">
@@ -31,7 +32,7 @@
                   <img src="/images/Clients/Accounts/IconEmail.svg" class="h-4/5">
                 </div>
                 <InputText @bind-Value="@UserModel.Email" type="email" id="name" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl block w-full ps-12 p-4" placeholder="Digite seu email" />
-                <span asp-validation-for="@UserModel.Email" class="placeholder"></span>
+                <span asp-validation-for="@UserModel.Email" class="placeholder text-[Inter] text-[#FF7F31]"></span>
               </div>
 
               <div class="relative w-7/12 mb-6">
@@ -39,15 +40,15 @@
                   <img src="/images/Clients/Accounts/IconUsername.svg" class="h-4/5">
                 </div>
                 <InputText @bind-Value="@UserModel.UserName" id="cpf" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl block w-full ps-12 p-4" placeholder="Digite seu nome de usuario" />
-                <span asp-validation-for="Input.Username" class="placeholder"></span>
+                <span asp-validation-for="Input.Username" class="placeholder text-[Inter] text-[#FF7F31]"></span>
               </div>
 
-              <div class="relative w-7/12 mb-6">
+              <div class="relative w-7/12 mb-6 flex">
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
                   <img src="/images/Clients/Accounts/IconPassword.svg" class="h-4/5">
                 </div>
                 <InputText type="password" @bind-Value="@UserModel.Password" id="tel" class="bg-white shadow-2xl border border-transparent text-[#948F8F]  text-sm rounded-2xl block w-full ps-12 p-4" placeholder="Crie uma senha" />
-                <span asp-validation-for="Input.Password" class="placeholder"></span>
+                <span asp-validation-for="Input.Password" class="placeholder text-[Inter] text-[#FF7F31]"></span>
               </div>
 
               <div class="relative w-7/12 mb-6">
@@ -55,14 +56,14 @@
                   <img src="/images/Clients/Accounts/IconPassword.svg" class="h-4/5">
                 </div>
                 <InputText type="password" @bind-Value="@UserModel.ConfirmPassword" id="tel" class="bg-white shadow-2xl border border-transparent text-[#948F8F]  text-sm rounded-2xl block w-full ps-12 p-4" placeholder="Crie uma senha" />
-                <span asp-validation-for="Input.ConfirmPassword" class="placeholder"></span>
+                <span asp-validation-for="Input.ConfirmPassword" class="placeholder text-[Inter] text-[#FF7F31]"></span>
               </div>
 
               <div class="relative w-7/12">
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
                   <img src="/images/Clients/Accounts/IconConfPassword.svg" class="h-4/5">
                 </div>
-                <span asp-validation-for="Input.ConfirmPassword" class="placeholder"></span>
+                <span asp-validation-for="Input.ConfirmPassword" class="placeholder text-[Inter] text-[#FF7F31]"></span>
               </div>
             } else{
               <div class="relative w-7/12 mb-6">
