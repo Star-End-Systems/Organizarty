@@ -48,7 +48,7 @@ mr-auto" src="/images/ThirdParty/MyProducts/Bolo.svg"></img></button>
   </div>
   <a href="/ThirdParty/products/new/sla" class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D]">
     <button class="flex menuButtons rounded-full w-28 h-28  hover:bg-[#D9D9D9]"><img
-        class="w-10 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/Cruz.png"></img></button>
+        class="w-full self-center ml-auto mr-auto" src="/images/icons/mais.png"></img></button>
     <h4 class="text-sm">Adicionar</h4>
   </a>
 </div>
@@ -56,8 +56,7 @@ mr-auto" src="/images/ThirdParty/MyProducts/Bolo.svg"></img></button>
 @foreach(var food in Model.Foods){
 <div class="w-full">
   <div class="mt-6">
-    <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">@food.Name <a
-        href="/ThirdParty/Products/NewSubitem/@food.Id">+</a> <a
+    <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">@food.Name <img class="w-8 h-8" src="/images/icons/mais.png"/> <a
         href="/ThirdParty/Products/Edit/@food.Id">Edit</a></h1>
   </div>
   <div class="w-full overflow-x-auto flex">

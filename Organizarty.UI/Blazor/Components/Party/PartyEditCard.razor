@@ -1,4 +1,5 @@
 @using Organizarty.Application.App.Party.Entities
+@using Organizarty.Application.App.Party.Enums;
 
 @if(PartyTemplate is null){
   <div class="w-fit mr-[5%] self-center ">
@@ -16,98 +17,58 @@
       </div>
   </div>
 } else{
-    @switch(PartyTemplate.PartyType){
-      case "chadebebe":
-        <div class="w-fit mr-[5%] self-center ">
-          <div class="bg-[#594560] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
-            <div class=" w-80 rounded-2xl z-0 ">
-              <div class="flex Festa relative h-full">
-                <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
+  div class="w-fit mr-[5%] self-center ">
+    <div class="bg-[#594560] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
+          <div class=" w-80 rounded-2xl z-0 ">
+            <div class="flex Festa relative h-full">
+              <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
                   <h4 class="clareador">@PartyTemplate.Name</h4>
-                  <p class="clareador">Chá de Bebê <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
-                </div>
-                <div class="h-full w-full flex items-center justify-center">
-                  <img class="h-full escuro" src="/images/Clients/MyParties/Urso.png">
-                </div>
+                  <p class="clareador">@GetPartyTypeName(@PartyTemplate.Type) <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
               </div>
-            </div> 
-          </div>
-        </div>
-      break;
-      case "happyhour":
-        <div class="w-fit mr-[5%] self-center ">
-          <div class="bg-gradient-to-b from-[#003664] to-[#023C10] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
-            <div class=" w-80 rounded-2xl z-0 ">
-              <div class="flex Festa relative h-full">
-                <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
-                    <h4 class="clareador">@PartyTemplate.Name</h4>
-                    <p class="clareador">Happy Hour <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
-                </div>
-                <div class="h-full w-full flex items-center justify-center">
-                  <img class="h-full escuro" src="/images/Clients/MyParties/HappyHour.png">
-                </div>
+              <div class="h-full w-full flex items-center justify-center">
+                <img class="h-full escuro" src="/images/Clients/MyParties/@GetPartyIconName(PartyTemplate.Type)">
               </div>
-            </div> 
-          </div>
+            </div>
+          </div> 
         </div>
-      break;
-      case "aniversario":
-        <div class="w-fit mr-[5%] self-center ">
-          <div class="bg-gradient-to-b from-[#4A0065] via-[#BC2450] to-[#C8A217] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
-            <div class=" w-80 rounded-2xl z-0 ">
-              <div class="flex Festa relative h-full">
-                <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
-                    <h4 class="clareador">@PartyTemplate.Name</h4>
-                    <p class="clareador">Aniversário <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
-                </div>
-                <div class="h-full w-full flex items-center justify-center">
-                  <img class="h-full escuro" src="/images/Clients/MyParties/Aniversario.png">
-                </div>
-              </div>
-            </div> 
-          </div>
-        </div>
-      break;
-      case "debutante":
-        <div class="w-fit mr-[5%] self-center ">
-          <div class="bg-gradient-to-b from-[#4B5267] to-[#000000] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
-            <div class=" w-80 rounded-2xl z-0 ">
-              <div class="flex Festa relative h-full">
-                <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
-                    <h4 class="clareador">@PartyTemplate.Name</h4>
-                    <p class="clareador">Debutante <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
-                </div>
-                <div class="h-full w-full flex items-center justify-center">
-                  <img class="h-full escuro" src="/images/Clients/MyParties/Debutante.png">
-                </div>
-              </div>
-            </div> 
-          </div>
-        </div>
-      break;
-      case "casamento":
-        <div class="w-fit mr-[5%] self-center ">
-          <div class="bg-[#928164] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
-            <div class=" w-80 rounded-2xl z-0 ">
-              <div class="flex Festa relative h-full">
-                <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
-                    <h4 class="clareador">@PartyTemplate.Name</h4>
-                    <p class="clareador">Casamento <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
-                </div>
-                <div class="h-full w-full flex items-center justify-center">
-                  <img class="h-full escuro" src="/images/Clients/MyParties/Casamento.png">
-                </div>
-              </div>
-            </div> 
-          </div>
-        </div>
-      break;
-      default:
-      break;
-    }
+      </div>
 }
 
 @code{
   [Parameter]
   public PartyTemplate? PartyTemplate {get; set;} = null;
+
+  public string GetPartyTypeName(PartyType type){
+      switch (type)
+      {
+        case(PartyType.chadebebe):
+          return "Chá de bebe";
+        case(PartyType.casamento):
+          return "Casamento";
+        case(PartyType.aniversario):
+          return "Aniversário";
+        case(PartyType.debutante):
+          return "Debutante";
+        case(PartyType.happyHour):
+          return "Happy Hour";
+      }
+      return "nada";
+  } 
+
+  public string GetPartyIconName(PartyType type){
+      switch (type)
+      {
+        case(PartyType.chadebebe):
+          return "Urso.png";
+        case(PartyType.casamento):
+          return "Casamento.png";
+        case(PartyType.aniversario):
+          return "Aniversario.png";
+        case(PartyType.debutante):
+          return "Debutante.png";
+        case(PartyType.happyHour):
+          return "HappyHour.png";
+      }
+      return "nada";
+  } 
 }

@@ -1,0 +1,170 @@
+@using Organizarty.Application.App.Locations.Entities;
+@using Organizarty.Application.App.Locations.UseCases;
+@using Organizarty.Application.Exceptions;
+@using Organizarty.Adapters;
+
+@inject IImageUpload UploadImage
+@inject NavigationManager NavigationManager
+@inject NavigationManager NavigationManager
+
+<EditForm Model="@Input">
+  <section class="h-screen w-5/6 ml-auto ">
+    <div class="flex flex-col">
+      <div class="flex">
+        <div class="w-full ml-16">
+          <p class="mt-16 font-[KonnectBold] text-4xl text-[#848484]">NOVO LOCAL</p>
+          <div class="bg-[#FFC700] rounded-xl h-2 w-52"></div>
+        </div>
+      </div>
+      <p class="ml-16 mt-3 font-[Inter] text-[#848484] text-xl">Preencha as informações abaixo para seus clientes
+        poderem
+        festejar em mais um local <br> espetacular!</p>
+    </div>
+    <div class="flex justify-between items-center">
+      <div class="h-px w-full bg-[#C5BCBC]"></div>
+      <h1 class="p-12 font-[Konnect] text-[#C6C6C6] text-2xl">Endereço</h1>
+      <div class="h-px w-full bg-[#C5BCBC]"></div>
+    </div>
+          <div asp-validation-summary="ModelOnly" class=""></div>
+    <div class="flex justify-center ">
+
+      <div class="w-11/12 h-full flex ">
+        <div class="w-1/2 flex flex-col justify-between">
+          <h2 class="text-[#A09898] font-[Inter] font-bold">CEP: </h2>
+          <input asp-for="Input.CEP"
+            class="font-[KonnectBold] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
+            aria-required="true" />
+          <span asp-validation-for="Input.CEP" class="placeholder"></span>
+
+          <h2 class="text-[#A09898] font-[Inter] font-bold">Endereço: </h2>
+          <input asp-for="Input.Address"
+            class="font-[KonnectBold] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
+            aria-required="true" />
+          <span asp-validation-for="Input.Address" class="placeholder"></span>
+
+          <!-- <h2 class="text-[#A09898] font-[Inter] font-bold">Complemento: </h2> -->
+          <!-- <input asp-for="Input.Complement" class="font-[KonnectBold] mb-16 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control" aria-required="true"/> -->
+          <!-- <span asp-validation-for="Input.Complement" class="placeholder"></span> -->
+
+
+        </div>
+        <!-- <div class="w-1/2 flex flex-col"> -->
+        <!--         <h2 class="text-[#A09898] font-[Inter] font-bold">Cidade: </h2> -->
+        <!--         <input asp-for="Input.City" class="font-[KonnectBold] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control" aria-required="true"/> -->
+        <!--         <span asp-validation-for="Input.City" class="placeholder"></span> -->
+
+        <!--         <h2 class="text-[#A09898] font-[Inter] font-bold">Número: </h2> -->
+        <!--         <input asp-for="Input.Number" type="number" class="font-[KonnectBold] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control" aria-required="true"/> -->
+        <!--         <span asp-validation-for="Input.Number" class="placeholder"></span> -->
+
+        <!--         <h2 class="text-[#A09898] font-[Inter] font-bold">Bairro: </h2> -->
+        <!--         <input asp-for="Input.Neighbor" class="font-[KonnectBold] w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control" aria-required="true"/> -->
+        <!--         <span asp-validation-for="Input.Neighbor" class="placeholder"></span> -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </section>
+  <section class="h-screen w-5/6 ml-auto ">
+    <div class="flex justify-between items-center">
+      <div class="h-px w-full bg-[#C5BCBC]"></div>
+      <h1 class="p-12 font-[Konnect] text-[#C6C6C6] text-2xl">Informações</h1>
+      <div class="h-px w-full bg-[#C5BCBC]"></div>
+    </div>
+    <div class="flex">
+      <div class="flex justify-end w-2/5 h-1/2 self-center pr-10">
+        <label>
+          <img class="w-4/5 h-4/5 border-2 border-solid border-[#FF008A] rounded-2xl shadow-2xl bg-white px-10 py-5" src="@ImgUrl"/>
+
+          <InputFile OnChange="@OnInputFileChange" />
+        </label>
+      </div>
+      <div class="w-1/2 flex flex-col justify-center">
+        <h2 class="text-[#A09898] font-[Inter] font-bold">Nome: </h2>
+        <input asp-for="Input.Name"
+          class="font-[KonnectBold] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
+          aria-required="true" />
+        <span asp-validation-for="Input.Name" class="placeholder"></span>
+
+        <h2 class="text-[#A09898] font-[Inter] font-bold">Aluguel: </h2>
+        <input asp-for="Input.RentPerDay" type="number"
+          class="font-[KonnectBold] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
+          aria-required="true" />
+        <span asp-validation-for="Input.RentPerDay" class="placeholder"></span>
+
+        <h2 class="text-[#A09898] font-[Inter] font-bold">Categoria: </h2>
+        <input asp-for="Input.Category"
+          class="font-[KonnectBold] w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
+          aria-required="true" />
+        <span asp-validation-for="Input.Category" class="placeholder"></span>
+
+        <h2 class="text-[#A09898] font-[Inter] font-bold">Tamanho (M²)</h2>
+        <input asp-for="Input.AreaSize"
+          class="font-[KonnectBold] w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
+          aria-required="true" />
+        <span asp-validation-for="Input.AreaSize" class="placeholder"></span>
+      </div>
+    </div>
+    <div class="w-full flex">
+      <div class="w-1/2 ml-24 mt-8">
+        <p class="font-[KonnectBold] text-[#848484]">Descrição</p>
+        <input asp-for="Input.Description"
+          class="font-[KonnectBold] w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
+          aria-required="true" />
+        <span asp-validation-for="Input.Description" class="placeholder"></span>
+
+        <!-- <textarea class="TextArea w-96 h-32"> </textarea> -->
+      </div>
+      <div class="w-1/2 flex items-end justify-center">
+        <div class="flex h-11">
+          <button class="font-[Inter] text-[#FFC700] rounded-xl CancelButton pr-10 pl-10">Cancelar</button>
+          <button type="submit"
+            class="font-[Inter] text-white rounded-xl RegisterButton bg-[#FFC700] pr-10 pl-10 ml-8">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</EditForm>
+
+@code{
+  public InputModel Input {get; set;} = new();
+
+    public class InputModel
+    {
+        public string Name { get; set; } = default!;
+
+        public string Description { get; set; } = default!;
+
+        public double AreaSize { get; set; } = default!;
+
+        public decimal RentPerDay { get; set; } = default!;
+
+        public string CEP { get; set; } = default!;
+
+        public string Category { get; set; } = default!;
+
+        public string Address { get; set; } = default!;
+
+        public string Cords { get; set; } = "";
+
+        public string ImgUrl { get; set; } = "http://localhost:8000/Manager/Locations/new";
+    }
+
+    public string ImgUrl {get; set;} = "";
+
+
+    public async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+       var file = e.File;
+       if (file != null)
+       {
+           using var memoryStream = new MemoryStream();
+           await file.OpenReadStream().CopyToAsync(memoryStream);
+           var byteArray = memoryStream.ToArray();
+           try{
+              ImgUrl = await UploadImage.UploadImage("avatars", "assets", byteArray);
+           } catch(Exception ex){
+             Console.WriteLine(ex.ToString());
+           }
+       }
+   }
+}

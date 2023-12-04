@@ -336,10 +336,8 @@ namespace Organizarty.Infra.Migrations
                     b.Property<Guid?>("OriginalPartyTemplateId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("PartyType")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
@@ -496,6 +494,9 @@ namespace Organizarty.Infra.Migrations
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
