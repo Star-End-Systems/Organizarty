@@ -1,5 +1,4 @@
 using Organizarty.Application.App.Decorations.Entities;
-
 namespace Organizarty.UI.Extensions;
 
 public static class DecorationCategoryMethods
