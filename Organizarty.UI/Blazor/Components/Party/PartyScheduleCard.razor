@@ -1,16 +1,17 @@
 @using Organizarty.Application.App.Schedules.Entities;
+@using Organizarty.UI.Extensions;
 @using Organizarty.Application.App.Party.Enums;
 
 <div class="w-fit mr-[5%] self-center ">
-    <div class="bg-[#594560] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
+    <div style="background: @Schedule.Type.GetBackground();" class="h-44 rounded-2xl w-80 flex z-0 mt-5 ">
         <div class=" w-80 rounded-2xl z-0 ">
             <div class="flex Festa relative h-full">
                 <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
                     <h4 class="clareador">@Schedule.Name</h4>
-                    <p class="clareador">Tipo da Festa: @GetPartyTypeName(Schedule.Type) <br> Data do Evento: @Schedule.StartDate.ToShortDateString()</p>
+                    <p class="clareador">Tipo da Festa: @Schedule.Type.GetName() <br> Data do Evento: @Schedule.StartDate.ToShortDateString()</p>
                 </div>
                 <div class="h-full w-full flex items-center justify-center ">
-                <img class="h-full escuro" src="/images/Clients/MyParties/@GetPartyIcon(Schedule.Type)">
+                <img class="h-full escuro" src="@Schedule.Type.GetImage()">
                 </div>
             </div>
         </div> 
@@ -20,38 +21,4 @@
 @code{
   [Parameter]
   public Schedule Schedule {get; set;} = new();
-
-  public string GetPartyTypeName(PartyType type){
-      switch (type)
-      {
-        case(PartyType.chadebebe):
-          return "Chá de bebe";
-        case(PartyType.casamento):
-          return "Casamento";
-        case(PartyType.aniversario):
-          return "Aniversário";
-        case(PartyType.debutante):
-          return "Debutante";
-        case(PartyType.happyHour):
-          return "Happy Hour";
-      }
-      return "nada";
-  } 
-
-  public string GetPartyIcon(PartyType type){
-      switch (type)
-      {
-        case(PartyType.chadebebe):
-          return "Urso.png";
-        case(PartyType.casamento):
-          return "Casamento.png";
-        case(PartyType.aniversario):
-          return "Aniversario.png";
-        case(PartyType.debutante):
-          return "Debutante.png";
-        case(PartyType.happyHour):
-          return "HappyHour.png";
-      }
-      return "nada";
-  } 
 }
