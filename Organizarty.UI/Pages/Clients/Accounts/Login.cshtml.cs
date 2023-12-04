@@ -73,7 +73,7 @@ public class LoginUserModel : PageModel
 
             if (u.EmailConfirmed)
             {
-                return Redirect("/Clients");
+                return Redirect("/Clients/MyParties");
             }
                 return Redirect("./ConfirmEmail");
         }
