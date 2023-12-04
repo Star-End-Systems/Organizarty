@@ -1,4 +1,5 @@
 @using Organizarty.Application.App.Party.Entities
+@using Organizarty.UI.Extensions;
 @using Organizarty.Application.App.Party.Enums;
 
 @if(PartyTemplate is null){
@@ -17,16 +18,16 @@
       </div>
   </div>
 } else{
-  div class="w-fit mr-[5%] self-center ">
-    <div class="bg-[#594560] h-44 rounded-2xl w-80 flex z-0 mt-5 ">
+      <div class="w-fit mr-[5%] self-center ">
+    <div style="background: @PartyTemplate.Type.GetBackground();" class="h-44 rounded-2xl w-80 flex z-0 mt-5 ">
           <div class=" w-80 rounded-2xl z-0 ">
             <div class="flex Festa relative h-full">
               <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
                   <h4 class="clareador">@PartyTemplate.Name</h4>
-                  <p class="clareador">@GetPartyTypeName(@PartyTemplate.Type) <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
+                  <p class="clareador">@PartyTemplate.Type.GetName() <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
               </div>
               <div class="h-full w-full flex items-center justify-center">
-                <img class="h-full escuro" src="/images/Clients/MyParties/@GetPartyIconName(PartyTemplate.Type)">
+                <img class="h-full escuro" src="@PartyTemplate.Type.GetImage()">
               </div>
             </div>
           </div> 
@@ -37,38 +38,4 @@
 @code{
   [Parameter]
   public PartyTemplate? PartyTemplate {get; set;} = null;
-
-  public string GetPartyTypeName(PartyType type){
-      switch (type)
-      {
-        case(PartyType.chadebebe):
-          return "Chá de bebe";
-        case(PartyType.casamento):
-          return "Casamento";
-        case(PartyType.aniversario):
-          return "Aniversário";
-        case(PartyType.debutante):
-          return "Debutante";
-        case(PartyType.happyHour):
-          return "Happy Hour";
-      }
-      return "nada";
-  } 
-
-  public string GetPartyIconName(PartyType type){
-      switch (type)
-      {
-        case(PartyType.chadebebe):
-          return "Urso.png";
-        case(PartyType.casamento):
-          return "Casamento.png";
-        case(PartyType.aniversario):
-          return "Aniversario.png";
-        case(PartyType.debutante):
-          return "Debutante.png";
-        case(PartyType.happyHour):
-          return "HappyHour.png";
-      }
-      return "nada";
-  } 
 }
