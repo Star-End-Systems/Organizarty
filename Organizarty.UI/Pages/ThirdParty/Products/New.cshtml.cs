@@ -27,12 +27,15 @@ public class NewProductsModel : PageModel
 
     public class InputModel
     {
+        [Required(ErrorMessage="O campo 'Nome' deve ser preenchido")]
         [Display(Name = "Nome")]
         public string Name { get; set; } = default!;
 
+        [Required(ErrorMessage="O campo 'Descrição' deve ser preenchido")]
         [Display(Name = "Descrição")]
         public string Description { get; set; } = default!;
 
+        [Required(ErrorMessage="O campo 'Tags' deve ser preenchido")]
         [Display(Name = "Tags")]
         public string Tags { get; set; } = "";
     }
@@ -44,6 +47,9 @@ public class NewProductsModel : PageModel
 
     public async Task<IActionResult> OnPostAsync(string category)
     {
+        if(!ModelState.IsValid){
+            return Page();
+        }
         var thirdParty = await _authHelper.GetThirdPartyFromToken(_authHelper.GetToken() ?? "");
 
         if (thirdParty is null)
@@ -65,5 +71,6 @@ public class NewProductsModel : PageModel
 
             return Page();
         }
+        
     }
 }

@@ -31,7 +31,8 @@ public class NewFoodSubitemModel : PageModel
 
     public class InputModel
     {
-        [Required]
+    
+        [Required(ErrorMessage="O campo é obrigatório")]
         public decimal Price { get; set; } = default!;
 
         public bool IsAvaible { get; set; } = default!;

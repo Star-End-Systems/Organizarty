@@ -35,17 +35,18 @@ public class NewPartyModel : PageModel
         [Display(Name = "Search")]
         public string? Search { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="O campo 'Nome' é obrigatório!")]
         [Display(Name = "Nome")]
         public string Name { get; set; } = default!;
+
+        [Range(1, 500, ErrorMessage = "A")]
+        [Required(ErrorMessage = "Material cost is required")]        
+        [Display(Name = "Número de convidados")]
+        public int Guests { get; set; } = default!;
 
         [Required]
         [Display(Name = "Tipo de Festa")]
         public PartyType PartyType { get; set; } = default!;
-
-        [Required]
-        [Display(Name = "Número de convidados")]
-        public int Guests { get; set; } = default!;
 
         [Required]
         [Display(Name = "Localização")]
