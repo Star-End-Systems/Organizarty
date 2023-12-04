@@ -22,20 +22,21 @@
                   <p class="uppercase text-white font-[Inter]">@Model.Category</p>
               </div>
             <div asp-validation-summary="ModelOnly" class=""></div>
+
             <!-- Name -->
             <input asp-for="Input.Name" class="font-[Inter] w-2/3 h-14 rounded-xl shadow-xl placeholder form-control"
-              aria-required="true" placeholder="Nome do produto" />
-            <span asp-validation-for="Input.Name" class="placeholder"></span>
+              aria-required="true" placeholder="Nome do produto"/>
+            <span asp-validation-for="Input.Name" class="placeholder bg-red-900 text-center w-2/3 text-white font-[Inter] rounded-xl"></span>
 
             <!-- Description -->
             <textarea style="resize:none" asp-for="Input.Description" class="font-[Inter] w-2/3 h-48 rounded-xl shadow-xl placeholder form-control"
               aria-required="true" placeholder="Descrição do produto"></textarea>
-            <span asp-validation-for="Input.Description" class="placeholder"></span>
+            <span asp-validation-for="Input.Description" class="placeholder bg-red-900 text-center w-2/3 text-white font-[Inter] rounded-xl"></span>
 
             <!-- Tags -->
             <input asp-for="Input.Tags" class="font-[Inter] w-2/3 h-14 rounded-xl shadow-xl placeholder form-control"
               aria-required="true" placeholder="Suas tags" />
-            <span asp-validation-for="Input.Tags" class="placeholder"></span>
+            <span asp-validation-for="Input.Tags" class="placeholder bg-red-900 text-center w-2/3 text-white font-[Inter] rounded-xl"></span>
             <div class="w-full flex justify-end">
               <button id="login-submit" type="submit" class="mr-16 mb-8 logar bg-[#7D3098] hover:bg-[white] hover:text-[#7D3098] text-white font-bold font-[Inter] w-48 h-14 rounded-xl hover:shadow-2xl">Continue</button>
             </div>

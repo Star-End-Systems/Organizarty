@@ -3,8 +3,14 @@
 @inject RemoveFromPartyUseCase RemoveFromParty
 @inject NavigationManager NavigationManager
 
-<a href="/Clients/Party/Edit/@TypePath()/@ItemId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-<button @onclick="RemoveItem" disable="@IsLoading" class="font-medium text-red-600 dark:text-red-500 hover:underline">Remove</button>
+<div class="flex gap-x-8">
+<a href="/Clients/Party/Edit/@TypePath()/@ItemId" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+    <img src="/images/Manager/Decorations/Edit.svg" class="h-8">
+</a>
+<button @onclick="RemoveItem" disable="@IsLoading" class="font-medium text-red-600 dark:text-red-500 hover:underline ">    
+    <img class="h-8" src="/images/Manager/Decorations/Delete.svg">
+</button>
+</div>
 
 @code{
   [Parameter]
