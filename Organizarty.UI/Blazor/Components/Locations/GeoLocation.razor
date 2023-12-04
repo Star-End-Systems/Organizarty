@@ -5,6 +5,7 @@
 @if (geoCoordinates is not null)
 {
     <div class="absolute right-0 top-0 w-fit">
+    <iframe src="https://maps.google.com/maps?q=@geoCoordinates.Latitude,@geoCoordinates.Longitude;output=embed"></iframe>
         Latitude : @geoCoordinates.Latitude <br />
         Longitude : @geoCoordinates.Longitude<br />
         Accuracy : @geoCoordinates.Accuracy
