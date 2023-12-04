@@ -9,7 +9,7 @@ public static class PartyTypeMethods
       switch (type)
       {
         case(PartyType.chadebebe):
-          return "Chá de bebe";
+          return "Chá de Bebê";
         case(PartyType.casamento):
           return "Casamento";
         case(PartyType.aniversario):
@@ -28,15 +28,15 @@ public static class PartyTypeMethods
       switch (type)
       {
         case(PartyType.chadebebe):
-          return "#CB34FF";
+          return "#A912DD";
         case(PartyType.casamento):
-          return "#B4A385";
+          return "#928163";
         case(PartyType.aniversario):
-          return "#FF008A";
+          return "#DD0068";
         case(PartyType.debutante):
-          return "#4C4F56";
+          return "#2A2D34";
         case(PartyType.happyHour):
-          return "#00FF67";
+          return "#00DD45";
       }
 
       return "#ff0000";
