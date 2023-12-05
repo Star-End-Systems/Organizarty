@@ -11,7 +11,7 @@ ViewData["Title"] = "Meus produtos";
   <div class="flex justify-start items-center w-fit h-28">
     <img class="items-center w-24 " src="/images/Clients/Description/BakeryLogo.png"></img>
     <div class="ml-4">
-      <h1 class="text-[#BB00C7] font-[Inter] text-3xl"><strong>@Model.ThirdParty.Name</strong></h1>
+      <h1 class="text-[#BB00C7] font-[Inter] text-3xl uppercase"><strong>@Model.ThirdParty.Name</strong></h1>
       <p class="text-[#848484] font-[Inter] text-xs">@Model.ThirdParty.Address</p>
     </div>
   </div>
@@ -32,8 +32,15 @@ ViewData["Title"] = "Meus produtos";
 @foreach(var food in Model.Foods){
 <div class="w-full">
   <div class="mt-6">
-    <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">@food.Name <img class="w-8 h-8" src="/images/icons/mais.png"/> <a
-        href="/ThirdParty/Products/Edit/@food.Id">Edit</a></h1>
+    <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">
+      @food.Name
+      <a href="/ThirdParty/Products/NewSubItem/@food.Id">
+        <img class="w-8 h-8" src="/images/icons/mais.png"/>
+      </a>
+      <a href="/ThirdParty/Products/Edit/@food.Id">
+        Edit
+      </a>
+    </h1>
   </div>
   <div class="w-full overflow-x-auto flex">
     @foreach (var item in food.Foods){
