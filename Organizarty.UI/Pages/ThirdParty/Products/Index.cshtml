@@ -23,8 +23,9 @@ ViewData["Title"] = "Meus produtos";
 
 <div class="flex w-full p-2 overflow-x-auto mt-4 gap-x-4">
   <a href="/ThirdParty/products/ChooseNewProductType" class="w-fit flex flex-col items-center Button font-[KonnectBold] text-[#908D8D]">
-    <button class="flex menuButtons rounded-full w-28 h-28  hover:bg-[#D9D9D9]"><img
-        class="w-10 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/cruz.png"></img></button>
+    <button class="flex menuButtons rounded-full w-28 h-28 hover:bg-[#D9D9D9]">
+      <img class="w-10 self-center ml-auto mr-auto" src="/images/ThirdParty/MyProducts/cruz.png"/>
+    </button>
     <h4 class="text-sm">Adicionar</h4>
   </a>
 </div>
@@ -32,13 +33,13 @@ ViewData["Title"] = "Meus produtos";
 @foreach(var food in Model.Foods){
 <div class="w-full">
   <div class="mt-6">
-    <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">
+    <h1 class="inline-flex gap-x-10 font-[KonnectBold] text-[#A09898] text-4xl mb-2">
       @food.Name
       <a href="/ThirdParty/Products/NewSubItem/@food.Id">
         <img class="w-8 h-8" src="/images/icons/mais.png"/>
       </a>
       <a href="/ThirdParty/Products/Edit/@food.Id">
-        Edit
+        <img src="/images/Manager/Decorations/Edit.svg" class="h-8"/>
       </a>
     </h1>
   </div>
