@@ -32,11 +32,15 @@
           <td class="px-6 py-4 flex items-center">@order.quantity x</td>
           <td class="px-6 py-4 font-semibold dark:text-white items-center">@order.note</td>
           <td class="px-6 py-4">
-            <a href="#" class="font-medium hover:underline items-center">@order.Status</a>
+            <a href="#" class="font-medium hover:underline items-center">@order.Status.GetName()</a>
           </td>
           <td class="px-6 py-4 font-semibold dark:text-white items-center">
-              <button @onclick="() => AcceptOrder(order)" disable="@IsLoading" class="font-medium text-green-600 dark:text-green-500 hover:underline">Aceitar</button>
-              <button @onclick="() => RefuseOrder(order)" disable="@IsLoading" class="font-medium text-red-600 dark:text-red-500 hover:underline">Recusar</button>
+              <button @onclick="() => AcceptOrder(order)" disable="@IsLoading" class="font-medium text-green-600 dark:text-green-500 hover:underline">
+                <img src="/images/ThirdParty/Accounts/aceitar.png" class="h-8" />
+              </button>
+              <button @onclick="() => RefuseOrder(order)" disable="@IsLoading" class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                 <img src="/images/ThirdParty/Accounts/negar.png" class="h-8" />
+              </button>
           </td>
         </tr>
       }
