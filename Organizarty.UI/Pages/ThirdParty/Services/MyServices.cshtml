@@ -30,10 +30,13 @@ ViewData["Title"] = "Meus Serviços";
 <div class="">
   @foreach (var service in @Model.Services){
   <div class="mt-6">
-    <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">@service.Name
-        <a href="/ThirdParty/Services/NewSubitem/@service.Id">+</a>
-        <a href="/ThirdParty/Services/Edit/@service.Id">Edit</a>
-
+    <h1 class="inline-flex gap-x-10 font-[KonnectBold] text-[#A09898] text-4xl mb-2">@service.Name
+        <a href="/ThirdParty/Services/NewSubitem/@service.Id">
+          <img class="w-8 h-8" src="/images/icons/mais.png"/>
+        </a>
+        <a href="/ThirdParty/Services/Edit/@service.Id">
+          <img src="/images/Manager/Decorations/Edit.svg" class="h-8"/>
+        </a>
     </h1>
   </div>
   <div class="flex">
