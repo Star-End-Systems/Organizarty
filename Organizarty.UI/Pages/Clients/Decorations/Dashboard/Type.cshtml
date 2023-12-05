@@ -35,7 +35,7 @@
                 @foreach(var decoration in Model.Decorations){
                     <p>@decoration.Name</p>
                     <a href="/Clients/Decorations/Dashboard/Edit/@decoration.Id" class="border-4 border-solid border-[#C6C6C6] rounded-xl p-2 h-[9.5rem] w-[9.5rem]">
-                        <img src="@decoration.Image" />
+                        <img src="@decoration.ObjectURL" />
                     </a>
                 }
             </div>

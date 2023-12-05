@@ -18,20 +18,19 @@
       </div>
   </div>
 } else{
-      <div class="w-fit mr-[5%] self-center ">
-    <div style="background: @PartyTemplate.Type.GetBackground();" class="h-44 rounded-2xl w-80 flex z-0 mt-5 ">
-          <div class=" w-80 rounded-2xl z-0 ">
-            <div class="flex Festa relative h-full">
-              <div class="flex-col flex self-center z-20 absolute ml-4 clareador">
-                  <h4 class="clareador">@PartyTemplate.Name</h4>
-                  <p class="clareador">@PartyTemplate.Type.GetName() <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
+      <div class="w-fit mr-[5%] self-center pai">
+        <div class="relative w-80 h-52">
+          <div style="background: @PartyTemplate.Type.GetBackground();" class="Festa rounded-2xl flex z-0 mt-5 inset-0 bg-cover bg-center absolute filter brightness-50 hover:brightness-100"></div>
+              <div class="flex h-full w-full">
+                <div class="flex-col flex self-end z-20 absolute ml-4 mb-4 clareador">
+                    <h4 class="clareador">@PartyTemplate.Name</h4>
+                    <p class="clareador">@PartyTemplate.Type.GetName() <br> Número de Convidados: @PartyTemplate.ExpectedGuests</p>
+                </div>
+                <div class="h-full w-full flex items-center justify-center">
+                    <img class="h-4/5 escuro Festa" src="@PartyTemplate.Type.GetImage()">
+                </div>
               </div>
-              <div class="h-full w-full flex items-center justify-center">
-                <img class="h-full escuro" src="@PartyTemplate.Type.GetImage()">
-              </div>
-            </div>
-          </div> 
-        </div>
+            </div> 
       </div>
 }
 

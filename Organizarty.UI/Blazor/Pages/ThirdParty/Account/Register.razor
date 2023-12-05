@@ -3,6 +3,9 @@
 @using Organizarty.Application.Exceptions;
 @using Organizarty.Adapters;
 @using Organizarty.UI.Blazor.Components.Locations;
+
+@using Organizarty.UI.Blazor.Components.Utils.FlashCards;
+
 @inject IImageUpload UploadImage
 @inject NavigationManager NavigationManager
 @inject RegisterThirdPartyUseCase RegisterThirdParty
@@ -25,9 +28,13 @@
         <EditForm Model="@ThirdPartyModel" id="login" OnSubmit="@Submit" FormName="registeruser" class="w-full h-full flex flex-col items-start justify-center self-center">
           <div asp-validation-summary="ModelOnly" class=""></div>
           <div class="h-52 w-full flex flex-col justify-center items-start pl-10 mt-[23%]">
-            @foreach(var err in Errors){
-              <p class="text-[#F60000] font-[Konnect] mb-2 flex">@err</p>
-            }
+            <div class="absolute flex flex-col right-0 top-0 z-20 p-4 gap-y-4">
+              @foreach(var err in Errors){
+                <div @onclick="async () => await RemoveError(err)">
+                  <FlashCard Type="error" Body="@err" /> 
+                </div>
+              }
+            </div>
             @if(FirstForm){
               <div class="relative w-7/12 mb-6">
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
@@ -142,6 +149,12 @@
 
     Console.WriteLine(FirstForm ? "a" : "b");
   }
+
+   public async Task RemoveError(string err){
+    await Task.Delay(3000);
+    Errors.Remove(err);
+  }
+
 
   public bool checkPassword(){
     if(ThirdPartyModel.Password != ThirdPartyModel.ConfirmPassword){

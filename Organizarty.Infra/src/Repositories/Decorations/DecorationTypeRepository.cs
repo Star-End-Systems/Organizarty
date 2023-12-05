@@ -60,6 +60,20 @@ public class DecorationTypeRepository : IDecorationTypeRepository
     public async Task<DecorationType?> FindById(Guid id)
     => await _context.DecorationTypes.FindAsync(id);
 
+    public async Task<DecorationType?> FindByIdWithItems(Guid id)
+    => await _context.DecorationTypes
+            .Include(x => x.Decorations)
+            .Where(x => x.Id == id)
+            .Select(x => new DecorationType
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                Decorations = x.Decorations,
+                TagsJSON = x.TagsJSON
+            })
+            .FirstOrDefaultAsync();
+
     public async Task<List<DecorationType>> GetWithAvaible(bool avaible)
       => await _context.DecorationTypes
                 .Include(x => x.Decorations)

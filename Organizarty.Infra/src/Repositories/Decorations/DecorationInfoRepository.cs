@@ -25,6 +25,13 @@ public class DecorationInfoRepository : IDecorationInfoRepository
     public async Task<DecorationInfo?> FindById(Guid id)
     => await _context.DecorationInfos.FindAsync(id);
 
+
+    public async Task<List<DecorationInfo>> ListFromType(Guid id)
+    => await _context.DecorationInfos
+            .Where(x => x.DecorationTypeId == id)
+            .ToListAsync();
+
+
     public async Task<DecorationInfo?> FindByIdWithType(Guid id)
     => await _context.DecorationInfos
               .Where(x => x.Id == id)
