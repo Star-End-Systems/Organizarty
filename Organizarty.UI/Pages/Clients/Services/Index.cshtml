@@ -1,5 +1,8 @@
 @page
 @model IndexModel
+
+@using Organizarty.UI.Blazor.Components.Services
+
 @{
 Layout = "_ClientLayout";
 ViewData["Title"] = "Products";
@@ -55,24 +58,14 @@ ViewData["Title"] = "Products";
         </div>
       } else{
       @foreach(var service in Model.Services){
-      <div class="mt-20">
-        <h1 class="font-[KonnectBold] text-[#A09898] text-4xl">@service.Name</h1>
-      </div>
-      <div class="flex">
-        @foreach(var item in service.SubServices){
-        <div class="w-52 h-60 flex-col mr-16 mb-10 rounded">
-          <div class="Image w-full h-3/4 flex rounded">
-            <div class="Text flex flex-col justify-end ml-2 mb-2">
-              <p class="z-10 font-[KonnectBold] text-white">R$ @item.Price</p>
-              <p class="z-10 font-[KonnectBold] text-white">@item.Plan</p>
-            </div>
-          </div>
-          <a href="/Clients/Services/Description/@item.Id">
-            <button class="w-full mt-5 h-10 bg-[#484343] font-[Inter] font-bold text-white rounded-xl">Detalhes</button>
-          </a>
+        <div class="mt-20">
+          <h1 class="font-[KonnectBold] text-[#A09898] text-4xl">@service.Name</h1>
         </div>
-        }
-      </div>
+        <div class="flex">
+          @foreach(var item in service.SubServices){
+            <component type="typeof(ClientServiceCard)" render-mode="ServerPrerendered" param-Service="@item" />
+          }
+        </div>
       }
       }
     </div>
