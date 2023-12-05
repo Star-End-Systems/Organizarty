@@ -7,6 +7,7 @@
 
 @inject IImageUpload UploadImage
 @inject CreateDecorationTypeUseCase CreateDecoration
+@inject NavigationManager NavigationManager
 
 <section class="flex h-screen">
   <div class="part1 w-full h-screen py-8 flex-col">
@@ -56,7 +57,7 @@
                 <span class="sr-only">Loading...</span>
             </div>
           } else {
-            <img class="w-5/6 h-full border-2 border-solid border-[#bb00c7] rounded-2xl shadow-2xl bg-white px-10 py-5" src="@Input.Model"/>
+            <img class="w-5/6 h-full border-2 border-solid border-[#bb00c7] rounded-2xl shadow-2xl bg-white px-10 py-5" src="@Input.ImageUrl"/>
           }
 
           <InputFile class="hidden" OnChange="@OnInputFileChange" />
@@ -94,13 +95,14 @@
         public string Size { get; set; } = default!;
 
         public string Model { get; set; } = default!;
+        public string ImageUrl { get; set; } = default!;
 
         public string TagsStr { get; set; } = "";
     }
 
     public async Task Submit(){
         var tags = Input.TagsStr.Split(",").ToList();
-        var data = new CreateDecorationTypeDto(Input.Name, Input.Description, Input.Category, Input.Size, Input.Model, "https://www.google.com", tags);
+        var data = new CreateDecorationTypeDto(Input.Name, Input.Description, Input.Category, Input.Size, "default", Input.ImageUrl, tags);
 
         try
         {
@@ -128,9 +130,10 @@
         await file.OpenReadStream().CopyToAsync(memoryStream);
         var byteArray = memoryStream.ToArray();
         try{
-            Input.Model = await UploadImage.UploadImage("avatars", "assets", byteArray);
+            Input.ImageUrl = await UploadImage.UploadImage("avatars", "assets", byteArray);
+            NavigationManager.NavigateTo("/Manager/Decorations", forceLoad: false);
         } catch(Exception ex){
-            Console.WriteLine(ex.ToString());
+            Errors.Add(ex.Message);
         } finally{
             await Task.Delay(1500);
             ImageLoading = false;

@@ -1,4 +1,5 @@
-@page
+@page "{decorationid:Guid}"
+@model EditDashboardModel
 
 @{
     Layout = "_NullLayout";
@@ -8,7 +9,7 @@
 <section class="w-screen h-screen">
     <div class="text-[#848484] font-[Inter] h-1/4 pt-12 pl-24">
         <h1 class="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl w-fit">
-            Escolha as cores
+            Escolha as cores - @Model.Decoration.Name
             <hr class="border-4 border-solid border-[#848484] w-1/4 rounded-full">
         </h1>
         <p classs="text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
@@ -18,12 +19,9 @@
     <div class="w-full h-3/4 flex">
         <img class="w-1/3 h-4/5 ml-32" src="/images/Clients/Dashboard/IconBalao.svg">
         <div class="grid grid-cols-3 grid-rows-2 w-1/2 h-4/5">
-            <a href="/Clients/Decorations/Dashboard/Edit2/" class="bg-[#FD0000] h-52 w-52 rounded-2xl"></a>
-            <a class="bg-[#FD8E01] h-52 w-52 rounded-2xl"></a>
-            <a class="bg-[#FEF100] h-52 w-52 rounded-2xl"></a>
-            <a class="bg-[#89E23B] h-52 w-52 rounded-2xl"></a>
-            <a class="bg-[#1061FF] h-52 w-52 rounded-2xl"></a>
-            <a class="bg-[#AB31A8] h-52 w-52 rounded-2xl"></a>
+            @foreach(var decoration in Model.Decorations){
+                <a style="background: @decoration.Color;" class="h-52 w-52 rounded-2xl">a</a>
+            }
         </div>
     </div>
 </section>

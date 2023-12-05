@@ -23,6 +23,6 @@ public class DecorationType
         set => TagsJSON = JsonSerializer.Serialize(value);
     }
 
-    public ICollection<DecorationInfo> Decorations { get; set; } = default!;
+    public List<DecorationInfo> Decorations { get; set; } = new();
 
 }
