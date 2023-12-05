@@ -83,7 +83,7 @@
     public async Task Submit(){
         try{
             await CreateService.Execute(new(Input.Price, Input.IsAvaible, Input.Plan, new() { Input.ImgURL }, ServiceId));
-           NavigationManager.NavigateTo("/ThirdParty/Services/", forceLoad: true);
+           NavigationManager.NavigateTo("/ThirdParty/Services/MyServices", forceLoad: true);
         } catch(Exception e){
           Console.WriteLine(e);
         }
