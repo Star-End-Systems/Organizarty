@@ -1,7 +1,9 @@
 @page "{scheduleid:Guid}"
 @model PaymentModel
+@using Organizarty.Application.App.Schedules.Entities;
 @using Organizarty.UI.Blazor.Components.Schedule
 @using Organizarty.Application.App.Schedules.Entities;
+@using Organizarty.Application.App.Schedules.Enum;
 
 @{
     ViewData["title"] = "Pagamento";
@@ -68,6 +70,7 @@
                         <th scope="col" class="px-6 py-3">Name</th>
                         <th scope="col" class="px-6 py-3">Quantity</th>
                         <th scope="col" class="px-6 py-3">Note</th>
+                        <th scope="col" class="px-6 py-3">Status</th>
                         <th scope="col" class="px-6 py-3">Total</th>
                     </tr>
                 </thead>
@@ -81,6 +84,7 @@
                             <td class="px-6 py-4">@item.name</td>
                             <td class="px-6 py-4">@item.quantity</td>
                             <td class="px-6 py-4">@item.note</td>
+                            <td class="px-6 py-4">@item.Status.GetName()</td>
                             <td class="px-6 py-4">R$ @item.price</td>
 
                         </tr>
