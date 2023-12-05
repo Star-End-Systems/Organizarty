@@ -21,11 +21,10 @@
               @foreach (var decoration in @Model.Decorations){
                 <div class="mt-6">
                     <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">@decoration.Name <a href="/Manager/Decorations/NewItem/@decoration.Id">+</a></h1>
-                    <a href="/Manager/Decorations/Edit/@decoration.Id">Editar</a>
                 </div>
                 <div class="flex">
                     @foreach (var item in decoration.Decorations){
-                      <component type="typeof(ManagerDecorationCard)" render-mode="ServerPrerendered" param-Decoration="@item" />
+                      <component type="typeof(ManagerDecorationCard)" render-mode="ServerPrerendered" param-Decoration="@item" param-ImgURL="decoration.ObjectURL" />
                   }
                 </div>
               }

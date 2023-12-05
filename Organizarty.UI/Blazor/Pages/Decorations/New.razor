@@ -9,7 +9,7 @@
 @inject CreateDecorationTypeUseCase CreateDecoration
 @inject NavigationManager NavigationManager
 
-<section class="flex h-screen">
+<section class="flex h-screen bg-[url('/images/Manager/ChooseNewDecorationType/forms-background.png')] bg-cover">
   <div class="part1 w-full h-screen py-8 flex-col">
     <div class="LoginForm flex justify-center py-8 text-center">
       <EditForm OnSubmit="@Submit" Model="@Input" id="login" class="w-full">
@@ -20,12 +20,12 @@
             </div>
             }
         </div>
-        <h2 class="font-[Konnect] text-3xl">Nova Decoração</h2>
+        <h2 class="font-[Konnect] text-3xl text-white">Nova Decoração</h2>
         @* <div class="line pb-8 flex justify-center rounded-full"></div> *@
-      <div class="w-full flex">
+      <div class="flex mt-12">
         <div class="w-1/2 flex justify-center">
-          <div class="flex justify-end w-2/5 h-1/2 self-center pr-10 my-8">
-            <label class="w-4/5 h-4/5 cursor-pointer">
+          <div class="flex justify-end w-4/5 h-4/5 self-center pr-10 my-8">
+            <label class="w-4/5 h-full cursor-pointer">
               @if(ImageLoading){
                 <div role="status" class="flex items-center justify-center h-56 max-w-sm bg-gray-300 rounded-lg animate-pulse dark:bg-gray-700">
                   <svg class="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
@@ -41,39 +41,36 @@
             </label>
           </div>
         </div>
-      </div>
 
       <div class="w-1/2">
         <div asp-validation-summary="ModelOnly" class=""></div>
-        <div class="h-full flex flex-col items-center justify-evenly">
+        <div class="h-full flex flex-col items-center justify-evenly font-[Konnect]">
           <!-- Name -->
           <input @bind="@Input.Name" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
             aria-required="true" placeholder="Nome do Item" />
           <span asp-validation-for="Input.Name" class="placeholder"></span>
           
-          <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Descrição</h3>
           <input @bind="@Input.Description" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
             aria-required="true" placeholder="Descrição" />
           <span asp-validation-for="Input.Description" class="placeholder"></span>
 
-          <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Tamanho</h3>
           <!-- Size -->
           <input @bind="@Input.Size" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
             aria-required="true" placeholder="Tamanho" />
           <span asp-validation-for="Input.Size" class="placeholder"></span>
 
-          <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Tags</h3>
           <input @bind="@Input.TagsStr" class="w-9/12 h-14 rounded-xl shadow-xl placeholder form-control"
             aria-required="true" placeholder="Tags" />
           <span asp-validation-for="Input.TagsStr" class="placeholder"></span>
         </div>
         <div class="flex w-full place-content-evenly py-14">
-          <button id="login-submit" type="submit" class="logar w-48 h-14 rounded-xl hover:shadow-2xl">Criar</button>
+          <button id="login-submit" type="submit" class="logar w-48 h-14 rounded-xl hover:shadow-2xl border border-solid border-white text-white font-[Inter]">Criar</button>
         </div>
       </div>
+    </div>
       </EditForm>
     </div>
-  </div>
+    </div>
 </section>
 
 
@@ -131,7 +128,7 @@
         var byteArray = memoryStream.ToArray();
         try{
             Input.ImageUrl = await UploadImage.UploadImage("avatars", "assets", byteArray);
-            NavigationManager.NavigateTo("/Manager/Decorations", forceLoad: false);
+            NavigationManager.NavigateTo("/Manager/Home", forceLoad: false);
         } catch(Exception ex){
             Errors.Add(ex.Message);
         } finally{
