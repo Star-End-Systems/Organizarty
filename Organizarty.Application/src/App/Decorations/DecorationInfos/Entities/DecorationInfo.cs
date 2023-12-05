@@ -11,7 +11,6 @@ public class DecorationInfo
     public bool IsAvaible { get; set; }
     public decimal Price { get; set; }
     public string TextureURL { get; set; } = default!;
-
     public Guid DecorationTypeId { get; set; } = default!;
     public DecorationType DecorationType { get; set; } = default!;
 }

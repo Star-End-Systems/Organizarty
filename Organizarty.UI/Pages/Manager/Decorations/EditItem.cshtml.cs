@@ -53,6 +53,10 @@ public class EditDecorationItemModel : PageModel
             }
 
             return Page();
+        } catch(Exception e){
+             ModelState.AddModelError(string.Empty, e.Message);
+
+             return Page();
         }
     }
 }
