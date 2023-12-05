@@ -15,7 +15,6 @@ public class MyHouseModel : PageModel
     public InputModel Input{get; set;} = default!;
 
     public class InputModel{
-  
         [Display(Name = "CEP")]
         public string CEP {get; set;} = default!;
 

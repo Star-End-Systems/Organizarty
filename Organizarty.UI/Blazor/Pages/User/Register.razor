@@ -3,12 +3,14 @@
 @using Organizarty.Application.Exceptions;
 @using Organizarty.Adapters;
 
+@using Organizarty.UI.Blazor.Components.Utils.FlashCards;
+
 @inject IImageUpload UploadImage
 @inject NavigationManager NavigationManager
 @inject RegisterUserUseCase RegisterUser
 @inject NavigationManager NavigationManager
 
-<section class="flex h-screen font-[Inter] bg-[url('/images/Clients/Accounts/BackgroundUser.png')] bg-cover">
+<section class="flex w-screen h-screen font-[Inter] bg-[url('/images/Clients/Accounts/BackgroundUser.png')] bg-cover">
   <div class="w-screen h-full flex flex-col items-center">
     <h2 class="text-[#B1B0B0] uppercase font-[Inter] font-bold text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl mt-5">Register</h2>
     <p class="text-[#908D8D] font-[Inter] text-xs md:text-xs lg:text-sm xl:text-md 2xl:text-lg mt-2 mb-10">Precisamos somente de algumas informações para dar play na sua festa.</p>
@@ -20,13 +22,23 @@
           <InputFile OnChange="@OnInputFileChange" class="text-white font-[Inter] hidden"/>
         </label>
       </div>
-      <div class="flex justify-center justify-self-end text-center w-3/5 h-full">
 
+      <div class="flex justify-center justify-self-end text-center w-3/5 h-full">
         <EditForm Model="@UserModel" id="login" OnSubmit="@Submit" FormName="registeruser" class="w-full h-full flex flex-col items-start justify-center self-center">
           <div asp-validation-summary="ModelOnly" class=""></div>
           <div class="h-52 w-full flex flex-col justify-center items-start pl-10 mt-[23%] font-[Konnect]">
-
+            
+            <div class="absolute flex flex-col right-0 top-0 z-20 p-4 gap-y-4">
+          
+            @foreach(var err in Errors){
+              <div @onclick="async () => await RemoveError(err)">
+                <FlashCard Type="error" Body="@err" /> 
+              </div>
+            }
+              </div>
+  
             @if(FirstForm){
+                
               <div class="relative w-7/12 mb-6">
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
                   <img src="/images/Clients/Accounts/IconEmail.svg" class="h-4/5">
@@ -59,13 +71,8 @@
                 <span asp-validation-for="Input.ConfirmPassword" class="placeholder text-[Inter] text-[#FF7F31]"></span>
               </div>
 
-              <div class="relative w-7/12">
-                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
-                  <img src="/images/Clients/Accounts/IconConfPassword.svg" class="h-4/5">
-                </div>
-                <span asp-validation-for="Input.ConfirmPassword" class="placeholder text-[Inter] text-[#FF7F31]"></span>
-              </div>
             } else{
+              <div class="flex flex-col w-full mb-16">
               <div class="relative w-7/12 mb-6">
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
                   <img src="/images/Clients/Accounts/IconName.svg" class="h-4/5">
@@ -73,6 +80,7 @@
                 <InputText @bind-Value="@UserModel.Fullname" type="text" id="name" class="bg-white shadow-2xl border border-transparent text-[#948F8F] text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Digite seu nome completo" />
                 <span asp-validation-for="Input.FullName" class="placeholder"></span>
               </div>
+    
 
               <div class="relative w-7/12 mb-6">
                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none p-2 pr-3">
@@ -89,17 +97,16 @@
                 <InputText @bind-Value="@UserModel.Location" type="text" id="tel" class="bg-white shadow-2xl border border-transparent text-[#948F8F]  text-sm rounded-2xl focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4" placeholder="Informe seu Telefone" />
                 <span asp-validation-for="Input.Tel" class="placeholder"></span>
               </div>
+              </div>
             }
           </div>
-          @foreach(var err in Errors){
-            <p class="">@err</p>
-          }
+        
           @if(FirstForm){
-            <div class="flex w-3/5 h-full justify-evenly items-end pb-5 self-end">
-              <button @onclick="ToggleForm" id="login-submit" type="button" class="w-2/5 py-5 rounded-xl hover:shadow-2xl text-xs xl:text-sm 2xl:text-md uppercase text-white bg-[#FF008A]">Continuar</button>
+            <div class="flex w-3/5 h-full justify-evenly justify-self-end items-end pb-5 self-end">
+              <button @onclick="ToggleForm" id="login-submit" type="button" class="w-2/5 mt-16 py-5 rounded-xl hover:shadow-2xl text-xs xl:text-sm 2xl:text-md uppercase text-white bg-[#FF008A]">Continuar</button>
             </div>
           } else{
-            <div class="flex w-3/5 h-full justify-evenly items-end pb-5 self-end">
+            <div class="flex w-3/5 h-full justify-evenly justify-self-end items-end pb-5">
               <button @onclick="() => FirstForm = true" type="button" class="w-2/5 py-5 rounded-xl hover:shadow-2xl text-xs xl:text-sm 2xl:text-md uppercase text-[#FF008A] bg-white border-2 border-solid border-[#FF008A]">Voltar</button>
               <button id="login-submit" type="submit" disable="@Registering" class="w-2/5 py-5 rounded-xl hover:shadow-2xl text-xs xl:text-sm 2xl:text-md uppercase text-white bg-[#FF008A]">Criar conta</button>
             </div>
@@ -124,6 +131,11 @@
     public string ConfirmPassword = "";
   }
 
+  public async Task RemoveError(string err){
+    await Task.Delay(3000);
+    Errors.Remove(err);
+  }
+
   public void ToggleForm(){
     if(checkPassword()){
       return;
@@ -136,10 +148,13 @@
   }
 
   public bool checkPassword(){
+    var msg  = "Senhas diferem";
     if(UserModel.Password != UserModel.ConfirmPassword){
-        Errors = new(){"Senhas diferem"};
+        Errors = new(){msg};
         return true;
     }
+      Errors.Remove(msg);
+
       return false;
   }
 
@@ -156,7 +171,10 @@
         await RegisterUser.Execute(new(UserModel.UserName, UserModel.Fullname, UserModel.Location, UserModel.Email, UserModel.Password, UserModel.CPF, ImgUrl));
         NavigationManager.NavigateTo("/Clients/Accounts/Login", forceLoad: true);
      } catch(ValidationFailException e){
+        Errors = new(){};
+
         Errors.AddRange(e.Errors.Select(x => x.message));
+
      } catch(Exception e){
         Errors = new(){e.Message};
      }
