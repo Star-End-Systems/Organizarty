@@ -1,47 +1,39 @@
 @page "{scheduleid:Guid}"
 @model PaymentModel
+@using Organizarty.Application.App.Schedules.Entities;
 @using Organizarty.UI.Blazor.Components.Schedule
+@using Organizarty.Application.App.Schedules.Entities;
+@using Organizarty.Application.App.Schedules.Enum;
+
 @{
     ViewData["title"] = "Pagamento";
-    Layout = "_NullLayout";
+    Layout = "_ClientLayout";
+
+     decimal PartyTotal(List<ItemOrder> orders)
+    => orders.Aggregate(0m, (acc, x) => acc + (x.price));
 }
 
-<partial name="_OrganizartyClientsLayout"/>
-
-<section class="w-5/6 ml-auto h-screen flex-col">
+<section class="w-full ml-auto h-screen flex-col">
     <div class="w-5/6 top-0 bg-white z-40">
         <div class="w-full flex flex-col items-center py-4">
             <div class="flex w-fit" id="titleDropdown">
-                <img src="/images/General/Logo.svg" class="w-12">
-                <div class="relative inline-block text-left justify-center dropdown"> <!--Botão e Dropdown-->
-                    <button class="inline-flex justify-center items-center w-64 rounded-xl bg-[#FF008A] text-xl font-bold font-[Inter] text-white px-5 py-2 ml-10" id="options-menu" aria-haspopup="true" aria-expanded="true">
-                        Selecione a festa
-                        <svg class="ml-3 w-3" width="23" height="15" viewBox="0 0 23 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.5 15L0.674683 0H22.3253L11.5 15Z" fill="white"/>
-                        </svg> 
-                    </button>
-                    <div class="hidden origin-top-right absolute right-2 w-56 rounded-md shadow-lg bg-white" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        <div class="py-1" role="none">
-                            <a href="#" class="block px-4 py-2 text-sm text-[#848484] hover:bg-[#FF008A] hover:text-white" role="menuitem">Festa 1</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-[#848484] hover:bg-[#FF008A] hover:text-white" role="menuitem">Festa 2</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-[#848484] hover:bg-[#FF008A] hover:text-white" role="menuitem">Festa 3</a>
-                        </div>
-                    </div>
-                </div>
+                <img src="/images/General/Logo.svg" class="w-12 mb-5">
+               
             </div> <!--Termina aqui-->
             <div clas="flex flex-col w-fit">
-                <h1 class="font-[KonnectBold] text-[#C6C6C6] text-5xl">@Model.Schedule.Name</h1>
-                <h3 class="font-[Inter] text-[#848484] text-md">@Model.Schedule.Name</h1>
+                <h1 class="font-[KonnectBold] text-[#C6C6C6] text-5xl text-center">@Model.Schedule.Name</h1>
+                <h3 class="font-[Inter] text-[#848484] text-md text-center">@Model.Schedule.Type</h1>
             </div>
         </div>
-        <div class="w-full flex font-[Inter] h-1/3 justify-center text-[#C6C6C6]"> 
-            <div class="border border-solid border-[#C6C6C6] text-[#C6C6C6] w-1/4 rounded-2xl h-full flex items-center flex-col px-10 pb-5 mr-10">
+        <div class="w-full flex font-[Inter] h-1/3 justify-center text-[#C6C6C6]">
+            <div
+                class="border border-solid border-[#C6C6C6] text-[#C6C6C6] w-1/4 rounded-2xl h-full flex items-center flex-col px-10 pb-5 mr-10">
                 <h1>Código <span class="font-bold top-0">@Model.Schedule.Id.ToString().Substring(0, 5)</span></h1>
                 <img src="/images/Clients/CreateParty/Bear.svg" class="h-44 mt-4">
             </div>
             <div class="flex flex-col w-fit">
                 <div class="flex items-end">
-                    <h1 class="font-[KonnectBold] text-[#848484] text-4xl">@Model.Schedule.Price</h1>
+                    <h1 class="font-[KonnectBold] text-[#848484] text-4xl">R$ @PartyTotal(Model.Items)</h1>
                     <p class="text-xs mb-2 ml-1">Valor total</p>
                 </div>
                 <hr class="rounded-[30px] border-[5px] border-[#FF008A] mt-[-7px] w-4/5">
@@ -53,7 +45,7 @@
                             Efetuar Pagamento
                         </button>
                     </div>
-                <div class="flex flex-col text-[#848484] h-full mr-2 justify-center items-center">
+                    <div class="flex flex-col text-[#848484] h-full mr-2 justify-center items-center">
                         <img src="/images/Payment/IconCards.svg" class="w-8">
                         <p class="text-[9px] font-[Inter] font-bold">Cartões</p>
                     </div>
@@ -68,20 +60,37 @@
                 </div>
             </div>
         </div>
-        <div class="ml-20 mt-4 w-full font-[Konnect] text-2xl text-[#424242] flex text-left">
-            <h2 id="bordaPreta" class="w-1/4">Nome Item</h2>
-            <div class="w-3/4 flex" id="bordaCinza">
-                <h2 class="w-1/3">Categoria</h2>
-                <h2 class="w-1/3">Quantidade</h2>
-                <h2 class="w-1/3">Status</h2>
-            </div>
-        </div>
     </div>
     <div class="h-fit w-full flex items-end">
-    <div class="w-full">        
-        @foreach(var order in Model.Items){
-          <component type="typeof(ScheduleOrderCard)" render-mode="ServerPrerendered" param-Item="@order" />
-        }
-    </div>
+        <div class="w-full mt-5 flex justify-center">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Category</th>
+                        <th scope="col" class="px-6 py-3">Name</th>
+                        <th scope="col" class="px-6 py-3">Quantity</th>
+                        <th scope="col" class="px-6 py-3">Note</th>
+                        <th scope="col" class="px-6 py-3">Status</th>
+                        <th scope="col" class="px-6 py-3">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                @item.type</th>
+                            <td class="px-6 py-4">@item.name</td>
+                            <td class="px-6 py-4">@item.quantity</td>
+                            <td class="px-6 py-4">@item.note</td>
+                            <td class="px-6 py-4">@item.Status.GetName()</td>
+                            <td class="px-6 py-4">R$ @item.price</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </section>

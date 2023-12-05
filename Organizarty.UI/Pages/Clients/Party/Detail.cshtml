@@ -1,53 +1,94 @@
 @page "{partyId:Guid}"
 @using Organizarty.UI.Blazor.Components.Party;
 @using Organizarty.Application.App.Party.Entities;
+@using Organizarty.UI.Blazor.Components.Party;
+
 @model PartyDetailModel
 
 @{
-  Layout = "_ClientLayout";
-  ViewData["Title"] = "Party Detail";
+    Layout = "_ClientLayout";
+    ViewData["Title"] = "Party Detail";
 
-  decimal GetTotalPrice(decimal price, int quantity)
+    decimal GetTotalPrice(decimal price, int quantity)
     => price * quantity;
 
-  decimal PartyTotal(List<ItemOrder> orders)
-  => orders.Aggregate(0m, (acc, x) => acc + (x.price * x.quantity));
+    decimal PartyTotal(List<ItemOrder> orders)
+    => orders.Aggregate(0m, (acc, x) => acc + (x.price * x.quantity));
 }
 
 <base href="~/" />
 
-<h1>@Model.Party.Name</h1>
 
-<p>Localização: @Model.Party.Location.Name</p>
+<section class="w-full ml-auto h-screen flex-col">
+    <div class="w-5/6 top-0 bg-white z-40">
+        <div class="w-full flex flex-col items-center py-4">
+            <div class="flex w-fit" id="titleDropdown">
+                <img src="/images/General/Logo.svg" class="w-12 mb-5">
+               
+            </div> <!--Termina aqui-->
+            <div clas="flex flex-col w-fit">
+                <h1 class="font-[KonnectBold] text-[#C6C6C6] text-5xl text-center">@Model.Party.Name</h1>
+                <h3 class="font-[Inter] text-[#848484] text-md text-center">@Model.Party.Type</h1>
+            </div>
+        </div>
+        <div class="w-full flex font-[Inter] h-1/3 justify-center text-[#C6C6C6]">
+            <div
+                class="border border-solid border-[#C6C6C6] text-[#C6C6C6] w-1/4 rounded-2xl h-full flex items-center flex-col px-10 pb-5 mr-10">
+                <h1>Código <span class="font-bold top-0">@Model.Party.Id.ToString().Substring(0, 5)</span></h1>
+                <img src="/images/Clients/CreateParty/Bear.svg" class="h-44 mt-4">
+            </div>
+            <div class="flex flex-col w-fit">
+                <div class="flex items-end">
+                    <h1 class="font-[KonnectBold] text-[#848484] text-4xl">R$ @PartyTotal(Model.Items)</h1>
+                    <p class="text-xs mb-2 ml-1">Valor total</p>
+                </div>
+                <hr class="rounded-[30px] border-[5px] border-[#FF008A] mt-[-7px] w-4/5 mb-4">
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-      <tr>
-        <th scope="col" class="px-6 py-3">Category</th>
-        <th scope="col" class="px-6 py-3">Name</th>
-        <th scope="col" class="px-6 py-3">Quantity</th>
-        <th scope="col" class="px-6 py-3">Note</th>
-        <th scope="col" class="px-6 py-3">Total</th>
-        <th scope="col" class="px-6 py-3">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      @foreach(var item in Model.Items){
-      <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">@item.type</th>
-        <td class="px-6 py-4">@item.name</td>
-        <td class="px-6 py-4">@item.quantity</td>
-        <td class="px-6 py-4">@item.note</td>
-        <td class="px-6 py-4">R$ @GetTotalPrice(item.price, item.quantity)</td>
-        <td class="px-6 py-4">
-            <component type="typeof(EditRemoveItemOrder)" render-mode="ServerPrerendered" param-ItemId="@item.id" param-Type="@item.type" />
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
-</div>
 
-<p>Total: @PartyTotal(Model.Items)</p>
-<a href="/Clients/Schedules/New/@Model.PartyId" class="mt-16">Agendar</a>
+                <div class="flex justify-start items-center h-fit">
+                    <div class="w-fit flex justify-start">
+                        <a href="/Clients/Schedules/New/@Model.Party.Id" class="w-fit rounded-2xl bg-[#FF008A] text-md font-[Inter] text-white px-4 py-3 mr-5">
+                            Agendar festa
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h-fit w-full flex items-end">
+        <div class="w-full mt-5 flex justify-center">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Category</th>
+                        <th scope="col" class="px-6 py-3">Name</th>
+                        <th scope="col" class="px-6 py-3">Quantity</th>
+                        <th scope="col" class="px-6 py-3">Note</th>
+                        <th scope="col" class="px-6 py-3">Total</th>
+                        <th scope="col" class="px-6 py-3">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr
+                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                @item.type</th>
+                            <td class="px-6 py-4">@item.name</td>
+                            <td class="px-6 py-4">@item.quantity</td>
+                            <td class="px-6 py-4">@item.note</td>
+                            <td class="px-6 py-4">R$ @GetTotalPrice(item.price, item.quantity)</td>
+                            <td class="px-6 py-4">
+                                <component type="typeof(EditRemoveItemOrder)" render-mode="ServerPrerendered"
+                                    param-ItemId="@item.id" param-Type="@item.type" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

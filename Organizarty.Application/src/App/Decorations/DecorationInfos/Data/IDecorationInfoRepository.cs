@@ -8,6 +8,7 @@ public interface IDecorationInfoRepository
     Task<DecorationInfo> Update(DecorationInfo decoration);
 
     Task<DecorationInfo?> FindById(Guid id);
+    Task<List<DecorationInfo>> ListFromType(Guid id);
     Task<DecorationInfo?> FindByIdWithType(Guid id);
     
 }

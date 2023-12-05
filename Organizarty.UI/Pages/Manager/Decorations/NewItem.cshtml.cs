@@ -35,10 +35,10 @@ public class NewDecorationSubitemModel : PageModel
         public string Color { get; set; } = default!;
 
         [Required]
-        public string Material { get; set; } = default!;
+        public string Material { get; set; } = "nothing";
 
         [Required]
-        public string TextureURL { get; set; } = default!;
+        public string TextureURL { get; set; } = "http://google.com";
     }
 
     public async Task<IActionResult> OnPostAsync(Guid decorationId)
@@ -58,6 +58,10 @@ public class NewDecorationSubitemModel : PageModel
             }
 
             return Page();
+        } catch(Exception e){
+             ModelState.AddModelError(string.Empty, e.Message);
+
+             return Page();
         }
     }
 }

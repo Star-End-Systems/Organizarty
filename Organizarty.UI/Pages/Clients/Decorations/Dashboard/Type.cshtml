@@ -1,85 +1,37 @@
 @page "{DecorationCategory}"
 @model TypeModel
-@using Organizarty.Application.App.Decorations.Entities
-@using Organizarty.UI.Blazor.Components.Decorations.Dashboard
+@using Organizarty.UI.Blazor.Components.Decorations.Dashboard;
+@using Organizarty.Application.App.Decorations.Entities;
+@using Organizarty.UI.Extensions;
+
 @{
     Layout = "_NullLayout";
     ViewData["Title"] = "Decorações";
+
+    var categoryImg = $"Icon{Model.DecorationCategory}.svg";
 }
 
-<section class="w-screen h-screen bg-gradient-to-b from-[#F70192] to-[#FFC700] dark:from-[#36013f] dark:to-[#EE7600]  flex flex-col font-[Inter] items-center">
-    <div class="w-full flex justify-between px-14 pt-10">
-        <a href="/Clients/Decorations/Dashboard/Main" class="h-full">
-            <img src="/images/Clients/Dashboard/IconVoltar.svg" class="h-full">
-        </a>
-        <a class="px-10 py-2 bg-white rounded-full">
-            <button class="inline-flex text-xs xs:text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-[#848484] items-center gap-x-5">
-                Adicionado
-                <img src="/images/Clients/Dashboard/IconCarrinho.svg" class="h-5/6">
-            </button>
-        </a>
+<section class="w-screen h-screen bg-white flex flex-col font-[Inter] items-center overflow-x-hidden">
+    <div class="w-11/12 flex flex-col text-[#848484] pl-[4%] gap-y-4 pt-14 bg-white fixed pb-2">
+        <h1 class="w-fit text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold">
+            @Model.DecorationCategory.GetTitle()
+            <hr class="w-1/5 border-4 border-solid border-[#848484] rounded-full">
+        </h1>
+        <h2 class="text-[0.5rem]/[0.75rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
+            @Model.DecorationCategory.GetSubTitle()
+        </h2>
     </div>
-    @switch (Model.DecorationCategory)
-    {
-        case DecorationCategory.Balao:
-            <div class="w-full flex flex-col text-white pl-[12%] gap-y-4">
-                <h1 class="w-fit text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold">
-                    Escolha o Balão 
-                    <hr class="w-1/5 border-4 border-solid border-white rounded-full">
-                </h1>
-                <h2 class="text-[0.5rem]/[0/75rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-                    Aqui você escolhe o formato desejado do arranjo de seus balões
-                </h2>
-            </div>
-            <div class="bg-white rounded-3xl flex flex-col py-14 px-32 mt-14">
-                <div class="grid row-2 gap-x-10 gap-y-20">
-
+    <div class="w-full h-3/4 flex mt-auto">
+        <img class="w-1/3 h-auto ml-24 mt-10 fixed" src="/images/Clients/Dashboard/@categoryImg">
+        <div class="grid grid-cols-3 gap-x-5 gap-y-10 mt-10 ml-[50%]">
+            @foreach(var decoration in Model.Decorations){
+                <div class="h-[12rem] w-[12rem] flex flex-col justify-center items-center">
+                    <p class="text-md">@decoration.Name</p>
+                    <a href="/Clients/Decorations/Dashboard/Edit/@decoration.Id" class="border-4 border-solid border-[#C6C6C6] rounded-xl p-2 h-5/6 w-5/6">
+                        <img src="@decoration.ObjectURL" class="w-full h-full"/>
+                    </a>
                 </div>
-            </div>
-        break;
-        case DecorationCategory.Mesa:
-            <div class="w-full flex flex-col text-white pl-[12%] gap-y-4">
-                <h1 class="w-fit text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold">
-                    Escolha a Mesa 
-                    <hr class="w-1/5 border-4 border-solid border-white rounded-full">
-                </h1>
-                <h2 class="text-[0.5rem]/[0/75rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-                    Aqui você escolhe o formato desejado de suas mesas
-                </h2>
-            </div>
-        break;
-        case DecorationCategory.Descartaveis:
-            <div class="w-full flex flex-col text-white pl-[12%] gap-y-4">
-                <h1 class="w-fit text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold">
-                    Escolha os Descatáveis 
-                    <hr class="w-1/5 border-4 border-solid border-white rounded-full">
-                </h1>
-                <h2 class="text-[0.5rem]/[0/75rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-                    Aqui você escolhe o tipo desejado de descatáveis
-                </h2>
-            </div>
-        break;
-        case DecorationCategory.Enfeites:
-            <div class="w-full flex flex-col text-white pl-[12%] gap-y-4">
-                <h1 class="w-fit text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold">
-                    Escolha os Enfeites 
-                    <hr class="w-1/5 border-4 border-solid border-white rounded-full">
-                </h1>
-                <h2 class="text-[0.5rem]/[0/75rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-                    Aqui você escolhe o estilo desejado do arranjo dos enfeites
-                </h2>
-            </div>
-        break;
-        case DecorationCategory.Loucas:
-            <div class="w-full flex flex-col text-white pl-[12%] gap-y-4">
-                <h1 class="w-fit text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold">
-                    Escolha as Louças 
-                    <hr class="w-1/5 border-4 border-solid border-white rounded-full">
-                </h1>
-                <h2 class="text-[0.5rem]/[0/75rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
-                    Aqui você escolhe o estilo desejado das louças
-                </h2>
-            </div>
-        break;
-    }
+            }
+        </div>
+    </div>
 </section>

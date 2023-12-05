@@ -64,6 +64,7 @@ public class LoginThirdPartyModel : PageModel
 
             _authHelper.WriteToken(token);
         }
+
         catch (ValidationFailException e)
         {
             foreach (var err in e.Errors)
@@ -73,6 +74,7 @@ public class LoginThirdPartyModel : PageModel
 
             return Page();
         }
+
         catch (NotFoundException e)
         {
             if (ModelState.TryAddModelError(string.Empty, e.Message))
@@ -81,6 +83,6 @@ public class LoginThirdPartyModel : PageModel
             }
         }
 
-        return Redirect("/");
+        return Redirect("/ThirdParty/");
     }
 }

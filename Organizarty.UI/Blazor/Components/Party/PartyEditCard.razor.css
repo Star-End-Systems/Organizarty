@@ -26,9 +26,15 @@ p{
 }
 
 .escuro{
-    filter: brightness(80%);
+    filter: brightness(50%);
 }
 
 .Festa{
     cursor: pointer;
+}
+
+.pai:hover{
+    .Festa{
+        filter:brightness(75%);
+    }
 }

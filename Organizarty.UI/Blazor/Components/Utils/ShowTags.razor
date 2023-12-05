@@ -1,10 +1,13 @@
 <div class="w-full h-full flex" >
   @foreach(var tag in Tags){
-    <div class="cursor-pointer flex justify-center mr-2 items-center px-8 h-8 font-[Inter] text-white font-bold bg-[#BB00C7] rounded-xl">@tag</div>
+    <div style="background-color: @Color;" class="cursor-pointer flex justify-center mr-2 items-center px-8 h-8 font-[Inter] text-white font-bold rounded-xl">@tag</div>
   }
 </div>
 
 @code{
   [Parameter]
   public List<string> Tags { get; set; } = new();
+
+  [Parameter]
+  public string Color { get; set; } = "";
 }

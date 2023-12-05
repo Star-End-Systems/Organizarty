@@ -1,3 +1,10 @@
+@using Organizarty.Adapters;
+@using Organizarty.Application.App.Locations.UseCases;
+@using Organizarty.Application.Exceptions;
+@using Organizarty.UI.Attributes;
+
+@inject CreateLocationUseCase CreateLocation
+
 <EditForm Model="@Input" id="login" OnSubmit="@Submit" FormName="registeruser" class="w-full h-full flex flex-col items-start justify-center self-center">
   <section class="h-screen w-5/6 ml-auto ">
     <div class="flex flex-col">
@@ -22,13 +29,13 @@
       <div class="w-11/12 h-full flex ">
         <div class="w-1/2 flex flex-col justify-between">
           <h2 class="text-[#A09898] font-[Inter] font-bold">CEP: </h2>
-          <InputText asp-for="Input.CEP"
+          <InputText @bind-Value="@Input.CEP"
             class="font-[KonnectBold] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
             aria-required="true" />
           <span asp-validation-for="Input.CEP" class="placeholder"></span>
 
           <h2 class="text-[#A09898] font-[Inter] font-bold">Endereço: </h2>
-          <InputText asp-for="Input.Address"
+          <InputText @bind-Value="@Input.Address"
             class="font-[KonnectBold] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
             aria-required="true" />
           <span asp-validation-for="Input.Address" class="placeholder"></span>
@@ -49,25 +56,25 @@
       </div>
       <div class="w-1/2 flex flex-col justify-center">
         <h2 class="text-[#A09898] font-[Inter] font-bold">Nome: </h2>
-        <InputText asp-for="Input.Name"
+        <InputText @bind-Value="@Input.Name"
           class="font-[KonnectBold] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
           aria-required="true" />
         <span asp-validation-for="Input.Name" class="placeholder"></span>
 
         <h2 class="text-[#A09898] font-[Inter] font-bold">Aluguel: </h2>
-        <InputText asp-for="Input.RentPerDay" type="number"
+        <InputNumber @bind-Value="@Input.RentPerDay" type="number"
           class="font-[KonnectBold] mb-8 w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
           aria-required="true" />
         <span asp-validation-for="Input.RentPerDay" class="placeholder"></span>
 
         <h2 class="text-[#A09898] font-[Inter] font-bold">Categoria: </h2>
-        <InputText asp-for="Input.Category"
+        <InputText @bind-Value="@Input.Category"
           class="font-[KonnectBold] w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
           aria-required="true" />
         <span asp-validation-for="Input.Category" class="placeholder"></span>
 
         <h2 class="text-[#A09898] font-[Inter] font-bold">Tamanho (M²)</h2>
-        <InputText asp-for="Input.AreaSize"
+        <InputNumber @bind-Value="@Input.AreaSize"
           class="font-[KonnectBold] w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
           aria-required="true" />
         <span asp-validation-for="Input.AreaSize" class="placeholder"></span>
@@ -76,7 +83,7 @@
     <div class="w-full flex">
       <div class="w-1/2 ml-24 mt-8">
         <p class="font-[KonnectBold] text-[#848484]">Descrição</p>
-        <InputText asp-for="Input.Description"
+        <InputText @bind-Value="@Input.Description"
           class="font-[KonnectBold] w-5/6 h-12 rounded-2xl shadow-xl border-[#FFC700] form-control"
           aria-required="true" />
         <span asp-validation-for="Input.Description" class="placeholder"></span>
@@ -118,5 +125,19 @@
         public string ImgUrl { get; set; } = "http://localhost:8000/Manager/Locations/new";
     }
 
-    public void Submit(){}
+    public async Task Submit(){
+        var data = new CreateLocationDto(Input.Name, Input.Description, Input.AreaSize, Input.RentPerDay, Input.CEP, Input.Category, Input.Address, Input.Cords, new() { Input.ImgUrl });
+
+        try
+        {
+            var user = await CreateLocation.Execute(data);
+        }
+        catch (ValidationFailException e)
+        {
+            foreach (var err in e.Errors)
+            {
+            }
+
+        }
+    }
 }
