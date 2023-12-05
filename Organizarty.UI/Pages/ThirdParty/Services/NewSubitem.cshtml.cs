@@ -48,29 +48,4 @@ public class NewServiceSubitemModel : PageModel
     {
         ServiceId = serviceId;
     }
-
-    public async Task<IActionResult> OnPostAsync(Guid serviceId)
-    {
-        var thirdParty = await _authHelper.GetThirdPartyFromToken(_authHelper.GetToken() ?? "");
-
-        if (thirdParty is null)
-        {
-            return Page();
-        }
-
-        try
-        {
-            await _createService.Execute(new(Input.Price, Input.IsAvaible, Input.Plan, new() { Input.ImgURL }, serviceId));
-            return RedirectToPage("/ThirdParty/Services/MyServices");
-        }
-        catch (ValidationFailException e)
-        {
-            foreach (var err in e.Errors)
-            {
-                ModelState.AddModelError(string.Empty, err.message);
-            }
-
-            return Page();
-        }
-    }
 }
