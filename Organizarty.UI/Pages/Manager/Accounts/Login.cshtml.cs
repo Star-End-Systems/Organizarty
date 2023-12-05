@@ -62,7 +62,7 @@ public class LoginManagerModel : PageModel
             var token = _tokenProvider.GenerateToken(manager.Id.ToString(), manager.Email, UserType.Mannager);
 
             _authHelper.WriteToken(token);
-            return Redirect("/Manager");
+            return Redirect("/Manager/Home");
         }
         catch (ValidationFailException e)
         {
