@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Organizarty.UI.Pages.Clients.Accounts;
 
-[Unauthenticated("/Clients")]
+[Unauthenticated("/Clients/MyParties")]
 public class LoginUserModel : PageModel
 {
     private readonly LoginUserUseCase _loginUser;

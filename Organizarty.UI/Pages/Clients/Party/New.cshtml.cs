@@ -39,8 +39,8 @@ public class NewPartyModel : PageModel
         [Display(Name = "Nome")]
         public string Name { get; set; } = default!;
 
-        [Range(1, 500, ErrorMessage = "A")]
-        [Required(ErrorMessage = "Material cost is required")]        
+        [Range(1, 500, ErrorMessage = "O número de convidados deve ser entre 1 e 500")]
+        [Required(ErrorMessage = "O campo 'Convidados' é obrigatório")]        
         [Display(Name = "Número de convidados")]
         public int Guests { get; set; } = default!;
 
