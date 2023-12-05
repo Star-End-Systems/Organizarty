@@ -32,3 +32,9 @@ p{
 .Festa{
     cursor: pointer;
 }
+
+.pai:hover{
+    .Festa{
+        filter:brightness(80%);
+    }
+}
