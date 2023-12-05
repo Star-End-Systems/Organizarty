@@ -7,6 +7,7 @@ using TP = Organizarty.Application.App.ThirdParties.Entities.ThirdParty;
 using Organizarty.UI.Attributes;
 using Organizarty.UI.Helpers;
 using Organizarty.Application.Exceptions;
+using Organizarty.Application.App.Services.Enums;
 
 namespace Organizarty.UI.Pages.ThirdParty.Services;
 
@@ -15,6 +16,7 @@ public class NewServiceModel : PageModel
 {
     private readonly CreateServiceTypeUseCase _createService;
     private readonly AuthenticationHelper _authHelper;
+    public string Category { get; set; } = "";
 
     public TP ThirdParty { get; set; } = new();
 
@@ -26,6 +28,11 @@ public class NewServiceModel : PageModel
 
     [BindProperty]
     public InputModel Input { get; set; } = new();
+    
+    public async Task OnGetAsync(string category)
+    {
+        Category = category;
+    }
 
     public class InputModel
     {
@@ -39,8 +46,11 @@ public class NewServiceModel : PageModel
 
     }
 
-    public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostAsync(ServiceCategory category)
     {
+        if(!ModelState.IsValid){
+            return Page();
+        }
         var thirdParty = await _authHelper.GetThirdPartyFromToken(_authHelper.GetToken() ?? "");
 
         if (thirdParty is null)
@@ -48,12 +58,10 @@ public class NewServiceModel : PageModel
             return Page();
         }
 
-        var tags = Input.Tags.Split(",").ToList();
-        var data = new CreateServiceTypeDto(Input.Name, Input.Description, thirdParty.Id, tags);
-
         try
         {
-            await _createService.Execute(data);
+            var tags = Input.Tags.Split(",").ToList();
+            await _createService.Execute(new(Input.Name, Input.Description, category, thirdParty.Id, tags));
             return RedirectToPage("/ThirdParty/Services/MyServices");
         }
         catch (ValidationFailException e)
@@ -65,5 +73,6 @@ public class NewServiceModel : PageModel
 
             return Page();
         }
+        
     }
 }
