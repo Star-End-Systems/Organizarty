@@ -1,4 +1,5 @@
 @page
+@model ConfirmEmailModel
 @{
 Layout = "_NullLayout";
 ViewData["Title"] = "Confirmar Email" ;
@@ -11,10 +12,13 @@ ViewData["Title"] = "Confirmar Email" ;
     <div class="flex flex-col justify-evenly items-center h-full">
         <img src="/images/Clients/Accounts/IconEmailRosa.svg" class="w-1/6">
         <p class="font-[Konnect] text-[#C6C6C6] text-center">
-            Enviamos uma mensagem para li*****a@gmail.com, para <br>confirmar o email, basta ir até sua caixa de entrada <br>e clicar no link que te enviamos.
+            Enviamos uma mensagem para @Model.MaskedEmail, para <br>confirmar o email, basta ir até sua caixa de entrada <br>e clicar no link que te enviamos.
         </p>
-        <button class="bg-[#FF008A] text-white rounded-2xl p-5 font-[Inter] font-bold">
-            Já verifiquei meu email
-        </button>
+        <a href="/Clients/MyParties">
+            <button class="bg-[#FF008A] text-white rounded-2xl p-5 font-[Inter] font-bold">
+                Já verifiquei meu email
+            </button>    
+        </a>
+        
     </div>
 </section>

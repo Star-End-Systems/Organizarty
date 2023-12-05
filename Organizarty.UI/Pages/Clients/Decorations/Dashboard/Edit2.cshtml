@@ -1,5 +1,7 @@
-@page
-@* @model DescriptionModel *@
+@page "{decorationId:Guid}"
+@model DescriptionModel
+@using Organizarty.UI.Blazor.Components.Utils;
+
 @{
     Layout = "_NullLayout";
     ViewData["Title"] = "Decorações";
@@ -16,15 +18,26 @@
         </p>
     </div>
     <div class="w-full h-3/4 flex">
-        <img class="w-1/3 h-4/5 ml-32" src="/images/Clients/Dashboard/IconBalaoEstatico.svg">
+        <img class="w-1/3 h-4/5 ml-32" src="@Model.Decoration.DecorationType.Model">
         <form class="flex flex-col mt-16 w-1/2 gap-y-24" method="post">
             <div class="w-2/3 mr-12">
-                <input class="w-full h-12 rounded-2xl shadow-xl form-control pl-4" aria-required="true" placeholder="Descrição"/>
-                <span class="placeholder"></span>
+                <h2 class="text-[#A09898] font-[Inter] font-bold">Nota do cliente</h2>
+                <input asp-for="Input.Note" class="w-full h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true" placeholder="Ex: Sem cobertura"/>
+                <span asp-validation-for="Input.Note" class="placeholder"></span>
             </div>
             <div class="w-2/3 flex flex-col items-center">
-                <input type="number" min="1" class="w-full h-12 rounded-2xl border border-solid border-transparent shadow-xl form-control" aria-required="true" placeholder="Quantidade"/>
-                <span class="placeholder"></span>
+                <h2 class="text-[#A09898] font-[Inter] font-bold">Qtd</h2>
+                <input asp-for="Input.Quantity" type="number" min="1" class="w-12 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
+                <span asp-validation-for="Input.Quantity" class="placeholder"></span>
+            </div>
+            <div class="w-2/3 flex flex-col items-center">
+                <select id="large" asp-for="Input.PartyId"
+                  class="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <option selected>Selecione uma Festa</option>
+                  @foreach(var party in Model.Parties){
+                    <option value="@party.Id">@party.Name</option>
+                  }
+                </select>
             </div>
             <div class="w-full flex justify-end mt-40">
                 <button class="justify-center mr-12 bg-[#FF008A] text-white font-[Inter] font-bold w-52 h-16 rounded-full"><h2 class="flex items-center justify-center uppercase">Adicionar<h2></button>

@@ -24,22 +24,7 @@
         <div class="w-full flex flex-col items-center py-4">
             <div class="flex w-fit" id="titleDropdown">
                 <img src="/images/General/Logo.svg" class="w-12 mb-5">
-                <div class="relative inline-block text-left justify-center dropdown"> <!--Botão e Dropdown-->
-                    <div class="hidden origin-top-right absolute right-2 w-56 rounded-md shadow-lg bg-white" role="menu"
-                        aria-orientation="vertical" aria-labelledby="options-menu">
-                        <div class="py-1" role="none">
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-[#848484] hover:bg-[#FF008A] hover:text-white"
-                                role="menuitem">Festa 1</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-[#848484] hover:bg-[#FF008A] hover:text-white"
-                                role="menuitem">Festa 2</a>
-                            <a href="#"
-                                class="block px-4 py-2 text-sm text-[#848484] hover:bg-[#FF008A] hover:text-white"
-                                role="menuitem">Festa 3</a>
-                        </div>
-                    </div>
-                </div>
+               
             </div> <!--Termina aqui-->
             <div clas="flex flex-col w-fit">
                 <h1 class="font-[KonnectBold] text-[#C6C6C6] text-5xl text-center">@Model.Party.Name</h1>
@@ -54,7 +39,7 @@
             </div>
             <div class="flex flex-col w-fit">
                 <div class="flex items-end">
-                    <h1 class="font-[KonnectBold] text-[#848484] text-4xl">@PartyTotal(Model.Items)</h1>
+                    <h1 class="font-[KonnectBold] text-[#848484] text-4xl">R$ @PartyTotal(Model.Items)</h1>
                     <p class="text-xs mb-2 ml-1">Valor total</p>
                 </div>
                 <hr class="rounded-[30px] border-[5px] border-[#FF008A] mt-[-7px] w-4/5 mb-4">

@@ -12,7 +12,7 @@ public class DecorationTypeConfiguration : IEntityTypeConfiguration<DecorationTy
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
         builder.Property(x => x.Name).IsRequired().HasMaxLength(32);
         builder.Property(x => x.Size).IsRequired().HasMaxLength(8);
-        builder.Property(x => x.Model).IsRequired().HasMaxLength(32);
+        builder.Property(x => x.Model).IsRequired().HasMaxLength(512);
         builder.Property(x => x.Description).IsRequired().HasMaxLength(256);
         builder.Property(x => x.ObjectURL).IsRequired();
 

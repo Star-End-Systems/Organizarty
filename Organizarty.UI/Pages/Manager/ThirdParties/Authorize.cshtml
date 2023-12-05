@@ -1,8 +1,20 @@
 @page "{thirdPartyId:Guid}"
 @model AuthorizeThirdPartyModel
 
+
+
+<section class="w-screen h-screen flex flex-col items-center">
+    <div class="bg-[#BB00C7] w-full flex justify-center">
+        <h2 class="font-[Inter] font-bold xs:text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-white py-4">Esperando o Gerente</h2>
+    </div>
+    <div class="flex flex-col justify-center items-center h-full">
+        <img src="/images/ThirdParty/Accounts/ic_autorizar.png" class="w-1/6 mb-10">
+        
 @if(Model.Success){
   <p>@Model.ThirdParty.Name esta agora autorizado a usar a plataforma.</p>
 } else{
   <p>Falha ao autorizar o terceirizado, tente novamente mais tarde.</p>
 }
+
+    </div>
+</section>

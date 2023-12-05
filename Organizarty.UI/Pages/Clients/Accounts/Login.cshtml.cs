@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Organizarty.UI.Pages.Clients.Accounts;
 
-[Unauthenticated("/Clients")]
+[Unauthenticated("/Clients/MyParties")]
 public class LoginUserModel : PageModel
 {
     private readonly LoginUserUseCase _loginUser;
@@ -73,7 +73,7 @@ public class LoginUserModel : PageModel
 
             if (u.EmailConfirmed)
             {
-                return Redirect("/Clients");
+                return Redirect("/Clients/MyParties");
             }
                 return Redirect("./ConfirmEmail");
         }
