@@ -1,6 +1,7 @@
 @page "{productId:Guid}"
 @model DescriptionModel 
 @using Organizarty.UI.Blazor.Components.Utils;
+@using Organizarty.UI.Blazor.Components.ThirdParties;
 @{
     Layout = "_NullLayout";
     ViewData["Title"] = "Descrição do Produto";
@@ -12,11 +13,7 @@
     <div class="w-full h-full flex">
         <div class="w-1/3 flex flex-col justify-evenly">
             <div class="flex justify-center items-center w-full h-28">
-                <img class="items-center w-32 " src="/images/Clients/Description/BakeryLogo.png"></img>
-                <div class="ml-4">
-                    <h1 class="text-[#FF08AA] font-[Inter] text-3xl"><strong>Pastry Shop</strong></h1>
-                    <p class="text-[#848484] font-[Inter] text-xs">Ana Fernandez</p>
-                </div>
+                <component type="typeof(ThirdPartyName)" render-mode="ServerPrerendered" param-ThirdParty="@Model.ThirdParty"/>
             </div>
             <div class="rounded self-center">
                 <img class="w-80" src="@Model.Food.Images[0]"/>
