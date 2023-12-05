@@ -1,7 +1,7 @@
 .Image:hover{
     cursor: pointer;
     transition: all 0.4s;
-    background-image: url("/images/ThirdParty/MyServices/FotografoEscuro.png");    
+    background-image: url("");    
 }
 
 .Image{

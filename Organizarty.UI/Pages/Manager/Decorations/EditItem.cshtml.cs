@@ -38,7 +38,7 @@ public class EditDecorationItemModel : PageModel
 
     public async Task<IActionResult> OnPostAsync(Guid decorationId)
     {
-        var data = new EditDecorationItemDto(decorationId, Input.Color, Input.Material, Input.IsAvaible, Input.Price, Input.TextureURL);
+        var data = new EditDecorationItemDto(decorationId, Input.Color, "default", Input.IsAvaible, Input.Price, "https://google.com");
 
         try
         {
