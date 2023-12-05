@@ -4,6 +4,8 @@
 @{
     Layout = "_NullLayout";
     ViewData["Title"] = "Descrição do Produto";
+
+    var color = "#FF008A";
 }
 
 <section class="w-screen h-screen">
@@ -47,11 +49,11 @@
                                 </div>
                                 <div class="w-fit flex flex-col items-center">
                                     <h2 class="text-[#A09898] font-[Inter] font-bold">Qtd</h2>
-                                    <input asp-for="Input.Quantity" type="number" min="0" class="w-12 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
+                                    <input asp-for="Input.Quantity" type="number" min="0" class="w-24 h-12 rounded-2xl shadow-xl border-[#FF008A] form-control" aria-required="true"/>
                                     <span asp-validation-for="Input.Quantity" class="placeholder text-[#FF008A] font-[Inter]"></span>
                                 </div>
                             </div>
-                        <div class="flex">
+                        <div class="flex items-center">
                             <select id="large" asp-for="Input.PartyId"
                             class="block w-1/2 px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected>Selecione uma Festa</option>
@@ -59,11 +61,11 @@
                                 <option value="@party.Id">@party.Name</option>
                             }
                             </select>
-                            <span asp-validation-for="Input.PartyId" class="placeholder text-[#FF008A] font-[Inter]"></span>
+                            <span asp-validation-for="Input.PartyId" class="placeholder text-[#FF008A] font-[Inter] pl-2"></span>
                         </div>
-                    <div class="w-full flex justify-evenly items-center mt-2">
+                    <div class="w-full flex justify-between items-center mt-6">
+                        <component type="typeof(ShowTags)" render-mode="ServerPrerendered" param-Tags="@Model.Food.FoodType.Tags" param-Color="@color" />
                         <button class="justify-center mr-12 bg-[#FF008A] text-white font-[Inter] font-bold w-52 h-12 rounded-lg"><h2 class="flex items-center justify-center">Incluir na festa</h2></button>
-                        <component type="typeof(ShowTags)" render-mode="ServerPrerendered" param-Tags="@Model.Food.FoodType.Tags" />
                     </div>
                     </div>
                 </form>
