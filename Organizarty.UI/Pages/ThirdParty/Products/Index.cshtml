@@ -32,8 +32,15 @@ ViewData["Title"] = "Meus produtos";
 @foreach(var food in Model.Foods){
 <div class="w-full">
   <div class="mt-6">
-    <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">@food.Name <img class="w-8 h-8" src="/images/icons/mais.png"/> <a
-        href="/ThirdParty/Products/Edit/@food.Id">Edit</a></h1>
+    <h1 class="flex font-[KonnectBold] text-[#A09898] text-4xl mb-2">
+      @food.Name
+      <a href="/ThirdParty/Products/NewSubItem/@food.Id">
+        <img class="w-8 h-8" src="/images/icons/mais.png"/>
+      </a>
+      <a href="/ThirdParty/Products/Edit/@food.Id">
+        Edit
+      </a>
+    </h1>
   </div>
   <div class="w-full overflow-x-auto flex">
     @foreach (var item in food.Foods){
