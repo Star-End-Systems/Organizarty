@@ -1,0 +1,33 @@
+@page
+@{
+    ViewData["Title"] = "New Product";
+    Layout = "_NullLayout";
+}
+
+<section id="Index" class="flex h-screen">
+    <div class="w-screen h-screen">
+        <div class="w-1/2 h-screen flex flex-col items-center justify-center">
+            <div class="flex flex-col gap-y-5">
+                <div class="w-fit">
+                    <h1 class="text-white text-5xl font-[Inter] font-bold">Adicionar novo produto</h1>
+                    <p class="text-white text-md font-[Inter]">Selecione o tipo de produto</p>
+                </div>
+                <div class="flex mt-[1%] text-white gap-y-2"> <!-- Trocar a extensão das imagens para svg       #848484-->
+                    <a href="/Manager/Decorations/New/Balao" class="w-fit flex flex-col items-center font-[KonnectBold] mr-3"><button class="Button flex menuButtons rounded-full w-20 h-20 hover:bg-white bg-[#FFB800]"><img class="w-9 self-center ml-auto mr-auto" src="/images/Clients/Dashboard/IconBalao.svg"/></button><h4 class="text-sm mt-2">Balão</h4></a>
+                    <a href="/Manager/Decorations/New/Mesa" class="w-fit flex flex-col items-center font-[KonnectBold] mr-3"><button class="Button flex menuButtons rounded-full w-20 h-20 hover:bg-white bg-[#FFB800]"><img class="w-9 self-center ml-auto mr-auto" src="/images/Clients/Dashboard/IconMesa.svg"/></button><h4 class="text-sm mt-2">Mesa</h4></a>
+                    <a href="/Manager/Decorations/New/Descartaveis" class="w-fit flex flex-col items-center font-[KonnectBold] mr-3"><button class="Button flex menuButtons rounded-full w-20 h-20 hover:bg-white bg-[#FFB800]"><img class="w-9 self-center ml-auto mr-auto" src="/images/Clients/Dashboard/IconDescartaveis.svg"/></button><h4 class="text-sm mt-2">Descartáveis</h4></a>
+                    <a href="/Manager/Decorations/New/Enfeites" class="w-fit flex flex-col items-center font-[KonnectBold] mr-3"><button class="Button flex menuButtons rounded-full w-20 h-20 hover:bg-white bg-[#FFB800]"><img class="w-9 self-center ml-auto mr-auto" src="/images/Clients/Dashboard/IconEnfeites.svg"/></button><h4 class="text-sm mt-2">Enfeites</h4></a>
+                    <a href="/Manager/Decorations/New/Loucas" class="w-fit flex flex-col items-center font-[KonnectBold] mr-3"><button class="Button flex menuButtons rounded-full w-20 h-20 hover:bg-white bg-[#FFB800]"><img class="w-9 self-center ml-auto mr-auto" src="/images/Clients/Dashboard/IconLoucas.svg"/></button><h4 class="text-sm mt-2">Louças</h4></a>
+                </div>
+                <div class="flex w-full h-14 gap-x-5 mt-4">
+                    <a href="/Manager/Decorations" class="inline-flex justify-center items-center bg-transparent font-[Inter] hover:drop-shadow-2xl rounded-3xl text-white h-full w-40 p-3 border border-white border-solid transition ease-in-out delay-150">
+                        Cancelar 
+                    </a>
+                    <a href="New"><button class="bg-white hover:drop-shadow-2xl font-[Inter] rounded-3xl text-sm text-[#FFB800] font-bold h-full w-40 p-3 border border-white border-solid transition ease-in-out">
+                        Informar mais
+                    </button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
