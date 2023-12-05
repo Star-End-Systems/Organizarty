@@ -8,7 +8,7 @@
 
 <section id="Index" class="flex h-screen bg-[#BB00C7]">
   <div class="part1 w-full h-screen py-8 flex-col flex items-start">
-  <a href="ChooseNewProductType"><img src="/images/ThirdParty/NewProducts/Setinha.png" class="ml-12 w-12"></a>
+  <a href="/ThirdParty/Services/ChooseNewServicesType"><img src="/images/ThirdParty/NewProducts/Setinha.png" class="ml-12 w-12"></a>
     <div class="flex flex-col items-center w-full h-full">
       <div class="LoginForm flex justify-center py-8 text-center w-5/12 h-full rounded-2xl formulario drop-shadow-2xl z-20">
         <EditForm Model="@Input" OnSubmit="@Submit" id="login" method="post" class="w-full">
@@ -83,7 +83,7 @@
     public async Task Submit(){
         try{
             await CreateService.Execute(new(Input.Price, Input.IsAvaible, Input.Plan, new() { Input.ImgURL }, ServiceId));
-           NavigationManager.NavigateTo("/ThirdParty/Services/", forceLoad: true);
+           NavigationManager.NavigateTo("/ThirdParty/Services/MyServices", forceLoad: true);
         } catch(Exception e){
           Console.WriteLine(e);
         }
