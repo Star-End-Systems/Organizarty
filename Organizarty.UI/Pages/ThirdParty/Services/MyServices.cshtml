@@ -7,6 +7,7 @@
 Layout = "_ThirdPartyLayout";
 ViewData["Title"] = "Meus Serviços";
 }
+<section class="flex flex-col self-end ml-16">
 <div class="flex justify-start items-center w-fit h-28">
   <img class="items-center w-24 " src="/images/ThirdParty/MyServices/LogoJunior.png"></img>
   <div class="ml-4">
@@ -35,14 +36,15 @@ ViewData["Title"] = "Meus Serviços";
           <img class="w-8 h-8" src="/images/icons/mais.png"/>
         </a>
         <a href="/ThirdParty/Services/Edit/@service.Id">
-          <img src="/images/Manager/Decorations/Edit.svg" class="h-8"/>
+          <img src="/images/Manager/Decorations/Edit.svg" class="h-8 absolute"/>
         </a>
     </h1>
   </div>
-  <div class="flex">
+  <div class="flex mt-5 overflow-x-auto">
     @foreach (var item in service.SubServices){
     <component type="typeof(ThirdPartyServiceCard)" render-mode="ServerPrerendered" param-Service="@item" />
     }
 
   </div>
   }
+</section>

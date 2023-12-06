@@ -58,10 +58,10 @@ ViewData["Title"] = "Products";
         </div>
       } else{
       @foreach(var service in Model.Services){
-        <div class="mt-10">
+        <div class="mt-10 mb-3">
           <h1 class="font-[KonnectBold] text-[#A09898] text-4xl">@service.Name</h1>
         </div>
-        <div class="flex">
+        <div class="flex overflow-x-auto w-full">
           @foreach(var item in service.SubServices){
             <component type="typeof(ClientServiceCard)" render-mode="ServerPrerendered" param-Service="@item" />
           }
