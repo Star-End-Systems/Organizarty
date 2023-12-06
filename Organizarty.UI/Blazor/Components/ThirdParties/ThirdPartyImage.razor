@@ -1,0 +1,8 @@
+@using Organizarty.Application.App.ThirdParties.Entities;
+
+<img src="@ThirdParty.ProfilePictureURL" class="h-[55%] w-auto mb-5 rounded-[45px]">
+
+@code{
+  [Parameter]
+  public ThirdParty ThirdParty {get; set;} = new();
+}

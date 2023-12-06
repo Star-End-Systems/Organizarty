@@ -26,8 +26,8 @@
         <div class="grid grid-cols-3 gap-x-5 gap-y-10 mt-10 ml-[50%]">
             @foreach(var decoration in Model.Decorations){
                 <div class="h-[12rem] w-[12rem] flex flex-col justify-center items-center">
-                    <p class="text-md">@decoration.Name</p>
-                    <a href="/Clients/Decorations/Dashboard/Edit/@decoration.Id" class="border-4 border-solid border-[#C6C6C6] rounded-xl p-2 h-5/6 w-5/6">
+                    <p class="text-sm">@decoration.Name</p>
+                    <a href="/Clients/Decorations/Dashboard/Edit/@decoration.Id" class="border-4 border-solid border-[#C6C6C6] rounded-xl shadow-2xl p-2 h-5/6 w-5/6">
                         <img src="@decoration.ObjectURL" class="w-full h-full"/>
                     </a>
                 </div>
