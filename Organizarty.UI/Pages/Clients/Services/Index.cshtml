@@ -8,7 +8,7 @@ Layout = "_ClientLayout";
 ViewData["Title"] = "Products";
 }
 
-<section class="h-screen ml-auto w-full">
+<section class="h-screen ml-auto w-full mr-[250px]">
   <div class="flex justify-start h-1/6">
     <div class="self-center flex ml-16 mt-6"> <!-- Trocar a extensão das imagens para svg       #848484-->
       <div class="w-fit flex flex-col items-center font-[KonnectBold] text-[#908D8D] mr-3"><button
@@ -58,7 +58,7 @@ ViewData["Title"] = "Products";
         </div>
       } else{
       @foreach(var service in Model.Services){
-        <div class="mt-20">
+        <div class="mt-10">
           <h1 class="font-[KonnectBold] text-[#A09898] text-4xl">@service.Name</h1>
         </div>
         <div class="flex">
