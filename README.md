@@ -23,6 +23,11 @@ git clone https://github.com/Star-End-Systems/Organizarty
 - - Caso esteja usando docker, inicie o container no arquivo `docker-compose.yml`
 - - Caso não esteja usando o docker, configure a Connection string no arquivo `.env` localizado em `Organizarty.UI/.env`. Veja detalhes nas próximas sessões.
 
+- Rode as Migrations (Após o banco devidamente configurado no passo anterior)
+```sh
+dotnet ef database update  -s Organizarty.UI
+```
+
 ### Environment
 
 - Configure serviços nas variáveis de ambiente. 
