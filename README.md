@@ -1,5 +1,7 @@
 # Organizarty
 
+# Link da apresentação: https://www.youtube.com/watch?v=tWpAWlQtNZc
+
 ## Dependências
 
 - dotnet ef. [Download](https://learn.microsoft.com/en-us/ef/core/cli/dotnet)
