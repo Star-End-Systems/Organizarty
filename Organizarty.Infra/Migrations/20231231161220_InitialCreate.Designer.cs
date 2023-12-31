@@ -11,8 +11,8 @@ using Organizarty.Infra.Data.Contexts;
 namespace Organizarty.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231203031705_initialCreate")]
-    partial class initialCreate
+    [Migration("20231231161220_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,17 +24,19 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.DecorationInfos.Entities.DecorationInfo", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("varchar(32)");
 
-                    b.Property<Guid>("DecorationTypeId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("DecorationTypeId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<bool>("IsAvaible")
                         .HasColumnType("tinyint(1)");
@@ -61,9 +63,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.DecorationTypes.Entities.DecorationType", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<int>("Category")
                         .HasColumnType("int");
@@ -75,8 +78,8 @@ namespace Organizarty.Infra.Migrations
 
                     b.Property<string>("Model")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("varchar(32)");
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -103,9 +106,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Foods.Entities.FoodInfo", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<bool>("Available")
                         .HasColumnType("tinyint(1)");
@@ -115,8 +119,9 @@ namespace Organizarty.Infra.Migrations
                         .HasMaxLength(35)
                         .HasColumnType("varchar(35)");
 
-                    b.Property<Guid>("FoodTypeId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("FoodTypeId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("ImagesJson")
                         .HasColumnType("longtext");
@@ -134,9 +139,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Foods.Entities.FoodType", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Category")
                         .IsRequired()
@@ -156,8 +162,9 @@ namespace Organizarty.Infra.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("ThirdPartyId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("ThirdPartyId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -168,9 +175,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Locations.Entities.Location", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -225,9 +233,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Managers.Entities.Manager", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -264,19 +273,23 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Party.Entities.DecorationGroup", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
-                    b.Property<Guid>("DecorationInfoId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("DecorationInfoId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Note")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
-                    b.Property<Guid>("PartyTemplateId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("PartyTemplateId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -292,20 +305,23 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Party.Entities.FoodGroup", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
-                    b.Property<Guid>("FoodInfoId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("FoodInfoId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Note")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
-                    b.Property<Guid>("PartyTemplateId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("PartyTemplateId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -321,29 +337,32 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Party.Entities.PartyTemplate", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<int>("ExpectedGuests")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("LocationId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("LocationId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<Guid?>("OriginalPartyTemplateId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("OriginalPartyTemplateId")
+                        .HasColumnType("varchar(15)");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -358,20 +377,23 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Party.Entities.ServiceGroup", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Note")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
 
-                    b.Property<Guid>("PartyTemplateId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("PartyTemplateId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
-                    b.Property<Guid>("ServiceInfoId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("ServiceInfoId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -384,12 +406,14 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Schedules.Entities.DecorationOrder", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
-                    b.Property<Guid>("DecorationId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("DecorationId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<DateTime>("EventDate")
                         .HasColumnType("datetime(6)");
@@ -406,8 +430,9 @@ namespace Organizarty.Infra.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ScheduleId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("ScheduleId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -423,15 +448,17 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Schedules.Entities.FoodOrder", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<DateTime>("EventDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<Guid>("FoodInfoId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("FoodInfoId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Note")
                         .HasMaxLength(256)
@@ -444,14 +471,16 @@ namespace Organizarty.Infra.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ScheduleId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("ScheduleId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ThirdPartyId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("ThirdPartyId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -466,9 +495,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Schedules.Entities.Schedule", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -480,16 +510,18 @@ namespace Organizarty.Infra.Migrations
                     b.Property<int>("ExpectedGuests")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("LocationId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("LocationId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<Guid>("PartyId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("PartyId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<decimal>("Price")
                         .HasPrecision(7, 2)
@@ -505,8 +537,9 @@ namespace Organizarty.Infra.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime(6)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -521,9 +554,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Schedules.Entities.ServiceOrder", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<DateTime>("EventDate")
                         .HasColumnType("datetime(6)");
@@ -537,17 +571,20 @@ namespace Organizarty.Infra.Migrations
                         .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
 
-                    b.Property<Guid>("ScheduleId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("ScheduleId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
-                    b.Property<Guid>("ServiceInfoId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("ServiceInfoId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("ThirdPartyId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("ThirdPartyId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -562,9 +599,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Services.Entities.ServiceInfo", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("ImagesJson")
                         .IsRequired()
@@ -582,8 +620,9 @@ namespace Organizarty.Infra.Migrations
                         .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
 
-                    b.Property<Guid>("ServiceTypeId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("ServiceTypeId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -594,9 +633,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Services.Entities.ServiceType", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<int>("Category")
                         .HasColumnType("int");
@@ -615,8 +655,9 @@ namespace Organizarty.Infra.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("ThirdPartyId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("ThirdPartyId")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.HasKey("Id");
 
@@ -627,9 +668,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.ThirdParties.Entities.ThirdParty", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -707,9 +749,10 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Users.Entities.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("CPF")
                         .HasMaxLength(11)
@@ -771,19 +814,24 @@ namespace Organizarty.Infra.Migrations
 
             modelBuilder.Entity("Organizarty.Application.App.Users.Entities.UserConfirmation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("varchar(8)");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("ValidFor")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("UserConfirmations");
                 });
@@ -1023,17 +1071,6 @@ namespace Organizarty.Infra.Migrations
                         .IsRequired();
 
                     b.Navigation("ThirdParty");
-                });
-
-            modelBuilder.Entity("Organizarty.Application.App.Users.Entities.UserConfirmation", b =>
-                {
-                    b.HasOne("Organizarty.Application.App.Users.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Organizarty.Application.App.DecorationTypes.Entities.DecorationType", b =>

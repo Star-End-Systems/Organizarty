@@ -8,7 +8,7 @@ namespace Organizarty.Application.App.Services.UseCases;
 
 public class EditServiceSubItemUseCase
 {
-    public record UpdateDto(Guid Id, decimal Price, bool IsAvaiable, string Plan, List<string> Images);
+    public record UpdateDto(string Id, decimal Price, bool IsAvaiable, string Plan, List<string> Images);
 
     private readonly IServiceInfoRepository _serviceRepository;
     private readonly IValidator<ServiceInfo> _serviceValidator;

@@ -17,10 +17,10 @@ public class SelectDecorationTypeUseCase
     public async Task<List<DecorationType>> All()
     => await _decorationTypeRepository.All();
 
-    public async Task<DecorationType> FindById(Guid id)
+    public async Task<DecorationType> FindById(string id)
     => await _decorationTypeRepository.FindById(id) ?? throw new NotFoundException("Decoration not found.");
 
-    public async Task<DecorationType> FindByIdWithItems(Guid id)
+    public async Task<DecorationType> FindByIdWithItems(string id)
     => await _decorationTypeRepository.FindById(id) ?? throw new NotFoundException("Decoration not found.");
     public async Task<List<DecorationType>> FindByCategory(DecorationCategory Category)
     => await _decorationTypeRepository.FindByCategory(Category) ?? throw new NotFoundException("This category is empty.");

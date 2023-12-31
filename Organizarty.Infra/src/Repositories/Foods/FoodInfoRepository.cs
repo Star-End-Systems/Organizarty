@@ -21,11 +21,11 @@ public class FoodInfoRepository : IFoodInfoRepository
         return foodType;
     }
 
-    public async Task<FoodInfo?> FindById(Guid id)
+    public async Task<FoodInfo?> FindById(string id)
       => await _context.FoodInfos.FindAsync(id);
 
 
-    public async Task<FoodInfo?> FindWithIdWithDetail(Guid id)
+    public async Task<FoodInfo?> FindWithIdWithDetail(string id)
     => await _context.FoodInfos
               .Where(x => x.Id == id)
               .Include(x => x.FoodType)

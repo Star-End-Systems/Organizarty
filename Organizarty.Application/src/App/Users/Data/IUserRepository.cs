@@ -9,5 +9,5 @@ public interface IUserRepository
 
     Task<User?> FindByEmail(string email);
     Task<User?> FindByEmailOrUsername(string emailorUsername);
-    Task<User?> FindById(Guid id);
+    Task<User?> FindById(string id);
 }

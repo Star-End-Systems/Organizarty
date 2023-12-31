@@ -7,7 +7,7 @@ public interface IFoodOrderRepository
     Task<FoodOrder> Add(FoodOrder food);
     Task<FoodOrder> Update(FoodOrder food);
 
-    Task<List<FoodOrder>> ListFromThirdParty(Guid thirdPartyId);
-    Task<List<FoodOrder>> ListFromShedule(Guid scheduleid);
-    Task<FoodOrder?> FindById(Guid id);
+    Task<List<FoodOrder>> ListFromThirdParty(string thirdPartyId);
+    Task<List<FoodOrder>> ListFromShedule(string scheduleid);
+    Task<FoodOrder?> FindById(string id);
 }

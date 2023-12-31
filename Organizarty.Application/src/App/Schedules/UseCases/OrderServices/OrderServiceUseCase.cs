@@ -20,7 +20,7 @@ public class OrderServiceUseCase
         _selectSchedule = selectSchedule;
     }
 
-    public async Task<List<ServiceOrder>> Execute(Guid scheduleId)
+    public async Task<List<ServiceOrder>> Execute(string scheduleId)
       => await Execute(await _selectSchedule.FindById(scheduleId), ItemStatus.PENDING);
 
     public async Task<List<ServiceOrder>> Execute(Schedule schedule, ItemStatus status = ItemStatus.WAITING)

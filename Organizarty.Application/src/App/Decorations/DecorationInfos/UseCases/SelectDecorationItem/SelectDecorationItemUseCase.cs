@@ -13,11 +13,11 @@ public class SelectDecorationItemUseCase
         _decorationRepository = decorationRepository;
     }
 
-    public async Task<DecorationInfo> FinbById(Guid id)
+    public async Task<DecorationInfo> FinbById(string id)
     => await _decorationRepository.FindById(id) ?? throw new NotFoundException("Decoration not found.");
 
-    public async Task<List<DecorationInfo>> ListFromType(Guid id)
+    public async Task<List<DecorationInfo>> ListFromType(string id)
     => await _decorationRepository.ListFromType(id);
-    public async Task<DecorationInfo> FinbByIdWithType(Guid id)
+    public async Task<DecorationInfo> FinbByIdWithType(string id)
     => await _decorationRepository.FindByIdWithType(id) ?? throw new NotFoundException("Decoration not found.");
 }

@@ -11,7 +11,7 @@ public class SelectUserUseCase
         _userRepository = userRepository;
     }
 
-    public async Task<User?> GetUserId(Guid id)
+    public async Task<User?> GetUserId(string id)
         => await _userRepository.FindById(id);
     
 }

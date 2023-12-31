@@ -8,7 +8,7 @@ namespace Organizarty.Application.App.Services.UseCases;
 
 public class EditServiceItemUseCase
 {
-    public record UpdateDto(Guid id, string name, string description, List<string> tags);
+    public record UpdateDto(string id, string name, string description, List<string> tags);
 
     private readonly IServiceTypeRepository _serviceTypeRepository;
     private readonly IValidator<ServiceType> _serviceValidator;

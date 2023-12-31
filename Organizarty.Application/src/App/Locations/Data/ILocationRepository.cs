@@ -9,5 +9,5 @@ public interface ILocationRepository
     Task<List<Location>> ListAll();
     Task<List<Location>> ListAll(bool avaible);
 
-    Task<Location?> FindById(Guid id);
+    Task<Location?> FindById(string id);
 }

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Users.Data;
 using Organizarty.Application.App.Users.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Users;
 
@@ -16,29 +17,44 @@ public class UserConfirmationRepository : IUserConfirmationRepository
 
     public async Task<UserConfirmation> Create(UserConfirmation user)
     {
-        await _context.UserConfirmations.AddAsync(user);
+        user.Id = IdGenerator.DefaultId();
+
+        _context.UserConfirmations.Add(user);
+
         await _context.SaveChangesAsync();
+
         return user;
     }
 
-    public async Task<UserConfirmation?> FindById(Guid code)
+    public async Task<UserConfirmation?> FindByCode(string code, string email)
     => await _context.UserConfirmations
-              .Include(x => x.User)
-              .Where(x => x.Id == code)
-              .Select(x => new UserConfirmation
-              {
-                  Id = x.Id,
-                  ValidFor = x.ValidFor,
-                  User = x.User
-              })
-              .FirstOrDefaultAsync();
+                     .AsNoTrackingWithIdentityResolution()
+                     .Where(x => x.Code == code)
+                     .Where(x => x.UserEmail == email)
+                     .FirstOrDefaultAsync();
 
-    public async Task<List<UserConfirmation>> FindByUserId(Guid userId)
-      => await _context.UserConfirmations.Where(emails => emails.User.Id == userId).ToListAsync();
+    public async Task<UserConfirmation?> FindById(string code)
+    => await _context.UserConfirmations
+                     .AsNoTrackingWithIdentityResolution()
+                     .Where(x => x.Id == code)
+                     .Select(x => new UserConfirmation
+                     {
+                         Id = x.Id,
+                         ValidFor = x.ValidFor,
+                         UserEmail = x.UserEmail,
+                         Code = x.Code
+                     })
+                     .FirstOrDefaultAsync();
 
-    public async Task RemoveAllFromUser(Guid userId)
+    public async Task<List<UserConfirmation>> FindByUserEmail(string userEmail)
+      => await _context.UserConfirmations
+                       .AsNoTrackingWithIdentityResolution()
+                       .Where(confirm => confirm.UserEmail == userEmail)
+                       .ToListAsync();
+
+    public async Task RemoveAllFromUser(string userEmail)
     {
-        var emailCodes = await FindByUserId(userId);
+        var emailCodes = await FindByUserEmail(userEmail);
         _context.UserConfirmations.RemoveRange(emailCodes);
         await _context.SaveChangesAsync();
     }

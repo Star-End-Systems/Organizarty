@@ -5,13 +5,16 @@ using Organizarty.UI.Extensions;
 
 using Organizarty.DependencyInversion.Application.UseCasesExtensions;
 using Organizarty.UI.Middlewares.ErrorHandlering;
+using Organizarty.DependencyInversion.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTextCompression();
 
 // Add services to the container.
-builder.Services.AddDatabase(builder.Configuration)
+builder.Services
+                .AddEnvironment()
+                .AddDatabase(builder.Configuration)
                 .AddRepositories()
                 .AddRepositories()
                 .AddProviders()

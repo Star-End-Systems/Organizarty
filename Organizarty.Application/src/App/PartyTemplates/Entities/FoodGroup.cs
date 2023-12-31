@@ -4,14 +4,14 @@ namespace Organizarty.Application.App.Party.Entities;
 
 public class FoodGroup
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = default!;
 
     public int Quantity { get; set; }
     public string Note { get; set; } = default!;
 
-    public Guid PartyTemplateId { get; set; }
+    public string PartyTemplateId { get; set; } = default!;
     public PartyTemplate? PartyTemplate { get; set; }
 
-    public Guid FoodInfoId { get; set; }
+    public string FoodInfoId { get; set; } = default!;
     public FoodInfo? FoodInfo { get; set; }
 }

@@ -4,7 +4,7 @@ namespace Organizarty.Application.App.Services.Entities;
 
 public class ServiceInfo
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = default!;
 
     public decimal Price { get; set; } = default!;
     public bool IsAvaible { get; set; } = default!;
@@ -18,6 +18,6 @@ public class ServiceInfo
         set => ImagesJson = JsonSerializer.Serialize(value);
     }
 
-    public Guid ServiceTypeId { get; set; } = default!;
+    public string ServiceTypeId { get; set; } = default!;
     public ServiceType ServiceType { get; set; } = default!;
 }

@@ -3,7 +3,7 @@ using Organizarty.Application.App.Services.Enums;
 
 namespace Organizarty.Application.App.Services.UseCases;
 
-public record CreateServiceTypeDto(string name, string description, ServiceCategory category, Guid thirdPartyId, List<string> tags)
+public record CreateServiceTypeDto(string name, string description, ServiceCategory category, string thirdPartyId, List<string> tags)
 {
     public ServiceType ToModel
       => new ServiceType

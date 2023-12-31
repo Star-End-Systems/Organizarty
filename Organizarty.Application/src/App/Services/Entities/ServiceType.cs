@@ -6,14 +6,14 @@ namespace Organizarty.Application.App.Services.Entities;
 
 public class ServiceType
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = default!;
 
     public string Name { get; set; } = default!;
     public string Description { get; set; } = default!;
 
     public ServiceCategory Category { get; set; }
 
-    public Guid ThirdPartyId { get; set; } = default!;
+    public string ThirdPartyId { get; set; } = default!;
     public ThirdParty ThirdParty { get; set; } = default!;
 
     public ICollection<ServiceInfo> SubServices { get; set; } = default!;

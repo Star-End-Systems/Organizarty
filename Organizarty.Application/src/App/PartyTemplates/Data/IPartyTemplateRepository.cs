@@ -6,8 +6,8 @@ public interface IPartyTemplateRepository
 {
     Task<PartyTemplate> Create(PartyTemplate party);
     Task<PartyTemplate> Update(PartyTemplate party);
-    Task<PartyTemplate?> FindById(Guid partyId);
-    Task<PartyTemplate?> FromIdWithLocation(Guid partyId);
+    Task<PartyTemplate?> FindById(string partyId);
+    Task<PartyTemplate?> FromIdWithLocation(string partyId);
 
-    Task<List<PartyTemplate>> FromUser(Guid userId);
+    Task<List<PartyTemplate>> FromUser(string userId);
 }

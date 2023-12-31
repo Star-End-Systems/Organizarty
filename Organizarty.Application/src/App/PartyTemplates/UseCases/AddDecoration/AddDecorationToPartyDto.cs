@@ -2,7 +2,7 @@ using Organizarty.Application.App.Party.Entities;
 
 namespace Organizarty.Application.App.Party.UseCases;
 
-public record AddDecorationToPartyDto(Guid decorationInfoId, Guid partyId, int quantity, string note)
+public record AddDecorationToPartyDto(string decorationInfoId, string partyId, int quantity, string note)
 {
     public DecorationGroup ToModel
       => new DecorationGroup

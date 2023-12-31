@@ -14,18 +14,18 @@ public class SelectFoodsUseCase
         _typeRepository = typeRepository;
     }
 
-    public async Task<List<FoodType>> AllFoodsFromThirdParty(Guid id)
+    public async Task<List<FoodType>> AllFoodsFromThirdParty(string id)
       => await _typeRepository.AllFoodsFromThirdParty(id);
 
     public async Task<List<FoodType>> AllFoodsAvaible()
       => await _typeRepository.AllFoods(true);
 
-    public async Task<FoodType?> FindFoodById(Guid id)
+    public async Task<FoodType?> FindFoodById(string id)
       => await _typeRepository.FindById(id);
 
-    public async Task<FoodInfo?> FindByIdWithDetail(Guid id)
+    public async Task<FoodInfo?> FindByIdWithDetail(string id)
       => await _infoRepository.FindWithIdWithDetail(id);
 
-    public async Task<FoodInfo?> FindFoodSubItem(Guid id)
+    public async Task<FoodInfo?> FindFoodSubItem(string id)
       => await _infoRepository.FindById(id);
 }

@@ -3,7 +3,7 @@ using Organizarty.Application.App.Schedules.Enum;
 
 namespace Organizarty.Application.App.Schedules.Entities;
 
-public record ItemOrder(Guid id, ItemType type, string name, ItemStatus Status, int quantity, string note, decimal price, Guid scheduleId)
+public record ItemOrder(string id, ItemType type, string name, ItemStatus Status, int quantity, string note, decimal price, string scheduleId)
 {
     public static ItemOrder FromItem(FoodOrder order)
       => new ItemOrder(order.Id, Party.Enums.ItemType.Food, $"{order.FoodInfo?.FoodType?.Name ?? ""} - {order?.FoodInfo?.Flavour ?? ""}", order.Status, order.Quantity, order?.Note ?? "", order.Price, order.ScheduleId);

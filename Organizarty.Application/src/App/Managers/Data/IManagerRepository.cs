@@ -5,5 +5,5 @@ public interface IManagerRepository
 {
     Task<Manager> Create(Manager manager);
     Task<Manager?> FindByEmail(string email);
-    Task<Manager?> FindById(Guid id);
+    Task<Manager?> FindById(string id);
 }

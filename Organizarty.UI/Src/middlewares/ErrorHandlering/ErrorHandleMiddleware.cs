@@ -39,6 +39,8 @@ public class ErrorHandlingMiddleware
         {
             ErroLogger(e);
 
+            context.Response.StatusCode = 404;
+
             await context.Response.WriteAsJsonAsync(new
             {
                 Message = e.Message
@@ -47,6 +49,9 @@ public class ErrorHandlingMiddleware
         catch (Exception e)
         {
             ErroLogger(e);
+
+            context.Response.StatusCode = 500;
+
             await context.Response.WriteAsJsonAsync(new
             {
                 Message = "Something went wrong, try again later"

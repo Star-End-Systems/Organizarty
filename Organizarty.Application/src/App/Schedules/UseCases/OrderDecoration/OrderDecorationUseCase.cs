@@ -20,7 +20,7 @@ public class OrderDecorationUseCase
         _selectSchedule = selectSchedule;
     }
 
-    public async Task<List<DecorationOrder>> Execute(Guid scheduleId)
+    public async Task<List<DecorationOrder>> Execute(string scheduleId)
       => await Execute(await _selectSchedule.FindById(scheduleId), ItemStatus.WAITING);
 
     public async Task<List<DecorationOrder>> Execute(Schedule schedule, ItemStatus status)

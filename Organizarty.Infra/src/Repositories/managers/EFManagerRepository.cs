@@ -25,7 +25,7 @@ public class EFManagerRepository : IManagerRepository
     public async Task<Manager?> FindByEmail(string email)
     => await _context.Managers.Where(x => x.Email == email).FirstOrDefaultAsync();
 
-    public async Task<Manager?> FindById(Guid id)
+    public async Task<Manager?> FindById(string id)
       => await _context.Managers.FindAsync(id);
 
 }

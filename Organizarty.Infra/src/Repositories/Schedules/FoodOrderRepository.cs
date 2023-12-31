@@ -30,10 +30,10 @@ public class FoodOrderRepository : IFoodOrderRepository
         return food;
     }
 
-    public async Task<FoodOrder?> FindById(Guid id)
+    public async Task<FoodOrder?> FindById(string id)
       => await _context.FoodOrders.FindAsync(id);
 
-    public async Task<List<FoodOrder>> ListFromShedule(Guid scheduleid)
+    public async Task<List<FoodOrder>> ListFromShedule(string scheduleid)
       => await _context.FoodOrders
                         .Where(x => x.ScheduleId == scheduleid)
                         .Where(x => x.Status != ItemStatus.WAITING)
@@ -41,7 +41,7 @@ public class FoodOrderRepository : IFoodOrderRepository
                         .Include(x => x.FoodInfo!.FoodType)
                         .ToListAsync();
 
-    public async Task<List<FoodOrder>> ListFromThirdParty(Guid thirdPartyId)
+    public async Task<List<FoodOrder>> ListFromThirdParty(string thirdPartyId)
     => await _context.FoodOrders
               .Where(x => x.ThirdPartyId == thirdPartyId)
               .Where(x => x.Status == ItemStatus.PENDING)

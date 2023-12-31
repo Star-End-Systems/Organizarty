@@ -9,8 +9,8 @@ public interface IDecorationTypeRepository
     Task<DecorationType> Update(DecorationType decoration);
     Task<List<DecorationType>> All();
 
-    Task<DecorationType?> FindById(Guid id);
-    Task<DecorationType?> FindByIdWithItems(Guid id);
+    Task<DecorationType?> FindById(string id);
+    Task<DecorationType?> FindByIdWithItems(string id);
 
     Task<List<DecorationType>> FindByCategory(DecorationCategory Category);
 

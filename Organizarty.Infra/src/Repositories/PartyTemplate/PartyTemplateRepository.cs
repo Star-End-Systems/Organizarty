@@ -21,16 +21,16 @@ public class PartyTemplateRepository : IPartyTemplateRepository
         return a.Entity;
     }
 
-    public async Task<Application.App.Party.Entities.PartyTemplate?> FindById(Guid partyId)
+    public async Task<Application.App.Party.Entities.PartyTemplate?> FindById(string partyId)
     => await _context.PartyTemplates.FindAsync(partyId);
 
-    public async Task<Application.App.Party.Entities.PartyTemplate?> FromIdWithLocation(Guid partyId)
+    public async Task<Application.App.Party.Entities.PartyTemplate?> FromIdWithLocation(string partyId)
     => await _context.PartyTemplates
               .Include(x => x.Location)
               .Where(x => x.Id == partyId)
               .FirstOrDefaultAsync();
 
-    public async Task<List<Application.App.Party.Entities.PartyTemplate>> FromUser(Guid userId)
+    public async Task<List<Application.App.Party.Entities.PartyTemplate>> FromUser(string userId)
       => await _context.PartyTemplates
                 .Where(x => x.UserId == userId)
                 .Select(x => new Application.App.Party.Entities.PartyTemplate

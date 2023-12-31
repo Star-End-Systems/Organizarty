@@ -34,7 +34,7 @@ public class RegisterUserUseCase
 
         var u = await _userRepository.Create(user);
 
-        await _sendConfirmCode.Execute(u);
+        await _sendConfirmCode.Execute(u.Email);
 
         return u;
     }

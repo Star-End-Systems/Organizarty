@@ -28,7 +28,7 @@ public class ThirdPartyRepository : IThirdPartyRepository
     public async Task<ThirdParty?> FindByEmail(string email)
       => await _context.ThirdParties.OrderBy(x => x.UpdatedAt).FirstOrDefaultAsync(user => user.LoginEmail == email);
 
-    public async Task<ThirdParty?> FindById(Guid id)
+    public async Task<ThirdParty?> FindById(string id)
      => await _context.ThirdParties.OrderBy(x => x.UpdatedAt).FirstOrDefaultAsync(x => x.Id == id);
 
     public async Task<ThirdParty> Update(ThirdParty thirdParty)

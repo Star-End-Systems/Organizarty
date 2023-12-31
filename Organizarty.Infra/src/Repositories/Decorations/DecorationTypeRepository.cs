@@ -57,10 +57,10 @@ public class DecorationTypeRepository : IDecorationTypeRepository
         return d.Entity;
     }
 
-    public async Task<DecorationType?> FindById(Guid id)
+    public async Task<DecorationType?> FindById(string id)
     => await _context.DecorationTypes.FindAsync(id);
 
-    public async Task<DecorationType?> FindByIdWithItems(Guid id)
+    public async Task<DecorationType?> FindByIdWithItems(string id)
     => await _context.DecorationTypes
             .Include(x => x.Decorations)
             .Where(x => x.Id == id)

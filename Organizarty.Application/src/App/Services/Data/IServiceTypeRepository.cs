@@ -7,10 +7,10 @@ public interface IServiceTypeRepository
     Task<ServiceType> Create(ServiceType service);
     Task<ServiceType> Update(ServiceType service);
 
-    Task<ServiceType?> FindById(Guid id);
-    Task<ServiceType?> FindByIdWithItens(Guid id);
+    Task<ServiceType?> FindById(string id);
+    Task<ServiceType?> FindByIdWithItens(string id);
 
-    Task<List<ServiceType>> FindByThirdParty(Guid thirdPartyId);
+    Task<List<ServiceType>> FindByThirdParty(string thirdPartyId);
 
     Task<List<ServiceType>> GetAvaibleServices();
 }

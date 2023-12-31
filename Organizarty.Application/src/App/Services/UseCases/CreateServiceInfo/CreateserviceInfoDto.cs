@@ -2,7 +2,7 @@ using Organizarty.Application.App.Services.Entities;
 
 namespace Organizarty.Application.App.Services.UseCases;
 
-public record CreateserviceInfoDto(decimal price, bool isAvaiable, string plan, List<string> images, Guid serviceTypeId)
+public record CreateserviceInfoDto(decimal price, bool isAvaiable, string plan, List<string> images, string serviceTypeId)
 {
     public ServiceInfo ToModel
       => new ServiceInfo

@@ -21,7 +21,7 @@ public class ServiceGroupRepository : IServiceGroupRepository
         return service;
     }
 
-    public async Task Delete(Guid id)
+    public async Task Delete(string id)
     {
         var item = await FindById(id);
 
@@ -34,10 +34,10 @@ public class ServiceGroupRepository : IServiceGroupRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<ServiceGroup?> FindById(Guid id)
+    public async Task<ServiceGroup?> FindById(string id)
       => await _context.ServiceGroups.FindAsync(id);
 
-    public async Task<List<ServiceGroup>> ListFromParty(Guid partyId)
+    public async Task<List<ServiceGroup>> ListFromParty(string partyId)
       => await _context.ServiceGroups.Where(x => x.PartyTemplateId == partyId).Include(x => x.ServiceInfo).Include(x => x.ServiceInfo!.ServiceType).ToListAsync();
 
     public async Task<ServiceGroup> Update(ServiceGroup group)

@@ -8,7 +8,7 @@ public interface IThirdPartyRepository
     Task<ThirdParty> Create(ThirdParty thirdParty);
     Task<ThirdParty> Update(ThirdParty thirdParty);
     Task<ThirdParty?> FindByEmail(string email);
-    Task<ThirdParty?> FindById(Guid id);
+    Task<ThirdParty?> FindById(string id);
     Task<List<ThirdParty>> AllWithAuthorization(AuthorizationStatus status);
 
 }

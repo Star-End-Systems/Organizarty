@@ -18,30 +18,30 @@ public class SelectPartyUseCase
         _serviceRepository = serviceRepository;
     }
 
-    public async Task<PartyTemplate?> ById(Guid partyId)
+    public async Task<PartyTemplate?> ById(string partyId)
       => await _partyRepository.FindById(partyId);
 
-    public async Task<PartyTemplate?> FromIdWithLocation(Guid partyId)
+    public async Task<PartyTemplate?> FromIdWithLocation(string partyId)
       => await _partyRepository.FromIdWithLocation(partyId);
 
-    public async Task<List<DecorationGroup>> GetDecorations(Guid partyId)
+    public async Task<List<DecorationGroup>> GetDecorations(string partyId)
       => await _decorationRepository.ListFromParty(partyId);
 
-    public async Task<List<FoodGroup>> GetFoods(Guid partyId)
+    public async Task<List<FoodGroup>> GetFoods(string partyId)
       => await _foodRepository.ListFromParty(partyId);
 
-    public async Task<List<ServiceGroup>> GetServices(Guid partyId)
+    public async Task<List<ServiceGroup>> GetServices(string partyId)
       => await _serviceRepository.ListFromParty(partyId);
 
-    public async Task<List<PartyTemplate>> FromUser(Guid userId)
+    public async Task<List<PartyTemplate>> FromUser(string userId)
       => await _partyRepository.FromUser(userId);
 
-    public async Task<FoodGroup?> FindFood(Guid id)
+    public async Task<FoodGroup?> FindFood(string id)
       => await _foodRepository.FindById(id);
 
-    public async Task<DecorationGroup?> FindDecoration(Guid id)
+    public async Task<DecorationGroup?> FindDecoration(string id)
       => await _decorationRepository.FindById(id);
 
-    public async Task<ServiceGroup?> FindService(Guid id)
+    public async Task<ServiceGroup?> FindService(string id)
       => await _serviceRepository.FindById(id);
 }

@@ -23,10 +23,10 @@ public class ServiceInfoRepository : IServiceInfoRepository
         return s.Entity;
     }
 
-    public async Task<ServiceInfo?> FindById(Guid id)
+    public async Task<ServiceInfo?> FindById(string id)
     => await _context.ServiceInfos.FindAsync(id);
 
-    public async Task<ServiceInfo?> FindByIdWithParent(Guid id)
+    public async Task<ServiceInfo?> FindByIdWithParent(string id)
     => await _context.ServiceInfos
             .Include(x => x.ServiceType)
             .Where(x => x.Id == id)

@@ -94,7 +94,7 @@ public class AuthenticationHelper
         return _request.Cookies[COOKIE_NAME];
     }
 
-    private Guid? GetIdFromToken(string token, UserType type)
+    private string? GetIdFromToken(string token, UserType type)
     {
         if (string.IsNullOrWhiteSpace(token))
         {
@@ -118,7 +118,7 @@ public class AuthenticationHelper
             return null;
         }
 
-        return Guid.Parse(id);
+        return id;
     }
 
     public async Task<User?> GetUserFromToken()
@@ -126,37 +126,37 @@ public class AuthenticationHelper
 
     public async Task<User?> GetUserFromToken(string jwtToken)
     {
-        var guid = GetIdFromToken(jwtToken, UserType.Client);
+        var id = GetIdFromToken(jwtToken, UserType.Client);
 
-        if (guid is null)
+        if (id is null)
         {
             return null;
         }
 
-        return await _selectUser.GetUserId((Guid)guid);
+        return await _selectUser.GetUserId(id);
     }
 
     public async Task<Manager?> GetManagerFromToken(string jwtToken)
     {
-        var guid = GetIdFromToken(jwtToken, UserType.Mannager);
+        var id = GetIdFromToken(jwtToken, UserType.Mannager);
 
-        if (guid is null)
+        if (id is null)
         {
             return null;
         }
 
-        return await _selectManager.ById((Guid)guid);
+        return await _selectManager.ById(id);
     }
 
     public async Task<ThirdParty?> GetThirdPartyFromToken(string jwtToken)
     {
-        var guid = GetIdFromToken(jwtToken, UserType.ThirdParty);
+        var id = GetIdFromToken(jwtToken, UserType.ThirdParty);
 
-        if (guid is null)
+        if (id is null)
         {
             return null;
         }
 
-        return await _selectThirdParty.FindById((Guid)guid);
+        return await _selectThirdParty.FindById(id);
     }
 }

@@ -7,7 +7,7 @@ namespace Organizarty.Application.App.Schedules.Entities;
 
 public class Schedule
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = default!;
 
     public string Name { get; set; } = default!;
     public int ExpectedGuests { get; set; }
@@ -17,13 +17,13 @@ public class Schedule
 
     public PartyType Type { get; set; }
 
-    public Guid UserId { get; set; } = default!;
+    public string UserId { get; set; } = default!;
     public User User { get; set; } = default!;
 
-    public Guid LocationId { get; set; } = default!;
+    public string LocationId { get; set; } = default!;
     public Location Location { get; set; } = default!;
 
-    public Guid PartyId { get; set; }
+    public string PartyId { get; set; } = default!;
     public PartyTemplate? Party { get; set; }
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;

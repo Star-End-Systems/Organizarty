@@ -16,7 +16,7 @@ public class SelectThirdPartyUseCase
     public async Task<ThirdParty?> FindByEmail(string email)
       => await _thirdPartyRepository.FindByEmail(email);
 
-    public async Task<ThirdParty?> FindById(Guid id)
+    public async Task<ThirdParty?> FindById(string id)
       => await _thirdPartyRepository.FindById(id);
 
     public async Task<List<ThirdParty>> GetAllPending()

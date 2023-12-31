@@ -9,17 +9,20 @@ namespace Organizarty.UI.Controllers.Users;
 public partial class UserController : ControllerBase
 {
     private readonly ILogger<UserController> _logger;
+    private readonly ITokenProvider _tokenProvider;
+
     private readonly RegisterUserUseCase _registerUser;
     private readonly LoginUserUseCase _loginUser;
     private readonly ConfirmCodeUseCase _confirmCode;
-    private readonly ITokenProvider _tokenProvider;
+    private readonly SendEmailConfirmUseCase _sendConfirmationCode;
 
-    public UserController(ILogger<UserController> logger, RegisterUserUseCase registerUser, LoginUserUseCase loginUser, ITokenProvider tokenProvider, ConfirmCodeUseCase confirmCode)
+    public UserController(ILogger<UserController> logger, RegisterUserUseCase registerUser, LoginUserUseCase loginUser, ITokenProvider tokenProvider, ConfirmCodeUseCase confirmCode, SendEmailConfirmUseCase sendConfirmationCode)
     {
         _logger = logger;
         _registerUser = registerUser;
         _loginUser = loginUser;
         _tokenProvider = tokenProvider;
         _confirmCode = confirmCode;
+        _sendConfirmationCode = sendConfirmationCode;
     }
 }

@@ -24,8 +24,8 @@ public partial class ScheduleController
         return Ok(new ManyItems<ScheduleResponse>(parties.Select(ScheduleResponse.FromParty)));
     }
 
-    [HttpGet("Party/{scheduleid:Guid}")]
-    public async Task<ActionResult<ScheduleResponse>> GetParty(Guid scheduleid)
+    [HttpGet("Party/{scheduleid}")]
+    public async Task<ActionResult<ScheduleResponse>> GetParty(string scheduleid)
     {
         var _ignored = await _authHelper.GetUserFromToken() ?? throw new NotFoundException("User not found. Place use a valid token.");
 

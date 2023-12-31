@@ -22,15 +22,15 @@ public class ScheduleRepository : IScheduleRepository
         return s.Entity;
     }
 
-    public async Task<Schedule?> FindById(Guid scheduleId)
+    public async Task<Schedule?> FindById(string scheduleId)
     => await _context.Schedules.FindAsync(scheduleId);
 
-    public async Task<List<Schedule>> ListFromUser(Guid userid)
+    public async Task<List<Schedule>> ListFromUser(string userid)
       => await _context.Schedules
                 .Where(x => x.UserId == userid)
                 .ToListAsync();
 
-    public async Task<List<Schedule>> Since(DateTime date, Guid userid)
+    public async Task<List<Schedule>> Since(DateTime date, string userid)
     => await _context.Schedules
                       .Where(x => x.CreatedAt.Date > date.Date && x.UserId == userid)
                       .ToListAsync();

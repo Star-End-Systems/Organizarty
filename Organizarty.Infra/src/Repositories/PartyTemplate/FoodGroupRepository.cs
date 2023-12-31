@@ -21,7 +21,7 @@ public class FoodGroupRepository : IFoodGroupRepository
         return group;
     }
 
-    public async Task Delete(Guid id)
+    public async Task Delete(string id)
     {
         var item = await FindById(id);
 
@@ -34,10 +34,10 @@ public class FoodGroupRepository : IFoodGroupRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<FoodGroup?> FindById(Guid id)
+    public async Task<FoodGroup?> FindById(string id)
       => await _context.FoodGroups.FindAsync(id);
 
-    public async Task<List<FoodGroup>> ListFromParty(Guid partyId)
+    public async Task<List<FoodGroup>> ListFromParty(string partyId)
       => await _context.FoodGroups.Where(x => x.PartyTemplateId == partyId).Include(x => x.FoodInfo).Include(x => x.FoodInfo!.FoodType).ToListAsync();
 
     public async Task<FoodGroup> Update(FoodGroup group)

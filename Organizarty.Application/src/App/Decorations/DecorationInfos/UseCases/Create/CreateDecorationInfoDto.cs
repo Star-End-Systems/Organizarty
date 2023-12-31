@@ -2,7 +2,7 @@ using Organizarty.Application.App.DecorationInfos.Entities;
 
 namespace Organizarty.Application.App.DecorationInfos.UseCases;
 
-public record CreateDecorationInfoDto(string color, string material, bool isAvailable, decimal price, string textureURL, Guid decorationTypeId)
+public record CreateDecorationInfoDto(string color, string material, bool isAvailable, decimal price, string textureURL, string decorationTypeId)
 {
     public DecorationInfo ToModel
       => new DecorationInfo

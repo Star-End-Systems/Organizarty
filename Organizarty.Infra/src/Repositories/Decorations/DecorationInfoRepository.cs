@@ -22,17 +22,17 @@ public class DecorationInfoRepository : IDecorationInfoRepository
         return d.Entity;
     }
 
-    public async Task<DecorationInfo?> FindById(Guid id)
+    public async Task<DecorationInfo?> FindById(string id)
     => await _context.DecorationInfos.FindAsync(id);
 
 
-    public async Task<List<DecorationInfo>> ListFromType(Guid id)
+    public async Task<List<DecorationInfo>> ListFromType(string id)
     => await _context.DecorationInfos
             .Where(x => x.DecorationTypeId == id)
             .ToListAsync();
 
 
-    public async Task<DecorationInfo?> FindByIdWithType(Guid id)
+    public async Task<DecorationInfo?> FindByIdWithType(string id)
     => await _context.DecorationInfos
               .Where(x => x.Id == id)
               .Include(x => x.DecorationType)
