@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Party.Data;
 using Organizarty.Application.App.Party.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.PartyTemplate;
 
@@ -18,6 +19,7 @@ public class DecorationGroupRepository : IDecorationGroupRepository
 
     public async Task<DecorationGroup> Add(DecorationGroup decoration)
     {
+        decoration.Id = IdGenerator.DefaultId();
         await _context.DecorationGroups.AddAsync(decoration);
         await _context.SaveChangesAsync();
         return decoration;

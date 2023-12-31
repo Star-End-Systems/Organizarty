@@ -28,14 +28,14 @@ public class UserConfirmationRepository : IUserConfirmationRepository
 
     public async Task<UserConfirmation?> FindByCode(string code, string email)
     => await _context.UserConfirmations
-                     .AsNoTrackingWithIdentityResolution()
+                       .AsNoTracking()
                      .Where(x => x.Code == code)
                      .Where(x => x.UserEmail == email)
                      .FirstOrDefaultAsync();
 
     public async Task<UserConfirmation?> FindById(string code)
     => await _context.UserConfirmations
-                     .AsNoTrackingWithIdentityResolution()
+                       .AsNoTracking()
                      .Where(x => x.Id == code)
                      .Select(x => new UserConfirmation
                      {
@@ -48,14 +48,13 @@ public class UserConfirmationRepository : IUserConfirmationRepository
 
     public async Task<List<UserConfirmation>> FindByUserEmail(string userEmail)
       => await _context.UserConfirmations
-                       .AsNoTrackingWithIdentityResolution()
+                       .AsNoTracking()
                        .Where(confirm => confirm.UserEmail == userEmail)
                        .ToListAsync();
 
     public async Task RemoveAllFromUser(string userEmail)
     {
-        var emailCodes = await FindByUserEmail(userEmail);
-        _context.UserConfirmations.RemoveRange(emailCodes);
+        _context.UserConfirmations.RemoveRange(_context.UserConfirmations.Where(x => x.UserEmail == userEmail));
         await _context.SaveChangesAsync();
     }
 }

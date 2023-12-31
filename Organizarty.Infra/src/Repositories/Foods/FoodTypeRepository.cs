@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Foods.Data;
 using Organizarty.Application.App.Foods.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Foods;
 
@@ -61,6 +62,7 @@ public class FoodTypeRepository : IFoodTypeRepository
 
     public async Task<FoodType> Create(FoodType foodType)
     {
+        foodType.Id = IdGenerator.DefaultId();
         await _context.FoodTypes.AddAsync(foodType);
         await _context.SaveChangesAsync();
         return foodType;

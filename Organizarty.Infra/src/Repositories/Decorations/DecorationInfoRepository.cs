@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.DecorationInfos.Data;
 using Organizarty.Application.App.DecorationInfos.Entities;
 using Organizarty.Infra.Data.Contexts;
+using static Organizarty.Infra.Utils.IdGenerator;
 
 namespace Organizarty.Infra.Repositories.Decorations;
 
@@ -16,6 +17,7 @@ public class DecorationInfoRepository : IDecorationInfoRepository
 
     public async Task<DecorationInfo> Create(DecorationInfo decoration)
     {
+        decoration.Id = DefaultId();
         var d = await _context.DecorationInfos.AddAsync(decoration);
         await _context.SaveChangesAsync();
 

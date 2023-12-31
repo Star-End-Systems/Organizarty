@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Party.Data;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.PartyTemplate;
 
@@ -15,6 +16,7 @@ public class PartyTemplateRepository : IPartyTemplateRepository
 
     public async Task<Application.App.Party.Entities.PartyTemplate> Create(Application.App.Party.Entities.PartyTemplate party)
     {
+        party.Id = IdGenerator.DefaultId();
         var a = await _context.PartyTemplates.AddAsync(party);
         await _context.SaveChangesAsync();
 

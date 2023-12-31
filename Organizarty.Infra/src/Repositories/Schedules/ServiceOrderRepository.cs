@@ -3,6 +3,7 @@ using Organizarty.Application.App.Schedules.Data;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.Schedules.Enum;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Schedules;
 
@@ -15,6 +16,7 @@ public class ServiceOrderRepository : IServiceOrderRepository
 
     public async Task<ServiceOrder> Add(ServiceOrder service)
     {
+        service.Id = IdGenerator.DefaultId();
         await _context.ServiceOrders.AddAsync(service);
         await _context.SaveChangesAsync();
         return service;

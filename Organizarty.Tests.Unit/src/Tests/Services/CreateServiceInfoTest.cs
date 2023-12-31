@@ -28,7 +28,7 @@ public class CreateServiceInfoTest
             var fUse = usecases.CreateServiceInfoUseCase(fRepo);
             var service = await ServicesSample.SetupServiceInfo(fUse, type.Id);
 
-            Assert.NotEqual(Guid.Empty, service.Id);
+            Assert.NotEqual(string.Empty, service.Id);
             Assert.Equal(type.Id, service.ServiceTypeId);
         }
     }

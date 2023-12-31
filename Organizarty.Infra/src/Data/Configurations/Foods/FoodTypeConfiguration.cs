@@ -11,7 +11,7 @@ public class FoodTypeConfiguration : IEntityTypeConfiguration<FoodType>
     public void Configure(EntityTypeBuilder<FoodType> builder)
     {
         builder.HasKey(x => x.Id);
-        builder.Property(x => x.Id).ValueGeneratedOnAdd().HasConversion(new NanoidConverter());
+        builder.Property(x => x.Id).ValueGeneratedOnAdd();
         builder.Property(x => x.Id).HasMaxLength(IdGenerator.ID_SIZE);
 
         builder.Property(x => x.Name).IsRequired().HasMaxLength(35);

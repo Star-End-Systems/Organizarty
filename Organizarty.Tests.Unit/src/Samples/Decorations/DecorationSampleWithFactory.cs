@@ -13,7 +13,7 @@ public static partial class DecorationSample
         return await SetupDecorationType(use);
     }
 
-    public static async Task<DecorationInfo> SetupDecorationInfo(UseCasesFactory usecases, Guid decorationId)
+    public static async Task<DecorationInfo> SetupDecorationInfo(UseCasesFactory usecases, string decorationId)
     {
         var use = usecases.CreateDecorationInfoUseCase();
 

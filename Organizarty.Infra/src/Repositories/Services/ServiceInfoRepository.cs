@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Services.Data;
 using Organizarty.Application.App.Services.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Services;
 
@@ -17,6 +18,7 @@ public class ServiceInfoRepository : IServiceInfoRepository
 
     public async Task<ServiceInfo> Create(ServiceInfo service)
     {
+        service.Id = IdGenerator.DefaultId();
         var s = await _context.ServiceInfos.AddAsync(service);
         await _context.SaveChangesAsync();
 

@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Organizarty.Application.App.Party.UseCases;
 using Organizarty.Tests.Mock.Database;
 using Organizarty.Tests.Mock.Repositories;
@@ -37,7 +38,7 @@ public class AddDecorationToPartyTest
 
             var decorations = await selectOnParty.GetDecorations(party.Id);
 
-            Assert.NotEqual(Guid.Empty, a.Id);
+            Assert.NotEqual(string.Empty, a.Id);
             Assert.Single(decorations);
         }
     }
@@ -100,7 +101,7 @@ public class AddDecorationToPartyTest
 
             var decorations = await selectOnParty.GetDecorations(party.Id);
 
-            Assert.NotEqual(Guid.Empty, a.Id);
+            Assert.NotEqual(string.Empty, a.Id);
             Assert.Single(decorations);
         }
     }

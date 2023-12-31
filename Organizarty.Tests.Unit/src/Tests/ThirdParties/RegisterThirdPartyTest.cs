@@ -18,7 +18,7 @@ public class RegisterThirdPartyTest
 
             var thirdParty = await ThirdPartySample.SetupThirdParty(registerThirdParty);
 
-            Assert.NotEqual(Guid.Empty, thirdParty.Id);
+            Assert.NotEqual(string.Empty, thirdParty.Id);
             Assert.Equal(AuthorizationStatus.Pending, thirdParty.AuthorizationStatus);
         }
     }

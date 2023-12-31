@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Party.Data;
 using Organizarty.Application.App.Party.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.PartyTemplate;
 
@@ -16,6 +17,7 @@ public class FoodGroupRepository : IFoodGroupRepository
 
     public async Task<FoodGroup> Add(FoodGroup group)
     {
+        group.Id = IdGenerator.DefaultId();
         await _context.FoodGroups.AddAsync(group);
         await _context.SaveChangesAsync();
         return group;

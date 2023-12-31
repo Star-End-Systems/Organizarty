@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Managers.Data;
 using Organizarty.Application.App.Managers.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Managers;
 
@@ -16,6 +17,7 @@ public class EFManagerRepository : IManagerRepository
 
     public async Task<Manager> Create(Manager manager)
     {
+        manager.Id = IdGenerator.DefaultId();
         var d = await _context.Managers.AddAsync(manager);
         await _context.SaveChangesAsync();
 

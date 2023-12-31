@@ -22,7 +22,7 @@ public class CreateServiceTypeTest
 
             var service = await ServicesSample.SetupServiceType(createService, thirdParty.Id);
 
-            Assert.NotEqual(Guid.Empty, thirdParty.Id);
+            Assert.NotEqual(string.Empty, thirdParty.Id);
             Assert.Equal(thirdParty.Id, service.ThirdPartyId);
         }
     }

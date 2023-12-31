@@ -22,7 +22,7 @@ public class CreateFoodTypeTest
 
             var food = await FoodSample.SetupFoodType(createFood, thirdParty.Id);
 
-            Assert.NotEqual(Guid.Empty, thirdParty.Id);
+            Assert.NotEqual(string.Empty, thirdParty.Id);
             Assert.Equal(thirdParty.Id, food.ThirdPartyId);
         }
     }

@@ -23,7 +23,7 @@ public class CreatePartyTest
 
             var party = await PartyTemplateSample.SetuoPartyTemplate(usecases, location.Id, user.Id);
 
-            Assert.NotEqual(Guid.Empty, party.Id);
+            Assert.NotEmpty(party.Id);
         }
     }
 }

@@ -28,7 +28,7 @@ public class CreateFoodInfoTest
             var fUse = usecases.CreateFoodInfoUseCase(fRepo);
             var food = await FoodSample.SetupFoodInfo(fUse, type.Id);
 
-            Assert.NotEqual(Guid.Empty, food.Id);
+            Assert.NotEqual(string.Empty, food.Id);
             Assert.Equal(type.Id, food.FoodTypeId);
         }
     }

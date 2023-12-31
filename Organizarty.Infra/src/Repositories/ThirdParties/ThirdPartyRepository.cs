@@ -3,6 +3,7 @@ using Organizarty.Application.App.ThirdParties.Data;
 using Organizarty.Application.App.ThirdParties.Entities;
 using Organizarty.Application.App.Utils.Enums;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.ThirdParties;
 
@@ -20,6 +21,7 @@ public class ThirdPartyRepository : IThirdPartyRepository
 
     public async Task<ThirdParty> Create(ThirdParty thirdParty)
     {
+        thirdParty.Id = IdGenerator.DefaultId();
         await _context.ThirdParties.AddAsync(thirdParty);
         await _context.SaveChangesAsync();
         return thirdParty;

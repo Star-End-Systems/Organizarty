@@ -18,7 +18,7 @@ public class CreatLocationTest
             var createLocation = usecases.CreateLocationUseCase();
 
             var location = await LocationSample.SetupLocation(createLocation);
-            Assert.NotEqual(Guid.Empty, location.Id);
+            Assert.NotEqual(string.Empty, location.Id);
         }
     }
 }

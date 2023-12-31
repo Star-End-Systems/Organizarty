@@ -3,6 +3,7 @@ using Organizarty.Application.App.DecorationTypes.Data;
 using Organizarty.Application.App.DecorationTypes.Entities;
 using Organizarty.Application.App.Decorations.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Decorations;
 
@@ -51,6 +52,7 @@ public class DecorationTypeRepository : IDecorationTypeRepository
 
     public async Task<DecorationType> Create(DecorationType decoration)
     {
+        decoration.Id = IdGenerator.DefaultId();
         var d = await _context.DecorationTypes.AddAsync(decoration);
         await _context.SaveChangesAsync();
 
