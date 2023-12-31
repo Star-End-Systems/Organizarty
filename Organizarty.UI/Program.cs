@@ -4,6 +4,7 @@ using Organizarty.DependencyInversion.Infra.Repositories;
 using Organizarty.UI.Extensions;
 
 using Organizarty.DependencyInversion.Application.UseCasesExtensions;
+using Organizarty.UI.Middlewares.ErrorHandlering;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,8 +27,6 @@ var app = builder.Build();
 
 app.UseResponseCompression();
 
-app.UseExceptionHandler("/Error");
-
 if (!app.Environment.IsDevelopment())
 {
     app.UseHsts();
@@ -44,5 +43,7 @@ app.UseRedirectMiddleware();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.Run();

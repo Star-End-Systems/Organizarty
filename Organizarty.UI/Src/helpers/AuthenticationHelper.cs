@@ -98,7 +98,7 @@ public class AuthenticationHelper
     {
         if (string.IsNullOrWhiteSpace(token))
         {
-            throw new ValidationFailException("Token not found", new());
+            throw new ValidationFailException("Authorization Token not found", new());
         }
 
         var handler = new JwtSecurityTokenHandler();
