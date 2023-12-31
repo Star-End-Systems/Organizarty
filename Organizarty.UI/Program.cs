@@ -7,15 +7,22 @@ using Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
 using DotNetEnv;
 using Microsoft.OpenApi.Models;
+using System.IO.Compression;
+using Microsoft.AspNetCore.ResponseCompression;
 
 Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.Providers.Add<BrotliCompressionProvider>();
+});
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-
 
 // Add services to the container.
 builder.Services.AddDatabase(builder.Configuration);
@@ -58,7 +65,14 @@ builder.Services.AddSwaggerGen(c =>
        }
    });
 });
+
+builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
+{
+    options.Level = CompressionLevel.SmallestSize;
+});
+
 var app = builder.Build();
+app.UseResponseCompression();
 
 app.UseExceptionHandler("/Error");
 
@@ -77,6 +91,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRedirectMiddleware();
@@ -90,5 +105,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapRazorPages();
+
 
 app.Run();
