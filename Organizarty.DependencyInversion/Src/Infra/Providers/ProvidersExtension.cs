@@ -9,10 +9,10 @@ namespace Organizarty.DependencyInversion.Infra.Providers;
 
 public static class ProvidersExtension
 {
-    public static IServiceCollection AddProviders(this IServiceCollection services)
+    public static IServiceCollection AddProviders(this IServiceCollection services, bool isDevelopment = true)
     {
         services.AddProvidersConfiguration();
-        services.AddScoped<IEmailSender, MailgunEmailSender>();
+        services.AddEmailSender(isDevelopment);
         services.AddScoped<ICryptographys, Pbkdf2Cryptography>();
         services.AddScoped<ITokenProvider, JwtTokenProvider>();
         services.AddScoped<IImageUpload, SupabaseImageUpload>();
@@ -20,4 +20,17 @@ public static class ProvidersExtension
         return services;
     }
 
+    private static IServiceCollection AddEmailSender(this IServiceCollection services, bool isDevelopment = true)
+    {
+        if (isDevelopment)
+        {
+            services.AddScoped<IEmailSender, FakeEmailSender>();
+        }
+        else
+        {
+            services.AddScoped<IEmailSender, MailgunEmailSender>();
+        }
+
+        return services;
+    }
 }
