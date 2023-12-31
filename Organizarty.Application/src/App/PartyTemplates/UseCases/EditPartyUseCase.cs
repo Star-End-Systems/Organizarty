@@ -6,10 +6,10 @@ using Organizarty.Application.Extras;
 
 namespace Organizarty.Application.App.Party.UseCases;
 
-public record EditItemDto(Guid id, string note);
-public record EditItemWithQuantityDto(Guid id, int quantity, string note);
+public record EditItemDto(string id, string note);
+public record EditItemWithQuantityDto(string id, int quantity, string note);
 
-public record EditPartyDto(Guid id, string name, int expectedGuests, Guid LocationId);
+public record EditPartyDto(string id, string name, int expectedGuests, string LocationId);
 
 public class EditPartyUseCase
 {

@@ -7,6 +7,6 @@ public interface IFoodInfoRepository
     Task<FoodInfo> Create(FoodInfo foodType);
     Task<FoodInfo> Update(FoodInfo foodType);
 
-    Task<FoodInfo?> FindWithIdWithDetail(Guid id);
-    Task<FoodInfo?> FindById(Guid id);
+    Task<FoodInfo?> FindWithIdWithDetail(string id);
+    Task<FoodInfo?> FindById(string id);
 }

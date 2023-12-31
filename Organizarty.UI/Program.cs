@@ -4,30 +4,23 @@ using Organizarty.DependencyInversion.Infra.Repositories;
 using Organizarty.UI.Extensions;
 
 using Organizarty.DependencyInversion.Application.UseCasesExtensions;
-
-using DotNetEnv;
-
-Env.Load();
+using Organizarty.UI.Middlewares.ErrorHandlering;
+using Organizarty.DependencyInversion.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTextCompression();
 
 // Add services to the container.
-builder.Services.AddRazorPages()
-  ;
-builder.Services.AddServerSideBlazor();
-
-// Add services to the container.
-builder.Services.AddDatabase(builder.Configuration)
+builder.Services
+                .AddEnvironment()
+                .AddDatabase(builder.Configuration)
                 .AddRepositories()
                 .AddRepositories()
                 .AddProviders()
                 .AddUseCases();
 
 builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddHelpers();
 
@@ -36,8 +29,6 @@ builder.Services.AddSwaggerConfiguration();
 var app = builder.Build();
 
 app.UseResponseCompression();
-
-app.UseExceptionHandler("/Error");
 
 if (!app.Environment.IsDevelopment())
 {
@@ -48,19 +39,14 @@ app.UseSwaggerConfiguration();
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
-
 app.UseRedirectMiddleware();
 
-app.UseRouting();
-
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+// app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapRazorPages();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.Run();

@@ -2,7 +2,7 @@ using Organizarty.Application.App.Foods.Entities;
 
 namespace Organizarty.Application.App.Foods.UseCases;
 
-public record CreateFoodItemDto(Guid foodTypeId, bool avaible, string flavour, decimal price, List<string> images)
+public record CreateFoodItemDto(string foodTypeId, bool avaible, string flavour, decimal price, List<string> images)
 {
     public FoodInfo ToModel
       => new FoodInfo

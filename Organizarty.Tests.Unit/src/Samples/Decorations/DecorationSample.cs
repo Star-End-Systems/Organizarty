@@ -13,7 +13,7 @@ public static partial class DecorationSample
           new("Caneca Organizarty", "Caneca oficial com logo da organizarty", DecorationCategory.Mesa, "Grande", "Caneca", "localhost:8000", new())
         );
 
-    public static async Task<DecorationInfo> SetupDecorationInfo(CreateDecorationInfoUseCase usecase, Guid decorationId)
+    public static async Task<DecorationInfo> SetupDecorationInfo(CreateDecorationInfoUseCase usecase, string decorationId)
     {
         var data = new CreateDecorationInfoDto("#ffffff", "Vidro", true, 12.5m, "localhost:8000", decorationId);
 

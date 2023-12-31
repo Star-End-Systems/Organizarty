@@ -4,7 +4,7 @@ namespace Organizarty.Application.App.Locations.Entities;
 
 public class Location
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = default!;
 
     public string? Name { get; set; }
 

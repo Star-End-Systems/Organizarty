@@ -12,7 +12,7 @@ public class SelectLocationUseCase
         _locationRepository = locationRepository;
     }
 
-    public async Task<Location?> FindById(Guid id)
+    public async Task<Location?> FindById(string id)
       => await _locationRepository.FindById(id);
 
     public async Task<List<Location>> ListAll()

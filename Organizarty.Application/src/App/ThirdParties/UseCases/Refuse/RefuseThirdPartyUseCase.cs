@@ -14,13 +14,13 @@ public class RefuseThirdPartyUseCase
         _thirdPartyRepository = userRepository;
     }
 
-    public async Task<ThirdParty> Execute(Guid thirdPartyId)
+    public async Task<ThirdParty> Execute(string thirdPartyId)
     {
         var thirdParty = await _thirdPartyRepository.FindById(thirdPartyId) ?? throw new NotFoundException($"Third party not found");
         return await Execute(thirdParty);
     }
 
-    public async Task<ThirdParty> Execute(string email)
+    public async Task<ThirdParty> ExecuteFromEmail(string email)
     {
         var thirdParty = await _thirdPartyRepository.FindByEmail(email) ?? throw new NotFoundException($"Third party with email '{email}' not found");
         return await Execute(thirdParty);

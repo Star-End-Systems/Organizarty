@@ -6,7 +6,7 @@ using Organizarty.Application.Extras;
 
 namespace Organizarty.Application.App.Foods.UseCases;
 
-public record EditFoodSubItemDto(Guid id, bool avaible, string flavour, decimal price, List<string> images);
+public record EditFoodSubItemDto(string id, bool avaible, string flavour, decimal price, List<string> images);
 
 public class EditFoodSubItemUseCase
 {

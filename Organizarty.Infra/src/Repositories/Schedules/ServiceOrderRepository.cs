@@ -3,6 +3,7 @@ using Organizarty.Application.App.Schedules.Data;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.Schedules.Enum;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Schedules;
 
@@ -15,6 +16,7 @@ public class ServiceOrderRepository : IServiceOrderRepository
 
     public async Task<ServiceOrder> Add(ServiceOrder service)
     {
+        service.Id = IdGenerator.DefaultId();
         await _context.ServiceOrders.AddAsync(service);
         await _context.SaveChangesAsync();
         return service;
@@ -28,17 +30,17 @@ public class ServiceOrderRepository : IServiceOrderRepository
         return food;
     }
 
-    public async Task<ServiceOrder?> FindById(Guid id)
+    public async Task<ServiceOrder?> FindById(string id)
     => await _context.ServiceOrders.FindAsync(id);
 
-    public async Task<List<ServiceOrder>> ListFromShedule(Guid scheduleid)
+    public async Task<List<ServiceOrder>> ListFromShedule(string scheduleid)
       => await _context.ServiceOrders
                         .Where(x => x.ScheduleId == scheduleid && x.Status != ItemStatus.WAITING)
                         .Include(x => x.ServiceInfo)
                         .Include(x => x.ServiceInfo!.ServiceType)
                         .ToListAsync();
 
-    public async Task<List<ServiceOrder>> ListFromThirdParty(Guid thirdPartyId)
+    public async Task<List<ServiceOrder>> ListFromThirdParty(string thirdPartyId)
     => await _context.ServiceOrders
               .Where(x => x.ThirdPartyId == thirdPartyId)
               .Where(x => x.Status == ItemStatus.PENDING)

@@ -6,7 +6,7 @@ namespace Organizarty.Application.App.Schedules.Entities;
 
 public class FoodOrder
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = default!;
 
     public int Quantity { get; set; }
     public string? Note { get; set; }
@@ -16,12 +16,12 @@ public class FoodOrder
 
     public decimal Price { get; set; }
 
-    public Guid FoodInfoId { get; set; }
+    public string FoodInfoId { get; set; } = default!;
     public FoodInfo? FoodInfo { get; set; }
 
-    public Guid ThirdPartyId { get; set; }
+    public string ThirdPartyId { get; set; } = default!;
     public ThirdParty? ThirdParty { get; set; }
 
-    public Guid ScheduleId { get; set; }
+    public string ScheduleId { get; set; } = default!;
     public Schedule? Schedule { get; set; }
 }

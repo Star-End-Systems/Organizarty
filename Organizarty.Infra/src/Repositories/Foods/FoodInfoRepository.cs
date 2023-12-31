@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Foods.Data;
 using Organizarty.Application.App.Foods.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Foods;
 
@@ -16,16 +17,18 @@ public class FoodInfoRepository : IFoodInfoRepository
 
     public async Task<FoodInfo> Create(FoodInfo foodType)
     {
+        foodType.Id = IdGenerator.DefaultId();
+
         await _context.FoodInfos.AddAsync(foodType);
         await _context.SaveChangesAsync();
         return foodType;
     }
 
-    public async Task<FoodInfo?> FindById(Guid id)
+    public async Task<FoodInfo?> FindById(string id)
       => await _context.FoodInfos.FindAsync(id);
 
 
-    public async Task<FoodInfo?> FindWithIdWithDetail(Guid id)
+    public async Task<FoodInfo?> FindWithIdWithDetail(string id)
     => await _context.FoodInfos
               .Where(x => x.Id == id)
               .Include(x => x.FoodType)

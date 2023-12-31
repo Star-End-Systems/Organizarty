@@ -1,8 +1,0 @@
-.Button:hover{
-    transform: scale(1.1);
-} 
-
-.Button{
-    transition: all 0.4s;
-}
-

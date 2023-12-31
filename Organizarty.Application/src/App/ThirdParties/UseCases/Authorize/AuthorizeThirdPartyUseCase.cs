@@ -1,4 +1,3 @@
-using Organizarty.Adapters;
 using Organizarty.Application.App.ThirdParties.Data;
 using Organizarty.Application.App.ThirdParties.Entities;
 using Organizarty.Application.App.Utils.Enums;
@@ -15,7 +14,7 @@ public class AuthorizeThirdPartyUseCase
         _thirdPartyRepository = userRepository;
     }
 
-    public async Task<ThirdParty> Execute(Guid thirdPartyId)
+    public async Task<ThirdParty> ExecuteFromId(string thirdPartyId)
     {
         var thirdParty = await _thirdPartyRepository.FindById(thirdPartyId) ?? throw new NotFoundException($"Third party not found");
         return await Execute(thirdParty);

@@ -1,5 +1,4 @@
 using Organizarty.Application.App.ThirdParties.UseCases;
-using Organizarty.Application.App.ThirdParties.Data;
 using Organizarty.Application.App.ThirdParties.Entities;
 using Organizarty.Tests.Mock.Adapters;
 

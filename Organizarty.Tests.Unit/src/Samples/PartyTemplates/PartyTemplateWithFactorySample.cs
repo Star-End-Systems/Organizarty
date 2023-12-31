@@ -7,7 +7,7 @@ namespace Organizarty.Tests.Unit.Samples.PartyTemplates;
 
 public static partial class PartyTemplateSample
 {
-    public static async Task<PartyTemplate> SetuoPartyTemplate(UseCasesFactory usecases, Guid locationId, Guid userid)
+    public static async Task<PartyTemplate> SetuoPartyTemplate(UseCasesFactory usecases, string locationId, string userid)
     {
         var data = new CreatePartyDto("Festa de coxinhas", 50, PartyType.chadebebe, locationId, userid);
         var createParty = usecases.CreatePartyUseCase();

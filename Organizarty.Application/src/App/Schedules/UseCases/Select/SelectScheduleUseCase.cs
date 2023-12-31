@@ -20,19 +20,19 @@ public class SelectScheduleUseCase
         _serviceRepository = serviceRepository;
     }
 
-    public async Task<Schedule> FindById(Guid scheduleId)
+    public async Task<Schedule> FindById(string scheduleId)
     => await _scheduleRepository.FindById(scheduleId) ?? throw new NotFoundException("Schedule not found.");
 
-    public async Task<List<Schedule>> FromUser(Guid userid)
+    public async Task<List<Schedule>> FromUser(string userid)
     => await _scheduleRepository.ListFromUser(userid);
 
-    public async Task<List<DecorationOrder>> SelectDecorationOrders(Guid scheduleId)
+    public async Task<List<DecorationOrder>> SelectDecorationOrders(string scheduleId)
     => await _decorationRepository.ListFromSchedule(scheduleId);
 
-    public async Task<List<FoodOrder>> SelectFoodOrders(Guid thirdPartyId)
+    public async Task<List<FoodOrder>> SelectFoodOrders(string thirdPartyId)
     => await _foodRepository.ListFromThirdParty(thirdPartyId);
 
-    public async Task<List<ItemOrder>> SelectOrdersFromSchedule(Guid scheduleid)
+    public async Task<List<ItemOrder>> SelectOrdersFromSchedule(string scheduleid)
     {
         var decorations = (await _decorationRepository
                                 .ListFromSchedule(scheduleid))
@@ -56,7 +56,7 @@ public class SelectScheduleUseCase
         return itemOrder;
     }
 
-    public async Task<List<ItemOrder>> OrdersSince(DateTime date, Guid userid)
+    public async Task<List<ItemOrder>> OrdersSince(DateTime date, string userid)
     {
         var orders = new List<ItemOrder>();
 
@@ -70,7 +70,7 @@ public class SelectScheduleUseCase
         return orders;
     }
 
-    public async Task<List<ItemOrder>> OrdersFromThirdParty(Guid thirdpartyid)
+    public async Task<List<ItemOrder>> OrdersFromThirdParty(string thirdpartyid)
     {
         var foods = (await _foodRepository
                           .ListFromThirdParty(thirdpartyid))

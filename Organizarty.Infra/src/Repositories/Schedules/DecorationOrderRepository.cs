@@ -3,6 +3,7 @@ using Organizarty.Application.App.Schedules.Data;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.Schedules.Enum;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Schedules;
 
@@ -17,6 +18,7 @@ public class DecorationOrderRepository : IDecorationOrderRepository
 
     public async Task<DecorationOrder> Add(DecorationOrder decoration)
     {
+        decoration.Id = IdGenerator.DefaultId();
         await _context.DecorationOrders.AddAsync(decoration);
         await _context.SaveChangesAsync();
         return decoration;
@@ -57,11 +59,11 @@ public class DecorationOrderRepository : IDecorationOrderRepository
         return await Update(decoration);
     }
 
-    public async Task<DecorationOrder?> FindById(Guid id)
+    public async Task<DecorationOrder?> FindById(string id)
       => await _context.DecorationOrders.FindAsync(id);
 
 
-    public async Task<List<DecorationOrder>> ListFromSchedule(Guid schedule)
+    public async Task<List<DecorationOrder>> ListFromSchedule(string schedule)
       => await _context.DecorationOrders
                         .Include(x => x.Decoration)
                         .Include(x => x.Decoration!.DecorationType)

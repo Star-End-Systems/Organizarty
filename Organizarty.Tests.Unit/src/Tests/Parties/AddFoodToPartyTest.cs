@@ -37,7 +37,7 @@ public class AddFoodToPartyTest
 
             var foodss = await selectOnParty.GetFoods(party.Id);
 
-            Assert.NotEqual(Guid.Empty, a.Id);
+            Assert.NotEqual(string.Empty, a.Id);
             Assert.Single(foodss);
         }
     }
@@ -101,7 +101,7 @@ public class AddFoodToPartyTest
 
             var foodss = await selectOnParty.GetFoods(party.Id);
 
-            Assert.NotEqual(Guid.Empty, a.Id);
+            Assert.NotEmpty(a.Id);
             Assert.Single(foodss);
         }
     }

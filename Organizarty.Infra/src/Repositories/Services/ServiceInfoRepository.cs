@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Services.Data;
 using Organizarty.Application.App.Services.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Services;
 
@@ -17,16 +18,17 @@ public class ServiceInfoRepository : IServiceInfoRepository
 
     public async Task<ServiceInfo> Create(ServiceInfo service)
     {
+        service.Id = IdGenerator.DefaultId();
         var s = await _context.ServiceInfos.AddAsync(service);
         await _context.SaveChangesAsync();
 
         return s.Entity;
     }
 
-    public async Task<ServiceInfo?> FindById(Guid id)
+    public async Task<ServiceInfo?> FindById(string id)
     => await _context.ServiceInfos.FindAsync(id);
 
-    public async Task<ServiceInfo?> FindByIdWithParent(Guid id)
+    public async Task<ServiceInfo?> FindByIdWithParent(string id)
     => await _context.ServiceInfos
             .Include(x => x.ServiceType)
             .Where(x => x.Id == id)

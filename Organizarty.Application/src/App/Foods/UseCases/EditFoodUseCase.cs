@@ -6,7 +6,7 @@ using Organizarty.Application.Extras;
 
 namespace Organizarty.Application.App.Foods.UseCases;
 
-public record EditFoodDto(Guid id, string name, string description, string category, List<string> tags) { }
+public record EditFoodDto(string id, string name, string description, string category, List<string> tags) { }
 
 public class EditFoodUseCase
 {

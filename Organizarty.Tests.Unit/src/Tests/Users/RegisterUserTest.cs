@@ -30,7 +30,7 @@ public class RegisterUserTest : IAsyncLifetime
 
         var user = await UserSample.SetupUser(registerUser);
 
-        Assert.NotEqual(Guid.Empty, user.Id);
+        Assert.NotEqual(string.Empty, user.Id);
         Assert.False(user.EmailConfirmed);
     }
 

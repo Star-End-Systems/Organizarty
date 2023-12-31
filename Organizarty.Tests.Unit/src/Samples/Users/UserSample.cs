@@ -12,8 +12,8 @@ public static partial class UserSample
     {
         var user = await UserSample.SetupUser(registerUser);
 
-        var code = (await sendEmailConfirm.Execute(user)).Id;
+        var code = (await sendEmailConfirm.Execute(user.Email)).Code;
 
-        return await confirmCode.Execute(code);
+        return await confirmCode.Execute(code, user.Email);
     }
 }

@@ -12,6 +12,6 @@ public class SelectManagerUseCase
         _managerRepository = managerRepository;
     }
 
-    public async Task<Manager?> ById(Guid id)
+    public async Task<Manager?> ById(string id)
       => await _managerRepository.FindById(id);
 }

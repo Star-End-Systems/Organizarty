@@ -16,7 +16,7 @@ public class AuthorizeThirdPartyTest
 
             var thirdParty = await ThirdPartySample.SetupThirdPartyAuthorized(usecases);
 
-            Assert.NotEqual(Guid.Empty, thirdParty.Id);
+            Assert.NotEqual(string.Empty, thirdParty.Id);
             Assert.Equal(AuthorizationStatus.Authorized, thirdParty.AuthorizationStatus);
         }
     }
@@ -34,7 +34,7 @@ public class AuthorizeThirdPartyTest
 
             await authorize.Execute(thirdParty.LoginEmail);
 
-            Assert.NotEqual(Guid.Empty, thirdParty.Id);
+            Assert.NotEqual(string.Empty, thirdParty.Id);
             Assert.Equal(AuthorizationStatus.Authorized, thirdParty.AuthorizationStatus);
         }
     }
@@ -50,9 +50,9 @@ public class AuthorizeThirdPartyTest
 
             var thirdParty = await ThirdPartySample.SetupThirdParty(usecases);
 
-            await authorize.Execute(thirdParty.Id);
+            await authorize.ExecuteFromId(thirdParty.Id);
 
-            Assert.NotEqual(Guid.Empty, thirdParty.Id);
+            Assert.NotEqual(string.Empty, thirdParty.Id);
             Assert.Equal(AuthorizationStatus.Authorized, thirdParty.AuthorizationStatus);
         }
     }

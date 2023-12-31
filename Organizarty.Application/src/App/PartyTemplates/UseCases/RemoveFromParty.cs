@@ -14,13 +14,13 @@ public class RemoveFromPartyUseCase
         _foodRepository = foodRepository;
         _serviceRepository = serviceRepository;
     }
-    public async Task RemoveFood(Guid foodid)
+    public async Task RemoveFood(string foodid)
       => await _foodRepository.Delete(foodid);
 
-    public async Task RemoveDecoration(Guid foodid)
+    public async Task RemoveDecoration(string foodid)
       => await _decorationRepository.Delete(foodid);
 
-    public async Task RemoveService(Guid foodid)
+    public async Task RemoveService(string foodid)
       => await _serviceRepository.Delete(foodid);
 
 }

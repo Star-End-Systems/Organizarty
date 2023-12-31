@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Services.Data;
 using Organizarty.Application.App.Services.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Services;
 
@@ -17,19 +18,20 @@ public class ServiceTypeRepository : IServiceTypeRepository
 
     public async Task<ServiceType> Create(ServiceType service)
     {
+        service.Id = IdGenerator.DefaultId();
         var s = await _context.ServiceTypes.AddAsync(service);
         await _context.SaveChangesAsync();
 
         return s.Entity;
     }
 
-    public async Task<ServiceType?> FindById(Guid id)
+    public async Task<ServiceType?> FindById(string id)
     => await _context.ServiceTypes.FindAsync(id);
 
-    public async Task<ServiceType?> FindByIdWithItens(Guid id)
+    public async Task<ServiceType?> FindByIdWithItens(string id)
     => await _context.ServiceTypes.Include(x => x.SubServices).Where(x => x.Id == id).FirstOrDefaultAsync();
 
-    public async Task<List<ServiceType>> FindByThirdParty(Guid thirdPartyId)
+    public async Task<List<ServiceType>> FindByThirdParty(string thirdPartyId)
       => await _context.ServiceTypes
                 .Include(x => x.SubServices)
                 .Where(x => x.ThirdPartyId == thirdPartyId)

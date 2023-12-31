@@ -7,9 +7,9 @@ public interface IDecorationOrderRepository
     Task<DecorationOrder> Add(DecorationOrder decoration);
     Task<DecorationOrder> Update(DecorationOrder decoration);
 
-    Task<DecorationOrder?> FindById(Guid id);
+    Task<DecorationOrder?> FindById(string id);
 
-    Task<List<DecorationOrder>> ListFromSchedule(Guid schedule);
+    Task<List<DecorationOrder>> ListFromSchedule(string schedule);
     Task<List<DecorationOrder>> All();
     Task<List<DecorationOrder>> AllOpen();
 }

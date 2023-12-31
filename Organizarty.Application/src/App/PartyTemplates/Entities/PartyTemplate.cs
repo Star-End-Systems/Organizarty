@@ -6,19 +6,19 @@ namespace Organizarty.Application.App.Party.Entities;
 
 public class PartyTemplate
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = default!;
 
     public string Name { get; set; } = default!;
     public int ExpectedGuests { get; set; }
 
     public PartyType Type { get; set; }
 
-    public Guid UserId { get; set; }
+    public string UserId { get; set; } = default!;
     public User? User { get; set; }
 
-    public Guid LocationId { get; set; }
+    public string LocationId { get; set; } = default!;
     public Location Location { get; set; } = default!;
 
-    public Guid? OriginalPartyTemplateId { get; set; }
+    public string? OriginalPartyTemplateId { get; set; }
     public PartyTemplate? OriginalPartyTemplate { get; set; }
 }

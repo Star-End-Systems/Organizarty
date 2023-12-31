@@ -37,7 +37,7 @@ public class AddServiceToPartyTest
 
             var servicess = await selectOnParty.GetServices(party.Id);
 
-            Assert.NotEqual(Guid.Empty, a.Id);
+            Assert.NotEqual(string.Empty, a.Id);
             Assert.Single(servicess);
         }
     }
@@ -67,7 +67,7 @@ public class AddServiceToPartyTest
 
             var servicess = await selectOnParty.GetServices(party.Id);
 
-            Assert.NotEqual(Guid.Empty, a.Id);
+            Assert.NotEqual(string.Empty, a.Id);
             Assert.Single(servicess);
         }
     }

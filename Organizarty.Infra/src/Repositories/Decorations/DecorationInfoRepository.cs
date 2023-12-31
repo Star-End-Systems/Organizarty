@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.DecorationInfos.Data;
 using Organizarty.Application.App.DecorationInfos.Entities;
 using Organizarty.Infra.Data.Contexts;
+using static Organizarty.Infra.Utils.IdGenerator;
 
 namespace Organizarty.Infra.Repositories.Decorations;
 
@@ -16,23 +17,24 @@ public class DecorationInfoRepository : IDecorationInfoRepository
 
     public async Task<DecorationInfo> Create(DecorationInfo decoration)
     {
+        decoration.Id = DefaultId();
         var d = await _context.DecorationInfos.AddAsync(decoration);
         await _context.SaveChangesAsync();
 
         return d.Entity;
     }
 
-    public async Task<DecorationInfo?> FindById(Guid id)
+    public async Task<DecorationInfo?> FindById(string id)
     => await _context.DecorationInfos.FindAsync(id);
 
 
-    public async Task<List<DecorationInfo>> ListFromType(Guid id)
+    public async Task<List<DecorationInfo>> ListFromType(string id)
     => await _context.DecorationInfos
             .Where(x => x.DecorationTypeId == id)
             .ToListAsync();
 
 
-    public async Task<DecorationInfo?> FindByIdWithType(Guid id)
+    public async Task<DecorationInfo?> FindByIdWithType(string id)
     => await _context.DecorationInfos
               .Where(x => x.Id == id)
               .Include(x => x.DecorationType)

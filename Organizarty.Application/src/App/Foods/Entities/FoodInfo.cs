@@ -3,7 +3,7 @@ namespace Organizarty.Application.App.Foods.Entities;
 
 public class FoodInfo
 {
-    public Guid Id { get; set; }
+    public string Id { get; set; } = default!;
 
     public string Flavour { get; set; } = default!;
     public decimal Price { get; set; }
@@ -18,5 +18,5 @@ public class FoodInfo
     }
 
     public FoodType FoodType { get; set; } = default!;
-    public Guid FoodTypeId { get; set; } = default!;
+    public string FoodTypeId { get; set; } = default!;
 }

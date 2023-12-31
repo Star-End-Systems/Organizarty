@@ -10,7 +10,7 @@ public interface IFoodTypeRepository
     Task<List<FoodType>> AllFoods();
     Task<List<FoodType>> AllFoods(bool avaible);
 
-    Task<List<FoodType>> AllFoodsFromThirdParty(Guid thirdPartyId);
+    Task<List<FoodType>> AllFoodsFromThirdParty(string thirdPartyId);
 
-    Task<FoodType?> FindById(Guid id);
+    Task<FoodType?> FindById(string id);
 }

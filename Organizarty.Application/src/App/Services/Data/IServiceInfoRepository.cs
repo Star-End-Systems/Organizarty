@@ -7,6 +7,6 @@ public interface IServiceInfoRepository
     Task<ServiceInfo> Create(ServiceInfo service);
     Task<ServiceInfo> Update(ServiceInfo service);
 
-    Task<ServiceInfo?> FindByIdWithParent(Guid id);
-    Task<ServiceInfo?> FindById(Guid id);
+    Task<ServiceInfo?> FindByIdWithParent(string id);
+    Task<ServiceInfo?> FindById(string id);
 }

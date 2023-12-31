@@ -54,42 +54,42 @@ public class ChangeItemStatusUseCase
         return await _foodRepository.Update(food);
     }
 
-    public async Task<DecorationOrder> AcceptDecoration(Guid orderid)
+    public async Task<DecorationOrder> AcceptDecoration(string orderid)
     {
         var decoration = await _decorationRepository.FindById(orderid) ?? throw new NotFoundException("Pedido não encontrado.");
 
         return await Execute(decoration, ItemStatus.ACCEPT);
     }
 
-    public async Task<DecorationOrder> RefuseDecoration(Guid orderid)
+    public async Task<DecorationOrder> RefuseDecoration(string orderid)
     {
         var decoration = await _decorationRepository.FindById(orderid) ?? throw new NotFoundException("Pedido não encontrado.");
 
         return await Execute(decoration, ItemStatus.REFUSED);
     }
 
-    public async Task<FoodOrder> AcceptFood(Guid orderid)
+    public async Task<FoodOrder> AcceptFood(string orderid)
     {
         var food = await _foodRepository.FindById(orderid) ?? throw new NotFoundException("Pedido não encontrado.");
 
         return await Execute(food, ItemStatus.ACCEPT);
     }
 
-    public async Task<FoodOrder> RefuseFood(Guid orderid)
+    public async Task<FoodOrder> RefuseFood(string orderid)
     {
         var food = await _foodRepository.FindById(orderid) ?? throw new NotFoundException("Pedido não encontrado.");
 
         return await Execute(food, ItemStatus.REFUSED);
     }
 
-    public async Task<ServiceOrder> AcceptService(Guid orderid)
+    public async Task<ServiceOrder> AcceptService(string orderid)
     {
         var service = await _serviceRepository.FindById(orderid) ?? throw new NotFoundException("Pedido não encontrado.");
 
         return await Execute(service, ItemStatus.ACCEPT);
     }
 
-    public async Task<ServiceOrder> RefuseService(Guid orderid)
+    public async Task<ServiceOrder> RefuseService(string orderid)
     {
         var food = await _serviceRepository.FindById(orderid) ?? throw new NotFoundException("Pedido não encontrado.");
 

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizarty.Application.App.Foods.Data;
 using Organizarty.Application.App.Foods.Entities;
 using Organizarty.Infra.Data.Contexts;
+using Organizarty.Infra.Utils;
 
 namespace Organizarty.Infra.Repositories.Foods;
 
@@ -44,7 +45,7 @@ public class FoodTypeRepository : IFoodTypeRepository
               })
               .ToListAsync();
 
-    public async Task<List<FoodType>> AllFoodsFromThirdParty(Guid thirdPartyId)
+    public async Task<List<FoodType>> AllFoodsFromThirdParty(string thirdPartyId)
       => await _context.FoodTypes
                 .Include(x => x.Foods)
                 .Where(x => x.ThirdPartyId == thirdPartyId)
@@ -61,12 +62,13 @@ public class FoodTypeRepository : IFoodTypeRepository
 
     public async Task<FoodType> Create(FoodType foodType)
     {
+        foodType.Id = IdGenerator.DefaultId();
         await _context.FoodTypes.AddAsync(foodType);
         await _context.SaveChangesAsync();
         return foodType;
     }
 
-    public async Task<FoodType?> FindById(Guid id)
+    public async Task<FoodType?> FindById(string id)
       => await _context.FoodTypes.FindAsync(id);
 
     public async Task<FoodType> Update(FoodType foodType)

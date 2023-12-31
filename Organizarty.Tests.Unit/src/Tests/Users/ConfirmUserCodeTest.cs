@@ -1,6 +1,5 @@
 using Organizarty.Infra.Data.Contexts;
 using Organizarty.Tests.Mock.Database;
-using Organizarty.Tests.Mock.Repositories;
 using Organizarty.Tests.Mock.UseCases;
 using Organizarty.Tests.Unit.Samples.Users;
 
@@ -31,11 +30,11 @@ public class ConfirmUserCodeTest : IAsyncLifetime
 
         var user = await UserSample.SetupUser(registerUser);
 
-        var code = (await sendCode.Execute(user)).Id;
+        var code = (await sendCode.Execute(user.Email)).Code;
 
-        Assert.NotEqual(Guid.Empty, code);
+        Assert.NotEqual(string.Empty, code);
 
-        var u = await confirmCode.Execute(code);
+        var u = await confirmCode.Execute(code, user.Email);
 
         Assert.True(u.EmailConfirmed);
     }

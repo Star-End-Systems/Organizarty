@@ -6,8 +6,8 @@ public interface IServiceGroupRepository
 {
     Task<ServiceGroup> Add(ServiceGroup group);
     Task<ServiceGroup> Update(ServiceGroup group);
-    Task Delete(Guid id);
-    Task<List<ServiceGroup>> ListFromParty(Guid partyId);
+    Task Delete(string id);
+    Task<List<ServiceGroup>> ListFromParty(string partyId);
 
-    Task<ServiceGroup?> FindById(Guid id);
+    Task<ServiceGroup?> FindById(string id);
 }
