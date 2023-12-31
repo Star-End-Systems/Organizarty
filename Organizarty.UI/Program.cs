@@ -6,72 +6,35 @@ using Organizarty.UI.Extensions;
 using Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
 using DotNetEnv;
-using Microsoft.OpenApi.Models;
-using System.IO.Compression;
-using Microsoft.AspNetCore.ResponseCompression;
 
 Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddResponseCompression(options =>
-{
-    options.EnableForHttps = true;
-    options.Providers.Add<BrotliCompressionProvider>();
-});
+builder.Services.AddTextCompression();
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages()
+  ;
 builder.Services.AddServerSideBlazor();
 
 // Add services to the container.
-builder.Services.AddDatabase(builder.Configuration);
-builder.Services.AddRepositories();
-builder.Services.AddProviders();
-
-builder.Services.AddUseCases();
+builder.Services.AddDatabase(builder.Configuration)
+                .AddRepositories()
+                .AddRepositories()
+                .AddProviders()
+                .AddUseCases();
 
 builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddHelpers();
-// Add Swagger services
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
 
-    // Define the BearerAuth scheme that's in use
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-    {
-        Description = "JWT Authorization header using the Bearer scheme.",
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer"
-    });
-
-    // Apply the BearerAuth scheme to all operations
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-   {
-       {
-           new OpenApiSecurityScheme
-           {
-               Reference = new OpenApiReference
-               {
-                  Type = ReferenceType.SecurityScheme,
-                  Id = "Bearer"
-               }
-           },
-           new string[] {}
-       }
-   });
-});
-
-builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
-{
-    options.Level = CompressionLevel.SmallestSize;
-});
+builder.Services.AddSwaggerConfiguration();
 
 var app = builder.Build();
+
 app.UseResponseCompression();
 
 app.UseExceptionHandler("/Error");
@@ -79,22 +42,16 @@ app.UseExceptionHandler("/Error");
 if (!app.Environment.IsDevelopment())
 {
     app.UseHsts();
-
-}
-else
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerConfiguration();
 
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
 app.UseRedirectMiddleware();
+
 app.UseRouting();
 
 app.MapBlazorHub();
@@ -105,6 +62,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapRazorPages();
-
 
 app.Run();
