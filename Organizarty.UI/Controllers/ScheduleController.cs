@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Organizarty.Application.App.Party.Enums;
 using Organizarty.Application.App.Schedules.Entities;
 using Organizarty.Application.App.Schedules.UseCases;
 using Organizarty.Application.Exceptions;

@@ -5,18 +5,9 @@ using Organizarty.UI.Extensions;
 
 using Organizarty.DependencyInversion.Application.UseCasesExtensions;
 
-using DotNetEnv;
-
-Env.Load();
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTextCompression();
-
-// Add services to the container.
-builder.Services.AddRazorPages()
-  ;
-builder.Services.AddServerSideBlazor();
 
 // Add services to the container.
 builder.Services.AddDatabase(builder.Configuration)
@@ -26,8 +17,6 @@ builder.Services.AddDatabase(builder.Configuration)
                 .AddUseCases();
 
 builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddHelpers();
 
@@ -48,19 +37,12 @@ app.UseSwaggerConfiguration();
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
-
 app.UseRedirectMiddleware();
 
-app.UseRouting();
-
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+// app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapRazorPages();
 
 app.Run();

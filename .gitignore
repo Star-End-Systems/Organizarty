@@ -1,2 +1,4 @@
 coveragereport
 coverage.xml
+
+.env

@@ -6,6 +6,7 @@ public static class SwaggerInjection
 {
     public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services)
     {
+        services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
         services.AddSwaggerGen(c =>
